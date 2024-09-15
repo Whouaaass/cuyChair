@@ -32,9 +32,6 @@ public class viewSignIn extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelUp = new javax.swing.JPanel();
-        jLabelRegistroUsuario = new javax.swing.JLabel();
-        jPanelDown = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabelCorreo = new javax.swing.JLabel();
         jLabelContrasena = new javax.swing.JLabel();
@@ -48,35 +45,11 @@ public class viewSignIn extends javax.swing.JFrame {
         jTextFieldLastName = new javax.swing.JTextField();
         jButtonYaTengoUnaCuenta = new javax.swing.JButton();
         jPasswordFieldUserPassword = new javax.swing.JPasswordField();
+        jPanelUp = new javax.swing.JPanel();
+        jLabelRegistroUsuario = new javax.swing.JLabel();
+        jPanelDown = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanelUp.setBackground(new java.awt.Color(42, 71, 94));
-
-        jLabelRegistroUsuario.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        jLabelRegistroUsuario.setForeground(new java.awt.Color(199, 213, 224));
-        jLabelRegistroUsuario.setText("REGISTRO DE USUARIO");
-
-        javax.swing.GroupLayout jPanelUpLayout = new javax.swing.GroupLayout(jPanelUp);
-        jPanelUp.setLayout(jPanelUpLayout);
-        jPanelUpLayout.setHorizontalGroup(
-            jPanelUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelUpLayout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addComponent(jLabelRegistroUsuario)
-                .addContainerGap(105, Short.MAX_VALUE))
-        );
-        jPanelUpLayout.setVerticalGroup(
-            jPanelUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelUpLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabelRegistroUsuario)
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanelUp, java.awt.BorderLayout.PAGE_START);
-
-        jPanelDown.setBackground(new java.awt.Color(42, 71, 94));
 
         jPanel1.setBackground(new java.awt.Color(27, 40, 56));
 
@@ -136,7 +109,7 @@ public class viewSignIn extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(133, 133, 133)
-                .addComponent(jButtonYaTengoUnaCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                .addComponent(jButtonYaTengoUnaCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                 .addGap(31, 31, 31)
                 .addComponent(jButtonSignIn)
                 .addGap(28, 28, 28))
@@ -175,7 +148,7 @@ public class viewSignIn extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelApellido)
                     .addComponent(jTextFieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -195,21 +168,48 @@ public class viewSignIn extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+
+        jPanelUp.setBackground(new java.awt.Color(42, 71, 94));
+
+        jLabelRegistroUsuario.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        jLabelRegistroUsuario.setForeground(new java.awt.Color(199, 213, 224));
+        jLabelRegistroUsuario.setText("REGISTRO DE USUARIO");
+
+        javax.swing.GroupLayout jPanelUpLayout = new javax.swing.GroupLayout(jPanelUp);
+        jPanelUp.setLayout(jPanelUpLayout);
+        jPanelUpLayout.setHorizontalGroup(
+            jPanelUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelUpLayout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addComponent(jLabelRegistroUsuario)
+                .addContainerGap(105, Short.MAX_VALUE))
+        );
+        jPanelUpLayout.setVerticalGroup(
+            jPanelUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelUpLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabelRegistroUsuario)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanelUp, java.awt.BorderLayout.PAGE_START);
+
+        jPanelDown.setBackground(new java.awt.Color(42, 71, 94));
+        jPanelDown.setPreferredSize(new java.awt.Dimension(0, 10));
+
         javax.swing.GroupLayout jPanelDownLayout = new javax.swing.GroupLayout(jPanelDown);
         jPanelDown.setLayout(jPanelDownLayout);
         jPanelDownLayout.setHorizontalGroup(
             jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanelDownLayout.setVerticalGroup(
             jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelDownLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelDown, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jPanelDown, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
