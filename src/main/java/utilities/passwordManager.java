@@ -40,6 +40,8 @@ public class passwordManager {
     // no whitespace
     new WhitespaceRule());
     
+   
+    //Quitar el do while
     //Metodo para asignar una contraseña con las reglas establecidas
     public void setPassword(PasswordData prmPassword){
         RuleResult objResult = this.objValidator.validate(prmPassword);

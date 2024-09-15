@@ -40,7 +40,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
-                  <Component id="jButtonYaTengoUnaCuenta" pref="158" max="32767" attributes="0"/>
+                  <Component id="jButtonYaTengoUnaCuenta" pref="152" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="jButtonSignIn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
@@ -52,6 +52,10 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabelNombre" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelApellido" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                  <Component id="jLabelCorreo" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -60,10 +64,10 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabelId" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelContrasena" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelContrasena" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelId" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -96,12 +100,24 @@
                       <Component id="jLabelApellido" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldLastName" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+<<<<<<< HEAD
                   <EmptySpace pref="109" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabelId" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldId" alignment="1" min="-2" max="-2" attributes="0"/>
+=======
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jTextFieldMail" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
+>>>>>>> main
                   </Group>
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabelId" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldId" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="27" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabelContrasena" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jPasswordFieldUserPassword" alignment="3" min="-2" max="-2" attributes="0"/>
