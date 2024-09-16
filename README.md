@@ -1,5 +1,5 @@
 
-# eventChair
+# cuyChair
 Hola! este es el repositorio del proyecto de ingeniería de software II (2024, grupo A), el proyecto se trata de construir una aplicación que pueda manejar un sistema de gestión de conferencias y eventos académicos.
 
 ## Descripción del Software a desarrollar
@@ -9,5 +9,5 @@ En muchas universidades y comunidades académicas, la organización de conferenc
 Esta aplicación será utilizada para gestionar las conferencias que organice el departamento de sistemas en un futuro cercano. En el momento no se quiere utilizar aplicaciones comerciales como [EasyChair](https://easychair.org/) debido a los costos que implican su licencia. A continuación se presenta una lista inicial de requisitos de esta aplicación. Estos requisitos serán capturados, depurados, detallados, priorizados y negociados con el cliente en su debido momento. El cliente elegirá el alcance del proyecto y los requisitos que se abordarán durante este periodo.
 
 ## Tecnologías en uso
-
-Se piensa crear una aplicación de escritorio en Java
+La aplicación se crea con Java  
+Hace uso de maven
