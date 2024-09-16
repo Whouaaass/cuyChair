@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 
 import utilities.*;
-import views.viewSignIn;
+import views.ViewSignIn;
 /**
  *
  * @author julia
@@ -82,7 +82,7 @@ public class testSignIn {
             //Inicializar servicio de almacenamiento de usuario
             userStoreService objUserStoreService = new userStoreService(objRepositoryArrayListUser);
             //Asociar el servicio de almacenamiento de usuario
-            viewSignIn objViewSignIn = new viewSignIn(objUserStoreService);
+            ViewSignIn objViewSignIn = new ViewSignIn(objUserStoreService);
             objViewSignIn.associateUserStoreService(objUserStoreService);
             //Lanzar interfaz
             objViewSignIn.setVisible(true);

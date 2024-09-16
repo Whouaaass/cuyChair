@@ -13,12 +13,12 @@ import javax.swing.JFrame;
  *
  * @author julia
  */
-public class viewSignIn extends javax.swing.JFrame {
+public class ViewSignIn extends javax.swing.JFrame {
     private userStoreService objUserStoreService; 
     /**
      * Creates new form viewRegistrarUsuario
      */
-    public viewSignIn(userStoreService objUserStoreService) {
+    public ViewSignIn(userStoreService objUserStoreService) {
         initComponents();
         this.objUserStoreService=objUserStoreService;
     }
@@ -252,7 +252,7 @@ public class viewSignIn extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSignInActionPerformed
     //Te redirecciona al inicio de sesión de usuario
     private void jButtonYaTengoUnaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonYaTengoUnaCuentaActionPerformed
-        viewLogIn objViewLogIn = new viewLogIn();
+        ViewLogIn objViewLogIn = new ViewLogIn();
         objViewLogIn.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewLogIn.setVisible(true);
         this.setVisible(false);
