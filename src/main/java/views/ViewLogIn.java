@@ -4,7 +4,7 @@
  */
 package views;
 
-import drivers.userStoreService;
+import drivers.UserStoreService;
 
 import javax.swing.JFrame;
 
@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  * @author julia
  */
 public class ViewLogIn extends javax.swing.JFrame {
-    private userStoreService objUserStoreService;
+    private UserStoreService objUserStoreService;
     /**
      * Creates new form viewLogIn
      */

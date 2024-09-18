@@ -4,7 +4,7 @@
  */
 package dataAccess.user;
 
-import domain.user;
+import domain.User;
 import java.util.List;
 
 /**
@@ -12,6 +12,6 @@ import java.util.List;
  * @author julia
  */
 public interface IRepositoryUser {
-    public boolean storeUser(user objUser);
-    public List<user> listUser();
+    public boolean storeUser(User objUser);
+    public List<User> listUser();
 }

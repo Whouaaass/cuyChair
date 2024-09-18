@@ -5,8 +5,8 @@
 package views;
 
 
-import domain.user;
-import drivers.userStoreService;
+import domain.User;
+import drivers.UserStoreService;
 import javax.swing.JFrame;
 
 /**
@@ -14,11 +14,11 @@ import javax.swing.JFrame;
  * @author julia
  */
 public class ViewSignIn extends javax.swing.JFrame {
-    private userStoreService objUserStoreService; 
+    private UserStoreService objUserStoreService; 
     /**
      * Creates new form viewRegistrarUsuario
      */
-    public ViewSignIn(userStoreService objUserStoreService) {
+    public ViewSignIn(UserStoreService objUserStoreService) {
         initComponents();
         this.objUserStoreService=objUserStoreService;
     }
@@ -252,7 +252,7 @@ public class ViewSignIn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     //Asociar servicio almacenamiento de usuario
-    public void associateUserStoreService(userStoreService objUserService)
+    public void associateUserStoreService(UserStoreService objUserService)
     {
         this.objUserStoreService=objUserService;
     }
@@ -274,7 +274,7 @@ public class ViewSignIn extends javax.swing.JFrame {
             varIdString=this.jTextFieldId.getText();
             varId=Integer.parseInt(varIdString);
             //Pasamos las variables locales a un objeto
-            user objUser = new user(varId,varName,varLastName,varPassword,varEmail);
+            User objUser = new User(varId,varName,varLastName,varPassword,varEmail);
             //El objeto se manda a través de un servicio de almacenamiento
             boolean varFlag = this.objUserStoreService.storeUser(objUser);
             if (varFlag) {
