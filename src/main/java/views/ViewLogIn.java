@@ -81,10 +81,15 @@ public class ViewLogIn extends javax.swing.JFrame {
         jButtonLogIn.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         jButtonLogIn.setForeground(new java.awt.Color(199, 213, 224));
         jButtonLogIn.setText("Iniciar sesión");
+        jButtonLogIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLogInActionPerformed(evt);
+            }
+        });
 
-        jButtonNoTengoUnaCuenta.setBackground(new java.awt.Color(26, 23, 33));
+        jButtonNoTengoUnaCuenta.setBackground(new java.awt.Color(199, 213, 224));
         jButtonNoTengoUnaCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButtonNoTengoUnaCuenta.setForeground(new java.awt.Color(51, 102, 255));
+        jButtonNoTengoUnaCuenta.setForeground(new java.awt.Color(30, 61, 155));
         jButtonNoTengoUnaCuenta.setText("No tengo una cuenta");
         jButtonNoTengoUnaCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,26 +104,27 @@ public class ViewLogIn extends javax.swing.JFrame {
         jPanelDownLayout.setHorizontalGroup(
             jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDownLayout.createSequentialGroup()
-                .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPasswordFieldUserPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelDownLayout.createSequentialGroup()
-                            .addGap(176, 176, 176)
-                            .addComponent(jLabelContrasena))
-                        .addGroup(jPanelDownLayout.createSequentialGroup()
-                            .addGap(140, 140, 140)
-                            .addComponent(jButtonNoTengoUnaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanelDownLayout.createSequentialGroup()
-                            .addGap(149, 149, 149)
-                            .addComponent(jButtonLogIn))
-                        .addGroup(jPanelDownLayout.createSequentialGroup()
-                            .addGap(130, 130, 130)
-                            .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDownLayout.createSequentialGroup()
+                        .addGap(208, 208, 208)
+                        .addComponent(jLabelCorreo))
+                    .addGroup(jPanelDownLayout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPasswordFieldUserPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanelDownLayout.createSequentialGroup()
-                                    .addComponent(jLabelCorreo)
-                                    .addGap(81, 81, 81))
-                                .addComponent(jTextFieldMail, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(150, Short.MAX_VALUE))
+                                    .addGap(47, 47, 47)
+                                    .addComponent(jLabelContrasena)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextFieldMail, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanelDownLayout.createSequentialGroup()
+                        .addGap(167, 167, 167)
+                        .addComponent(jButtonLogIn))
+                    .addGroup(jPanelDownLayout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addComponent(jButtonNoTengoUnaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
         jPanelDownLayout.setVerticalGroup(
             jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,9 +135,9 @@ public class ViewLogIn extends javax.swing.JFrame {
                 .addComponent(jTextFieldMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelContrasena)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordFieldUserPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonLogIn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonNoTengoUnaCuenta)
@@ -172,6 +178,10 @@ public class ViewLogIn extends javax.swing.JFrame {
         objViewSingIn.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonNoTengoUnaCuentaActionPerformed
+
+    private void jButtonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogInActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonLogInActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogIn;
