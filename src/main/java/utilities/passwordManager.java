@@ -8,11 +8,11 @@ package utilities;
  * @author julia
  */
 import org.passay.*;
-public class passwordManager {
+public class PasswordManager {
     //Contraseña 
     private String fldPassword;
 
-    public passwordManager(String fldPassword) {
+    public PasswordManager(String fldPassword) {
         this.fldPassword = fldPassword;
     }
     

@@ -1,6 +1,6 @@
 package test;
-import dataAccess.user.repositoryArrayListUser;
-import drivers.userStoreService;
+import dataAccess.user.RepositoryArrayListUser;
+import drivers.UserStoreService;
 import org.passay.*;
 
 //MyCommitEnMyRama
@@ -18,11 +18,11 @@ import views.ViewSignIn;
  *
  * @author julia
  */
-public class testSignIn {
+public class TestSignIn {
     public static void main(String[] args){
         int varOpt=0;
-        utilities objUtil = new utilities();
-        repositoryArrayListUser objRepositoryArrayListUser = new repositoryArrayListUser();
+        Utilities objUtil = new Utilities();
+        RepositoryArrayListUser objRepositoryArrayListUser = new RepositoryArrayListUser();
         Scanner objScan = new Scanner(System.in);
         //Menu de pruebas
         do{
@@ -61,7 +61,7 @@ public class testSignIn {
             System.out.println("Contraseña:");
             varPassword=objScan.nextLine();
             //La asignamos a un objeto contraseña
-            passwordManager objPasswordManager = new passwordManager(varPassword);
+            PasswordManager objPasswordManager = new PasswordManager(varPassword);
             objPassword.setPassword(varPassword);
             //Se la pasamos al controlador de contraseña
             objPasswordManager.setPassword(objPassword);
@@ -76,11 +76,11 @@ public class testSignIn {
     }
     
     //Test para checkeo general de guardado de usuario
-    private static repositoryArrayListUser testGeneralSignIn(repositoryArrayListUser objRepositoryArrayListUser){
-        utilities objUtil = new utilities();
+    private static RepositoryArrayListUser testGeneralSignIn(RepositoryArrayListUser objRepositoryArrayListUser){
+        Utilities objUtil = new Utilities();
         try{
             //Inicializar servicio de almacenamiento de usuario
-            userStoreService objUserStoreService = new userStoreService(objRepositoryArrayListUser);
+            UserStoreService objUserStoreService = new UserStoreService(objRepositoryArrayListUser);
             //Asociar el servicio de almacenamiento de usuario
             ViewSignIn objViewSignIn = new ViewSignIn(objUserStoreService);
             objViewSignIn.associateUserStoreService(objUserStoreService);

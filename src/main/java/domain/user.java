@@ -8,14 +8,14 @@ package domain;
  *
  * @author julia
  */
-public class user {
+public class User {
     private int userId;
     private String userName;
     private String userLastName;
     private String userPassword; 
     private String userEmail;
 
-    public user(int userId, String userName, String userLastName, String userPassword, String userEmail) {
+    public User(int userId, String userName, String userLastName, String userPassword, String userEmail) {
         this.userId = userId;
         this.userName = userName;
         this.userLastName = userLastName;

@@ -4,13 +4,13 @@
  */
 package utilities;
 
-import domain.user;
+import domain.User;
 
 /**
  *
  * @author julia
  */
-public class utilities {
+public class Utilities {
     //Imprime el resultado de un booleano
     public void printResult(boolean prmBoolean){
         if(prmBoolean){
@@ -21,7 +21,7 @@ public class utilities {
         return;
     }
     //Imprime un usuario
-    public void printUser(user objUser){
+    public void printUser(User objUser){
         System.out.println("\n-----Usuario-----\n"
                 +"\nID: "+objUser.getUserId()
                 +"\nNombre: "+objUser.getUserName()

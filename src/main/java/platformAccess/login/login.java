@@ -8,6 +8,6 @@ package platformAccess.login;
  *
  * @author julia
  */
-public class login {
+public class Login {
     
 }
