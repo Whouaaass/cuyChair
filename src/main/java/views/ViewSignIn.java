@@ -5,20 +5,22 @@
 package views;
 
 
-import domain.user;
-import drivers.userStoreService;
+import domain.User;
+import drivers.UserStoreService;
 import javax.swing.JFrame;
+import org.passay.PasswordData;
+import utilities.PasswordManager;
 
 /**
  *
  * @author julia
  */
 public class ViewSignIn extends javax.swing.JFrame {
-    private userStoreService objUserStoreService; 
+    private UserStoreService objUserStoreService; 
     /**
      * Creates new form viewRegistrarUsuario
      */
-    public ViewSignIn(userStoreService objUserStoreService) {
+    public ViewSignIn(UserStoreService objUserStoreService) {
         initComponents();
         this.objUserStoreService=objUserStoreService;
     }
@@ -170,7 +172,7 @@ public class ViewSignIn extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         jPanelFormInput.add(jLabelPassword, gridBagConstraints);
 
-        jPasswordFieldPassword.setText("jPasswordField1");
+        jPasswordFieldPassword.setText("ContraSegura123");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -184,7 +186,7 @@ public class ViewSignIn extends javax.swing.JFrame {
             jPanelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCenterLayout.createSequentialGroup()
                 .addGap(133, 133, 133)
-                .addComponent(jButtonYaTengoUnaCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                .addComponent(jButtonYaTengoUnaCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(31, 31, 31)
                 .addComponent(jButtonSignIn)
                 .addGap(28, 28, 28))
@@ -220,7 +222,7 @@ public class ViewSignIn extends javax.swing.JFrame {
             .addGroup(jPanelUpLayout.createSequentialGroup()
                 .addGap(95, 95, 95)
                 .addComponent(jLabelRegistroUsuario)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         jPanelUpLayout.setVerticalGroup(
             jPanelUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,7 +241,7 @@ public class ViewSignIn extends javax.swing.JFrame {
         jPanelDown.setLayout(jPanelDownLayout);
         jPanelDownLayout.setHorizontalGroup(
             jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 458, Short.MAX_VALUE)
+            .addGap(0, 460, Short.MAX_VALUE)
         );
         jPanelDownLayout.setVerticalGroup(
             jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,7 +254,7 @@ public class ViewSignIn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     //Asociar servicio almacenamiento de usuario
-    public void associateUserStoreService(userStoreService objUserService)
+    public void associateUserStoreService(UserStoreService objUserService)
     {
         this.objUserStoreService=objUserService;
     }
@@ -264,23 +266,31 @@ public class ViewSignIn extends javax.swing.JFrame {
         int varId;
         String varIdString;
         String varEmail;
+        
         try{
             //Trae datos de la vista y las pasa a variables locales
             varName=this.jTextFieldName.getText();
             varLastName=this.jTextFieldLastName.getText();
             char[] arrayPassword=this.jPasswordFieldPassword.getPassword();
             String varPassword=new String(arrayPassword); 
+            //Validacion de contraseña
+            PasswordData objPassword = new PasswordData(varPassword);
+            PasswordManager objPasswordManager = new PasswordManager(varPassword);
+            if(!objPasswordManager.validPassword(objPassword)){
+                System.out.println("La contreaseña debe contener entre 8 y 16 caracteres; almenos 1 caracter en mayusculas, 1 en minusculas y 1 numero");
+                return;
+            }
             varEmail=this.jTextFieldMail.getText();
             varIdString=this.jTextFieldId.getText();
             varId=Integer.parseInt(varIdString);
             //Pasamos las variables locales a un objeto
-            user objUser = new user(varId,varName,varLastName,varPassword,varEmail);
+            User objUser = new User(varId,varName,varLastName,varPassword,varEmail);
             //El objeto se manda a través de un servicio de almacenamiento
             boolean varFlag = this.objUserStoreService.storeUser(objUser);
             if (varFlag) {
-                System.out.println("El registro del artículo fue exitoso - Registro exitoso");
+                System.out.println("El registro de usuario fue exitoso - Registro exitoso");
             } else {
-                System.out.println("El registro del artículo no se realizó - Error en el registro");
+                System.out.println("El registro de usuario no se realizó - Error en el registro");
             }
         }catch(Exception e){
             System.out.println("Error en el registro de datos");
@@ -288,7 +298,7 @@ public class ViewSignIn extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSignInActionPerformed
     //Te redirecciona al inicio de sesión de usuario
     private void jButtonYaTengoUnaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonYaTengoUnaCuentaActionPerformed
-        ViewLogIn objViewLogIn = new ViewLogIn();
+        ViewLogIn objViewLogIn = new ViewLogIn(this.objUserStoreService);
         objViewLogIn.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewLogIn.setVisible(true);
         this.setVisible(false);

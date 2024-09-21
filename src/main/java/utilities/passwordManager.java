@@ -8,11 +8,11 @@ package utilities;
  * @author julia
  */
 import org.passay.*;
-public class passwordManager {
+public class PasswordManager {
     //Contraseña 
     private String fldPassword;
 
-    public passwordManager(String fldPassword) {
+    public PasswordManager(String fldPassword) {
         this.fldPassword = fldPassword;
     }
     
@@ -41,20 +41,17 @@ public class passwordManager {
     new WhitespaceRule());
     
    
-    //Quitar el do while
     //Metodo para asignar una contraseña con las reglas establecidas
-    public void setPassword(PasswordData prmPassword){
+    public boolean validPassword(PasswordData prmPassword){
         RuleResult objResult = this.objValidator.validate(prmPassword);
         boolean varBell=false;
-        do{
-            varBell=objResult.isValid();
+        varBell=objResult.isValid();
             if(varBell){
                 this.fldPassword=objResult.toString();
                 System.out.println("Contraseña valida");
-                return;
+                return varBell;
             }
-        }while(!varBell);
         System.out.println("Contraseña no valida");
-        return;
+        return varBell;
     };
 }

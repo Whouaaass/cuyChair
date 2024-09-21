@@ -4,7 +4,7 @@
  */
 package dataAccess.user;
 
-import domain.user;
+import domain.User;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,21 +12,21 @@ import java.util.List;
  *
  * @author julia
  */
-public class repositoryArrayListUser implements IRepositoryUser{
-    private ArrayList<user> usersList;
+public class RepositoryArrayListUser implements IRepositoryUser{
+    private ArrayList<User> usersList;
 
-    public repositoryArrayListUser() {
+    public RepositoryArrayListUser() {
         this.usersList = new ArrayList();
     }
 
     @Override
-    public boolean storeUser(user objUser) {
+    public boolean storeUser(User objUser) {
         boolean varFlag=this.usersList.add(objUser);
         return varFlag;
     }
 
     @Override
-    public List<user> listUser() {
+    public List<User> listUser() {
         return this.usersList;
     }
     

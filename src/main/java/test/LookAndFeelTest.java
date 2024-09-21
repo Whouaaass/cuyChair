@@ -1,6 +1,8 @@
 
 package test;
 
+import dataAccess.user.RepositoryArrayListUser;
+import drivers.UserStoreService;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -137,7 +139,11 @@ public class LookAndFeelTest implements ActionListener {
         frame.pack();
         frame.setVisible(true);
         */
-        ViewLogIn objView = new ViewLogIn();
+        //Repositorio de almacenamiento
+        RepositoryArrayListUser objRepositoryArrayListUser = new RepositoryArrayListUser();
+        UserStoreService objUserStoreService = new UserStoreService(objRepositoryArrayListUser);
+        
+        ViewLogIn objView = new ViewLogIn(objUserStoreService);
         objView.pack();
         objView.setVisible(true);        
     }

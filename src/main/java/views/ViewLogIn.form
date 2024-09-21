@@ -113,7 +113,7 @@
                           <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jPasswordFieldUserPassword" alignment="1" min="-2" pref="181" max="-2" attributes="0"/>
+                                  <Component id="jTextPasswordFieldUserPassword" alignment="1" min="-2" pref="181" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                                       <Component id="jLabelContrasena" min="-2" max="-2" attributes="0"/>
@@ -146,7 +146,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabelContrasena" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPasswordFieldUserPassword" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextPasswordFieldUserPassword" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="jButtonLogIn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -218,9 +218,9 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonNoTengoUnaCuentaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="jPasswordFieldUserPassword">
+        <Component class="javax.swing.JPasswordField" name="jTextPasswordFieldUserPassword">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
+            <Property name="text" type="java.lang.String" value="ContraSegura123"/>
           </Properties>
         </Component>
       </SubComponents>

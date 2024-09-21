@@ -5,28 +5,28 @@
 package drivers;
 
 import dataAccess.user.IRepositoryUser;
-import domain.user;
+import domain.User;
 import java.util.List;
 
 /**
  *
  * @author julia
  */
-public class userStoreService {
+public class UserStoreService {
     private IRepositoryUser objRepositoryUserRef;
     
-    public userStoreService(IRepositoryUser objRepositoryUserRef)
+    public UserStoreService(IRepositoryUser objRepositoryUserRef)
     {
         this.objRepositoryUserRef=objRepositoryUserRef;
     }
     
-    public boolean storeUser(user objUser) {
+    public boolean storeUser(User objUser) {
         boolean varFlag=this.objRepositoryUserRef.storeUser(objUser);
         return varFlag;
     }
 
    
-    public List<user> listUser() {
+    public List<User> listUser() {
         return this.objRepositoryUserRef.listUser();
     }
 }

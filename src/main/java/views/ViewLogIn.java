@@ -4,7 +4,8 @@
  */
 package views;
 
-import drivers.userStoreService;
+import dataAccess.user.RepositoryArrayListUser;
+import drivers.UserStoreService;
 
 import javax.swing.JFrame;
 
@@ -13,14 +14,14 @@ import javax.swing.JFrame;
  * @author julia
  */
 public class ViewLogIn extends javax.swing.JFrame {
-    private userStoreService objUserStoreService;
+    private UserStoreService objUserStoreService;
     /**
      * Creates new form viewLogIn
      */
-    public ViewLogIn() {
+    public ViewLogIn(UserStoreService objUserStoreService) {
         initComponents();
+        this.objUserStoreService=objUserStoreService;
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,7 +39,7 @@ public class ViewLogIn extends javax.swing.JFrame {
         jTextFieldMail = new javax.swing.JTextField();
         jButtonLogIn = new javax.swing.JButton();
         jButtonNoTengoUnaCuenta = new javax.swing.JButton();
-        jPasswordFieldUserPassword = new javax.swing.JPasswordField();
+        jTextPasswordFieldUserPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,7 +98,7 @@ public class ViewLogIn extends javax.swing.JFrame {
             }
         });
 
-        jPasswordFieldUserPassword.setText("jPasswordField1");
+        jTextPasswordFieldUserPassword.setText("ContraSegura123");
 
         javax.swing.GroupLayout jPanelDownLayout = new javax.swing.GroupLayout(jPanelDown);
         jPanelDown.setLayout(jPanelDownLayout);
@@ -112,7 +113,7 @@ public class ViewLogIn extends javax.swing.JFrame {
                         .addGap(135, 135, 135)
                         .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jPasswordFieldUserPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextPasswordFieldUserPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanelDownLayout.createSequentialGroup()
                                     .addGap(47, 47, 47)
                                     .addComponent(jLabelContrasena)
@@ -136,7 +137,7 @@ public class ViewLogIn extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabelContrasena)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordFieldUserPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextPasswordFieldUserPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonLogIn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -173,7 +174,7 @@ public class ViewLogIn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     //Te redirecciona al registro de usuario
     private void jButtonNoTengoUnaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNoTengoUnaCuentaActionPerformed
-        ViewSignIn objViewSingIn = new ViewSignIn(objUserStoreService);
+        ViewSignIn objViewSingIn = new ViewSignIn(this.objUserStoreService);
         objViewSingIn.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewSingIn.setVisible(true);
         this.setVisible(false);
@@ -181,6 +182,21 @@ public class ViewLogIn extends javax.swing.JFrame {
 
     private void jButtonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogInActionPerformed
         // TODO add your handling code here:
+        ViewMainMenu objViewMainMenu = new ViewMainMenu();
+        String varEmail = this.jTextFieldMail.getText();
+        String varPassword = this.jTextPasswordFieldUserPassword.getText();
+        for(int i=0;i<objUserStoreService.listUser().size();i++){
+            //Print de prueba
+            //System.out.println("Email"+objUserStoreService.listUser().get(i).getUserEmail()+"Contra:"+objUserStoreService.listUser().get(i).getUserPassword());
+            if(objUserStoreService.listUser().get(i).getUserEmail().equals(varEmail) && 
+                    objUserStoreService.listUser().get(i).getUserPassword().equals(varPassword)){
+                objViewMainMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                objViewMainMenu.setVisible(true);
+                this.setVisible(false);
+                return;
+            }
+        }
+        System.out.println("Usuario o contraseña incorrectos");
     }//GEN-LAST:event_jButtonLogInActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -191,7 +207,7 @@ public class ViewLogIn extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelRegistroUsuario;
     private javax.swing.JPanel jPanelDown;
     private javax.swing.JPanel jPanelUp;
-    private javax.swing.JPasswordField jPasswordFieldUserPassword;
     private javax.swing.JTextField jTextFieldMail;
+    private javax.swing.JPasswordField jTextPasswordFieldUserPassword;
     // End of variables declaration//GEN-END:variables
 }
