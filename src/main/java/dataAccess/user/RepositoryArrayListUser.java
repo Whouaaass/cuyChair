@@ -21,7 +21,7 @@ public class RepositoryArrayListUser implements IRepositoryUser{
 
     @Override
     public boolean storeUser(User objUser) {
-        boolean varFlag=this.usersList.add(objUser);
+        boolean varFlag = this.usersList.add(objUser);
         return varFlag;
     }
 
