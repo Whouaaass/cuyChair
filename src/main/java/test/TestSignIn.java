@@ -36,7 +36,7 @@ public class TestSignIn {
                     objRepositoryArrayListUser=testGeneralSignIn(objRepositoryArrayListUser);
                     break;
                 case 3:
-                    objUtil.printUser(objRepositoryArrayListUser.listUser().getLast());
+                    objUtil.printUser(objRepositoryArrayListUser.listUsers().getLast());
                     break;
                 case 0:
                     System.out.println("Cerrando testing");

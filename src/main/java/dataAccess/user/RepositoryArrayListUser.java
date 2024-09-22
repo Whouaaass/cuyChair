@@ -26,10 +26,18 @@ public class RepositoryArrayListUser implements IRepositoryUser{
     }
 
     @Override
-    public List<User> listUser() {
+    public List<User> listUsers() {
         return this.usersList;
     }
-    
-    
+     
+    @Override
+    public User getUserByEmail(String email) {
+        for (User objUser : usersList) {
+            if (objUser.getUserEmail() == email) {
+                return objUser;
+            }
+        }
+        return null;
+    }    
     
 }

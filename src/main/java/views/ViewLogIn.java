@@ -5,24 +5,27 @@
 package views;
 
 import dataAccess.user.RepositoryArrayListUser;
+import domain.User;
 import drivers.UserStoreService;
 
 import javax.swing.JFrame;
-
 
 /**
  *
  * @author julia
  */
 public class ViewLogIn extends javax.swing.JFrame {
+
     private UserStoreService objUserStoreService;
+
     /**
      * Creates new form viewLogIn
      */
     public ViewLogIn(UserStoreService objUserStoreService) {
         initComponents();
-        this.objUserStoreService=objUserStoreService;
+        this.objUserStoreService = objUserStoreService;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,10 +65,12 @@ public class ViewLogIn extends javax.swing.JFrame {
         jPanelUpLayout.setVerticalGroup(
             jPanelUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelUpLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(20, 20, 20)
                 .addComponent(jLabelRegistroUsuario)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
+
+        getContentPane().add(jPanelUp, java.awt.BorderLayout.PAGE_START);
 
         jPanelDown.setBackground(new java.awt.Color(27, 40, 56));
 
@@ -121,55 +126,32 @@ public class ViewLogIn extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jTextFieldMail, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelDownLayout.createSequentialGroup()
-                        .addGap(167, 167, 167)
-                        .addComponent(jButtonLogIn))
+                        .addGap(152, 152, 152)
+                        .addComponent(jButtonNoTengoUnaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelDownLayout.createSequentialGroup()
-                        .addGap(151, 151, 151)
-                        .addComponent(jButtonNoTengoUnaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(145, Short.MAX_VALUE))
+                        .addGap(167, 167, 167)
+                        .addComponent(jButtonLogIn)))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         jPanelDownLayout.setVerticalGroup(
             jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDownLayout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addComponent(jLabelCorreo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelContrasena)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextPasswordFieldUserPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(jButtonLogIn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonNoTengoUnaCuenta)
-                .addGap(50, 50, 50))
+                .addGap(40, 40, 40))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 461, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanelUp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanelDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 364, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanelUp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(jPanelDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        getContentPane().add(jPanelDown, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -178,26 +160,31 @@ public class ViewLogIn extends javax.swing.JFrame {
         ViewSignIn objViewSingIn = new ViewSignIn(this.objUserStoreService);
         objViewSingIn.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewSingIn.setVisible(true);
+        objViewSingIn.setLocationRelativeTo(null);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonNoTengoUnaCuentaActionPerformed
 
     private void jButtonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogInActionPerformed
-        // TODO add your handling code here:
         ViewMainMenu objViewMainMenu = new ViewMainMenu();
         String varEmail = this.jTextFieldMail.getText();
-        String varPassword = this.jTextPasswordFieldUserPassword.getText();
-        for(int i=0;i<objUserStoreService.listUser().size();i++){
-            //Print de prueba
-            //System.out.println("Email"+objUserStoreService.listUser().get(i).getUserEmail()+"Contra:"+objUserStoreService.listUser().get(i).getUserPassword());
-            if(objUserStoreService.listUser().get(i).getUserEmail().equals(varEmail) && 
-                    objUserStoreService.listUser().get(i).getUserPassword().equals(varPassword)){
-                objViewMainMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                objViewMainMenu.setVisible(true);
-                this.setVisible(false);
-                return;
-            }
+        String varPassword = new String(this.jTextPasswordFieldUserPassword.getPassword());
+
+        User objUser = objUserStoreService.getUserByEmail(varEmail);
+
+        if (objUser == null) {
+            System.out.println("Usuario no encontrado");
+            utilities.Utilities.setAlert("Error", "Usuario no encontrado");
+            return;
         }
-        System.out.println("Usuario o contraseña incorrectos");
+        if (objUser.getUserPassword() == varPassword) {
+            System.out.println("Contraseña incorrecta");
+            utilities.Utilities.setAlert("Error", "Contraseña incorrecta");
+            return;
+        }
+
+        objViewMainMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        objViewMainMenu.setVisible(true);
+        this.setVisible(false);        
     }//GEN-LAST:event_jButtonLogInActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
