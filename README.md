@@ -1,5 +1,5 @@
 
-# cuyChair
+# -> cuyChair <-
 Hola! este es el repositorio del proyecto de ingeniería de software II (2024, grupo A), el proyecto se trata de construir una aplicación que pueda manejar un sistema de gestión de conferencias y eventos académicos.
 
 ## Descripción del Software a desarrollar
