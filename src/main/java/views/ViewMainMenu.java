@@ -143,43 +143,4 @@ public class ViewMainMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuMyPapers;
     private javax.swing.JPanel jPanelMainMenu;
     // End of variables declaration//GEN-END:variables
-=======
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package views;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-/**
- *
- * @author Frdy
- */
-class ViewMainMenu extends JFrame {
-    
-    
-    
-    
-    private void initComponents() {
-        jLabelTitle = new JLabel();
-        jPanelUp = new JPanel();
-        jPanelCenter = new JPanel();
-        jPanelDown = new JPanel();  
-        
-        
-        
-    }
-    
-    
-    
-    // componentes
-    private JLabel jLabelTitle;
-    private JPanel jPanelUp;
-    private JPanel jPanelCenter;
-    private JPanel jPanelDown;
-    
-    
-    
->>>>>>> a56cf001b928585ab67c389539e816fc139d0f66
 }
