@@ -16,7 +16,7 @@ public class Conference {
     //Organizador de la conferencia
     private User fldConferenceAdmin;
     //Usuarios en la conferencia
-    private ArrayList<User> fldArrUsers;
+    private ArrayList<User> fldUsersList;
     //Papers en la conferencia
-    private ArrayList<PaperReview> fldArrPaperReviews;
+    private ArrayList<PaperReview> fldPaperReviewsList;
 }

@@ -12,5 +12,5 @@ public class Paper {
     private String fldTitle;
     private String fldDescription;
     //Autor del trabajo
-    private User fldAutor;
+    private User fldAuthor;
 }
