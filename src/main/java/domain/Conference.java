@@ -16,16 +16,15 @@ public class Conference {
     //Organizador de la conferencia
     private User fldConferenceAdmin;
     //Usuarios en la conferencia
-    private ArrayList<User> fldArrUsers;
+    private ArrayList<User> fldUsersList;
     //Papers en la conferencia
-    private ArrayList<PaperReview> fldArrPaperReviews;
-
-    public Conference(String fldTitle, String fldDescription, User fldConferenceAdmin, ArrayList<User> fldArrUsers, ArrayList<PaperReview> fldArrPaperReviews) {
+    private ArrayList<PaperReview> fldPaperReviewsList;
+    public Conference(String fldTitle, String fldDescription, User fldConferenceAdmin, ArrayList<User> fldArrUsers, ArrayList<PaperReview> fldPaperReviewsList) {
         this.fldTitle = fldTitle;
         this.fldDescription = fldDescription;
         this.fldConferenceAdmin = fldConferenceAdmin;
-        this.fldArrUsers = fldArrUsers;
-        this.fldArrPaperReviews = fldArrPaperReviews;
+        this.fldUsersList = fldArrUsers;
+        this.fldPaperReviewsList = fldPaperReviewsList;
     }
 
     public String getFldTitle() {
@@ -53,19 +52,19 @@ public class Conference {
     }
 
     public ArrayList<User> getFldArrUsers() {
-        return fldArrUsers;
+        return this.fldUsersList;
     }
 
     public void setFldArrUsers(ArrayList<User> fldArrUsers) {
-        this.fldArrUsers = fldArrUsers;
+        this.fldUsersList = fldArrUsers;
     }
 
     public ArrayList<PaperReview> getFldArrPaperReviews() {
-        return fldArrPaperReviews;
+        return fldPaperReviewsList;
     }
 
-    public void setFldArrPaperReviews(ArrayList<PaperReview> fldArrPaperReviews) {
-        this.fldArrPaperReviews = fldArrPaperReviews;
+    public void setFldArrPaperReviews(ArrayList<PaperReview> fldPaperReviewsList) {
+        this.fldPaperReviewsList = fldPaperReviewsList;
     }
     
 }

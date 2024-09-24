@@ -9,66 +9,70 @@ package domain;
  * @author julia
  */
 public class User {
-    private int userId;
-    private String userName;
-    private String userLastName;
-    private String userPassword; 
-    private String userEmail;
+    private int fldId;
+    private String fldName;
+    private String fldLastName;
+    private String fldHashedPassword; 
+    private String fldEmail;
 
     public User(int userId, String userName, String userLastName, String userPassword, String userEmail) {
-        this.userId = userId;
-        this.userName = userName;
-        this.userLastName = userLastName;
-        this.userPassword = userPassword;
-        this.userEmail = userEmail;
+        this.fldId = userId;
+        this.fldName = userName;
+        this.fldLastName = userLastName;
+        this.fldHashedPassword = userPassword;
+        this.fldEmail = userEmail;
     }
     
     public User(User objUser) {
-        this.userId = objUser.userId;
-        this.userName = objUser.userName;
-        this.userLastName = objUser.userLastName;
-        this.userPassword = objUser.userPassword;
-        this.userEmail = objUser.userEmail;
+        this.fldId = objUser.fldId;
+        this.fldName = objUser.fldName;
+        this.fldLastName = objUser.fldLastName;
+        this.fldHashedPassword = objUser.fldHashedPassword;
+        this.fldEmail = objUser.fldEmail;
     }
 
     public String getUserEmail() {
-        return userEmail;
+        return fldEmail;
     }
 
     public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+        this.fldEmail = userEmail;
     }
 
     public int getUserId() {
-        return userId;
+        return fldId;
     }
 
     public void setUserId(int userId) {
-        this.userId = userId;
+        this.fldId = userId;
     }
 
     public String getUserName() {
-        return userName;
+        return fldName;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.fldName = userName;
     }
 
     public String getUserLastName() {
-        return userLastName;
+        return fldLastName;
     }
 
     public void setUserLastName(String userLastName) {
-        this.userLastName = userLastName;
+        this.fldLastName = userLastName;
     }
 
     public String getUserPassword() {
-        return userPassword;
+        return fldHashedPassword;
     }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+    public void setUserPassword(String userPassword) {        
+        this.fldHashedPassword = userPassword;
+    }
+    
+    public boolean comparePassword(String inPassword) throws Exception {
+        throw new Exception("");
     }
     
 }

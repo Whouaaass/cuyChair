@@ -14,6 +14,11 @@ public class PaperReview {
     //Indica si el paper se admite en la conferencia
     private boolean fldAprobed;
 
+    public PaperReview(Paper fldObjPaper, boolean fldAprobed) {
+        this.fldObjPaper = fldObjPaper;
+        this.fldAprobed = fldAprobed;
+    }
+
     public Paper getFldObjPaper() {
         return fldObjPaper;
     }

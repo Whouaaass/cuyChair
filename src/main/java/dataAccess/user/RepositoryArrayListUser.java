@@ -9,8 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Repositorio que guarda a los usuarios
  * @author julia
+ * @author Frdy
  */
 public class RepositoryArrayListUser implements IRepositoryUser{
     private ArrayList<User> usersList;

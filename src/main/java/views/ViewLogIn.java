@@ -176,9 +176,9 @@ public class ViewLogIn extends javax.swing.JFrame {
             utilities.Utilities.setAlert("Error", "Usuario no encontrado");
             return;
         }
-        if (objUser.getUserPassword() == varPassword) {
+        if (!objUser.getUserPassword().equals(varPassword)) {
             System.out.println("Contraseña incorrecta");
-            utilities.Utilities.setAlert("Error", "Contraseña incorrecta");
+            utilities.Utilities.setAlert("Error!!!", "Contraseña incorrecta");
             return;
         }
 
