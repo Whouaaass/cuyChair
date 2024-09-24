@@ -20,6 +20,10 @@ public class Paper {
         this.fldAutor = fldAutor;
     }
 
+    public Paper(){
+
+    }
+
     public String getFldTitle() {
         return fldTitle;
     }
