@@ -13,6 +13,7 @@ import java.sql.*;
 /**
  *
  * @author julia
+ * @author Juan
  */
 public class RepositoryArrayListPaper implements IRepositoryPaper{
     private Connection conn;
