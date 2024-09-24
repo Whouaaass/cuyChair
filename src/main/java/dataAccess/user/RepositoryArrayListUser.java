@@ -33,7 +33,7 @@ public class RepositoryArrayListUser implements IRepositoryUser{
     @Override
     public User getUserByEmail(String email) {
         for (User objUser : usersList) {
-            if (objUser.getUserEmail() == email) {
+            if (objUser.getUserEmail().equals(email)) {
                 return objUser;
             }
         }
