@@ -275,7 +275,7 @@ public class ViewSignIn extends javax.swing.JFrame {
             String varPassword=new String(arrayPassword); 
             //Validacion de contraseña
             PasswordData objPassword = new PasswordData(varPassword);
-            PasswordManager objPasswordManager = new PasswordManager(varPassword);
+            PasswordManager objPasswordManager = new PasswordManager(varPassword);  
             if(!objPasswordManager.validPassword(objPassword)){
                 System.out.println("La contraseña debe contener entre 8 y 16 caracteres; almenos 1 caracter en mayusculas, 1 en minusculas y 1 numero");
                 return;

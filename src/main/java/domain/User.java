@@ -9,66 +9,70 @@ package domain;
  * @author julia
  */
 public class User {
-    private int userId;
-    private String userName;
-    private String userLastName;
-    private String userPassword; 
-    private String userEmail;
+    private int id;
+    private String name;
+    private String lastName;
+    private String hashedPassword; 
+    private String email;
 
     public User(int userId, String userName, String userLastName, String userPassword, String userEmail) {
-        this.userId = userId;
-        this.userName = userName;
-        this.userLastName = userLastName;
-        this.userPassword = userPassword;
-        this.userEmail = userEmail;
+        this.id = userId;
+        this.name = userName;
+        this.lastName = userLastName;
+        this.hashedPassword = userPassword;
+        this.email = userEmail;
     }
     
     public User(User objUser) {
-        this.userId = objUser.userId;
-        this.userName = objUser.userName;
-        this.userLastName = objUser.userLastName;
-        this.userPassword = objUser.userPassword;
-        this.userEmail = objUser.userEmail;
+        this.id = objUser.id;
+        this.name = objUser.name;
+        this.lastName = objUser.lastName;
+        this.hashedPassword = objUser.hashedPassword;
+        this.email = objUser.email;
     }
 
     public String getUserEmail() {
-        return userEmail;
+        return email;
     }
 
     public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+        this.email = userEmail;
     }
 
     public int getUserId() {
-        return userId;
+        return id;
     }
 
     public void setUserId(int userId) {
-        this.userId = userId;
+        this.id = userId;
     }
 
     public String getUserName() {
-        return userName;
+        return name;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.name = userName;
     }
 
     public String getUserLastName() {
-        return userLastName;
+        return lastName;
     }
 
     public void setUserLastName(String userLastName) {
-        this.userLastName = userLastName;
+        this.lastName = userLastName;
     }
 
     public String getUserPassword() {
-        return userPassword;
+        return hashedPassword;
     }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+    public void setUserPassword(String userPassword) {        
+        this.hashedPassword = userPassword;
+    }
+    
+    public boolean comparePassword(String inPassword) throws Exception {
+        throw new Exception("");
     }
     
 }
