@@ -31,6 +31,10 @@ public class User {
         this.fldEmail = objUser.fldEmail;
     }
 
+    public User(){
+
+    }
+
     public String getUserEmail() {
         return fldEmail;
     }

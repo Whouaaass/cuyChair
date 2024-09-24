@@ -28,6 +28,7 @@ public class RepositoryArrayListUser implements IRepositoryUser{
     @Override
     public boolean storeUser(User objUser) {
         boolean varFlag = this.usersList.add(objUser);
+        this.conect();
         try {
             String insertUser = "INSERT INTO USER VALUES (?, ?, ?, ?, ?)";
 
@@ -38,42 +39,86 @@ public class RepositoryArrayListUser implements IRepositoryUser{
             pst.setString(4, objUser.getUserPassword());
             pst.setString(5, objUser.getUserEmail());
             pst.executeUpdate();
+            System.out.println("Usuario insertado");
         }catch (SQLException e){
             e.printStackTrace();
         }
+        this.closeconection();
         return varFlag;
     }
 
     @Override
     public List<User> listUsers() {
-        return this.usersList;
+        ArrayList<User> List=new ArrayList<>();
+        this.conect();
+        try {
+            String listUser="SELECT * FROM user";
+            Statement st= conn.createStatement();
+            ResultSet rs=st.executeQuery(listUser);
+            while (rs.next()) {
+                User newUser = new User();
+                newUser.setUserId(rs.getInt("fldId"));
+                newUser.setUserName(rs.getString("fldName"));
+                newUser.setUserLastName(rs.getString("fldLastName"));
+                newUser.setUserPassword(rs.getString("fldHashedPassword"));
+                newUser.setUserEmail(rs.getString("fldEmail"));
+                List.add(newUser);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return List;
     }
      
     @Override
     public User getUserByEmail(String email) {
-        for (User objUser : usersList) {
-            if (objUser.getUserEmail().equals(email)) {
-                return objUser;
+
+        try{
+            this.conect();
+            String selectEmail="SELECT * FROM user WHERE fldEmail = ' "
+                                +email+"'";
+
+            Statement st= conn.createStatement();
+            ResultSet rs=st.executeQuery(selectEmail);
+            User newUser=new User();
+
+            newUser.setUserId(rs.getInt("fldId"));
+            newUser.setUserName(rs.getString("fldName"));
+            newUser.setUserLastName(rs.getString("fldLastName"));
+            newUser.setUserPassword(rs.getString("fldHashedPassword"));
+            newUser.setUserEmail(rs.getString("fldEmail"));
+            if(rs.wasNull()){
+                this.closeconection();
+                return null;
             }
+            this.closeconection();
+            return newUser;
+        }catch (SQLException e){
+            e.printStackTrace();
         }
+        this.closeconection();
         return null;
     }
 
     public void initDatabase(){
-        String tableUser="CREATE TABLE IF NOT EXIST USER(\n "
-                        +"fldId Number PRAMARY KEY,\n"
-                        +"fldName text NOT NULL,\n"
-                        +"fldLastName text NOT NULL,\n"
-                        +"fldHashedPassword text NOT NULL,\n"
-                        +"fldEmail text NOT NULL\n"
-                        +");";
         try{
             this.conect();
+            String tableUser="CREATE TABLE IF NOT EXISTS USER(\n "
+                    +"fldId Number PRAMARY KEY,\n"
+                    +"fldName text NOT NULL,\n"
+                    +"fldLastName text NOT NULL,\n"
+                    +"fldHashedPassword text NOT NULL,\n"
+                    +"fldEmail text NOT NULL\n"
+                    +");";
+
             Statement stm= conn.createStatement();
             stm.execute(tableUser);
+            System.out.println("Tabla creada");
         }catch (SQLException e){
             e.printStackTrace();
         }
+        this.closeconection();
     }
 
     public void conect(){
