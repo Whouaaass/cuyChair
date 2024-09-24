@@ -14,17 +14,27 @@ import java.util.List;
  */
 public class RepositoryArrayListPaperReview implements IRepositoryPaperReview{
     private ArrayList<PaperReview> PaperReviewList;
-
+     /**
+     * Instancia un objeto de la clase PaperReviewStoreService
+     * @param objRepositoryPaperReview Repositorio que utilizara el servicio
+     */
     public RepositoryArrayListPaperReview() {
         this.PaperReviewList = new ArrayList();
     }
-    
+        /**
+     * Guarda un paperReview
+     * @param objPaperReview Usuario a guardar
+     * @return si el guardado fue correcto
+     */
     @Override
     public boolean storePaperReview(PaperReview objPaperReview) {
         boolean varFlag=this.PaperReviewList.add(objPaperReview);
         return varFlag;
     }
-
+     /**
+     * Lista los paperReviews
+     * @return lista de paperReviews
+     */
     @Override
     public List<PaperReview> listPaperReview() {
         return this.PaperReviewList;

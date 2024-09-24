@@ -26,7 +26,7 @@ public class PaperStoreService {
     
      /**
      * Guarda un paper
-     * @param objPaper Usuario a guardar
+     * @param objPaper Paper a guardar
      * @return si el guardado fue correcto
      */
     public boolean storePaper(Paper objPaper) {

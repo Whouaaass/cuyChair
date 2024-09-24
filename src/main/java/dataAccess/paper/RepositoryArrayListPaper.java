@@ -14,17 +14,27 @@ import java.util.List;
  */
 public class RepositoryArrayListPaper implements IRepositoryPaper{
     private ArrayList<Paper> PaperList;
-
+     /**
+     * Instancia un objeto de la clase PaperStoreService
+     * @param objRepositoryPaperRef Repositorio que utilizara el servicio
+     */
     public RepositoryArrayListPaper(ArrayList<Paper> PaperList) {
         this.PaperList = new ArrayList();
     }
-    
+     /**
+     * Guarda un paper
+     * @param objPaper Paper a guardar
+     * @return si el guardado fue correcto
+     */
     @Override
     public boolean storePaper(Paper objPaper) {
         boolean varFlag=this.PaperList.add(objPaper);
         return varFlag;
     }
-
+    /**
+     * Lista los papers
+     * @return lista de papers
+     */
     @Override
     public List<Paper> listPaper() {
         return this.PaperList;
