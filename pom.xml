@@ -22,11 +22,12 @@
             <version>0.10.2</version>
         </dependency>
 
-        <!-- dependency>            
+        <dependency>
             <groupId>org.xerial</groupId>
-            <artifactId>sqlite-jbdc</artifactId>
+            <artifactId>sqlite-jdbc</artifactId>
             <version>3.46.1.0</version>
-        </dependency -->
+        </dependency>
+
     </dependencies>       
     
     <properties>
