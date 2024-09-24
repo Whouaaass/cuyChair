@@ -10,5 +10,6 @@ public class Test {
         UserStoreService objUserStoreService = new UserStoreService(objRepositoryArrayListUser);
         ViewLogIn objViewLogIn=new ViewLogIn(objUserStoreService);
         objViewLogIn.setVisible(true);
+        objViewLogIn.setLocationRelativeTo(null);
     }
 }

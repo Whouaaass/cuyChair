@@ -5,6 +5,8 @@
 package utilities;
 
 import domain.User;
+import javax.swing.JFrame;
+import views.AlertSimple;
 
 /**
  *
@@ -12,16 +14,15 @@ import domain.User;
  */
 public class Utilities {
     //Imprime el resultado de un booleano
-    public void printResult(boolean prmBoolean){
+    public static void printResult(boolean prmBoolean){
         if(prmBoolean){
             System.out.println("True");
             return;
         }
-        System.out.println("False");
-        return;
+        System.out.println("False");        
     }
     //Imprime un usuario
-    public void printUser(User objUser){
+    public static void printUser(User objUser){
         System.out.println("\n-----Usuario-----\n"
                 +"\nID: "+objUser.getUserId()
                 +"\nNombre: "+objUser.getUserName()
@@ -29,5 +30,14 @@ public class Utilities {
                 +"\nEmail: "+objUser.getUserEmail()
                 +"\nContraseña: "+objUser.getUserPassword()
         );
+    }
+    
+    public static void setAlert(String title, String description) {
+        AlertSimple objAlert = new AlertSimple(title, description);
+        objAlert.pack();
+        objAlert.setVisible(true);
+        objAlert.setLocationRelativeTo(null);
+        
+        objAlert.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);        
     }
 }

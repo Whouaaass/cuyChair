@@ -277,7 +277,7 @@ public class ViewSignIn extends javax.swing.JFrame {
             PasswordData objPassword = new PasswordData(varPassword);
             PasswordManager objPasswordManager = new PasswordManager(varPassword);
             if(!objPasswordManager.validPassword(objPassword)){
-                System.out.println("La contreaseña debe contener entre 8 y 16 caracteres; almenos 1 caracter en mayusculas, 1 en minusculas y 1 numero");
+                System.out.println("La contraseña debe contener entre 8 y 16 caracteres; almenos 1 caracter en mayusculas, 1 en minusculas y 1 numero");
                 return;
             }
             varEmail=this.jTextFieldMail.getText();
@@ -301,6 +301,7 @@ public class ViewSignIn extends javax.swing.JFrame {
         ViewLogIn objViewLogIn = new ViewLogIn(this.objUserStoreService);
         objViewLogIn.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewLogIn.setVisible(true);
+        objViewLogIn.setLocationRelativeTo(null);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonYaTengoUnaCuentaActionPerformed
 
