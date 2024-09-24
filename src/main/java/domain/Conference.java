@@ -11,19 +11,49 @@ import java.util.ArrayList;
  * @author julia
  */
 public class Conference {
+    //Titulo de la conferencia
     private String fldTitle;
+    //Descripción de la conferencia
     private String fldDescription;
+    //Ciudad de la conferencia
+    private String fldCiudad;
     //Organizador de la conferencia
     private User fldConferenceAdmin;
     //Usuarios en la conferencia
     private ArrayList<User> fldUsersList;
     //Papers en la conferencia
     private ArrayList<PaperReview> fldPaperReviewsList;
-    public Conference(String fldTitle, String fldDescription, User fldConferenceAdmin, ArrayList<User> fldArrUsers, ArrayList<PaperReview> fldPaperReviewsList) {
+
+    public Conference(String fldTitle, String fldDescription, String fldCiudad, User fldConferenceAdmin, ArrayList<User> fldUsersList, ArrayList<PaperReview> fldPaperReviewsList) {
         this.fldTitle = fldTitle;
         this.fldDescription = fldDescription;
+        this.fldCiudad = fldCiudad;
         this.fldConferenceAdmin = fldConferenceAdmin;
-        this.fldUsersList = fldArrUsers;
+        this.fldUsersList = fldUsersList;
+        this.fldPaperReviewsList = fldPaperReviewsList;
+    }
+
+    public String getFldCiudad() {
+        return fldCiudad;
+    }
+
+    public void setFldCiudad(String fldCiudad) {
+        this.fldCiudad = fldCiudad;
+    }
+
+    public ArrayList<User> getFldUsersList() {
+        return fldUsersList;
+    }
+
+    public void setFldUsersList(ArrayList<User> fldUsersList) {
+        this.fldUsersList = fldUsersList;
+    }
+
+    public ArrayList<PaperReview> getFldPaperReviewsList() {
+        return fldPaperReviewsList;
+    }
+
+    public void setFldPaperReviewsList(ArrayList<PaperReview> fldPaperReviewsList) {
         this.fldPaperReviewsList = fldPaperReviewsList;
     }
 
@@ -49,14 +79,6 @@ public class Conference {
 
     public void setFldConferenceAdmin(User fldConferenceAdmin) {
         this.fldConferenceAdmin = fldConferenceAdmin;
-    }
-
-    public ArrayList<User> getFldArrUsers() {
-        return this.fldUsersList;
-    }
-
-    public void setFldArrUsers(ArrayList<User> fldArrUsers) {
-        this.fldUsersList = fldArrUsers;
     }
 
     public ArrayList<PaperReview> getFldArrPaperReviews() {
