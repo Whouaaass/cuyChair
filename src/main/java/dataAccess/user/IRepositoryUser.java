@@ -33,8 +33,11 @@ public interface IRepositoryUser {
     public User getUserByEmail(String email);
     /**
      * Modifica el usuario 
-     * @param objUser usuario a modificar
+     * @param userId identificación del usuario a modificar
+     * @param name nombre del usuario
+     * @param lastName apellido del usuario
+     * @param password contraseña del usuario
      * @return Si la operacion fue exitosa
      */
-    public boolean modifyUser(User objUser);
+    public boolean modifyUser(int userId,String name, String lastName, String password);
 }

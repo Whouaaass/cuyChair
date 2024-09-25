@@ -154,7 +154,7 @@ public class RepositorySQLiteUser implements IRepositoryUser {
     }
 
     @Override
-    public boolean modifyUser(User objUser) {
+    public boolean modifyUser(int userId,String name, String lastName, String password) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
