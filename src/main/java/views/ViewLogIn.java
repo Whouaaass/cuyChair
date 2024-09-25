@@ -4,7 +4,7 @@
  */
 package views;
 
-import dataAccess.user.RepositoryArrayListUser;
+import dataAccess.user.RepositorySQLiteUser;
 import domain.User;
 import drivers.UserStoreService;
 
@@ -24,6 +24,7 @@ public class ViewLogIn extends javax.swing.JFrame {
     public ViewLogIn(UserStoreService objUserStoreService) {
         initComponents();
         this.objUserStoreService = objUserStoreService;
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -159,8 +160,7 @@ public class ViewLogIn extends javax.swing.JFrame {
     private void jButtonNoTengoUnaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNoTengoUnaCuentaActionPerformed
         ViewSignIn objViewSingIn = new ViewSignIn(this.objUserStoreService);
         objViewSingIn.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        objViewSingIn.setVisible(true);
-        objViewSingIn.setLocationRelativeTo(null);
+        objViewSingIn.setVisible(true);        
         this.setVisible(false);
     }//GEN-LAST:event_jButtonNoTengoUnaCuentaActionPerformed
 

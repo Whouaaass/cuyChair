@@ -4,7 +4,7 @@
  */
 package dataAccess.paper;
 
-import dataAccess.user.RepositoryArrayListUser;
+import dataAccess.user.RepositorySQLiteUser;
 import domain.Paper;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,7 @@ public class RepositoryArrayListPaper implements IRepositoryPaper{
      */
     @Override
     public List<Paper> listPaper() {
-        RepositoryArrayListUser repoUser=new RepositoryArrayListUser();
+        RepositorySQLiteUser repoUser=new RepositorySQLiteUser();
         ArrayList<Paper> List=new ArrayList<>();
         try {
             String listPaper = "SELECT * FROM Paper";

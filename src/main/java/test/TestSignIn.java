@@ -1,5 +1,5 @@
 package test;
-import dataAccess.user.RepositoryArrayListUser;
+import dataAccess.user.RepositorySQLiteUser;
 import drivers.UserStoreService;
 import org.passay.*;
 
@@ -22,7 +22,7 @@ public class TestSignIn {
     public static void main(String[] args){
         int varOpt=0;
         Utilities objUtil = new Utilities();
-        RepositoryArrayListUser objRepositoryArrayListUser = new RepositoryArrayListUser();
+        RepositorySQLiteUser objRepositoryArrayListUser = new RepositorySQLiteUser();
         Scanner objScan = new Scanner(System.in);
         //Menu de pruebas
         do{
@@ -76,7 +76,7 @@ public class TestSignIn {
     }
     
     //Test para checkeo general de guardado de usuario
-    private static RepositoryArrayListUser testGeneralSignIn(RepositoryArrayListUser objRepositoryArrayListUser){
+    private static RepositorySQLiteUser testGeneralSignIn(RepositorySQLiteUser objRepositoryArrayListUser){
         Utilities objUtil = new Utilities();
         try{
             //Inicializar servicio de almacenamiento de usuario

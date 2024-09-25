@@ -4,7 +4,7 @@
  */
 package test;
 
-import dataAccess.user.RepositoryArrayListUser;
+import dataAccess.user.RepositorySQLiteUser;
 import domain.User;
 import drivers.UserStoreService;
 import javax.swing.JFrame;
@@ -16,7 +16,7 @@ import views.ViewMainMenu;
  */
 public class TestMainMenu {
         public static void main(String[] args) {
-            RepositoryArrayListUser objRepositoryArrayListUser = new RepositoryArrayListUser();
+            RepositorySQLiteUser objRepositoryArrayListUser = new RepositorySQLiteUser();
             UserStoreService objUserStoreService = new UserStoreService(objRepositoryArrayListUser);
             User objUser = new User(1,"MiNombre","MiApellido","1234Jm","jm@gmail.com");
             ViewMainMenu objViewMainMenu=new ViewMainMenu(objUserStoreService,objUser);

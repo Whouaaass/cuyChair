@@ -33,6 +33,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
      */
     public ViewMainMenu() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
