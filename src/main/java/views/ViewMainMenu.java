@@ -173,7 +173,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
 
     private void jMenuItemMyConferencesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMyConferencesActionPerformed
         // TODO add your handling code here:
-        ViewMyConferences objViewMyConferences = new ViewMyConferences();
+        ViewMyConferences objViewMyConferences = new ViewMyConferences(this.fldUser,this.objConferenceStoreService);
         objViewMyConferences.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewMyConferences.setVisible(true);
     }//GEN-LAST:event_jMenuItemMyConferencesActionPerformed
