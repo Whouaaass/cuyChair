@@ -14,6 +14,16 @@ public class User {
     private String fldLastName;
     private String fldHashedPassword; 
     private String fldEmail;
+    private String fldDescription;
+
+    public User(int fldId, String fldName, String fldLastName, String fldHashedPassword, String fldEmail, String fldDescription) {
+        this.fldId = fldId;
+        this.fldName = fldName;
+        this.fldLastName = fldLastName;
+        this.fldHashedPassword = fldHashedPassword;
+        this.fldEmail = fldEmail;
+        this.fldDescription = fldDescription;
+    }
 
     public User(int userId, String userName, String userLastName, String userPassword, String userEmail) {
         this.fldId = userId;
@@ -29,6 +39,14 @@ public class User {
         this.fldLastName = objUser.fldLastName;
         this.fldHashedPassword = objUser.fldHashedPassword;
         this.fldEmail = objUser.fldEmail;
+    }
+
+    public String getFldDescription() {
+        return fldDescription;
+    }
+
+    public void setFldDescription(String fldDescription) {
+        this.fldDescription = fldDescription;
     }
 
     public User(){

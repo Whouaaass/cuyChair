@@ -13,6 +13,7 @@ import drivers.UserStoreService;
 import javax.swing.JFrame;
 import org.passay.PasswordData;
 import utilities.PasswordManager;
+import static utilities.Utilities.setAlert;
 
 /**
  *
@@ -292,6 +293,7 @@ public class ViewSignIn extends javax.swing.JFrame {
             PasswordManager objPasswordManager = new PasswordManager(varPassword);  
             if(!objPasswordManager.validPassword(objPassword)){
                 System.out.println("La contraseña debe contener entre 8 y 16 caracteres; almenos 1 caracter en mayusculas, 1 en minusculas y 1 numero");
+                setAlert("Contraseña invalida","La contraseña debe contener entre 8 y 16 caracteres; almenos 1 caracter en mayusculas, 1 en minusculas y 1 numero");
                 return;
             }
             varEmail=this.jTextFieldMail.getText();
@@ -304,6 +306,7 @@ public class ViewSignIn extends javax.swing.JFrame {
             if (varFlag) {
                 System.out.println("El registro de usuario fue exitoso - Registro exitoso");
             } else {
+                setAlert("Registro incorrecto","Los alguno de los campos no cumple con las reglas");
                 System.out.println("El registro de usuario no se realizó - Error en el registro");
             }
         }catch(Exception e){

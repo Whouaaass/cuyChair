@@ -54,12 +54,13 @@ public class RepositoryArrayListUser implements IRepositoryUser {
     }
 
     @Override
-    public boolean modifyUser(int userId, String name, String lastName, String password) {
+    public boolean modifyUser(int userId, String name, String lastName, String password, String description) {
         for(int i=0;i<userList.size();i++){
             if(userList.get(i).getUserId()==userId){
                 userList.get(i).setUserName(name);
                 userList.get(i).setUserLastName(lastName);
                 userList.get(i).setUserPassword(password);
+                userList.get(i).setFldDescription(description);
                 return true;
             }
         }

@@ -21,7 +21,7 @@ public class ViewMyProfile extends javax.swing.JFrame {
         initComponents();
         this.jLabelName.setText(objUser.getUserName()); 
         this.jLabelLastName.setText(objUser.getUserLastName());
-        this.jLabelPassword.setText(objUser.getUserPassword());
+        this.jLabelDescription.setText(objUser.getFldDescription());
     }
 
     /**
@@ -36,8 +36,8 @@ public class ViewMyProfile extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabelTitleMyProfile = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabelContrasena = new javax.swing.JLabel();
-        jLabelPassword = new javax.swing.JLabel();
+        jLabelDescripcion = new javax.swing.JLabel();
+        jLabelDescription = new javax.swing.JLabel();
         jLabelName = new javax.swing.JLabel();
         jLabelNombre = new javax.swing.JLabel();
         jLabelApellido = new javax.swing.JLabel();
@@ -72,13 +72,13 @@ public class ViewMyProfile extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(244, 240, 216));
 
-        jLabelContrasena.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabelContrasena.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelContrasena.setText("Contraseña:");
+        jLabelDescripcion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelDescripcion.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelDescripcion.setText("Descripción");
 
-        jLabelPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabelPassword.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelPassword.setText(".");
+        jLabelDescription.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelDescription.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelDescription.setText(".");
 
         jLabelName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabelName.setForeground(new java.awt.Color(0, 0, 0));
@@ -100,19 +100,21 @@ public class ViewMyProfile extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(143, 143, 143)
+                .addComponent(jLabelDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(70, Short.MAX_VALUE)
-                        .addComponent(jLabelContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(jLabelDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(69, 69, 69)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -129,11 +131,11 @@ public class ViewMyProfile extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelName)
                     .addComponent(jLabelLastName))
-                .addGap(48, 48, 48)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelPassword)
-                    .addComponent(jLabelContrasena))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addComponent(jLabelDescripcion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -144,11 +146,11 @@ public class ViewMyProfile extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelApellido;
-    private javax.swing.JLabel jLabelContrasena;
+    private javax.swing.JLabel jLabelDescripcion;
+    private javax.swing.JLabel jLabelDescription;
     private javax.swing.JLabel jLabelLastName;
     private javax.swing.JLabel jLabelName;
     private javax.swing.JLabel jLabelNombre;
-    private javax.swing.JLabel jLabelPassword;
     private javax.swing.JLabel jLabelTitleMyProfile;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -52,8 +52,8 @@ public class UserStoreService {
         return this.objRepositoryUserRef.getUserByEmail(email);
     }
     
-    public boolean modifyUser(int userId, String name, String lastName, String password) {
-        boolean varFlag=this.objRepositoryUserRef.modifyUser(userId, name, lastName, password);
+    public boolean modifyUser(int userId, String name, String lastName, String password, String description) {
+        boolean varFlag=this.objRepositoryUserRef.modifyUser(userId, name, lastName, password, description);
         return varFlag;
     }
 }

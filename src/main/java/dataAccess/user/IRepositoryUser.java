@@ -46,5 +46,5 @@ public interface IRepositoryUser {
      * @param password contraseña del usuario
      * @return Si la operacion fue exitosa
      */
-    public boolean modifyUser(int userId,String name, String lastName, String password);
+    public boolean modifyUser(int userId,String name, String lastName, String password, String description);
 }
