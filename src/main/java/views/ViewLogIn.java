@@ -178,20 +178,22 @@ public class ViewLogIn extends javax.swing.JFrame {
         
         String varEmail = this.jTextFieldMail.getText();
         String varPassword = new String(this.jTextPasswordFieldUserPassword.getPassword());
-
         this.objUser = objUserStoreService.getUserByEmail(varEmail);
-        ViewMainMenu objViewMainMenu =
-                new ViewMainMenu(this.objUserStoreService,this.objConferenceStoreService,this.objPaperReviewStoreService,this.objPaperStoreService,this.objUser);
+        
         if (objUser == null) {
             System.out.println("Usuario no encontrado");
             utilities.Utilities.setAlert("Error", "Usuario no encontrado");
             return;
         }
+        
         if (!objUser.getUserPassword().equals(varPassword)) {
             System.out.println("Contraseña incorrecta");
             utilities.Utilities.setAlert("Error!!!", "Contraseña incorrecta");
             return;
         }
+        
+        ViewMainMenu objViewMainMenu =
+                new ViewMainMenu(this.objUserStoreService,this.objConferenceStoreService,this.objPaperReviewStoreService,this.objPaperStoreService,this.objUser);
         objViewMainMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewMainMenu.setVisible(true);
         this.setVisible(false);        

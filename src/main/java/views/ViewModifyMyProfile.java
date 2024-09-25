@@ -5,6 +5,7 @@
 package views;
 
 import domain.User;
+import drivers.UserStoreService;
 
 /**
  *
@@ -12,11 +13,13 @@ import domain.User;
  */
 public class ViewModifyMyProfile extends javax.swing.JFrame {
     private User fldUser; // Usuario logeado
+    private UserStoreService fldUserStoreService; 
     /**
      * Creates new form ViewModifyMyProfile
      */
-    public ViewModifyMyProfile(User objUser) {
+    public ViewModifyMyProfile(User objUser, UserStoreService objUserStoreService) {
         fldUser=objUser;
+        this.fldUserStoreService=objUserStoreService;
         initComponents();
     }
 
@@ -155,7 +158,10 @@ public class ViewModifyMyProfile extends javax.swing.JFrame {
 
     private void jButtonSaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveChangesActionPerformed
         // TODO add your handling code here:
-        
+        String name = this.jTextFieldName.getText();
+        String lastName = this.jTextFieldLastName.getText();
+        String password = this.jTextFieldPassword.getText();
+        fldUserStoreService.modifyUser(this.fldUser.getUserId(), name, lastName, password);
     }//GEN-LAST:event_jButtonSaveChangesActionPerformed
 
 
