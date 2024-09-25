@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Repositorio que guarda a los usuarios en una base de datos local 
+ * Repositorio que guarda a los usuarios en una base de datos local
+ *
  * @author julia
  * @author Frdy
  * @author Juan
@@ -80,9 +81,13 @@ public class RepositorySQLiteUser implements IRepositoryUser {
 
         try {
             this.connect();
-            String selectEmail = "SELECT * FROM user WHERE fldEmail = ? ";
+            /**
+             * String selectEmail = "SELECT * FROM user WHERE fldEmail = ? ";
+             * PreparedStatement pst = connection.prepareStatement(selectEmail);
+             * pst.setString(1, email);
+             */
+            String selectEmail = "SELECT * FROM user WHERE fldEmail = '" + email + "' ";
             PreparedStatement pst = connection.prepareStatement(selectEmail);
-            pst.setString(1, email);
             ResultSet rs = pst.executeQuery();
 
             User newUser = new User(
@@ -91,7 +96,7 @@ public class RepositorySQLiteUser implements IRepositoryUser {
                     rs.getString("fldLastName"),
                     rs.getString("fldHashedPassword"),
                     rs.getString("fldEmail")
-            );   
+            );
 
             if (rs.wasNull()) {
                 this.closeConnection();

@@ -26,22 +26,83 @@ public class ViewMyConferences extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanelUp = new javax.swing.JPanel();
+        jLabelTituloMisConferencias = new javax.swing.JLabel();
+        jPanelDown = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableMisConferencias = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        jPanelUp.setBackground(new java.awt.Color(199, 213, 224));
+
+        jLabelTituloMisConferencias.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabelTituloMisConferencias.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelTituloMisConferencias.setText("MIS CONFERENCIAS");
+
+        javax.swing.GroupLayout jPanelUpLayout = new javax.swing.GroupLayout(jPanelUp);
+        jPanelUp.setLayout(jPanelUpLayout);
+        jPanelUpLayout.setHorizontalGroup(
+            jPanelUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelUpLayout.createSequentialGroup()
+                .addContainerGap(141, Short.MAX_VALUE)
+                .addComponent(jLabelTituloMisConferencias)
+                .addGap(139, 139, 139))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanelUpLayout.setVerticalGroup(
+            jPanelUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelUpLayout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jLabelTituloMisConferencias)
+                .addGap(23, 23, 23))
         );
+
+        getContentPane().add(jPanelUp, java.awt.BorderLayout.PAGE_START);
+
+        jPanelDown.setBackground(new java.awt.Color(244, 240, 216));
+
+        jTableMisConferencias.setBackground(new java.awt.Color(172, 156, 124));
+        jTableMisConferencias.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTableMisConferencias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Titulo", "Ciudad", "Descripción"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableMisConferencias);
+
+        javax.swing.GroupLayout jPanelDownLayout = new javax.swing.GroupLayout(jPanelDown);
+        jPanelDown.setLayout(jPanelDownLayout);
+        jPanelDownLayout.setHorizontalGroup(
+            jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDownLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+        jPanelDownLayout.setVerticalGroup(
+            jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDownLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanelDown, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabelTituloMisConferencias;
+    private javax.swing.JPanel jPanelDown;
+    private javax.swing.JPanel jPanelUp;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableMisConferencias;
     // End of variables declaration//GEN-END:variables
 }

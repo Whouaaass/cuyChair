@@ -4,6 +4,9 @@
 package views;
 
 import domain.User;
+import drivers.ConferenceStoreService;
+import drivers.PaperReviewStoreService;
+import drivers.PaperStoreService;
 import drivers.UserStoreService;
 import javax.swing.JFrame;
 
@@ -12,12 +15,22 @@ import javax.swing.JFrame;
  * @author julia
  */
 public class ViewMainMenu extends javax.swing.JFrame {
-//Usuario logeado
+    //Usuario logeado
     User fldUser;
+    //Repositorios de guardado
+    private UserStoreService objUserStoreService; 
+    private ConferenceStoreService objConferenceStoreService;
+    private PaperReviewStoreService objPaperReviewStoreService;
+    private PaperStoreService objPaperStoreService;
     private UserStoreService fldUserStoreService; 
 
-    public ViewMainMenu(UserStoreService fldUserStoreService,User fldUser) {
-        this.fldUser = fldUser;
+    public ViewMainMenu(UserStoreService objUserStoreService, ConferenceStoreService objConferenceStoreService,
+        PaperReviewStoreService PaperReviewStoreService,PaperStoreService objPaperStoreService,User objUser) {
+        this.fldUser = objUser;
+        this.objUserStoreService=objUserStoreService;
+        this.objConferenceStoreService=objConferenceStoreService;
+        this.objPaperReviewStoreService=PaperReviewStoreService;
+        this.objPaperStoreService= objPaperStoreService;
     }
 
     public User getFldUser() {
@@ -49,8 +62,9 @@ public class ViewMainMenu extends javax.swing.JFrame {
         jLabelImgLogo = new javax.swing.JLabel();
         jMenuBarOptions = new javax.swing.JMenuBar();
         jMenuConferences = new javax.swing.JMenu();
-        jMenuMyConferences = new javax.swing.JMenu();
-        jMenuAssistantConference = new javax.swing.JMenu();
+        JmenuItemRegisterConference = new javax.swing.JMenuItem();
+        jMenuItemMyConferences = new javax.swing.JMenuItem();
+        jMenuItemAssistantConference = new javax.swing.JMenuItem();
         jMenuMyPapers = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,25 +87,38 @@ public class ViewMainMenu extends javax.swing.JFrame {
         jMenuConferences.setText("Conferencias");
         jMenuConferences.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
-        jMenuMyConferences.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/presentation_426378.jpg"))); // NOI18N
-        jMenuMyConferences.setText("Mis conferencias");
-        jMenuMyConferences.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jMenuMyConferences.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuMyConferencesMouseClicked(evt);
+        JmenuItemRegisterConference.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        JmenuItemRegisterConference.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        JmenuItemRegisterConference.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/square_14034302.png"))); // NOI18N
+        JmenuItemRegisterConference.setText("Registrar conferencia");
+        JmenuItemRegisterConference.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmenuItemRegisterConferenceActionPerformed(evt);
             }
         });
-        jMenuConferences.add(jMenuMyConferences);
+        jMenuConferences.add(JmenuItemRegisterConference);
 
-        jMenuAssistantConference.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/public-speaking_5455385.jpg"))); // NOI18N
-        jMenuAssistantConference.setText("Conferencias a las que asisto");
-        jMenuAssistantConference.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jMenuAssistantConference.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuAssistantConferenceMouseClicked(evt);
+        jMenuItemMyConferences.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItemMyConferences.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItemMyConferences.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/public-speaking_5455385.jpg"))); // NOI18N
+        jMenuItemMyConferences.setText("Mis conferencias");
+        jMenuItemMyConferences.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemMyConferencesActionPerformed(evt);
             }
         });
-        jMenuConferences.add(jMenuAssistantConference);
+        jMenuConferences.add(jMenuItemMyConferences);
+
+        jMenuItemAssistantConference.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItemAssistantConference.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItemAssistantConference.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/presentation_426378.jpg"))); // NOI18N
+        jMenuItemAssistantConference.setText("Conferencias a las que asisto");
+        jMenuItemAssistantConference.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAssistantConferenceActionPerformed(evt);
+            }
+        });
+        jMenuConferences.add(jMenuItemAssistantConference);
 
         jMenuBarOptions.add(jMenuConferences);
 
@@ -111,20 +138,6 @@ public class ViewMainMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuMyConferencesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuMyConferencesMouseClicked
-        // TODO add your handling code here:
-        ViewMyConferences objViewMyConferences = new ViewMyConferences();
-        objViewMyConferences.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        objViewMyConferences.setVisible(true);
-    }//GEN-LAST:event_jMenuMyConferencesMouseClicked
-
-    private void jMenuAssistantConferenceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAssistantConferenceMouseClicked
-        // TODO add your handling code here:
-        ViewAssistantConference objViewAssistantConference = new ViewAssistantConference();
-        objViewAssistantConference.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        objViewAssistantConference.setVisible(true);
-    }//GEN-LAST:event_jMenuAssistantConferenceMouseClicked
-
     private void jMenuMyPapersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuMyPapersMouseClicked
         // TODO add your handling code here:
         ViewMyPapers objViewMyPapers = new ViewMyPapers();
@@ -132,13 +145,35 @@ public class ViewMainMenu extends javax.swing.JFrame {
         objViewMyPapers.setVisible(true);
     }//GEN-LAST:event_jMenuMyPapersMouseClicked
 
+    private void jMenuItemMyConferencesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMyConferencesActionPerformed
+        // TODO add your handling code here:
+        ViewMyConferences objViewMyConferences = new ViewMyConferences();
+        objViewMyConferences.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        objViewMyConferences.setVisible(true);
+    }//GEN-LAST:event_jMenuItemMyConferencesActionPerformed
+
+    private void JmenuItemRegisterConferenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmenuItemRegisterConferenceActionPerformed
+        // TODO add your handling code here:
+        ViewRegisterConference objViewRegisterConference = new ViewRegisterConference(this.fldUser,this.objConferenceStoreService);
+        objViewRegisterConference.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        objViewRegisterConference.setVisible(true);
+    }//GEN-LAST:event_JmenuItemRegisterConferenceActionPerformed
+
+    private void jMenuItemAssistantConferenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAssistantConferenceActionPerformed
+        // TODO add your handling code here:
+        ViewAssistantConference objViewAssistantConference = new ViewAssistantConference();
+        objViewAssistantConference.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        objViewAssistantConference.setVisible(true);
+    }//GEN-LAST:event_jMenuItemAssistantConferenceActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem JmenuItemRegisterConference;
     private javax.swing.JLabel jLabelImgLogo;
-    private javax.swing.JMenu jMenuAssistantConference;
     private javax.swing.JMenuBar jMenuBarOptions;
     private javax.swing.JMenu jMenuConferences;
-    private javax.swing.JMenu jMenuMyConferences;
+    private javax.swing.JMenuItem jMenuItemAssistantConference;
+    private javax.swing.JMenuItem jMenuItemMyConferences;
     private javax.swing.JMenu jMenuMyPapers;
     private javax.swing.JPanel jPanelMainMenu;
     // End of variables declaration//GEN-END:variables

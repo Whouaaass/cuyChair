@@ -6,6 +6,9 @@ package views;
 
 import dataAccess.user.RepositorySQLiteUser;
 import domain.User;
+import drivers.ConferenceStoreService;
+import drivers.PaperReviewStoreService;
+import drivers.PaperStoreService;
 import drivers.UserStoreService;
 
 import javax.swing.JFrame;
@@ -16,14 +19,20 @@ import javax.swing.JFrame;
  */
 public class ViewLogIn extends javax.swing.JFrame {
 
-    private UserStoreService objUserStoreService;
-
+    private UserStoreService objUserStoreService; 
+    private ConferenceStoreService objConferenceStoreService;
+    private PaperReviewStoreService objPaperReviewStoreService;
+    private PaperStoreService objPaperStoreService;
     /**
      * Creates new form viewLogIn
      */
-    public ViewLogIn(UserStoreService objUserStoreService) {
+    public ViewLogIn(UserStoreService objUserStoreService, ConferenceStoreService objConferenceStoreService,
+        PaperReviewStoreService PaperReviewStoreService,PaperStoreService objPaperStoreService) {
         initComponents();
-        this.objUserStoreService = objUserStoreService;
+        this.objUserStoreService=objUserStoreService;
+        this.objConferenceStoreService=objConferenceStoreService;
+        this.objPaperReviewStoreService=PaperReviewStoreService;
+        this.objPaperStoreService= objPaperStoreService;
         this.setLocationRelativeTo(null);
     }
 
@@ -158,7 +167,7 @@ public class ViewLogIn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     //Te redirecciona al registro de usuario
     private void jButtonNoTengoUnaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNoTengoUnaCuentaActionPerformed
-        ViewSignIn objViewSingIn = new ViewSignIn(this.objUserStoreService);
+        ViewSignIn objViewSingIn = new ViewSignIn(this.objUserStoreService,this.objConferenceStoreService,this.objPaperReviewStoreService,this.objPaperStoreService);
         objViewSingIn.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewSingIn.setVisible(true);        
         this.setVisible(false);

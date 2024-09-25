@@ -18,7 +18,7 @@ public class RepositoryArrayListConference implements IRepositoryConference{
      * Instancia un objeto de la clase ConferenceStoreService
      * @param objRepositoryConference Repositorio que utilizara el servicio
      */
-    public RepositoryArrayListConference(ArrayList<Conference> ConferenceList) {
+    public RepositoryArrayListConference() {
         this.ConferenceList = new ArrayList();
     }
     /**

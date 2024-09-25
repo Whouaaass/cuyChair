@@ -22,7 +22,7 @@ public class RepositoryArrayListPaper implements IRepositoryPaper{
      * Instancia un objeto de la clase PaperStoreService
      * @param objRepositoryPaperRef Repositorio que utilizara el servicio
      */
-    public RepositoryArrayListPaper(ArrayList<Paper> PaperList) {
+    public RepositoryArrayListPaper() {
         this.PaperList = new ArrayList();
         initDatabase();
     }

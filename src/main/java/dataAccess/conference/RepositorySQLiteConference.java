@@ -4,10 +4,32 @@
  */
 package dataAccess.conference;
 
+import java.sql.*;
+import domain.Conference;
+import java.util.List;
+
 /**
  *
  * @author julia
  */
-public class RepositorySQLiteConference {
+public class RepositorySQLiteConference implements IRepositoryConference{
+
+    public RepositorySQLiteConference() {
+        initDatabase();
+    }
+    
+    @Override
+    public boolean storeConference(Conference objConference) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Conference> listConference() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void initDatabase() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
