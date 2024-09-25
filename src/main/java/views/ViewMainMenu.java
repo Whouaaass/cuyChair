@@ -26,11 +26,13 @@ public class ViewMainMenu extends javax.swing.JFrame {
 
     public ViewMainMenu(UserStoreService objUserStoreService, ConferenceStoreService objConferenceStoreService,
         PaperReviewStoreService PaperReviewStoreService,PaperStoreService objPaperStoreService,User objUser) {
+        initComponents();
         this.fldUser = objUser;
         this.objUserStoreService=objUserStoreService;
         this.objConferenceStoreService=objConferenceStoreService;
         this.objPaperReviewStoreService=PaperReviewStoreService;
         this.objPaperStoreService= objPaperStoreService;
+        this.setLocationRelativeTo(null);
     }
 
     public User getFldUser() {
@@ -41,13 +43,6 @@ public class ViewMainMenu extends javax.swing.JFrame {
         this.fldUser = fldUser;
     }
     
-    /**
-     * Creates new form ViewMainMenu
-     */
-    public ViewMainMenu() {
-        initComponents();
-        this.setLocationRelativeTo(null);
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,6 +56,9 @@ public class ViewMainMenu extends javax.swing.JFrame {
         jPanelMainMenu = new javax.swing.JPanel();
         jLabelImgLogo = new javax.swing.JLabel();
         jMenuBarOptions = new javax.swing.JMenuBar();
+        jMenuPerfil = new javax.swing.JMenu();
+        jMenuItemLookUserProfile = new javax.swing.JMenuItem();
+        jMenuItemModifyProfileUser = new javax.swing.JMenuItem();
         jMenuConferences = new javax.swing.JMenu();
         JmenuItemRegisterConference = new javax.swing.JMenuItem();
         jMenuItemMyConferences = new javax.swing.JMenuItem();
@@ -81,6 +79,34 @@ public class ViewMainMenu extends javax.swing.JFrame {
 
         jMenuBarOptions.setBackground(new java.awt.Color(199, 213, 224));
         jMenuBarOptions.setForeground(new java.awt.Color(27, 40, 56));
+
+        jMenuPerfil.setText("Perfil");
+        jMenuPerfil.setFocusable(false);
+        jMenuPerfil.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+
+        jMenuItemLookUserProfile.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItemLookUserProfile.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItemLookUserProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/user_7099740.png"))); // NOI18N
+        jMenuItemLookUserProfile.setText("Ver perfil");
+        jMenuItemLookUserProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemLookUserProfileActionPerformed(evt);
+            }
+        });
+        jMenuPerfil.add(jMenuItemLookUserProfile);
+
+        jMenuItemModifyProfileUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItemModifyProfileUser.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuItemModifyProfileUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/profile_14551139.png"))); // NOI18N
+        jMenuItemModifyProfileUser.setText("Editar perfil");
+        jMenuItemModifyProfileUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemModifyProfileUserActionPerformed(evt);
+            }
+        });
+        jMenuPerfil.add(jMenuItemModifyProfileUser);
+
+        jMenuBarOptions.add(jMenuPerfil);
 
         jMenuConferences.setBackground(new java.awt.Color(102, 192, 244));
         jMenuConferences.setForeground(new java.awt.Color(27, 40, 56));
@@ -166,6 +192,20 @@ public class ViewMainMenu extends javax.swing.JFrame {
         objViewAssistantConference.setVisible(true);
     }//GEN-LAST:event_jMenuItemAssistantConferenceActionPerformed
 
+    private void jMenuItemLookUserProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLookUserProfileActionPerformed
+        // TODO add your handling code here:
+        ViewMyProfile objViewMyProfile = new ViewMyProfile(this.fldUser);
+        objViewMyProfile.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        objViewMyProfile.setVisible(true);
+    }//GEN-LAST:event_jMenuItemLookUserProfileActionPerformed
+
+    private void jMenuItemModifyProfileUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemModifyProfileUserActionPerformed
+        // TODO add your handling code here:
+        ViewModifyMyProfile objViewModifyMyProfile= new ViewModifyMyProfile(this.fldUser);
+        objViewModifyMyProfile.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        objViewModifyMyProfile.setVisible(true);
+    }//GEN-LAST:event_jMenuItemModifyProfileUserActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem JmenuItemRegisterConference;
@@ -173,8 +213,11 @@ public class ViewMainMenu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBarOptions;
     private javax.swing.JMenu jMenuConferences;
     private javax.swing.JMenuItem jMenuItemAssistantConference;
+    private javax.swing.JMenuItem jMenuItemLookUserProfile;
+    private javax.swing.JMenuItem jMenuItemModifyProfileUser;
     private javax.swing.JMenuItem jMenuItemMyConferences;
     private javax.swing.JMenu jMenuMyPapers;
+    private javax.swing.JMenu jMenuPerfil;
     private javax.swing.JPanel jPanelMainMenu;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,7 @@ package dataAccess.conference;
 
 import java.sql.*;
 import domain.Conference;
+import domain.User;
 import java.util.List;
 
 /**
@@ -29,6 +30,16 @@ public class RepositorySQLiteConference implements IRepositoryConference{
     }
 
     private void initDatabase() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Conference> listConferenceByUserAssistant(User objUser) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Conference> listConferenceByUserOwner(User objUser) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

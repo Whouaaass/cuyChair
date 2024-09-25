@@ -23,6 +23,7 @@ public class ViewLogIn extends javax.swing.JFrame {
     private ConferenceStoreService objConferenceStoreService;
     private PaperReviewStoreService objPaperReviewStoreService;
     private PaperStoreService objPaperStoreService;
+    private User objUser;//Usuario Logeado para pasarlo al menu principal
     /**
      * Creates new form viewLogIn
      */
@@ -174,12 +175,13 @@ public class ViewLogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonNoTengoUnaCuentaActionPerformed
 
     private void jButtonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogInActionPerformed
-        ViewMainMenu objViewMainMenu = new ViewMainMenu();
+        
         String varEmail = this.jTextFieldMail.getText();
         String varPassword = new String(this.jTextPasswordFieldUserPassword.getPassword());
 
-        User objUser = objUserStoreService.getUserByEmail(varEmail);
-
+        this.objUser = objUserStoreService.getUserByEmail(varEmail);
+        ViewMainMenu objViewMainMenu =
+                new ViewMainMenu(this.objUserStoreService,this.objConferenceStoreService,this.objPaperReviewStoreService,this.objPaperStoreService,this.objUser);
         if (objUser == null) {
             System.out.println("Usuario no encontrado");
             utilities.Utilities.setAlert("Error", "Usuario no encontrado");
@@ -190,7 +192,6 @@ public class ViewLogIn extends javax.swing.JFrame {
             utilities.Utilities.setAlert("Error!!!", "Contraseña incorrecta");
             return;
         }
-
         objViewMainMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewMainMenu.setVisible(true);
         this.setVisible(false);        

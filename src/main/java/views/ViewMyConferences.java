@@ -61,8 +61,10 @@ public class ViewMyConferences extends javax.swing.JFrame {
 
         jPanelDown.setBackground(new java.awt.Color(244, 240, 216));
 
+        jScrollPane1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
         jTableMisConferencias.setBackground(new java.awt.Color(172, 156, 124));
-        jTableMisConferencias.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTableMisConferencias.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jTableMisConferencias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -74,7 +76,12 @@ public class ViewMyConferences extends javax.swing.JFrame {
                 "Titulo", "Ciudad", "Descripción"
             }
         ));
+        jTableMisConferencias.setGridColor(new java.awt.Color(172, 156, 124));
         jScrollPane1.setViewportView(jTableMisConferencias);
+        if (jTableMisConferencias.getColumnModel().getColumnCount() > 0) {
+            jTableMisConferencias.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTableMisConferencias.getColumnModel().getColumn(1).setPreferredWidth(10);
+        }
 
         javax.swing.GroupLayout jPanelDownLayout = new javax.swing.GroupLayout(jPanelDown);
         jPanelDown.setLayout(jPanelDownLayout);

@@ -31,4 +31,10 @@ public interface IRepositoryUser {
      * @return el primer usuario con ese email
      */
     public User getUserByEmail(String email);
+    /**
+     * Modifica el usuario 
+     * @param objUser usuario a modificar
+     * @return Si la operacion fue exitosa
+     */
+    public boolean modifyUser(User objUser);
 }
