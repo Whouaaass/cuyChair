@@ -4,17 +4,27 @@
  */
 package views;
 
+import domain.Conference;
+import domain.PaperReview;
+import domain.User;
+import drivers.ConferenceStoreService;
+import drivers.PaperReviewStoreService;
+import java.util.ArrayList;
+
 /**
  *
  * @author julia
  */
 public class ViewRegisterConference extends javax.swing.JFrame {
-
+    private User objAdminUser;
+    private ConferenceStoreService objConferenceStoreService;
     /**
      * Creates new form ViewRegisterConference
      */
-    public ViewRegisterConference() {
+    public ViewRegisterConference(User objAdminUser,ConferenceStoreService objConferenceStoreService) {
         initComponents();
+        this.objAdminUser = objAdminUser;
+        this.objConferenceStoreService = objConferenceStoreService;
     }
 
     /**
@@ -151,6 +161,30 @@ public class ViewRegisterConference extends javax.swing.JFrame {
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         // TODO add your handling code here:
+        String varTitle;
+        String varDescription;
+        String varCity;
+        ArrayList<User> usersList= new ArrayList<>();
+        ArrayList<PaperReview> paperReviewList = new ArrayList<>();
+        try{
+            //Trae datos de la vista y las pasa a variables locales
+            varTitle=this.jTextFieldTituloConferencia.getText();
+            varDescription=this.jTextFieldDescripcionConferencia.getText();
+            varCity=this.jTextFieldCiudadConferencia.getText();
+            
+            //Pasamos las variables locales a un objeto
+            Conference objConference = new Conference(varTitle,varDescription,varCity,this.objAdminUser,usersList,paperReviewList);
+            //El objeto se manda a través de un servicio de almacenamiento
+            boolean varFlag = this.objConferenceStoreService.storeConference(objConference);
+            if (varFlag) {
+                System.out.println("El registro de conferencia fue exitoso - Registro exitoso");
+            } else {
+                System.out.println("El registro de conferencia no se realizó - Error en el registro");
+            }
+        }catch(Exception e){
+            System.out.println("Error en el registro de datos");
+        }
+        
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
 

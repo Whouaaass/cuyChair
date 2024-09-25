@@ -1,5 +1,11 @@
 package test;
+import dataAccess.conference.RepositorySQLiteConference;
+import dataAccess.paper.RepositorySQLitePaper;
+import dataAccess.paperReview.RepositorySQLitePaperReview;
 import dataAccess.user.RepositorySQLiteUser;
+import drivers.ConferenceStoreService;
+import drivers.PaperReviewStoreService;
+import drivers.PaperStoreService;
 import drivers.UserStoreService;
 import org.passay.*;
 
@@ -23,6 +29,9 @@ public class TestSignIn {
         int varOpt=0;
         Utilities objUtil = new Utilities();
         RepositorySQLiteUser objRepositoryArrayListUser = new RepositorySQLiteUser();
+        RepositorySQLiteConference objRepositoryArrayListConference = new RepositorySQLiteConference();
+        RepositorySQLitePaperReview objRepositoryArrayListPaperReview = new RepositorySQLitePaperReview();
+        RepositorySQLitePaper objRepositoryArrayListPaper = new RepositorySQLitePaper();
         Scanner objScan = new Scanner(System.in);
         //Menu de pruebas
         do{
@@ -33,7 +42,7 @@ public class TestSignIn {
                     objUtil.printResult(testPasswordReading());
                     break;
                 case 2:
-                    objRepositoryArrayListUser=testGeneralSignIn(objRepositoryArrayListUser);
+                    objRepositoryArrayListUser=testGeneralSignIn(objRepositoryArrayListUser,objRepositoryArrayListConference,objRepositoryArrayListPaperReview,objRepositoryArrayListPaper);
                     break;
                 case 3:
                     objUtil.printUser(objRepositoryArrayListUser.listUsers().getLast());
@@ -76,14 +85,19 @@ public class TestSignIn {
     }
     
     //Test para checkeo general de guardado de usuario
-    private static RepositorySQLiteUser testGeneralSignIn(RepositorySQLiteUser objRepositoryArrayListUser){
+    private static RepositorySQLiteUser testGeneralSignIn(RepositorySQLiteUser objRepositoryArrayListUser,RepositorySQLiteConference objRepositoryConference,
+            RepositorySQLitePaperReview objRepositoryPaperReview, RepositorySQLitePaper objRepositoryPaper){
         Utilities objUtil = new Utilities();
         try{
             //Inicializar servicio de almacenamiento de usuario
             UserStoreService objUserStoreService = new UserStoreService(objRepositoryArrayListUser);
+            //Iniclializar servicios de almacenamiento de conferencia, paper y paperReview de la plataforma
+            ConferenceStoreService objConferenceStoreService = new ConferenceStoreService(objRepositoryConference);
+            PaperReviewStoreService objPaperReviewStoreService = new PaperReviewStoreService(objRepositoryPaperReview);
+            PaperStoreService objPaperStoreService = new PaperStoreService(objRepositoryPaper);
             //Asociar el servicio de almacenamiento de usuario
-            ViewSignIn objViewSignIn = new ViewSignIn(objUserStoreService);
-            objViewSignIn.associateUserStoreService(objUserStoreService);
+            ViewSignIn objViewSignIn = new ViewSignIn(objUserStoreService,objConferenceStoreService,objPaperReviewStoreService,objPaperStoreService);
+            objViewSignIn.associateUserStoreService(objUserStoreService,objConferenceStoreService,objPaperReviewStoreService,objPaperStoreService);
             //Lanzar interfaz
             objViewSignIn.setVisible(true);
         }catch(Exception e){

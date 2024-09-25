@@ -4,8 +4,14 @@
  */
 package test;
 
+import dataAccess.conference.RepositorySQLiteConference;
+import dataAccess.paper.RepositorySQLitePaper;
+import dataAccess.paperReview.RepositorySQLitePaperReview;
 import dataAccess.user.RepositorySQLiteUser;
 import domain.User;
+import drivers.ConferenceStoreService;
+import drivers.PaperReviewStoreService;
+import drivers.PaperStoreService;
 import drivers.UserStoreService;
 import javax.swing.JFrame;
 import views.ViewMainMenu;
@@ -17,9 +23,17 @@ import views.ViewMainMenu;
 public class TestMainMenu {
         public static void main(String[] args) {
             RepositorySQLiteUser objRepositoryArrayListUser = new RepositorySQLiteUser();
+            RepositorySQLiteConference objRepositoryArrayListConference = new RepositorySQLiteConference();
+            RepositorySQLitePaperReview objRepositoryArrayListPaperReview = new RepositorySQLitePaperReview();
+            RepositorySQLitePaper objRepositoryArrayListPaper = new RepositorySQLitePaper();
+            
             UserStoreService objUserStoreService = new UserStoreService(objRepositoryArrayListUser);
+            ConferenceStoreService objConferenceStoreService = new ConferenceStoreService(objRepositoryArrayListConference);
+            PaperReviewStoreService objPaperReviewStoreService = new PaperReviewStoreService(objRepositoryArrayListPaperReview);
+            PaperStoreService objPaperStoreService = new PaperStoreService(objRepositoryArrayListPaper);
+            
             User objUser = new User(1,"MiNombre","MiApellido","1234Jm","jm@gmail.com");
-            ViewMainMenu objViewMainMenu=new ViewMainMenu(objUserStoreService,objUser);
+            ViewMainMenu objViewMainMenu=new ViewMainMenu(objUserStoreService,objConferenceStoreService,objPaperReviewStoreService,objPaperStoreService,objUser);
             objViewMainMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             objViewMainMenu.setVisible(true);
         }
