@@ -7,6 +7,7 @@ package dataAccess.paper;
 import dataAccess.ConnectionSqlitePool;
 import dataAccess.user.RepositorySQLiteUser;
 import domain.Paper;
+import domain.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,12 +26,13 @@ public class RepositorySQLitePaper implements IRepositoryPaper{
     public boolean storePaper(Paper objPaper) {
 
         try (Connection conn=ConnectionSqlitePool.getConnection()){
-            String insertPaper = "INSERT INTO Paper VALUES(?, ?, ?)";
+            String insertPaper = "INSERT INTO Paper VALUES(?, ?, ?, ?)";
 
             PreparedStatement pst=conn.prepareStatement(insertPaper);
-            pst.setString(1, objPaper.getFldTitle());
-            pst.setString(2, objPaper.getFldDescription());
-            pst.setString(3, objPaper.getFldAutor().getUserEmail());
+            pst.setInt(1, objPaper.getFldId());
+            pst.setString(2, objPaper.getFldTitle());
+            pst.setString(3, objPaper.getFldDescription());
+            pst.setInt(4, objPaper.getFldAutor().getUserId());
             pst.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
@@ -53,15 +55,44 @@ public class RepositorySQLitePaper implements IRepositoryPaper{
             ResultSet rs=st.executeQuery(listPaper);
             while(rs.next()){
                 Paper newPaper=new Paper();
-                newPaper.setFldTitle(rs.getString(1));
-                newPaper.setFldDescription(rs.getString(2));
-                newPaper.setFldAutor(repoUser.getUserByEmail(rs.getString(3)));
+                newPaper.setFldId(rs.getInt(1));
+                newPaper.setFldTitle(rs.getString(2));
+                newPaper.setFldDescription(rs.getString(3));
+                newPaper.setFldAutor(repoUser.getUserById(rs.getInt(4)));
                 List.add(newPaper);
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
         return List;
+    }
+
+    @Override
+    public Paper getPaperById(int paperId) {
+        try (Connection connection=ConnectionSqlitePool.getConnection()){
+
+            String selectId = "SELECT * FROM paper WHERE fldId = ? ";
+            PreparedStatement pst = connection.prepareStatement(selectId);
+            pst.setInt(1, paperId);
+            RepositorySQLiteUser repo = new RepositorySQLiteUser();
+            ResultSet rs = pst.executeQuery();
+
+            Paper newPaper = new Paper(
+                    rs.getInt("fldId"),
+                    rs.getString("fldTitle"),
+                    rs.getString("fldDescription"),
+                    repo.getUserById(rs.getInt("fldUserId"))
+            );
+
+            if (rs.wasNull()) {
+                return null;
+            }
+
+            return newPaper;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void initDatabase(){

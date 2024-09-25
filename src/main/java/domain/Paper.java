@@ -7,12 +7,19 @@ package domain;
 /**
  *
  * @author julia
+ *  Modifi by Juan
  */
 public class Paper {
+    private int fldId;
     private String fldTitle;
     private String fldDescription;
     //Autor del trabajo
     private User fldAutor;
+
+    public Paper(int fldId, String fldDescription, String fldTitle, User fldAutor) {
+        this(fldDescription,fldTitle,fldAutor);
+        this.fldId = fldId;
+    }
 
     public Paper(String fldTitle, String fldDescription, User fldAutor) {
         this.fldTitle = fldTitle;
@@ -22,6 +29,14 @@ public class Paper {
 
     public Paper(){
 
+    }
+
+    public int getFldId() {
+        return fldId;
+    }
+
+    public void setFldId(int fldId) {
+        this.fldId = fldId;
     }
 
     public String getFldTitle() {

@@ -10,8 +10,10 @@ import java.util.List;
 /**
  *
  * @author julia
+ * Modify by Juan
  */
 public interface IRepositoryPaper {
     public boolean storePaper(Paper objPaper);
     public List<Paper> listPaper();
+    public Paper getPaperById(int paperId);
 }
