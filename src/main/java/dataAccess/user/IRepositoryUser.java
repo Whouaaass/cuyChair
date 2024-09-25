@@ -31,6 +31,13 @@ public interface IRepositoryUser {
      * @return el primer usuario con ese email
      */
     public User getUserByEmail(String email);
+
+    /**
+     * Busca un usuario por id
+     * @param userId id del usuario
+     * @return el primer usuario con ese id
+     */
+    public User getUserById(int userId);
     /**
      * Modifica el usuario 
      * @param userId identificación del usuario a modificar

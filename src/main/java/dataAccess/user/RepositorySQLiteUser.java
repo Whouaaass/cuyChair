@@ -4,6 +4,7 @@
  */
 package dataAccess.user;
 
+import dataAccess.ConnectionSqlitePool;
 import domain.User;
 
 import java.sql.*;
@@ -19,7 +20,6 @@ import java.util.List;
  */
 public class RepositorySQLiteUser implements IRepositoryUser {
 
-    private Connection connection;
 
     /**
      * Genera una instancia del repositorio
@@ -30,9 +30,8 @@ public class RepositorySQLiteUser implements IRepositoryUser {
 
     @Override
     public boolean storeUser(User objUser) {
-        this.connect();
         boolean varFlag;
-        try {
+        try (Connection connection=ConnectionSqlitePool.getConnection()){
             String insertUser = "INSERT INTO USER VALUES (?, ?, ?, ?, ?)";
 
             PreparedStatement pst = connection.prepareStatement(insertUser);
@@ -48,15 +47,13 @@ public class RepositorySQLiteUser implements IRepositoryUser {
             e.printStackTrace();
             varFlag = false;
         }
-        this.closeConnection();
         return varFlag;
     }
 
     @Override
     public List<User> listUsers() {
         List<User> List = new ArrayList<>();
-        this.connect();
-        try {
+        try (Connection connection=ConnectionSqlitePool.getConnection()){
             String listUser = "SELECT * FROM user";
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(listUser);
@@ -79,15 +76,39 @@ public class RepositorySQLiteUser implements IRepositoryUser {
     @Override
     public User getUserByEmail(String email) {
 
-        try {
-            this.connect();
-            /**
-             * String selectEmail = "SELECT * FROM user WHERE fldEmail = ? ";
-             * PreparedStatement pst = connection.prepareStatement(selectEmail);
-             * pst.setString(1, email);
-             */
-            String selectEmail = "SELECT * FROM user WHERE fldEmail = '" + email + "' ";
-            PreparedStatement pst = connection.prepareStatement(selectEmail);
+        try (Connection connection=ConnectionSqlitePool.getConnection()){
+
+             String selectEmail = "SELECT * FROM user WHERE fldEmail = ? ";
+             PreparedStatement pst = connection.prepareStatement(selectEmail);
+             pst.setString(1, email);
+            ResultSet rs = pst.executeQuery();
+            User newUser = new User(
+                    rs.getInt("fldId"),
+                    rs.getString("fldName"),
+                    rs.getString("fldLastName"),
+                    rs.getString("fldHashedPassword"),
+                    rs.getString("fldEmail")
+            );
+
+            if (rs.wasNull()) {
+                return null;
+            }
+
+            return newUser;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public User getUserById(int userId) {
+        try (Connection connection=ConnectionSqlitePool.getConnection()){
+
+            String selectId = "SELECT * FROM user WHERE fldId = ? ";
+            PreparedStatement pst = connection.prepareStatement(selectId);
+            pst.setInt(1, userId);
+
             ResultSet rs = pst.executeQuery();
 
             User newUser = new User(
@@ -99,22 +120,18 @@ public class RepositorySQLiteUser implements IRepositoryUser {
             );
 
             if (rs.wasNull()) {
-                this.closeConnection();
                 return null;
             }
 
-            this.closeConnection();
             return newUser;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        this.closeConnection();
         return null;
     }
 
     public void initDatabase() {
-        try {
-            this.connect();
+        try (Connection connection=ConnectionSqlitePool.getConnection()){
             String tableUser = "CREATE TABLE IF NOT EXISTS USER(\n "
                     + "fldId Number PRAMARY KEY,\n"
                     + "fldName text NOT NULL,\n"
@@ -129,29 +146,8 @@ public class RepositorySQLiteUser implements IRepositoryUser {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        this.closeConnection();
     }
 
-    public void connect() {
-        String URL = "jdbc:sqlite:MyBd.db";
-        try {
-            connection = DriverManager.getConnection(URL);
-        } catch (SQLException e) {
-            System.out.println("Fallo conexion a la base de datos");
-            e.printStackTrace();
-        }
-    }
-
-    public void closeConnection() {
-        if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar Base de datos");
-                e.printStackTrace();
-            }
-        }
-    }
 
     @Override
     public boolean modifyUser(int userId,String name, String lastName, String password) {

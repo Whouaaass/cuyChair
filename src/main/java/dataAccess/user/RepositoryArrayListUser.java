@@ -41,7 +41,17 @@ public class RepositoryArrayListUser implements IRepositoryUser {
             }
         }
         return null;
-    }    
+    }
+
+    @Override
+    public User getUserById(int userId) {
+        for (User user : userList) {
+            if (user.getUserId() == userId) {
+                return user;
+            }
+        }
+        return null;
+    }
 
     @Override
     public boolean modifyUser(int userId, String name, String lastName, String password) {

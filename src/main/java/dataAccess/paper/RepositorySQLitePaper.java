@@ -4,7 +4,12 @@
  */
 package dataAccess.paper;
 
+import dataAccess.ConnectionSqlitePool;
+import dataAccess.user.RepositorySQLiteUser;
 import domain.Paper;
+
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,16 +23,62 @@ public class RepositorySQLitePaper implements IRepositoryPaper{
     }
     @Override
     public boolean storePaper(Paper objPaper) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
+        try (Connection conn=ConnectionSqlitePool.getConnection()){
+            String insertPaper = "INSERT INTO Paper VALUES(?, ?, ?)";
+
+            PreparedStatement pst=conn.prepareStatement(insertPaper);
+            pst.setString(1, objPaper.getFldTitle());
+            pst.setString(2, objPaper.getFldDescription());
+            pst.setString(3, objPaper.getFldAutor().getUserEmail());
+            pst.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    /**
+     * Lista los papers
+     * @return lista de papers
+     */
     @Override
     public List<Paper> listPaper() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        RepositorySQLiteUser repoUser=new RepositorySQLiteUser();
+        ArrayList<Paper> List=new ArrayList<>();
+        try (Connection conn=ConnectionSqlitePool.getConnection()){
+            String listPaper = "SELECT * FROM Paper";
+
+            Statement st= conn.createStatement();
+            ResultSet rs=st.executeQuery(listPaper);
+            while(rs.next()){
+                Paper newPaper=new Paper();
+                newPaper.setFldTitle(rs.getString(1));
+                newPaper.setFldDescription(rs.getString(2));
+                newPaper.setFldAutor(repoUser.getUserByEmail(rs.getString(3)));
+                List.add(newPaper);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return List;
     }
 
-    private void initDatabase() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void initDatabase(){
+        try (Connection conn= ConnectionSqlitePool.getConnection()){
+            String tablePaper="CREATE TABLE IF NOT EXISTS Paper(\n "
+                    +"fldId number NOT NULL PRIMARY KEY,\n"
+                    +"fldTitle text NOT NULL,\n"
+                    +"fldDescription text NOT NULL,\n"
+                    +"fldUserId number NOT NULL,\n"
+                    +"FOREIGN KEY (fldUserId) REFERENCES User(fldId)\n"
+                    +");";
+
+            Statement st= conn.createStatement();
+            st.execute(tablePaper);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
     
 }
