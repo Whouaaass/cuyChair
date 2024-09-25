@@ -22,7 +22,6 @@ public class ViewMainMenu extends javax.swing.JFrame {
     private ConferenceStoreService objConferenceStoreService;
     private PaperReviewStoreService objPaperReviewStoreService;
     private PaperStoreService objPaperStoreService;
-    private UserStoreService fldUserStoreService; 
 
     public ViewMainMenu(UserStoreService objUserStoreService, ConferenceStoreService objConferenceStoreService,
         PaperReviewStoreService PaperReviewStoreService,PaperStoreService objPaperStoreService,User objUser) {
@@ -33,6 +32,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
         this.objPaperReviewStoreService=PaperReviewStoreService;
         this.objPaperStoreService= objPaperStoreService;
         this.setLocationRelativeTo(null);
+        System.out.println("objUserStoreService:"+this.objUserStoreService.listUsers().getFirst().getUserName());
     }
 
     public User getFldUser() {
@@ -201,7 +201,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
 
     private void jMenuItemModifyProfileUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemModifyProfileUserActionPerformed
         // TODO add your handling code here:
-        ViewModifyMyProfile objViewModifyMyProfile= new ViewModifyMyProfile(this.fldUser);
+        ViewModifyMyProfile objViewModifyMyProfile= new ViewModifyMyProfile(this.fldUser, this.objUserStoreService);
         objViewModifyMyProfile.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewModifyMyProfile.setVisible(true);
     }//GEN-LAST:event_jMenuItemModifyProfileUserActionPerformed
