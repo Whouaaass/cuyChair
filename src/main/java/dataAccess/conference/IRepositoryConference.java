@@ -36,4 +36,10 @@ public interface IRepositoryConference {
      * @return la lista de conferencias que son propiedad del usuario
      */
     public List<Conference> listConferenceByUserOwner(User objUser);
+    /**
+     * Funcion que retorna una conferencia por id
+     * @param conferenceId Id de conferencia
+     * @return una conferencia
+     */
+    public Conference getConferenceById(int conferenceId);
 }
