@@ -4,6 +4,7 @@
  */
 package views;
 
+import context.AppContext;
 import domain.User;
 
 /**
@@ -16,12 +17,13 @@ public class ViewMyProfile extends javax.swing.JFrame {
      * Creates new form ViewMyProfile
      * @param objUser
      */
-    public ViewMyProfile(User objUser) {
-        this.fldUser = objUser;
+    public ViewMyProfile() {
+        AppContext appContext = AppContext.getInstance();
         initComponents();
-        this.jLabelName.setText(objUser.getUserName()); 
-        this.jLabelLastName.setText(objUser.getUserLastName());
-        this.jLabelDescription.setText(objUser.getDescription());
+        this.fldUser = appContext.getLoggedUser();
+        this.jLabelName.setText(fldUser.getUserName()); 
+        this.jLabelLastName.setText(fldUser.getUserLastName());
+        this.jLabelDescription.setText(fldUser.getDescription());
     }
 
     /**

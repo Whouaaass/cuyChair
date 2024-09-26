@@ -197,7 +197,7 @@ public class ViewAssistantConference extends javax.swing.JFrame {
 
     private void jButtonUploadPaperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUploadPaperActionPerformed
         // TODO add your handling code here:
-        ViewUploadPaper objViewUploadPaper = new ViewUploadPaper(this.objUser,this.objPaperStoreService);
+        ViewUploadPaper objViewUploadPaper = new ViewUploadPaper();
         objViewUploadPaper.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewUploadPaper.setVisible(true);
     }//GEN-LAST:event_jButtonUploadPaperActionPerformed

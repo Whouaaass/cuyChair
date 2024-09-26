@@ -9,7 +9,7 @@ import drivers.UserStoreService;
 import org.passay.PasswordData;
 import utilities.PasswordManager;
 import static utilities.Utilities.setAlert;
-
+import context.AppContext;
 /**
  *
  * @author julia
@@ -20,9 +20,10 @@ public class ViewModifyMyProfile extends javax.swing.JFrame {
     /**
      * Creates new form ViewModifyMyProfile
      */
-    public ViewModifyMyProfile(User objUser, UserStoreService objUserStoreService) {
-        fldUser=objUser;
-        this.fldUserStoreService=objUserStoreService;
+    public ViewModifyMyProfile() {
+        AppContext appContext = AppContext.getInstance();
+        fldUser=appContext.getLoggedUser(); 
+        this.fldUserStoreService=new UserStoreService(appContext.getRepositoryUser());
         initComponents();
     }
 

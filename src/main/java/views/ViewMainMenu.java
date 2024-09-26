@@ -175,14 +175,14 @@ public class ViewMainMenu extends javax.swing.JFrame {
 
     private void jMenuItemMyConferencesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMyConferencesActionPerformed
         // TODO add your handling code here:
-        ViewMyConferences objViewMyConferences = new ViewMyConferences(this.fldUser,this.objConferenceStoreService);
+        ViewMyConferences objViewMyConferences = new ViewMyConferences();
         objViewMyConferences.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewMyConferences.setVisible(true);
     }//GEN-LAST:event_jMenuItemMyConferencesActionPerformed
 
     private void JmenuItemRegisterConferenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmenuItemRegisterConferenceActionPerformed
         // TODO add your handling code here:
-        ViewRegisterConference objViewRegisterConference = new ViewRegisterConference(this.fldUser,this.objConferenceStoreService);
+        ViewRegisterConference objViewRegisterConference = new ViewRegisterConference();
         objViewRegisterConference.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewRegisterConference.setVisible(true);
     }//GEN-LAST:event_JmenuItemRegisterConferenceActionPerformed
@@ -196,14 +196,14 @@ public class ViewMainMenu extends javax.swing.JFrame {
 
     private void jMenuItemLookUserProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLookUserProfileActionPerformed
         // TODO add your handling code here:
-        ViewMyProfile objViewMyProfile = new ViewMyProfile(this.fldUser);
+        ViewMyProfile objViewMyProfile = new ViewMyProfile();
         objViewMyProfile.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewMyProfile.setVisible(true);
     }//GEN-LAST:event_jMenuItemLookUserProfileActionPerformed
 
     private void jMenuItemModifyProfileUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemModifyProfileUserActionPerformed
         // TODO add your handling code here:
-        ViewModifyMyProfile objViewModifyMyProfile= new ViewModifyMyProfile(this.fldUser, this.objUserStoreService);
+        ViewModifyMyProfile objViewModifyMyProfile= new ViewModifyMyProfile();
         objViewModifyMyProfile.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewModifyMyProfile.setVisible(true);
     }//GEN-LAST:event_jMenuItemModifyProfileUserActionPerformed
