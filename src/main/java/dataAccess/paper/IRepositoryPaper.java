@@ -10,8 +10,27 @@ import java.util.List;
 /**
  *
  * @author julia
+ * Modify by Juan
  */
 public interface IRepositoryPaper {
+    
+    /**
+     * Guarda un paper en el repositorio
+     * @param objPaper
+     * @return 
+     */
     public boolean storePaper(Paper objPaper);
+    
+    /**
+     * retorna la lista de todos los papers del repositorio
+     * @return 
+     */
     public List<Paper> listPaper();
+    
+    /**
+     * retorna el paper con el id correspondiente
+     * @param paperId
+     * @return 
+     */
+    public Paper getPaperById(int paperId);
 }

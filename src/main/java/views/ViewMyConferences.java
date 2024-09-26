@@ -4,19 +4,75 @@
  */
 package views;
 
+import domain.Conference;
+import domain.User;
+import drivers.ConferenceStoreService;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author julia
  */
 public class ViewMyConferences extends javax.swing.JFrame {
-
+    //Usuario logeado
+    private User objUser;
+    //Servicio de conferencias
+    private ConferenceStoreService objConferenceStoreService;
     /**
      * Creates new form ViewMyConferences
      */
-    public ViewMyConferences() {
+    
+    public ViewMyConferences(User objUser, ConferenceStoreService objConferenceStoreService) {
         initComponents();
+        this.objUser=objUser;
+        this.objConferenceStoreService=objConferenceStoreService;
+        InitTable();
     }
-
+    private void InitTable()
+    {
+       DefaultTableModel model= new DefaultTableModel();       
+       model.addColumn("Titulo");       
+       model.addColumn("Ciudad");
+       model.addColumn("Descripción");
+       model.addColumn("Fecha");
+       this.jTableMyConferences.setModel(model);
+    }
+    //Limpia una tabla
+    public void cleanTable(){
+        DefaultTableModel modelo=(DefaultTableModel) this.jTableMyConferences.getModel();
+        int filas=this.jTableMyConferences.getRowCount();
+        for (int i = 0;filas>i; i++) {
+            modelo.removeRow(0);
+        }        
+    }
+     
+    //Llenar tabla
+     private void fullTable()
+    {
+        DefaultTableModel model=(DefaultTableModel) this.jTableMyConferences.getModel();
+        cleanTable();
+        ArrayList<Conference> conferenceList
+                = (ArrayList<Conference>) this.objConferenceStoreService.listConference();
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        
+        for (int i = 0; i < conferenceList.size(); i++) {
+            //Solo añade la fila si el usuario Id coincide con el del usuario logeado
+            if(conferenceList.get(i).getFldConferenceAdmin().getUserId()==this.objUser.getUserId()){
+                Object [] row= { 
+                conferenceList.get(i).getFldTitle(),
+                conferenceList.get(i).getFldCiudad(),
+                conferenceList.get(i).getFldDescription(),
+                formatter.format(conferenceList.get(i).getFldDate())
+                };
+                model.addRow(row);
+            }
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,7 +86,8 @@ public class ViewMyConferences extends javax.swing.JFrame {
         jLabelTituloMisConferencias = new javax.swing.JLabel();
         jPanelDown = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableMisConferencias = new javax.swing.JTable();
+        jTableMyConferences = new javax.swing.JTable();
+        jButtonRefresh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,41 +120,55 @@ public class ViewMyConferences extends javax.swing.JFrame {
 
         jScrollPane1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
-        jTableMisConferencias.setBackground(new java.awt.Color(172, 156, 124));
-        jTableMisConferencias.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jTableMisConferencias.setModel(new javax.swing.table.DefaultTableModel(
+        jTableMyConferences.setBackground(new java.awt.Color(172, 156, 124));
+        jTableMyConferences.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jTableMyConferences.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Titulo", "Ciudad", "Descripción"
+                "Titulo", "Ciudad", "Descripción", "Fecha"
             }
         ));
-        jTableMisConferencias.setGridColor(new java.awt.Color(172, 156, 124));
-        jScrollPane1.setViewportView(jTableMisConferencias);
-        if (jTableMisConferencias.getColumnModel().getColumnCount() > 0) {
-            jTableMisConferencias.getColumnModel().getColumn(0).setPreferredWidth(10);
-            jTableMisConferencias.getColumnModel().getColumn(1).setPreferredWidth(10);
+        jTableMyConferences.setGridColor(new java.awt.Color(172, 156, 124));
+        jScrollPane1.setViewportView(jTableMyConferences);
+        if (jTableMyConferences.getColumnModel().getColumnCount() > 0) {
+            jTableMyConferences.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTableMyConferences.getColumnModel().getColumn(1).setPreferredWidth(10);
+            jTableMyConferences.getColumnModel().getColumn(3).setPreferredWidth(7);
         }
+
+        jButtonRefresh.setText("Actualizar");
+        jButtonRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRefreshActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelDownLayout = new javax.swing.GroupLayout(jPanelDown);
         jPanelDown.setLayout(jPanelDownLayout);
         jPanelDownLayout.setHorizontalGroup(
             jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDownLayout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(jPanelDownLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGap(183, 183, 183)
+                .addComponent(jButtonRefresh)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelDownLayout.setVerticalGroup(
             jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDownLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonRefresh)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanelDown, java.awt.BorderLayout.CENTER);
@@ -105,11 +176,18 @@ public class ViewMyConferences extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
+        // TODO add your handling code here:
+        fullTable();
+    }//GEN-LAST:event_jButtonRefreshActionPerformed
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonRefresh;
     private javax.swing.JLabel jLabelTituloMisConferencias;
     private javax.swing.JPanel jPanelDown;
     private javax.swing.JPanel jPanelUp;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableMisConferencias;
+    private javax.swing.JTable jTableMyConferences;
     // End of variables declaration//GEN-END:variables
 }

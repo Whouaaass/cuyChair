@@ -4,12 +4,19 @@
  */
 package views;
 
+import dataAccess.paperReview.RepositoryArrayListPaperReview;
+import dataAccess.user.RepositoryArrayListUser;
 import domain.Conference;
 import domain.PaperReview;
 import domain.User;
 import drivers.ConferenceStoreService;
 import drivers.PaperReviewStoreService;
+import drivers.UserStoreService;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import static utilities.Utilities.setAlert;
 
 /**
  *
@@ -42,11 +49,12 @@ public class ViewRegisterConference extends javax.swing.JFrame {
         jLabelNombre = new javax.swing.JLabel();
         jLabelDescripción = new javax.swing.JLabel();
         jLabelCiudad = new javax.swing.JLabel();
-        jPanelDescripción = new javax.swing.JPanel();
-        jTextFieldDescripcionConferencia = new javax.swing.JTextField();
-        jButtonRegistrar = new javax.swing.JButton();
+        jButtonRegister = new javax.swing.JButton();
         jTextFieldCiudadConferencia = new javax.swing.JTextField();
         jTextFieldTituloConferencia = new javax.swing.JTextField();
+        jTextFieldDescripcionConferencia = new javax.swing.JTextField();
+        jLabelFecha = new javax.swing.JLabel();
+        jTextFieldDate = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,17 +69,17 @@ public class ViewRegisterConference extends javax.swing.JFrame {
         jPanelUp.setLayout(jPanelUpLayout);
         jPanelUpLayout.setHorizontalGroup(
             jPanelUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelUpLayout.createSequentialGroup()
-                .addContainerGap(104, Short.MAX_VALUE)
+            .addGroup(jPanelUpLayout.createSequentialGroup()
+                .addGap(93, 93, 93)
                 .addComponent(jLabelTituloConferencia)
-                .addGap(97, 97, 97))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         jPanelUpLayout.setVerticalGroup(
             jPanelUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelUpLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(21, 21, 21)
                 .addComponent(jLabelTituloConferencia)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanelUp, java.awt.BorderLayout.PAGE_START);
@@ -90,26 +98,16 @@ public class ViewRegisterConference extends javax.swing.JFrame {
         jLabelCiudad.setForeground(new java.awt.Color(0, 0, 0));
         jLabelCiudad.setText("Ciudad:");
 
-        jPanelDescripción.setBackground(new java.awt.Color(172, 156, 124));
-        jPanelDescripción.setForeground(new java.awt.Color(150, 130, 100));
-
-        javax.swing.GroupLayout jPanelDescripciónLayout = new javax.swing.GroupLayout(jPanelDescripción);
-        jPanelDescripción.setLayout(jPanelDescripciónLayout);
-        jPanelDescripciónLayout.setHorizontalGroup(
-            jPanelDescripciónLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextFieldDescripcionConferencia, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-        );
-        jPanelDescripciónLayout.setVerticalGroup(
-            jPanelDescripciónLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextFieldDescripcionConferencia, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-        );
-
-        jButtonRegistrar.setText("Registrar");
-        jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRegister.setText("Registrar");
+        jButtonRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRegistrarActionPerformed(evt);
+                jButtonRegisterActionPerformed(evt);
             }
         });
+
+        jLabelFecha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelFecha.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelFecha.setText("Fecha:");
 
         javax.swing.GroupLayout jPanelDownLayout = new javax.swing.GroupLayout(jPanelDown);
         jPanelDown.setLayout(jPanelDownLayout);
@@ -117,24 +115,26 @@ public class ViewRegisterConference extends javax.swing.JFrame {
             jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDownLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelDownLayout.createSequentialGroup()
-                        .addComponent(jLabelDescripción)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelDescripción, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelDownLayout.createSequentialGroup()
-                        .addComponent(jLabelNombre)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldTituloConferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabelCiudad)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldCiudadConferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(42, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDownLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonRegistrar)
-                .addGap(45, 45, 45))
+                .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonRegister)
+                    .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelDownLayout.createSequentialGroup()
+                            .addComponent(jLabelNombre)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextFieldTituloConferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(29, 29, 29)
+                            .addComponent(jLabelCiudad)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextFieldCiudadConferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelDownLayout.createSequentialGroup()
+                            .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelDescripción)
+                                .addComponent(jLabelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextFieldDescripcionConferencia, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                                .addComponent(jTextFieldDate)))))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanelDownLayout.setVerticalGroup(
             jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,11 +147,15 @@ public class ViewRegisterConference extends javax.swing.JFrame {
                     .addComponent(jTextFieldTituloConferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelDescripción)
-                    .addComponent(jPanelDescripción, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButtonRegistrar)
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(jTextFieldDescripcionConferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelDescripción))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelFecha)
+                    .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonRegister)
+                .addGap(21, 21, 21))
         );
 
         getContentPane().add(jPanelDown, java.awt.BorderLayout.CENTER);
@@ -159,13 +163,27 @@ public class ViewRegisterConference extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        // TODO add your handling code here:
+    private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
         String varTitle;
         String varDescription;
         String varCity;
-        ArrayList<User> usersList= new ArrayList<>();
-        ArrayList<PaperReview> paperReviewList = new ArrayList<>();
+        Date objDate = null;
+        //Nuevo repositorio para la nueva conferencia
+        RepositoryArrayListUser usersList= new RepositoryArrayListUser();
+        RepositoryArrayListPaperReview paperReviewList = new RepositoryArrayListPaperReview();
+        //Servicios de almacenamiento para la nueva conferencia
+        UserStoreService objUserInConferenceStoreService = new UserStoreService(usersList);
+        PaperReviewStoreService objPaperReviewInConferenceStoreService =  new PaperReviewStoreService(paperReviewList);
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        //Valida la fecha
+        String varDate = this.jTextFieldDate.getText();
+        try {
+            objDate=formatter.parse(varDate);
+            
+        }catch(ParseException ex){
+            setAlert("Formato de fecha","incorrecto");
+        }
         try{
             //Trae datos de la vista y las pasa a variables locales
             varTitle=this.jTextFieldTituloConferencia.getText();
@@ -173,7 +191,7 @@ public class ViewRegisterConference extends javax.swing.JFrame {
             varCity=this.jTextFieldCiudadConferencia.getText();
             
             //Pasamos las variables locales a un objeto
-            Conference objConference = new Conference(varTitle,varDescription,varCity,this.objAdminUser,usersList,paperReviewList);
+            Conference objConference = new Conference(varTitle,objDate,varDescription,varCity,this.objAdminUser,objPaperReviewInConferenceStoreService,objUserInConferenceStoreService);
             //El objeto se manda a través de un servicio de almacenamiento
             boolean varFlag = this.objConferenceStoreService.storeConference(objConference);
             if (varFlag) {
@@ -185,20 +203,21 @@ public class ViewRegisterConference extends javax.swing.JFrame {
             System.out.println("Error en el registro de datos");
         }
         
-    }//GEN-LAST:event_jButtonRegistrarActionPerformed
+    }//GEN-LAST:event_jButtonRegisterActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonRegistrar;
+    private javax.swing.JButton jButtonRegister;
     private javax.swing.JLabel jLabelCiudad;
     private javax.swing.JLabel jLabelDescripción;
+    private javax.swing.JLabel jLabelFecha;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JLabel jLabelTituloConferencia;
-    private javax.swing.JPanel jPanelDescripción;
     private javax.swing.JPanel jPanelDown;
     private javax.swing.JPanel jPanelUp;
     private javax.swing.JTextField jTextFieldCiudadConferencia;
+    private javax.swing.JTextField jTextFieldDate;
     private javax.swing.JTextField jTextFieldDescripcionConferencia;
     private javax.swing.JTextField jTextFieldTituloConferencia;
     // End of variables declaration//GEN-END:variables

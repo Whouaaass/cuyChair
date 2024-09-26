@@ -14,7 +14,17 @@ public class User {
     private String fldLastName;
     private String fldHashedPassword; 
     private String fldEmail;
-    
+
+    private String fldDescription;
+
+    public User(int fldId, String fldName, String fldLastName, String fldHashedPassword, String fldEmail, String fldDescription) {
+        this.fldId = fldId;
+        this.fldName = fldName;
+        this.fldLastName = fldLastName;
+        this.fldHashedPassword = fldHashedPassword;
+        this.fldEmail = fldEmail;
+        this.fldDescription = fldDescription;
+    }
     public User(int userId, String userName, String userLastName, String userPassword, String userEmail) {
         this.fldId = userId;
         this.fldName = userName;
@@ -30,10 +40,17 @@ public class User {
         this.fldHashedPassword = objUser.fldHashedPassword;
         this.fldEmail = objUser.fldEmail;
     }
-    
-    
+   
     public User(){
 
+    }
+
+    public String getDescription() {
+        return fldDescription;
+    }
+
+    public void setDescription(String fldDescription) {
+        this.fldDescription = fldDescription;
     }
 
     public String getUserEmail() {
@@ -77,7 +94,7 @@ public class User {
     }
     
     public boolean comparePassword(String inPassword) throws Exception {
-        throw new Exception("");
+        throw new Exception("Not Implemented yet");
     }
     
 }

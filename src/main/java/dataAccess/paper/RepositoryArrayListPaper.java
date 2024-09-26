@@ -42,5 +42,10 @@ public class RepositoryArrayListPaper implements IRepositoryPaper{
        return PaperList;
     }
 
+    @Override
+    public Paper getPaperById(int paperId) {
+        return null;
+    }
+
 
 }

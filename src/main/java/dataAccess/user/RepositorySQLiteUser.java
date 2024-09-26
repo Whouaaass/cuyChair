@@ -59,11 +59,11 @@ public class RepositorySQLiteUser implements IRepositoryUser {
             ResultSet rs = st.executeQuery(listUser);
             while (rs.next()) {
                 User newUser = new User();
-                newUser.setUserId(rs.getInt("fldId"));
-                newUser.setUserName(rs.getString("fldName"));
-                newUser.setUserLastName(rs.getString("fldLastName"));
-                newUser.setUserPassword(rs.getString("fldHashedPassword"));
-                newUser.setUserEmail(rs.getString("fldEmail"));
+                newUser.setUserId(rs.getInt("id"));
+                newUser.setUserName(rs.getString("name"));
+                newUser.setUserLastName(rs.getString("lastName"));
+                newUser.setUserPassword(rs.getString("hashedPassword"));
+                newUser.setUserEmail(rs.getString("email"));
                 List.add(newUser);
             }
         } catch (SQLException e) {
@@ -78,16 +78,16 @@ public class RepositorySQLiteUser implements IRepositoryUser {
 
         try (Connection connection=ConnectionSqlitePool.getConnection()){
 
-             String selectEmail = "SELECT * FROM user WHERE fldEmail = ? ";
+             String selectEmail = "SELECT * FROM user WHERE email = ? ";
              PreparedStatement pst = connection.prepareStatement(selectEmail);
              pst.setString(1, email);
             ResultSet rs = pst.executeQuery();
             User newUser = new User(
-                    rs.getInt("fldId"),
-                    rs.getString("fldName"),
-                    rs.getString("fldLastName"),
-                    rs.getString("fldHashedPassword"),
-                    rs.getString("fldEmail")
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("lastName"),
+                    rs.getString("hashedPassword"),
+                    rs.getString("email")
             );
 
             if (rs.wasNull()) {
@@ -105,18 +105,18 @@ public class RepositorySQLiteUser implements IRepositoryUser {
     public User getUserById(int userId) {
         try (Connection connection=ConnectionSqlitePool.getConnection()){
 
-            String selectId = "SELECT * FROM user WHERE fldId = ? ";
+            String selectId = "SELECT * FROM user WHERE id = ? ";
             PreparedStatement pst = connection.prepareStatement(selectId);
             pst.setInt(1, userId);
 
             ResultSet rs = pst.executeQuery();
 
             User newUser = new User(
-                    rs.getInt("fldId"),
-                    rs.getString("fldName"),
-                    rs.getString("fldLastName"),
-                    rs.getString("fldHashedPassword"),
-                    rs.getString("fldEmail")
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("lastName"),
+                    rs.getString("hashedPassword"),
+                    rs.getString("email")
             );
 
             if (rs.wasNull()) {
@@ -133,11 +133,11 @@ public class RepositorySQLiteUser implements IRepositoryUser {
     public void initDatabase() {
         try (Connection connection=ConnectionSqlitePool.getConnection()){
             String tableUser = "CREATE TABLE IF NOT EXISTS USER(\n "
-                    + "fldId Number PRAMARY KEY,\n"
-                    + "fldName text NOT NULL,\n"
-                    + "fldLastName text NOT NULL,\n"
-                    + "fldHashedPassword text NOT NULL,\n"
-                    + "fldEmail text NOT NULL\n"
+                    + "id Number PRIMARY KEY,\n"
+                    + "name text NOT NULL,\n"
+                    + "lastName text NOT NULL,\n"
+                    + "hashedPassword text NOT NULL,\n"
+                    + "email text NOT NULL\n"
                     + ");";
 
             Statement stm = connection.createStatement();
@@ -150,7 +150,7 @@ public class RepositorySQLiteUser implements IRepositoryUser {
 
 
     @Override
-    public boolean modifyUser(int userId,String name, String lastName, String password) {
+    public boolean modifyUser(int userId,String name, String lastName, String password, String description) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
