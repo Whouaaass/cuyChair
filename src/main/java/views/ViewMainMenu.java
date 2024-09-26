@@ -187,7 +187,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
 
     private void jMenuItemAssistantConferenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAssistantConferenceActionPerformed
         // TODO add your handling code here:
-        ViewAssistantConference objViewAssistantConference = new ViewAssistantConference();
+        ViewAssistantConference objViewAssistantConference = new ViewAssistantConference(this.fldUser,this.objConferenceStoreService,this.objPaperStoreService);
         objViewAssistantConference.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewAssistantConference.setVisible(true);
     }//GEN-LAST:event_jMenuItemAssistantConferenceActionPerformed
@@ -208,7 +208,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
 
     private void jMenuItemMyPapersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMyPapersActionPerformed
         // TODO add your handling code here:
-        ViewMyPapers objViewMyPapers = new ViewMyPapers();
+        ViewMyPapers objViewMyPapers = new ViewMyPapers(this.fldUser,this.objPaperStoreService);
         objViewMyPapers.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewMyPapers.setVisible(true);
     }//GEN-LAST:event_jMenuItemMyPapersActionPerformed

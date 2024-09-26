@@ -4,19 +4,66 @@
  */
 package views;
 
+import domain.Conference;
+import domain.Paper;
+import domain.User;
+import drivers.PaperStoreService;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author julia
  */
 public class ViewMyPapers extends javax.swing.JFrame {
-
+    private User objUser;//User logeado
+    private PaperStoreService objPaperStoreService;//Todos los papers
     /**
      * Creates new form ViewMyPapers
      */
-    public ViewMyPapers() {
+    public ViewMyPapers(User objUser,PaperStoreService objPaperStoreService) {
         initComponents();
+        this.objUser = objUser;
+        this.objPaperStoreService = objPaperStoreService;
+        InitTable();
     }
-
+    private void InitTable()
+    {
+       DefaultTableModel model= new DefaultTableModel();       
+       model.addColumn("Titulo");       
+       model.addColumn("Descripción");
+       this.jTableMyPapers.setModel(model);
+    }
+    //Limpia una tabla
+    public void cleanTable(){
+        DefaultTableModel modelo=(DefaultTableModel) this.jTableMyPapers.getModel();
+        int filas=this.jTableMyPapers.getRowCount();
+        for (int i = 0;filas>i; i++) {
+            modelo.removeRow(0);
+        }        
+    }
+     
+    //Llenar tabla
+     private void fullTable()
+    {
+        DefaultTableModel model=(DefaultTableModel) this.jTableMyPapers.getModel();
+        cleanTable();
+        ArrayList<Paper> papersList
+                = (ArrayList<Paper>) this.objPaperStoreService.listPapers();
+        
+        for (int i = 0; i < papersList.size(); i++) {
+            //Solo añade la fila si el usuario Id coincide con el del usuario logeado
+            if(papersList.get(i).getAuthor().getUserId()==this.objUser.getUserId()){
+                Object [] row= { 
+                papersList.get(i).getAuthor(),
+                papersList.get(i).getDescription(),
+                };
+                model.addRow(row);
+            }
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,6 +77,7 @@ public class ViewMyPapers extends javax.swing.JFrame {
         jLabelTituloMyPapers = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableMyPapers = new javax.swing.JTable();
+        jButtonRefreshMyPapers = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,17 +105,29 @@ public class ViewMyPapers extends javax.swing.JFrame {
             jTableMyPapers.getColumnModel().getColumn(0).setPreferredWidth(10);
         }
 
+        jButtonRefreshMyPapers.setText("Actualizar");
+        jButtonRefreshMyPapers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRefreshMyPapersActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addComponent(jLabelTituloMyPapers)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(159, 159, 159)
-                .addComponent(jLabelTituloMyPapers)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addGap(157, 157, 157)
+                .addComponent(jButtonRefreshMyPapers, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -75,8 +135,10 @@ public class ViewMyPapers extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(jLabelTituloMyPapers)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonRefreshMyPapers, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
@@ -100,8 +162,14 @@ public class ViewMyPapers extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonRefreshMyPapersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshMyPapersActionPerformed
+        // TODO add your handling code here:
+        fullTable();
+    }//GEN-LAST:event_jButtonRefreshMyPapersActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonRefreshMyPapers;
     private javax.swing.JLabel jLabelTituloMyPapers;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

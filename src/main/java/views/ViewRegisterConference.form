@@ -134,9 +134,9 @@
                       <Component id="jLabelDescripción" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabelFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jTextFieldDate" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelFecha" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonRegister" min="-2" max="-2" attributes="0"/>

@@ -150,9 +150,10 @@ public class ViewRegisterConference extends javax.swing.JFrame {
                     .addComponent(jTextFieldDescripcionConferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelDescripción))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelFecha)
-                    .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelFecha)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonRegister)
                 .addGap(21, 21, 21))
@@ -196,8 +197,10 @@ public class ViewRegisterConference extends javax.swing.JFrame {
             boolean varFlag = this.objConferenceStoreService.storeConference(objConference);
             if (varFlag) {
                 System.out.println("El registro de conferencia fue exitoso - Registro exitoso");
+                setAlert("Registro exitoso","");
             } else {
                 System.out.println("El registro de conferencia no se realizó - Error en el registro");
+                setAlert("Registro rechazado","");
             }
         }catch(Exception e){
             System.out.println("Error en el registro de datos");

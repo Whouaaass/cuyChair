@@ -7,8 +7,10 @@ package views;
 import domain.Conference;
 import domain.User;
 import drivers.ConferenceStoreService;
+import drivers.PaperStoreService;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,13 +22,16 @@ public class ViewAssistantConference extends javax.swing.JFrame {
     private User objUser;
     //Servicio de conferencias
     private ConferenceStoreService objConferenceStoreService;
+    //Servicio de papers
+    private PaperStoreService objPaperStoreService;
     /**
      * Creates new form ViewAssistantConference
      */
-    public ViewAssistantConference() {
+    public ViewAssistantConference(User objUser,ConferenceStoreService objConferenceStoreService,PaperStoreService objPaperStoreService) {
         initComponents();
         this.objUser=objUser;
         this.objConferenceStoreService=objConferenceStoreService;
+        this.objPaperStoreService=objPaperStoreService;
         InitTable();
     }
     private void InitTable()
@@ -87,6 +92,8 @@ public class ViewAssistantConference extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableConferencesaAssistance = new javax.swing.JTable();
+        jButtonUploadPaper = new javax.swing.JButton();
+        jButtonRefresh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,6 +143,24 @@ public class ViewAssistantConference extends javax.swing.JFrame {
             jTableConferencesaAssistance.getColumnModel().getColumn(3).setPreferredWidth(7);
         }
 
+        jButtonUploadPaper.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonUploadPaper.setForeground(new java.awt.Color(0, 0, 0));
+        jButtonUploadPaper.setText("Subir trabajo");
+        jButtonUploadPaper.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUploadPaperActionPerformed(evt);
+            }
+        });
+
+        jButtonRefresh.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonRefresh.setForeground(new java.awt.Color(0, 0, 0));
+        jButtonRefresh.setText("Actualizar");
+        jButtonRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -144,12 +169,22 @@ public class ViewAssistantConference extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74)
+                .addComponent(jButtonUploadPaper, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonUploadPaper, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -157,9 +192,23 @@ public class ViewAssistantConference extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonUploadPaperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUploadPaperActionPerformed
+        // TODO add your handling code here:
+        ViewUploadPaper objViewUploadPaper = new ViewUploadPaper(this.objUser,this.objPaperStoreService);
+        objViewUploadPaper.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        objViewUploadPaper.setVisible(true);
+    }//GEN-LAST:event_jButtonUploadPaperActionPerformed
+
+    private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
+        // TODO add your handling code here:
+        fullTable();
+    }//GEN-LAST:event_jButtonRefreshActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonRefresh;
+    private javax.swing.JButton jButtonUploadPaper;
     private javax.swing.JLabel jLabelTitleAssistanceConference;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

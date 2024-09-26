@@ -6,6 +6,9 @@ package views;
 
 import domain.User;
 import drivers.UserStoreService;
+import org.passay.PasswordData;
+import utilities.PasswordManager;
+import static utilities.Utilities.setAlert;
 
 /**
  *
@@ -59,16 +62,16 @@ public class ViewModifyMyProfile extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(160, Short.MAX_VALUE)
+                .addContainerGap(147, Short.MAX_VALUE)
                 .addComponent(jLabelTitleMyProfile)
-                .addGap(117, 117, 117))
+                .addGap(130, 130, 130))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(22, 22, 22)
                 .addComponent(jLabelTitleMyProfile)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
@@ -174,8 +177,20 @@ public class ViewModifyMyProfile extends javax.swing.JFrame {
         String name = this.jTextFieldName.getText();
         String lastName = this.jTextFieldLastName.getText();
         String password = this.jTextFieldPassword.getText();
+        
+        PasswordData objPassword = new PasswordData(password);
+        PasswordManager objPasswordManager = new PasswordManager(password);  
+        if(!objPasswordManager.validPassword(objPassword)){
+            //Validacion de contraseña
+            setAlert("Contraseña invalida","La contraseña debe contener entre 8 y 16 caracteres; almenos 1 caracter en mayusculas, 1 en minusculas y 1 numero");
+            return;
+        }
         String description = this.jTextAreaDescription.getText();
-        fldUserStoreService.modifyUser(this.fldUser.getUserId(), name, lastName, password, description);
+        if(fldUserStoreService.modifyUser(this.fldUser.getUserId(), name, lastName, password, description)){
+            setAlert("Modificacion exitosa","");
+        }else{
+            setAlert("Modificacion fallida","");
+        }
     }//GEN-LAST:event_jButtonSaveChangesActionPerformed
 
 
