@@ -23,7 +23,7 @@ public class ViewMyPapers extends javax.swing.JFrame {
     /**
      * Creates new form ViewMyPapers
      */
-    public ViewMyPapers(User objUser,PaperStoreService objPaperStoreService) {
+    public ViewMyPapers() {
         initComponents();
         AppContext appContext = AppContext.getInstance();
         this.objUser = appContext.getLoggedUser();

@@ -16,6 +16,7 @@ import org.passay.PasswordData;
 import context.AppContext;
 import utilities.PasswordManager;
 import static utilities.Utilities.setAlert;
+import static utilities.EmailManager.*;
 
 /**
  *
@@ -108,7 +109,7 @@ public class ViewSignIn extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         jPanelFormInput.add(jLabelId, gridBagConstraints);
 
-        jTextFieldId.setText("0");
+        jTextFieldId.setText("1046687972");
         jTextFieldId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldIdActionPerformed(evt);
@@ -131,7 +132,7 @@ public class ViewSignIn extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         jPanelFormInput.add(jLabelName, gridBagConstraints);
 
-        jTextFieldName.setText(".");
+        jTextFieldName.setText("Milaneso");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -149,7 +150,7 @@ public class ViewSignIn extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         jPanelFormInput.add(jLabelLastName, gridBagConstraints);
 
-        jTextFieldLastName.setText(".");
+        jTextFieldLastName.setText("Perez");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -167,7 +168,7 @@ public class ViewSignIn extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         jPanelFormInput.add(jLabelMail, gridBagConstraints);
 
-        jTextFieldMail.setText("@gmail.com");
+        jTextFieldMail.setText("Milaneso@gmail.com");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -283,12 +284,20 @@ public class ViewSignIn extends javax.swing.JFrame {
             //Validacion de contraseña
             PasswordData objPassword = new PasswordData(varPassword);
             PasswordManager objPasswordManager = new PasswordManager(varPassword);  
+            //Validacion contraseña valida
             if(!objPasswordManager.validPassword(objPassword)){
                 System.out.println("La contraseña debe contener entre 8 y 16 caracteres; almenos 1 caracter en mayusculas, 1 en minusculas y 1 numero");
                 setAlert("Contraseña invalida","La contraseña debe contener entre 8 y 16 caracteres; almenos 1 caracter en mayusculas, 1 en minusculas y 1 numero");
                 return;
             }
+            
+            //Validacion email
             varEmail=this.jTextFieldMail.getText();
+            if(!isValidEmail(varEmail)){
+                setAlert("Email invalido","");
+                return;
+            }
+            
             varIdString=this.jTextFieldId.getText();
             varId=Integer.parseInt(varIdString);
             //Pasamos las variables locales a un objeto

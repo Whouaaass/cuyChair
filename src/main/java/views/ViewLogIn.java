@@ -83,16 +83,14 @@ public class ViewLogIn extends javax.swing.JFrame implements ILanguageController
 
         jLabelRegistroUsuario.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabelRegistroUsuario.setForeground(new java.awt.Color(199, 213, 224));
+        jLabelRegistroUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelRegistroUsuario.setText("INICIO DE SESIÓN");
 
         javax.swing.GroupLayout jPanelUpLayout = new javax.swing.GroupLayout(jPanelUp);
         jPanelUp.setLayout(jPanelUpLayout);
         jPanelUpLayout.setHorizontalGroup(
             jPanelUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelUpLayout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(jLabelRegistroUsuario)
-                .addContainerGap(130, Short.MAX_VALUE))
+            .addComponent(jLabelRegistroUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
         );
         jPanelUpLayout.setVerticalGroup(
             jPanelUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +112,7 @@ public class ViewLogIn extends javax.swing.JFrame implements ILanguageController
         jLabelContrasena.setForeground(new java.awt.Color(199, 213, 224));
         jLabelContrasena.setText("Contraseña");
 
-        jTextFieldMail.setText("@gmail.com");
+        jTextFieldMail.setText("Milaneso@gmail.com");
 
         jButtonLogIn.setBackground(new java.awt.Color(26, 23, 33));
         jButtonLogIn.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N

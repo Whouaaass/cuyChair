@@ -132,7 +132,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldId">
               <Properties>
-                <Property name="text" type="java.lang.String" value="0"/>
+                <Property name="text" type="java.lang.String" value="1046687972"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldIdActionPerformed"/>
@@ -161,7 +161,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldName">
               <Properties>
-                <Property name="text" type="java.lang.String" value="."/>
+                <Property name="text" type="java.lang.String" value="Milaneso"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -187,7 +187,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldLastName">
               <Properties>
-                <Property name="text" type="java.lang.String" value="."/>
+                <Property name="text" type="java.lang.String" value="Perez"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -213,7 +213,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldMail">
               <Properties>
-                <Property name="text" type="java.lang.String" value="@gmail.com"/>
+                <Property name="text" type="java.lang.String" value="Milaneso@gmail.com"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

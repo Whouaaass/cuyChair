@@ -61,6 +61,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
         jMenuPerfil = new javax.swing.JMenu();
         jMenuItemLookUserProfile = new javax.swing.JMenuItem();
         jMenuItemModifyProfileUser = new javax.swing.JMenuItem();
+        jMenuItemLogOut = new javax.swing.JMenuItem();
         jMenuConferences = new javax.swing.JMenu();
         JmenuItemRegisterConference = new javax.swing.JMenuItem();
         jMenuItemMyConferences = new javax.swing.JMenuItem();
@@ -108,6 +109,16 @@ public class ViewMainMenu extends javax.swing.JFrame {
             }
         });
         jMenuPerfil.add(jMenuItemModifyProfileUser);
+
+        jMenuItemLogOut.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItemLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/log-out_10024482.png"))); // NOI18N
+        jMenuItemLogOut.setText("Salir");
+        jMenuItemLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemLogOutActionPerformed(evt);
+            }
+        });
+        jMenuPerfil.add(jMenuItemLogOut);
 
         jMenuBarOptions.add(jMenuPerfil);
 
@@ -210,10 +221,18 @@ public class ViewMainMenu extends javax.swing.JFrame {
 
     private void jMenuItemMyPapersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMyPapersActionPerformed
         // TODO add your handling code here:
-        ViewMyPapers objViewMyPapers = new ViewMyPapers(this.fldUser,this.objPaperStoreService);
+        ViewMyPapers objViewMyPapers = new ViewMyPapers();
         objViewMyPapers.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewMyPapers.setVisible(true);
     }//GEN-LAST:event_jMenuItemMyPapersActionPerformed
+
+    private void jMenuItemLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLogOutActionPerformed
+        // TODO add your handling code here:
+        ViewLogIn objViewLogIn = new ViewLogIn();
+        this.setVisible(false);
+        objViewLogIn.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        objViewLogIn.setVisible(true);
+    }//GEN-LAST:event_jMenuItemLogOutActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -222,6 +241,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBarOptions;
     private javax.swing.JMenu jMenuConferences;
     private javax.swing.JMenuItem jMenuItemAssistantConference;
+    private javax.swing.JMenuItem jMenuItemLogOut;
     private javax.swing.JMenuItem jMenuItemLookUserProfile;
     private javax.swing.JMenuItem jMenuItemModifyProfileUser;
     private javax.swing.JMenuItem jMenuItemMyConferences;

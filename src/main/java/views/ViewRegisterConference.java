@@ -176,7 +176,7 @@ public class ViewRegisterConference extends javax.swing.JFrame {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         //Valida la fecha
         String varDate = this.jTextFieldDate.getText();
-        if(varDate==""){
+        if(varDate.isBlank()){
              setAlert("Fecha nula","Agregue una fecha");
              return;
         }
@@ -185,6 +185,7 @@ public class ViewRegisterConference extends javax.swing.JFrame {
             
         }catch(ParseException ex){
             setAlert("Formato de fecha","incorrecto");
+            return;
         }
         try{
             //Trae datos de la vista y las pasa a variables locales
@@ -192,7 +193,7 @@ public class ViewRegisterConference extends javax.swing.JFrame {
             varDescription=this.jTextFieldDescripcionConferencia.getText();
             varCity=this.jTextFieldCiudadConferencia.getText();
             
-            if(varTitle=="" || varDescription=="" || varCity==""){
+            if(varTitle.isBlank() || varDescription.isBlank() || varCity.isBlank()){
                 setAlert("Campos nulos","Por favor llena toda la información solicitadada");
                 return;
             }
