@@ -12,6 +12,17 @@ import java.util.List;
  * @author julia
  */
 public interface IRepositoryPaperReview {
+    
+    /**
+     * guarda una revision de un paper (PaperReview)
+     * @param objPaper revision a guardar
+     * @return si se guardo la revision correctamente
+     */
     public boolean storePaperReview(PaperReview objPaper);
+    
+    /**
+     * lista todas las revisiones (PaperReviews)
+     * @return listado de revisiones
+     */
     public List<PaperReview> listPaperReview();
 }
