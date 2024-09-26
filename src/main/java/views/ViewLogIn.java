@@ -12,29 +12,48 @@ import drivers.PaperStoreService;
 import drivers.UserStoreService;
 
 import javax.swing.JFrame;
+import utilities.language.ILanguageController;
+import utilities.language.LanguageManager;
 
 /**
  *
  * @author julia
  */
-public class ViewLogIn extends javax.swing.JFrame {
+public class ViewLogIn extends javax.swing.JFrame implements ILanguageController {
 
-    private UserStoreService objUserStoreService; 
+    private UserStoreService objUserStoreService;
     private ConferenceStoreService objConferenceStoreService;
     private PaperReviewStoreService objPaperReviewStoreService;
     private PaperStoreService objPaperStoreService;
     private User objUser;//Usuario Logeado para pasarlo al menu principal
+
     /**
      * Creates new form viewLogIn
      */
     public ViewLogIn(UserStoreService objUserStoreService, ConferenceStoreService objConferenceStoreService,
-        PaperReviewStoreService PaperReviewStoreService,PaperStoreService objPaperStoreService) {
+            PaperReviewStoreService PaperReviewStoreService, PaperStoreService objPaperStoreService) {
         initComponents();
-        this.objUserStoreService=objUserStoreService;
-        this.objConferenceStoreService=objConferenceStoreService;
-        this.objPaperReviewStoreService=PaperReviewStoreService;
-        this.objPaperStoreService= objPaperStoreService;
+        loadLanguage();
+        this.objUserStoreService = objUserStoreService;
+        this.objConferenceStoreService = objConferenceStoreService;
+        this.objPaperReviewStoreService = PaperReviewStoreService;
+        this.objPaperStoreService = objPaperStoreService;
         this.setLocationRelativeTo(null);
+    }
+    
+    @Override
+    public void loadLanguage() {
+        LanguageManager lm = LanguageManager.getInstance();
+        try {
+            jLabelRegistroUsuario.setText(lm.getText("login.title"));
+            jLabelContrasena.setText(lm.getText("login.passwordLabel"));
+            jLabelCorreo.setText(lm.getText("login.emailLabel"));
+            jButtonLogIn.setText(lm.getText("login.loginButton"));
+            jButtonNoTengoUnaCuenta.setText(lm.getText("login.noAccountButton"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("No se pudo cargar correctamente el idioma");            
+        }
     }
 
     /**
@@ -168,35 +187,35 @@ public class ViewLogIn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     //Te redirecciona al registro de usuario
     private void jButtonNoTengoUnaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNoTengoUnaCuentaActionPerformed
-        ViewSignIn objViewSingIn = new ViewSignIn(this.objUserStoreService,this.objConferenceStoreService,this.objPaperReviewStoreService,this.objPaperStoreService);
+        ViewSignIn objViewSingIn = new ViewSignIn(this.objUserStoreService, this.objConferenceStoreService, this.objPaperReviewStoreService, this.objPaperStoreService);
         objViewSingIn.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        objViewSingIn.setVisible(true);        
+        objViewSingIn.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonNoTengoUnaCuentaActionPerformed
 
     private void jButtonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogInActionPerformed
-        
+
         String varEmail = this.jTextFieldMail.getText();
         String varPassword = new String(this.jTextPasswordFieldUserPassword.getPassword());
         this.objUser = objUserStoreService.getUserByEmail(varEmail);
-        
+
         if (objUser == null) {
             System.out.println("Usuario no encontrado");
             utilities.Utilities.setAlert("Error", "Usuario no encontrado");
             return;
         }
-        
+
         if (!objUser.getUserPassword().equals(varPassword)) {
             System.out.println("Contraseña incorrecta");
             utilities.Utilities.setAlert("Error!!!", "Contraseña incorrecta");
             return;
         }
-        
-        ViewMainMenu objViewMainMenu =
-                new ViewMainMenu(this.objUserStoreService,this.objConferenceStoreService,this.objPaperReviewStoreService,this.objPaperStoreService,this.objUser);
+
+        ViewMainMenu objViewMainMenu
+                = new ViewMainMenu(this.objUserStoreService, this.objConferenceStoreService, this.objPaperReviewStoreService, this.objPaperStoreService, this.objUser);
         objViewMainMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewMainMenu.setVisible(true);
-        this.setVisible(false);        
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonLogInActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
