@@ -1,4 +1,3 @@
-
 package test;
 
 import dataAccess.conference.RepositorySQLiteConference;

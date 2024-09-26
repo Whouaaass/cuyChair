@@ -14,7 +14,7 @@ public class User {
     private String fldLastName;
     private String fldHashedPassword; 
     private String fldEmail;
-
+    
     public User(int userId, String userName, String userLastName, String userPassword, String userEmail) {
         this.fldId = userId;
         this.fldName = userName;
@@ -30,7 +30,8 @@ public class User {
         this.fldHashedPassword = objUser.fldHashedPassword;
         this.fldEmail = objUser.fldEmail;
     }
-
+    
+    
     public User(){
 
     }
