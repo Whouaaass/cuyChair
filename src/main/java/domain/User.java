@@ -40,17 +40,17 @@ public class User {
         this.fldHashedPassword = objUser.fldHashedPassword;
         this.fldEmail = objUser.fldEmail;
     }
+    
+    public User(){
 
-    public String getFldDescription() {
+    }
+
+    public String getDescription() {
         return fldDescription;
     }
 
-    public void setFldDescription(String fldDescription) {
+    public void setDescription(String fldDescription) {
         this.fldDescription = fldDescription;
-    }
-
-    public User(){
-
     }
 
     public String getUserEmail() {
@@ -94,7 +94,7 @@ public class User {
     }
     
     public boolean comparePassword(String inPassword) throws Exception {
-        throw new Exception("");
+        throw new Exception("Not Implemented yet");
     }
     
 }

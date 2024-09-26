@@ -21,7 +21,7 @@ public class Conference {
     //Descripción de la conferencia
     private String fldDescription;
     //Ciudad de la conferencia
-    private String fldCiudad;
+    private String fldCity;
     //Organizador de la conferencia
     private User fldConferenceAdmin;
     //Fecha 
@@ -35,7 +35,7 @@ public class Conference {
         this.fldTitle = fldTitle;
         this.fldDate = fldDate;
         this.fldDescription = fldDescription;
-        this.fldCiudad = fldCiudad;
+        this.fldCity = fldCiudad;
         this.fldConferenceAdmin = fldConferenceAdmin;
         this.objUserStoreService = objUserStoreService;
         this.objPaperReviewStoreService = objPaperReviewStoreService;
@@ -45,7 +45,7 @@ public class Conference {
         this.fldTitle = fldTitle;
         this.fldDate = fldDate;
         this.fldDescription = fldDescription;
-        this.fldCiudad = fldCiudad;
+        this.fldCity = fldCiudad;
         this.fldConferenceAdmin = fldConferenceAdmin;
         
         RepositoryArrayListUser usersList= new RepositoryArrayListUser();
@@ -79,11 +79,11 @@ public class Conference {
     }
     
     public String getFldCiudad() {
-        return fldCiudad;
+        return fldCity;
     }
 
     public void setFldCiudad(String fldCiudad) {
-        this.fldCiudad = fldCiudad;
+        this.fldCity = fldCiudad;
     }
 
     public String getFldTitle() {

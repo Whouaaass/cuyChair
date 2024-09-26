@@ -60,7 +60,7 @@ public class RepositoryArrayListUser implements IRepositoryUser {
                 userList.get(i).setUserName(name);
                 userList.get(i).setUserLastName(lastName);
                 userList.get(i).setUserPassword(password);
-                userList.get(i).setFldDescription(description);
+                userList.get(i).setDescription(description);
                 return true;
             }
         }

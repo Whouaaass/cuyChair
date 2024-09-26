@@ -21,7 +21,7 @@ public class ViewMyProfile extends javax.swing.JFrame {
         initComponents();
         this.jLabelName.setText(objUser.getUserName()); 
         this.jLabelLastName.setText(objUser.getUserLastName());
-        this.jLabelDescription.setText(objUser.getFldDescription());
+        this.jLabelDescription.setText(objUser.getDescription());
     }
 
     /**

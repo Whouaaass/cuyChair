@@ -14,7 +14,7 @@ public class Paper {
     private String fldTitle;
     private String fldDescription;
     //Autor del trabajo
-    private User fldAutor;
+    private User fldAuthor;
 
     public Paper(int fldId, String fldDescription, String fldTitle, User fldAutor) {
         this(fldDescription,fldTitle,fldAutor);
@@ -24,43 +24,43 @@ public class Paper {
     public Paper(String fldTitle, String fldDescription, User fldAutor) {
         this.fldTitle = fldTitle;
         this.fldDescription = fldDescription;
-        this.fldAutor = fldAutor;
+        this.fldAuthor = fldAutor;
     }
 
     public Paper(){
 
     }
 
-    public int getFldId() {
+    public int getId() {
         return fldId;
     }
 
-    public void setFldId(int fldId) {
+    public void setId(int fldId) {
         this.fldId = fldId;
     }
 
-    public String getFldTitle() {
+    public String getTitle() {
         return fldTitle;
     }
 
-    public void setFldTitle(String fldTitle) {
+    public void setTitle(String fldTitle) {
         this.fldTitle = fldTitle;
     }
 
-    public String getFldDescription() {
+    public String getDescription() {
         return fldDescription;
     }
 
-    public void setFldDescription(String fldDescription) {
+    public void setDescription(String fldDescription) {
         this.fldDescription = fldDescription;
     }
 
-    public User getFldAutor() {
-        return fldAutor;
+    public User getAuthor() {
+        return fldAuthor;
     }
 
-    public void setFldAutor(User fldAutor) {
-        this.fldAutor = fldAutor;
+    public void setAuthor(User fldAutor) {
+        this.fldAuthor = fldAutor;
     }
     
     

@@ -26,7 +26,7 @@ public class testPaper {
         //Conferencia a comparar
         Paper objPaper = new Paper("Matematica1","Mucha matematica",objUserAuthor);
         objPaperStoreService.storePaper(objPaper);
-        assertEquals(objPaper.getFldTitle(),objPaperStoreService.listPapers().getFirst().getFldTitle());
+        assertEquals(objPaper.getTitle(),objPaperStoreService.listPapers().getFirst().getTitle());
     }
     @Test
     public void testArrayRepository(){
@@ -38,6 +38,6 @@ public class testPaper {
         //Conferencia a comparar
         Paper objPaper = new Paper("Matematica1","Mucha matematica",objUserAuthor);
         objPaperStoreService.storePaper(objPaper);
-        assertEquals(objPaper.getFldTitle(),objPaperStoreService.listPapers().getFirst().getFldTitle());
+        assertEquals(objPaper.getTitle(),objPaperStoreService.listPapers().getFirst().getTitle());
     }
 }
