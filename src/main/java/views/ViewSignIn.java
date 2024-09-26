@@ -12,6 +12,8 @@ import drivers.PaperStoreService;
 import drivers.UserStoreService;
 import javax.swing.JFrame;
 import org.passay.PasswordData;
+
+import context.AppContext;
 import utilities.PasswordManager;
 import static utilities.Utilities.setAlert;
 
@@ -27,13 +29,13 @@ public class ViewSignIn extends javax.swing.JFrame {
     /**
      * Creates new form viewRegistrarUsuario
      */
-    public ViewSignIn(UserStoreService objUserStoreService, ConferenceStoreService objConferenceStoreService,
-        PaperReviewStoreService PaperReviewStoreService,PaperStoreService objPaperStoreService){
+    public ViewSignIn(){
         initComponents();
-        this.objUserStoreService=objUserStoreService;
-        this.objConferenceStoreService=objConferenceStoreService;
-        this.objPaperReviewStoreService=PaperReviewStoreService;
-        this.objPaperStoreService= objPaperStoreService;
+        AppContext appContext = AppContext.getInstance();
+        this.objUserStoreService=new UserStoreService(appContext.getRepositoryUser());
+        this.objConferenceStoreService=new ConferenceStoreService(appContext.getRepositoryConference());
+        this.objPaperReviewStoreService=new PaperReviewStoreService(appContext.getRepositoryPaperReview());
+        this.objPaperStoreService= new PaperStoreService(AppContext.getInstance().getRepositoryPaper());
     }
 
     /**
@@ -264,16 +266,6 @@ public class ViewSignIn extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    //Asociar servicio almacenamiento de usuario
-    public void associateUserStoreService(UserStoreService objUserStoreService, ConferenceStoreService objConferenceStoreService,
-        PaperReviewStoreService PaperReviewStoreService,PaperStoreService objPaperStoreService)
-    {
-        this.objUserStoreService=objUserStoreService;
-        this.objConferenceStoreService=objConferenceStoreService;
-        this.objPaperReviewStoreService=PaperReviewStoreService;
-        this.objPaperStoreService= objPaperStoreService;
-    }
-
     //Registro de usuario
     private void jButtonSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSignInActionPerformed
         String varName;
@@ -315,7 +307,7 @@ public class ViewSignIn extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSignInActionPerformed
     //Te redirecciona al inicio de sesión de usuario
     private void jButtonYaTengoUnaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonYaTengoUnaCuentaActionPerformed
-        ViewLogIn objViewLogIn = new ViewLogIn(this.objUserStoreService,this.objConferenceStoreService,this.objPaperReviewStoreService,this.objPaperStoreService);
+        ViewLogIn objViewLogIn = new ViewLogIn();
         objViewLogIn.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewLogIn.setVisible(true);
         objViewLogIn.setLocationRelativeTo(null);

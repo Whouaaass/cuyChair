@@ -1,5 +1,6 @@
 package test;
 
+import context.AppContext;
 import dataAccess.conference.RepositorySQLiteConference;
 import dataAccess.paper.RepositorySQLitePaper;
 import dataAccess.paperReview.RepositorySQLitePaperReview;
@@ -149,13 +150,10 @@ public class LookAndFeelTest implements ActionListener {
         RepositorySQLiteUser objRepositoryArrayListUser = new RepositorySQLiteUser();
         RepositorySQLiteConference objRepositoryArrayListConference = new RepositorySQLiteConference();
         RepositorySQLitePaperReview objRepositoryArrayListPaperReview = new RepositorySQLitePaperReview();
-        RepositorySQLitePaper objRepositoryArrayListPaper = new RepositorySQLitePaper();
-        //Inicializar servicios de almacenamiento
-        UserStoreService objUserStoreService = new UserStoreService(objRepositoryArrayListUser);
-        ConferenceStoreService objConferenceStoreService = new ConferenceStoreService(objRepositoryArrayListConference);
-        PaperReviewStoreService objPaperReviewStoreService = new PaperReviewStoreService(objRepositoryArrayListPaperReview);
-        PaperStoreService objPaperStoreService = new PaperStoreService(objRepositoryArrayListPaper);
-        ViewLogIn objViewLogIn=new ViewLogIn(objUserStoreService,objConferenceStoreService,objPaperReviewStoreService,objPaperStoreService);
+        RepositorySQLitePaper objRepositoryArrayListPaper = new RepositorySQLitePaper();       
+        
+        AppContext.init(objRepositoryArrayListConference, objRepositoryArrayListUser, objRepositoryArrayListPaper, objRepositoryArrayListPaperReview);
+        ViewLogIn objViewLogIn=new ViewLogIn();
         objViewLogIn.setVisible(true);        
     }
 

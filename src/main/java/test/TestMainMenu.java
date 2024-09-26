@@ -14,6 +14,8 @@ import drivers.PaperReviewStoreService;
 import drivers.PaperStoreService;
 import drivers.UserStoreService;
 import javax.swing.JFrame;
+
+import context.AppContext;
 import views.ViewMainMenu;
 
 /**
@@ -27,13 +29,10 @@ public class TestMainMenu {
             RepositorySQLitePaperReview objRepositoryArrayListPaperReview = new RepositorySQLitePaperReview();
             RepositorySQLitePaper objRepositoryArrayListPaper = new RepositorySQLitePaper();
             
-            UserStoreService objUserStoreService = new UserStoreService(objRepositoryArrayListUser);
-            ConferenceStoreService objConferenceStoreService = new ConferenceStoreService(objRepositoryArrayListConference);
-            PaperReviewStoreService objPaperReviewStoreService = new PaperReviewStoreService(objRepositoryArrayListPaperReview);
-            PaperStoreService objPaperStoreService = new PaperStoreService(objRepositoryArrayListPaper);
-            
             User objUser = new User(1,"MiNombre","MiApellido","1234Jm","jm@gmail.com");
-            ViewMainMenu objViewMainMenu=new ViewMainMenu(objUserStoreService,objConferenceStoreService,objPaperReviewStoreService,objPaperStoreService,objUser);
+            AppContext.getInstance().setLoggedUser(objUser);
+            AppContext.init(objRepositoryArrayListConference,objRepositoryArrayListUser,objRepositoryArrayListPaper,objRepositoryArrayListPaperReview);
+            ViewMainMenu objViewMainMenu=new ViewMainMenu();
             objViewMainMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             objViewMainMenu.setVisible(true);
         }

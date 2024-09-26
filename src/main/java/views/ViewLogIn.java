@@ -12,6 +12,8 @@ import drivers.PaperStoreService;
 import drivers.UserStoreService;
 
 import javax.swing.JFrame;
+
+import context.AppContext;
 import utilities.language.ILanguageController;
 import utilities.language.LanguageManager;
 
@@ -30,14 +32,14 @@ public class ViewLogIn extends javax.swing.JFrame implements ILanguageController
     /**
      * Creates new form viewLogIn
      */
-    public ViewLogIn(UserStoreService objUserStoreService, ConferenceStoreService objConferenceStoreService,
-            PaperReviewStoreService PaperReviewStoreService, PaperStoreService objPaperStoreService) {
+    public ViewLogIn() {
         initComponents();
         loadLanguage();
-        this.objUserStoreService = objUserStoreService;
-        this.objConferenceStoreService = objConferenceStoreService;
-        this.objPaperReviewStoreService = PaperReviewStoreService;
-        this.objPaperStoreService = objPaperStoreService;
+        AppContext appContext = AppContext.getInstance();
+        this.objUserStoreService = new UserStoreService(appContext.getRepositoryUser());
+        this.objConferenceStoreService = new ConferenceStoreService(appContext.getRepositoryConference());
+        this.objPaperReviewStoreService = new PaperReviewStoreService(appContext.getRepositoryPaperReview());
+        this.objPaperStoreService = new PaperStoreService(appContext.getRepositoryPaper());
         this.setLocationRelativeTo(null);
     }
     
@@ -187,7 +189,7 @@ public class ViewLogIn extends javax.swing.JFrame implements ILanguageController
     }// </editor-fold>//GEN-END:initComponents
     //Te redirecciona al registro de usuario
     private void jButtonNoTengoUnaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNoTengoUnaCuentaActionPerformed
-        ViewSignIn objViewSingIn = new ViewSignIn(this.objUserStoreService, this.objConferenceStoreService, this.objPaperReviewStoreService, this.objPaperStoreService);
+        ViewSignIn objViewSingIn = new ViewSignIn();
         objViewSingIn.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewSingIn.setVisible(true);
         this.setVisible(false);
@@ -211,8 +213,9 @@ public class ViewLogIn extends javax.swing.JFrame implements ILanguageController
             return;
         }
 
-        ViewMainMenu objViewMainMenu
-                = new ViewMainMenu(this.objUserStoreService, this.objConferenceStoreService, this.objPaperReviewStoreService, this.objPaperStoreService, this.objUser);
+        AppContext appContext = AppContext.getInstance();
+        appContext.setLoggedUser(this.objUser);
+        ViewMainMenu objViewMainMenu = new ViewMainMenu();
         objViewMainMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewMainMenu.setVisible(true);
         this.setVisible(false);

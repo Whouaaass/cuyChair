@@ -13,6 +13,8 @@ import drivers.PaperReviewStoreService;
 import drivers.PaperStoreService;
 import drivers.UserStoreService;
 import javax.swing.JFrame;
+
+import context.AppContext;
 import views.ViewLogIn;
 
 public class Test {
@@ -22,14 +24,10 @@ public class Test {
         RepositoryArrayListConference objRepositoryArrayListConference = new RepositoryArrayListConference();
         RepositoryArrayListPaperReview objRepositoryArrayListPaperReview = new RepositoryArrayListPaperReview();
         RepositoryArrayListPaper objRepositoryArrayListPaper = new RepositoryArrayListPaper();
-        //Inicializar servicios de almacenamiento
-        UserStoreService objUserStoreService = new UserStoreService(objRepositoryArrayListUser);
-        ConferenceStoreService objConferenceStoreService = new ConferenceStoreService(objRepositoryArrayListConference);
-        PaperReviewStoreService objPaperReviewStoreService = new PaperReviewStoreService(objRepositoryArrayListPaperReview);
-        PaperStoreService objPaperStoreService = new PaperStoreService(objRepositoryArrayListPaper);
+        
         //LogIn inicializando
-        ViewLogIn objViewLogIn=new ViewLogIn(objUserStoreService,objConferenceStoreService,objPaperReviewStoreService,objPaperStoreService);
-        objViewLogIn.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        AppContext.init(objRepositoryArrayListConference,objRepositoryArrayListUser,objRepositoryArrayListPaper,objRepositoryArrayListPaperReview);
+        ViewLogIn objViewLogIn=new ViewLogIn();        
         objViewLogIn.setVisible(true);
         objViewLogIn.setLocationRelativeTo(null);
     }

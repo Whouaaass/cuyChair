@@ -9,6 +9,8 @@ import drivers.PaperStoreService;
 import drivers.UserStoreService;
 import org.passay.*;
 
+import context.AppContext;
+
 //MyCommitEnMyRama
 //Comiteando ando
 /*
@@ -88,16 +90,11 @@ public class TestSignIn {
     private static RepositorySQLiteUser testGeneralSignIn(RepositorySQLiteUser objRepositoryArrayListUser,RepositorySQLiteConference objRepositoryConference,
             RepositorySQLitePaperReview objRepositoryPaperReview, RepositorySQLitePaper objRepositoryPaper){
         Utilities objUtil = new Utilities();
-        try{
-            //Inicializar servicio de almacenamiento de usuario
-            UserStoreService objUserStoreService = new UserStoreService(objRepositoryArrayListUser);
-            //Iniclializar servicios de almacenamiento de conferencia, paper y paperReview de la plataforma
-            ConferenceStoreService objConferenceStoreService = new ConferenceStoreService(objRepositoryConference);
-            PaperReviewStoreService objPaperReviewStoreService = new PaperReviewStoreService(objRepositoryPaperReview);
-            PaperStoreService objPaperStoreService = new PaperStoreService(objRepositoryPaper);
+        try{            
+            
             //Asociar el servicio de almacenamiento de usuario
-            ViewSignIn objViewSignIn = new ViewSignIn(objUserStoreService,objConferenceStoreService,objPaperReviewStoreService,objPaperStoreService);
-            objViewSignIn.associateUserStoreService(objUserStoreService,objConferenceStoreService,objPaperReviewStoreService,objPaperStoreService);
+            AppContext.init(objRepositoryConference,objRepositoryArrayListUser,objRepositoryPaper,objRepositoryPaperReview);
+            ViewSignIn objViewSignIn = new ViewSignIn();            
             //Lanzar interfaz
             objViewSignIn.setVisible(true);
         }catch(Exception e){

@@ -32,7 +32,7 @@ public class testConference {
         //Conferencia a comparar
         Conference objConference = new Conference("MiConferencia",date,"Una conferencia","Cali",objUserAdmin);
         objConferenceStoreService.storeConference(objConference);
-        assertEquals(objConference.getFldTitle(),objConferenceStoreService.listConference().getFirst().getFldTitle());
+        assertEquals(objConference.getTitle(),objConferenceStoreService.listConference().getFirst().getTitle());
     }
     @Test
     public void testArrayRepository() throws ParseException{
@@ -48,6 +48,6 @@ public class testConference {
         //Conferencia a comparar
         Conference objConference = new Conference("MiConferencia",date,"Una conferencia","Cali",objUserAdmin);
         objConferenceStoreService.storeConference(objConference);
-        assertEquals(objConference.getFldTitle(),objConferenceStoreService.listConference().getFirst().getFldTitle());
+        assertEquals(objConference.getTitle(),objConferenceStoreService.listConference().getFirst().getTitle());
     }
 }

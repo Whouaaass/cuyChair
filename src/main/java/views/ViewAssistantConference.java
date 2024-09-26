@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
+import context.AppContext;
+
 /**
  *
  * @author julia
@@ -27,11 +29,12 @@ public class ViewAssistantConference extends javax.swing.JFrame {
     /**
      * Creates new form ViewAssistantConference
      */
-    public ViewAssistantConference(User objUser,ConferenceStoreService objConferenceStoreService,PaperStoreService objPaperStoreService) {
+    public ViewAssistantConference() {
         initComponents();
-        this.objUser=objUser;
-        this.objConferenceStoreService=objConferenceStoreService;
-        this.objPaperStoreService=objPaperStoreService;
+        AppContext appContext = AppContext.getInstance();
+        this.objUser=appContext.getLoggedUser();
+        this.objConferenceStoreService= new ConferenceStoreService(appContext.getRepositoryConference());
+        this.objPaperStoreService= new PaperStoreService(appContext.getRepositoryPaper());
         InitTable();
     }
     private void InitTable()
@@ -64,17 +67,17 @@ public class ViewAssistantConference extends javax.swing.JFrame {
         
         for (int i = 0; i < conferenceList.size(); i++) {
             //Encontramos al usuario en la lista de usuarios de la conferencia
-            for(int j = 0; j < conferenceList.get(i).getObjUserStoreService().listUsers().size();j++){
-                if(conferenceList.get(i).getFldConferenceAdmin().getUserId()==this.objUser.getUserId()){
+            
+            if(conferenceList.get(i).getConferenceAdmin().getUserId()==this.objUser.getUserId()){
                 Object [] row= { 
-                    conferenceList.get(i).getFldTitle(),
-                    conferenceList.get(i).getFldCiudad(),
-                    conferenceList.get(i).getFldDescription(),
-                    formatter.format(conferenceList.get(i).getFldDate())
+                    conferenceList.get(i).getTitle(),
+                    conferenceList.get(i).getCiudad(),
+                    conferenceList.get(i).getDescription(),
+                    formatter.format(conferenceList.get(i).getDate())
                 };
                 model.addRow(row);
-                }
             }
+            
         }
         
     }

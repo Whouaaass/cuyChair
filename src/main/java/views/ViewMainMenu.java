@@ -10,6 +10,8 @@ import drivers.PaperStoreService;
 import drivers.UserStoreService;
 import javax.swing.JFrame;
 
+import context.AppContext;
+
 /**
  *
  * @author julia
@@ -23,14 +25,14 @@ public class ViewMainMenu extends javax.swing.JFrame {
     private PaperReviewStoreService objPaperReviewStoreService;
     private PaperStoreService objPaperStoreService;
 
-    public ViewMainMenu(UserStoreService objUserStoreService, ConferenceStoreService objConferenceStoreService,
-        PaperReviewStoreService PaperReviewStoreService,PaperStoreService objPaperStoreService,User objUser) {
+    public ViewMainMenu() {
         initComponents();
-        this.fldUser = objUser;
-        this.objUserStoreService=objUserStoreService;
-        this.objConferenceStoreService=objConferenceStoreService;
-        this.objPaperReviewStoreService=PaperReviewStoreService;
-        this.objPaperStoreService= objPaperStoreService;
+        AppContext appContext = AppContext.getInstance();
+        this.fldUser = appContext.getLoggedUser();
+        this.objUserStoreService=new UserStoreService(appContext.getRepositoryUser());
+        this.objConferenceStoreService=new ConferenceStoreService(appContext.getRepositoryConference());
+        this.objPaperReviewStoreService=new PaperReviewStoreService(appContext.getRepositoryPaperReview());
+        this.objPaperStoreService= new PaperStoreService(appContext.getRepositoryPaper());
         this.setLocationRelativeTo(null);
         System.out.println("objUserStoreService:"+this.objUserStoreService.listUsers().getFirst().getUserName());
     }
@@ -187,7 +189,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
 
     private void jMenuItemAssistantConferenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAssistantConferenceActionPerformed
         // TODO add your handling code here:
-        ViewAssistantConference objViewAssistantConference = new ViewAssistantConference(this.fldUser,this.objConferenceStoreService,this.objPaperStoreService);
+        ViewAssistantConference objViewAssistantConference = new ViewAssistantConference();
         objViewAssistantConference.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewAssistantConference.setVisible(true);
     }//GEN-LAST:event_jMenuItemAssistantConferenceActionPerformed

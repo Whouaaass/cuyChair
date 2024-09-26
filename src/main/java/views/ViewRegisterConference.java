@@ -168,13 +168,8 @@ public class ViewRegisterConference extends javax.swing.JFrame {
         String varTitle;
         String varDescription;
         String varCity;
-        Date objDate = null;
-        //Nuevo repositorio para la nueva conferencia
-        RepositoryArrayListUser usersList= new RepositoryArrayListUser();
-        RepositoryArrayListPaperReview paperReviewList = new RepositoryArrayListPaperReview();
-        //Servicios de almacenamiento para la nueva conferencia
-        UserStoreService objUserInConferenceStoreService = new UserStoreService(usersList);
-        PaperReviewStoreService objPaperReviewInConferenceStoreService =  new PaperReviewStoreService(paperReviewList);
+        Date objDate = null;       
+                        
         
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         //Valida la fecha
@@ -192,7 +187,7 @@ public class ViewRegisterConference extends javax.swing.JFrame {
             varCity=this.jTextFieldCiudadConferencia.getText();
             
             //Pasamos las variables locales a un objeto
-            Conference objConference = new Conference(varTitle,objDate,varDescription,varCity,this.objAdminUser,objPaperReviewInConferenceStoreService,objUserInConferenceStoreService);
+            Conference objConference = new Conference(varTitle,objDate,varDescription,varCity,this.objAdminUser);
             //El objeto se manda a través de un servicio de almacenamiento
             boolean varFlag = this.objConferenceStoreService.storeConference(objConference);
             if (varFlag) {

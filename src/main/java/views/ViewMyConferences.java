@@ -61,12 +61,12 @@ public class ViewMyConferences extends javax.swing.JFrame {
         
         for (int i = 0; i < conferenceList.size(); i++) {
             //Solo añade la fila si el usuario Id coincide con el del usuario logeado
-            if(conferenceList.get(i).getFldConferenceAdmin().getUserId()==this.objUser.getUserId()){
+            if(conferenceList.get(i).getConferenceAdmin().getUserId()==this.objUser.getUserId()){
                 Object [] row= { 
-                conferenceList.get(i).getFldTitle(),
-                conferenceList.get(i).getFldCiudad(),
-                conferenceList.get(i).getFldDescription(),
-                formatter.format(conferenceList.get(i).getFldDate())
+                conferenceList.get(i).getTitle(),
+                conferenceList.get(i).getCiudad(),
+                conferenceList.get(i).getDescription(),
+                formatter.format(conferenceList.get(i).getDate())
                 };
                 model.addRow(row);
             }

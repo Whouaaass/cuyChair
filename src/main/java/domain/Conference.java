@@ -26,90 +26,98 @@ public class Conference {
     private User fldConferenceAdmin;
     //Fecha 
     private Date fldDate;
-    //Usuarios en la conferencia
-    private UserStoreService objUserStoreService;
-    //Papers en la conferencia
-    private PaperReviewStoreService objPaperReviewStoreService;
-    //Constructor para pasarle los repositorios a la conferencia
-    public Conference(String fldTitle, Date fldDate,String fldDescription, String fldCiudad, User fldConferenceAdmin, PaperReviewStoreService objPaperReviewStoreService,UserStoreService objUserStoreService) {
-        this.fldTitle = fldTitle;
-        this.fldDate = fldDate;
-        this.fldDescription = fldDescription;
-        this.fldCity = fldCiudad;
-        this.fldConferenceAdmin = fldConferenceAdmin;
-        this.objUserStoreService = objUserStoreService;
-        this.objPaperReviewStoreService = objPaperReviewStoreService;
-    }
-    //Constructor para que los repositorios de la conferencia se creen automaticamente
+    //Lista de papers
+    private ArrayList<Paper> fldPapers = new ArrayList<Paper>();
+    //Lista de revisores
+    private ArrayList<User> fldReviewers = new ArrayList<User>();
+    //Lista de asistentes
+    private ArrayList<User> fldAuthors = new ArrayList<User>();
+    //Lista de reviews
+    private ArrayList<PaperReview> fldReviews = new ArrayList<PaperReview>();
+    
+    
     public Conference(String fldTitle, Date fldDate,String fldDescription, String fldCiudad, User fldConferenceAdmin) {
         this.fldTitle = fldTitle;
         this.fldDate = fldDate;
         this.fldDescription = fldDescription;
         this.fldCity = fldCiudad;
-        this.fldConferenceAdmin = fldConferenceAdmin;
-        
-        RepositoryArrayListUser usersList= new RepositoryArrayListUser();
-        RepositoryArrayListPaperReview paperReviewList = new RepositoryArrayListPaperReview();
-        
-        this.objPaperReviewStoreService = new PaperReviewStoreService(paperReviewList);
-        this.objUserStoreService = new UserStoreService(usersList);
-    }
-    public Date getFldDate() {
+        this.fldConferenceAdmin = fldConferenceAdmin;    
+        this.fldAuthors = new ArrayList<User>();
+        this.fldPapers = new ArrayList<Paper>();
+        this.fldReviewers = new ArrayList<User>();
+        this.fldReviews = new ArrayList<PaperReview>();
+    }    
+    
+    public Date getDate() {
         return fldDate;
     }
 
-    public void setFldDate(Date fldDate) {
+    public void setDate(Date fldDate) {
         this.fldDate = fldDate;
-    }
-
-    public UserStoreService getObjUserStoreService() {
-        return objUserStoreService;
-    }
-
-    public void setObjUserStoreService(UserStoreService objUserStoreService) {
-        this.objUserStoreService = objUserStoreService;
-    }
-
-    public PaperReviewStoreService getObjPaperReviewStoreService() {
-        return objPaperReviewStoreService;
-    }
-
-    public void setObjPaperReviewStoreService(PaperReviewStoreService objPaperReviewStoreService) {
-        this.objPaperReviewStoreService = objPaperReviewStoreService;
-    }
+    }   
     
-    public String getFldCiudad() {
+    public String getCiudad() {
         return fldCity;
     }
 
-    public void setFldCiudad(String fldCiudad) {
+    public void setCiudad(String fldCiudad) {
         this.fldCity = fldCiudad;
     }
 
-    public String getFldTitle() {
+    public String getTitle() {
         return fldTitle;
     }
 
-    public void setFldTitle(String fldTitle) {
+    public void setTitle(String fldTitle) {
         this.fldTitle = fldTitle;
     }
 
-    public String getFldDescription() {
+    public String getDescription() {
         return fldDescription;
     }
 
-    public void setFldDescription(String fldDescription) {
+    public void setDescription(String fldDescription) {
         this.fldDescription = fldDescription;
     }
 
-    public User getFldConferenceAdmin() {
+    public User getConferenceAdmin() {
         return fldConferenceAdmin;
     }
 
-    public void setFldConferenceAdmin(User fldConferenceAdmin) {
+    public void setConferenceAdmin(User fldConferenceAdmin) {
         this.fldConferenceAdmin = fldConferenceAdmin;
     }
 
+    public ArrayList<Paper> getPapers() {
+        return fldPapers;
+    }
 
+    public void setPapers(ArrayList<Paper> fldPapers) {
+        this.fldPapers = fldPapers;
+    }
+
+    public ArrayList<User> getReviewers() {
+        return fldReviewers;
+    }
+
+    public void setReviewers(ArrayList<User> fldReviewers) {
+        this.fldReviewers = fldReviewers;
+    }
+
+    public ArrayList<User> getAuthors() {
+        return fldAuthors;
+    }
+
+    public void setAuthors(ArrayList<User> fldAuthors) {
+        this.fldAuthors = fldAuthors;
+    }
+
+    public ArrayList<PaperReview> getReviews() {
+        return fldReviews;
+    }
+
+    public void setReviews(ArrayList<PaperReview> fldReviews) {
+        this.fldReviews = fldReviews;
+    }
     
 }
