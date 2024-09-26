@@ -64,6 +64,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
         jMenuItemMyConferences = new javax.swing.JMenuItem();
         jMenuItemAssistantConference = new javax.swing.JMenuItem();
         jMenuMyPapers = new javax.swing.JMenu();
+        jMenuItemMyPapers = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,24 +153,23 @@ public class ViewMainMenu extends javax.swing.JFrame {
         jMenuMyPapers.setForeground(new java.awt.Color(27, 40, 56));
         jMenuMyPapers.setText("Mis trabajos");
         jMenuMyPapers.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jMenuMyPapers.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuMyPapersMouseClicked(evt);
+
+        jMenuItemMyPapers.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItemMyPapers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/completed-task_1632670 (1).png"))); // NOI18N
+        jMenuItemMyPapers.setText("Mis trabajos");
+        jMenuItemMyPapers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemMyPapersActionPerformed(evt);
             }
         });
+        jMenuMyPapers.add(jMenuItemMyPapers);
+
         jMenuBarOptions.add(jMenuMyPapers);
 
         setJMenuBar(jMenuBarOptions);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuMyPapersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuMyPapersMouseClicked
-        // TODO add your handling code here:
-        ViewMyPapers objViewMyPapers = new ViewMyPapers();
-        objViewMyPapers.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        objViewMyPapers.setVisible(true);
-    }//GEN-LAST:event_jMenuMyPapersMouseClicked
 
     private void jMenuItemMyConferencesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMyConferencesActionPerformed
         // TODO add your handling code here:
@@ -206,6 +206,13 @@ public class ViewMainMenu extends javax.swing.JFrame {
         objViewModifyMyProfile.setVisible(true);
     }//GEN-LAST:event_jMenuItemModifyProfileUserActionPerformed
 
+    private void jMenuItemMyPapersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMyPapersActionPerformed
+        // TODO add your handling code here:
+        ViewMyPapers objViewMyPapers = new ViewMyPapers();
+        objViewMyPapers.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        objViewMyPapers.setVisible(true);
+    }//GEN-LAST:event_jMenuItemMyPapersActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem JmenuItemRegisterConference;
@@ -216,6 +223,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemLookUserProfile;
     private javax.swing.JMenuItem jMenuItemModifyProfileUser;
     private javax.swing.JMenuItem jMenuItemMyConferences;
+    private javax.swing.JMenuItem jMenuItemMyPapers;
     private javax.swing.JMenu jMenuMyPapers;
     private javax.swing.JMenu jMenuPerfil;
     private javax.swing.JPanel jPanelMainMenu;

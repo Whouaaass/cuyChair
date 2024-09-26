@@ -34,10 +34,10 @@ public class ViewMyConferences extends javax.swing.JFrame {
     private void InitTable()
     {
        DefaultTableModel model= new DefaultTableModel();       
-       model.addColumn("Nombre");       
-       model.addColumn("Fecha de inicio");
-       model.addColumn("Fecha de fin");
-       model.addColumn("Costo");
+       model.addColumn("Titulo");       
+       model.addColumn("Ciudad");
+       model.addColumn("Descripción");
+       model.addColumn("Fecha");
        this.jTableMyConferences.setModel(model);
     }
     //Limpia una tabla

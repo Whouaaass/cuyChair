@@ -4,19 +4,75 @@
  */
 package views;
 
+import domain.Conference;
+import domain.User;
+import drivers.ConferenceStoreService;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author julia
  */
 public class ViewAssistantConference extends javax.swing.JFrame {
-
+    //Usuario logeado
+    private User objUser;
+    //Servicio de conferencias
+    private ConferenceStoreService objConferenceStoreService;
     /**
      * Creates new form ViewAssistantConference
      */
     public ViewAssistantConference() {
         initComponents();
+        this.objUser=objUser;
+        this.objConferenceStoreService=objConferenceStoreService;
+        InitTable();
     }
-
+    private void InitTable()
+    {
+       DefaultTableModel model= new DefaultTableModel();       
+       model.addColumn("Titulo");       
+       model.addColumn("Ciudad");
+       model.addColumn("Descripción");
+       model.addColumn("Fecha");
+       this.jTableConferencesaAssistance.setModel(model);
+    }
+    //Limpia una tabla
+    public void cleanTable(){
+        DefaultTableModel modelo=(DefaultTableModel) this.jTableConferencesaAssistance.getModel();
+        int rows=this.jTableConferencesaAssistance.getRowCount();
+        for (int i = 0;rows>i; i++) {
+            modelo.removeRow(0);
+        }        
+    }
+     
+    //Llenar tabla
+     private void fullTable()
+    {
+        DefaultTableModel model=(DefaultTableModel) this.jTableConferencesaAssistance.getModel();
+        cleanTable();
+        ArrayList<Conference> conferenceList
+                = (ArrayList<Conference>) this.objConferenceStoreService.listConference();
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        
+        for (int i = 0; i < conferenceList.size(); i++) {
+            //Encontramos al usuario en la lista de usuarios de la conferencia
+            for(int j = 0; j < conferenceList.get(i).getObjUserStoreService().listUsers().size();j++){
+                if(conferenceList.get(i).getFldConferenceAdmin().getUserId()==this.objUser.getUserId()){
+                Object [] row= { 
+                    conferenceList.get(i).getFldTitle(),
+                    conferenceList.get(i).getFldCiudad(),
+                    conferenceList.get(i).getFldDescription(),
+                    formatter.format(conferenceList.get(i).getFldDate())
+                };
+                model.addRow(row);
+                }
+            }
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,7 +86,7 @@ public class ViewAssistantConference extends javax.swing.JFrame {
         jLabelTitleAssistanceConference = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableConferencesaAssistance = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,8 +117,8 @@ public class ViewAssistantConference extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(244, 240, 216));
 
-        jTable1.setBackground(new java.awt.Color(172, 156, 124));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableConferencesaAssistance.setBackground(new java.awt.Color(172, 156, 124));
+        jTableConferencesaAssistance.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -73,11 +129,11 @@ public class ViewAssistantConference extends javax.swing.JFrame {
                 "Titulo", "Ciudad", "Descripcion", "Fecha"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(10);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(7);
+        jScrollPane1.setViewportView(jTableConferencesaAssistance);
+        if (jTableConferencesaAssistance.getColumnModel().getColumnCount() > 0) {
+            jTableConferencesaAssistance.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTableConferencesaAssistance.getColumnModel().getColumn(1).setPreferredWidth(10);
+            jTableConferencesaAssistance.getColumnModel().getColumn(3).setPreferredWidth(7);
         }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -108,6 +164,6 @@ public class ViewAssistantConference extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableConferencesaAssistance;
     // End of variables declaration//GEN-END:variables
 }
