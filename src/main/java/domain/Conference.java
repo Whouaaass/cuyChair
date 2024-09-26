@@ -16,6 +16,8 @@ import java.util.Date;
  * @author julia
  */
 public class Conference {
+    //Id de la conferencia
+    private int idConference;
     //Titulo de la conferencia
     private String fldTitle;
     //Descripción de la conferencia
@@ -34,9 +36,13 @@ public class Conference {
     private ArrayList<User> fldAuthors = new ArrayList<User>();
     //Lista de reviews
     private ArrayList<PaperReview> fldReviews = new ArrayList<PaperReview>();
-    
-    
-    public Conference(String fldTitle, Date fldDate,String fldDescription, String fldCiudad, User fldConferenceAdmin) {
+
+    public Conference(int idConference, String fldTitle, String fldDescription, String fldCity, User fldConferenceAdmin, Date fldDate) {
+        this(fldTitle,fldDate,fldDescription,fldCity,fldConferenceAdmin);
+        this.idConference = idConference;
+    }
+
+    public Conference(String fldTitle, Date fldDate, String fldDescription, String fldCiudad, User fldConferenceAdmin) {
         this.fldTitle = fldTitle;
         this.fldDate = fldDate;
         this.fldDescription = fldDescription;
@@ -46,8 +52,20 @@ public class Conference {
         this.fldPapers = new ArrayList<Paper>();
         this.fldReviewers = new ArrayList<User>();
         this.fldReviews = new ArrayList<PaperReview>();
-    }    
-    
+    }
+
+    public Conference(){
+
+    }
+
+    public int getIdConference() {
+        return idConference;
+    }
+
+    public void setIdConference(int idConference) {
+        this.idConference = idConference;
+    }
+
     public Date getDate() {
         return fldDate;
     }

@@ -4,6 +4,7 @@
  */
 package dataAccess.conference;
 
+import dataAccess.ConnectionSqlitePool;
 import domain.Conference;
 import domain.User;
 import java.util.ArrayList;
@@ -11,16 +12,16 @@ import java.util.List;
 
 /**
  *
- * @author julia
+ * @author Juan
  */
 public class RepositoryArrayListConference implements IRepositoryConference{
-    private ArrayList<Conference> ConferenceList;
+    private List<Conference> ListConference;
      /**
      * Instancia un objeto de la clase ConferenceStoreService
      * @param objRepositoryConference Repositorio que utilizara el servicio
      */
     public RepositoryArrayListConference() {
-        this.ConferenceList = new ArrayList();
+        this.ListConference=new ArrayList<>();
     }
     /**
      * Guarda un Conference
@@ -29,7 +30,7 @@ public class RepositoryArrayListConference implements IRepositoryConference{
      */
     @Override
     public boolean storeConference(Conference objConference) {
-        boolean varFlag=this.ConferenceList.add(objConference);
+        boolean varFlag=ListConference.add(objConference);
         return varFlag;
     }
     /**
@@ -38,7 +39,8 @@ public class RepositoryArrayListConference implements IRepositoryConference{
      */
     @Override
     public List<Conference> listConference() {
-        return this.ConferenceList;
+
+        return null;
     }
 
     @Override
@@ -50,5 +52,11 @@ public class RepositoryArrayListConference implements IRepositoryConference{
     public List<Conference> listConferenceByUserOwner(User objUser) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
+    @Override
+    public Conference getConferenceById(int conferenceId) {
+        return null;
+    }
+
+
 }
