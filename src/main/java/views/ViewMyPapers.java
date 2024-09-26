@@ -4,6 +4,7 @@
  */
 package views;
 
+import context.AppContext;
 import domain.Conference;
 import domain.Paper;
 import domain.User;
@@ -24,8 +25,9 @@ public class ViewMyPapers extends javax.swing.JFrame {
      */
     public ViewMyPapers(User objUser,PaperStoreService objPaperStoreService) {
         initComponents();
-        this.objUser = objUser;
-        this.objPaperStoreService = objPaperStoreService;
+        AppContext appContext = AppContext.getInstance();
+        this.objUser = appContext.getLoggedUser();
+        this.objPaperStoreService = new PaperStoreService(appContext.getRepositoryPaper());
         InitTable();
     }
     private void InitTable()

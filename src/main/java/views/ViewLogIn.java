@@ -212,7 +212,6 @@ public class ViewLogIn extends javax.swing.JFrame implements ILanguageController
             utilities.Utilities.setAlert("Error!!!", "Contraseña incorrecta");
             return;
         }
-
         AppContext appContext = AppContext.getInstance();
         appContext.setLoggedUser(this.objUser);
         ViewMainMenu objViewMainMenu = new ViewMainMenu();

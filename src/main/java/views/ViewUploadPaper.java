@@ -4,6 +4,7 @@
  */
 package views;
 
+import context.AppContext;
 import domain.Conference;
 import domain.Paper;
 import domain.User;
@@ -21,10 +22,12 @@ public class ViewUploadPaper extends javax.swing.JFrame {
     /**
      * Creates new form ViewUploadPaper
      */
-    public ViewUploadPaper(User objUser, PaperStoreService objPaperStoreService) {
+    public ViewUploadPaper() {
         initComponents();
-        this.objUser=objUser;
-        this.objPaperStoreService=objPaperStoreService;
+        AppContext appContext = AppContext.getInstance();
+        this.objUser=appContext.getLoggedUser();
+        this.objPaperStoreService=new PaperStoreService(appContext.getRepositoryPaper());
+        
     }
 
     /**

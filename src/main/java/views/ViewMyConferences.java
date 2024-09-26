@@ -4,6 +4,7 @@
  */
 package views;
 
+import context.AppContext;
 import domain.Conference;
 import domain.User;
 import drivers.ConferenceStoreService;
@@ -25,10 +26,11 @@ public class ViewMyConferences extends javax.swing.JFrame {
      * Creates new form ViewMyConferences
      */
     
-    public ViewMyConferences(User objUser, ConferenceStoreService objConferenceStoreService) {
+    public ViewMyConferences() {
         initComponents();
-        this.objUser=objUser;
-        this.objConferenceStoreService=objConferenceStoreService;
+        AppContext appContext = AppContext.getInstance();
+        this.objUser=appContext.getLoggedUser();
+        this.objConferenceStoreService=new ConferenceStoreService(appContext.getRepositoryConference());
         InitTable();
     }
     private void InitTable()

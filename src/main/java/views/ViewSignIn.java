@@ -296,6 +296,7 @@ public class ViewSignIn extends javax.swing.JFrame {
             //El objeto se manda a través de un servicio de almacenamiento
             boolean varFlag = this.objUserStoreService.storeUser(objUser);
             if (varFlag) {
+                setAlert("Registro exitoso","Usuario añadido");
                 System.out.println("El registro de usuario fue exitoso - Registro exitoso");
             } else {
                 setAlert("Registro incorrecto","Los alguno de los campos no cumple con las reglas");

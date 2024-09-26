@@ -4,6 +4,7 @@
  */
 package views;
 
+import context.AppContext;
 import dataAccess.paperReview.RepositoryArrayListPaperReview;
 import dataAccess.user.RepositoryArrayListUser;
 import domain.Conference;
@@ -28,10 +29,11 @@ public class ViewRegisterConference extends javax.swing.JFrame {
     /**
      * Creates new form ViewRegisterConference
      */
-    public ViewRegisterConference(User objAdminUser,ConferenceStoreService objConferenceStoreService) {
+    public ViewRegisterConference() {
         initComponents();
-        this.objAdminUser = objAdminUser;
-        this.objConferenceStoreService = objConferenceStoreService;
+        AppContext appContext = AppContext.getInstance();
+        this.objAdminUser=appContext.getLoggedUser();
+        this.objConferenceStoreService=new ConferenceStoreService(appContext.getRepositoryConference());
     }
 
     /**
@@ -174,6 +176,10 @@ public class ViewRegisterConference extends javax.swing.JFrame {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         //Valida la fecha
         String varDate = this.jTextFieldDate.getText();
+        if(varDate==""){
+             setAlert("Fecha nula","Agregue una fecha");
+             return;
+        }
         try {
             objDate=formatter.parse(varDate);
             
@@ -185,6 +191,11 @@ public class ViewRegisterConference extends javax.swing.JFrame {
             varTitle=this.jTextFieldTituloConferencia.getText();
             varDescription=this.jTextFieldDescripcionConferencia.getText();
             varCity=this.jTextFieldCiudadConferencia.getText();
+            
+            if(varTitle=="" || varDescription=="" || varCity==""){
+                setAlert("Campos nulos","Por favor llena toda la información solicitadada");
+                return;
+            }
             
             //Pasamos las variables locales a un objeto
             Conference objConference = new Conference(varTitle,objDate,varDescription,varCity,this.objAdminUser);
