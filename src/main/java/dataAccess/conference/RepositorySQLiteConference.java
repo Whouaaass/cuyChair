@@ -65,9 +65,9 @@ public class RepositorySQLiteConference implements IRepositoryConference{
                String date=rs.getString(6);
                String year=date.substring(0,4);
                String mounth=date.substring(5,7);
-               if (mounth.contains("0")){mounth=mounth.substring(1); }
+               if (mounth.charAt(0) == '0'){mounth=mounth.substring(1); }
                String day=date.substring(8,10);
-               if (day.contains("0")){day=day.substring(1); }
+               if (day.charAt(0) == '0'){day=day.substring(1); }
                LocalDate ld=LocalDate.of(Integer.parseInt(year),Integer.parseInt(mounth),Integer.parseInt(day));
                //Parseo
                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -141,9 +141,9 @@ public class RepositorySQLiteConference implements IRepositoryConference{
             String date=rs.getString(6);
             String year=date.substring(0,4);
             String mounth=date.substring(5,7);
-            if (mounth.contains("0")){mounth=mounth.substring(1); }
+            if (mounth.charAt(0) == '0'){mounth=mounth.substring(1); }
             String day=date.substring(8,10);
-            if (day.contains("0")){day=day.substring(1); }
+            if (day.charAt(0) == '0'){day=day.substring(1); }
             LocalDate ld=LocalDate.of(Integer.parseInt(year),Integer.parseInt(mounth),Integer.parseInt(day));
             //Parseo
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

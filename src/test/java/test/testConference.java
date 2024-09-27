@@ -29,7 +29,7 @@ public class testConference {
         //Admin
         User objUserAdmin = new User();
         //Conferencia a comparar
-        Conference objConference = new Conference("MiConferencia",date,"Una conferencia","Cali",objUserAdmin);
+        Conference objConference = new Conference(200,"MiConferencia",date,"Una conferencia","Cali",objUserAdmin);
         objConferenceStoreService.storeConference(objConference);
         assertEquals(objConference.getTitle(),objConferenceStoreService.listConference().getFirst().getTitle());
     }
