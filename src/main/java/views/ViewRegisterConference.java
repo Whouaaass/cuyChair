@@ -212,7 +212,7 @@ public class ViewRegisterConference extends javax.swing.JFrame {
             
             //Pasamos las variables locales a un objeto
             Random random=new Random();
-            Conference objConference = new Conference(random.nextInt(150),varTitle,objDate2,varDescription,varCity,this.objAdminUser);
+            Conference objConference = new Conference(random.nextInt(150),varTitle,objDate,varDescription,varCity,this.objAdminUser);
             //El objeto se manda a través de un servicio de almacenamiento
             boolean varFlag = this.objConferenceStoreService.storeConference(objConference);
             if (varFlag) {

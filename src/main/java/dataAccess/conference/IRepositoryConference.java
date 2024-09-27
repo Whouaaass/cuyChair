@@ -37,18 +37,16 @@ public interface IRepositoryConference {
      * @return la lista de conferencias que son propiedad del usuario
      */
     public List<Conference> listConferenceByUserOwner(User objUser);
-    /**
-     * Funcion que retorna una conferencia por id
-     * @param conferenceId Id de conferencia
-     * @return una conferencia
+    /** Funcion que retorna una conferencia por su Id
+     * @param conferenceId
+     * @return conferencia llamada por conferenceId
      */
     public Conference getConferenceById(int conferenceId);
-
     /**
-     * Funcion que permite agregar un paper a una conferencia
-     * @param idConference id de la conferencia
-     * @param objPaper Articulo o paper a agregar
-     * @return boolean confirmación de adicionar paper
+     * Funcion que asigna un trabajo a la conferencia
+     * @param idConference
+     * @param objPaper
+     * @return 
      */
-     boolean addJob(int idConference, Paper objPaper);
+    public boolean addPaper(int idConference, Paper objPaper);
 }

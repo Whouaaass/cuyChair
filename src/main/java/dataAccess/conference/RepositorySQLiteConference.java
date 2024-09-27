@@ -11,7 +11,8 @@ import dataAccess.user.RepositorySQLiteUser;
 import domain.Conference;
 import domain.Paper;
 import domain.User;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -30,15 +31,14 @@ public class RepositorySQLiteConference implements IRepositoryConference{
     @Override
     public boolean storeConference(Conference objConference) {
         String insertConference="INSERT INTO Conference VALUES(?, ?, ?, ?, ?, ?)";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try(Connection connection= ConnectionSqlitePool.getConnection()){
             PreparedStatement pst=connection.prepareStatement(insertConference);
-            pst.setInt(1,objConference.getIdConference());
+            pst.setInt(1,objConference.getFldId());
             pst.setString(2,objConference.getTitle());
             pst.setString(3,objConference.getDescription());
             pst.setString(4,objConference.getCiudad());
             pst.setInt(5,objConference.getConferenceAdmin().getUserId());
-            pst.setString(6,objConference.getDate().format(formatter));
+            pst.setString(6,objConference.getDate().toString());
             pst.execute();
             return true;
         }catch (SQLException e){
@@ -52,12 +52,12 @@ public class RepositorySQLiteConference implements IRepositoryConference{
         List<Conference> list=new ArrayList<>();
         RepositorySQLiteUser repo=new RepositorySQLiteUser();
         String listConference="SELECT * FROM Conference";
-        Conference newConfe=new Conference();
+        Conference newConfe = new Conference();
         try(Connection connection= ConnectionSqlitePool.getConnection()){
             Statement st=connection.createStatement();
             ResultSet rs=st.executeQuery(listConference);
            while(rs.next()){
-               newConfe.setIdConference(rs.getInt(1));
+               newConfe.setFldId(rs.getInt(1));
                newConfe.setTitle(rs.getString(2));
                newConfe.setDescription(rs.getString(3));
                newConfe.setCiudad(rs.getString(4));
@@ -69,8 +69,16 @@ public class RepositorySQLiteConference implements IRepositoryConference{
                String day=date.substring(8,10);
                if (day.contains("0")){day=day.substring(1); }
                LocalDate ld=LocalDate.of(Integer.parseInt(year),Integer.parseInt(mounth),Integer.parseInt(day));
-               newConfe.setDate(ld);
-                list.add(newConfe);
+               //Parseo
+               SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+               //Parsea la fecha
+               String ldString = ld.toString();
+               try{
+                   newConfe.setDate(formatter.parse(ldString));
+               }catch(ParseException ex){
+                   
+               }
+               list.add(newConfe);
            }
         }catch (SQLException e){
             e.printStackTrace();
@@ -124,8 +132,8 @@ public class RepositorySQLiteConference implements IRepositoryConference{
             PreparedStatement pst=connection.prepareStatement(confe);
             pst.setInt(1,conferenceId);
             ResultSet rs= pst.executeQuery();
+            newConfe.setFldId(rs.getInt(1));
 
-            newConfe.setIdConference(rs.getInt(1));
             newConfe.setTitle(rs.getString(2));
             newConfe.setDescription(rs.getString(3));
             newConfe.setCiudad(rs.getString(4));
@@ -137,7 +145,15 @@ public class RepositorySQLiteConference implements IRepositoryConference{
             String day=date.substring(8,10);
             if (day.contains("0")){day=day.substring(1); }
             LocalDate ld=LocalDate.of(Integer.parseInt(year),Integer.parseInt(mounth),Integer.parseInt(day));
-            newConfe.setDate(ld);
+            //Parseo
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            //Valida la fecha
+            String ldString = ld.toString();
+            try{
+               newConfe.setDate(formatter.parse(ldString));
+            }catch(ParseException ex){
+
+            }
             return newConfe;
         }catch (SQLException e){
             e.printStackTrace();
@@ -146,7 +162,7 @@ public class RepositorySQLiteConference implements IRepositoryConference{
     }
 
     @Override
-    public boolean addJob(int idConference, Paper objPaper) {
+    public boolean addPaper(int idConference, Paper objPaper){
         String insertJob="INSERT INTO Jobs (conferenceId,paperId) VALUES (?, ?)";
 
         try(Connection connection= ConnectionSqlitePool.getConnection()){

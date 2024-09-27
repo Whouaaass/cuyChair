@@ -46,7 +46,7 @@ public class ConferenceStoreService extends Subject {
     }
 
     public boolean addJob(int idConference, Paper newpaper){
-        boolean flag= this.objRepositoryConferenceRef.addJob(idConference,newpaper);
+        boolean flag= this.objRepositoryConferenceRef.addPaper(idConference,newpaper);
         this.notifyAllObservers();
         return flag;
     }

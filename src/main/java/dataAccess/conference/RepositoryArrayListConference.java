@@ -58,11 +58,9 @@ public class RepositoryArrayListConference implements IRepositoryConference{
     public Conference getConferenceById(int conferenceId) {
         return null;
     }
-
     @Override
-    public boolean addJob(int idConference, Paper objPaper) {
-        return false;
+    public boolean addPaper(int idConference, Paper objPaper) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-
+    
 }
