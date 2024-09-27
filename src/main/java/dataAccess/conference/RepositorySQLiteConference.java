@@ -138,6 +138,7 @@ public class RepositorySQLiteConference implements IRepositoryConference{
                 +"FOREIGN KEY (AdminId) REFERENCES User(id)\n"
                 +");";
         String tableParticipants="CREATE TABLE IF NOT EXISTS Participants(\n"
+                +"id PRIMARY KEY AUTOINCREMENT,\n"
                 +"conferenceId integer NOT NULL,\n"
                 +"userId integer  NOT NULL,\n"
                 +"FOREIGN KEY (conferenceId) REFERENCES Conference(id),\n"
@@ -145,18 +146,21 @@ public class RepositorySQLiteConference implements IRepositoryConference{
                 +");";
 
         String tableJobs="CREATE TABLE IF NOT EXISTS Jobs(\n"
+                +"id PRIMARY KEY AUTOINCREMENT,\n"
                 +"conferenceId integer NOT NULL,\n"
                 +"paperId integer  NOT NULL,\n"
                 +"FOREIGN KEY (conferenceId) REFERENCES Conference(conferenceId),\n"
                 +"FOREIGN KEY (paperId) REFERENCES paper(id),\n"
                 +");";
         String tableReviewers="CREATE TABLE IF NOT EXISTS Reviewers(\n"
+                +"id PRIMARY KEY AUTOINCREMENT,\n"
                 +"conferenceId integer NOT NULL,\n"
                 +"evaluatorId integer  NOT NULL,\n"
                 +"FOREIGN KEY (conferenceId) REFERENCES Conference(id),\n"
                 +"FOREIGN KEY (evaluatorId) REFERENCES User(id),\n"
                 +");";
         String tableReviews="CREATE TABLE IF NOT EXISTS Reviews(\n"
+                +"id PRIMARY KEY AUTOINCREMENT,\n"
                 +"conferenceId integer NOT NULL,\n"
                 +"reviewId integer  NOT NULL,\n"
                 +"FOREIGN KEY (conferenceId) REFERENCES Conference(id),\n"

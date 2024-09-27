@@ -31,7 +31,7 @@ public class TestMainMenu {
             
             User objUser = new User(1,"MiNombre","MiApellido","1234Jm","jm@gmail.com");
             AppContext.getInstance().setLoggedUser(objUser);
-            AppContext.init(objRepositoryArrayListConference,objRepositoryArrayListUser,objRepositoryArrayListPaper,objRepositoryArrayListPaperReview);
+            AppContext.init(objRepositoryArrayListUser,objRepositoryArrayListPaper,objRepositoryArrayListPaperReview,objRepositoryArrayListConference);
             ViewMainMenu objViewMainMenu=new ViewMainMenu();
             objViewMainMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             objViewMainMenu.setVisible(true);

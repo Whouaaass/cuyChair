@@ -29,11 +29,11 @@ public class AppContext {
         fldRepositoryPaper = new RepositoryArrayListPaper();
         fldRepositoryPaperReview = new RepositoryArrayListPaperReview();
     }
-    private AppContext(IRepositoryConference repositoryConference, IRepositoryUser repositoryUser, IRepositoryPaper repositoryPaper, IRepositoryPaperReview repositoryPaperReview) {
-        fldRepositoryConference = repositoryConference;
+    private AppContext( IRepositoryUser repositoryUser, IRepositoryPaper repositoryPaper, IRepositoryPaperReview repositoryPaperReview,IRepositoryConference repositoryConference) {
         fldRepositoryUser = repositoryUser;
         fldRepositoryPaper = repositoryPaper;
         fldRepositoryPaperReview = repositoryPaperReview;
+        fldRepositoryConference = repositoryConference;
     }
 
     /**
@@ -55,8 +55,8 @@ public class AppContext {
      * @param repositoryPaperReview
      * @return instancia de la clase
      */
-    public static AppContext init(IRepositoryConference repositoryConference, IRepositoryUser repositoryUser, IRepositoryPaper repositoryPaper, IRepositoryPaperReview repositoryPaperReview) {
-        instance = new AppContext(repositoryConference, repositoryUser, repositoryPaper, repositoryPaperReview);
+    public static AppContext init( IRepositoryUser repositoryUser, IRepositoryPaper repositoryPaper, IRepositoryPaperReview repositoryPaperReview, IRepositoryConference repositoryConference) {
+        instance = new AppContext( repositoryUser, repositoryPaper, repositoryPaperReview, repositoryConference);
         return instance;
     }
 

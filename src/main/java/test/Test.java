@@ -26,7 +26,7 @@ public class Test {
         RepositoryArrayListPaper objRepositoryArrayListPaper = new RepositoryArrayListPaper();
         
         //LogIn inicializando
-        AppContext.init(objRepositoryArrayListConference,objRepositoryArrayListUser,objRepositoryArrayListPaper,objRepositoryArrayListPaperReview);
+        AppContext.init(objRepositoryArrayListUser,objRepositoryArrayListPaper,objRepositoryArrayListPaperReview,objRepositoryArrayListConference);
         ViewLogIn objViewLogIn=new ViewLogIn();        
         objViewLogIn.setVisible(true);
         objViewLogIn.setLocationRelativeTo(null);

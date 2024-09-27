@@ -148,11 +148,12 @@ public class LookAndFeelTest implements ActionListener {
         //Repositorio de almacenamiento
         //Repositortios
         RepositorySQLiteUser objRepositoryArrayListUser = new RepositorySQLiteUser();
-        RepositorySQLiteConference objRepositoryArrayListConference = new RepositorySQLiteConference();
+        RepositorySQLitePaper objRepositoryArrayListPaper = new RepositorySQLitePaper();
         RepositorySQLitePaperReview objRepositoryArrayListPaperReview = new RepositorySQLitePaperReview();
-        RepositorySQLitePaper objRepositoryArrayListPaper = new RepositorySQLitePaper();       
+        RepositorySQLiteConference objRepositoryArrayListConference = new RepositorySQLiteConference();
+
         
-        AppContext.init(objRepositoryArrayListConference, objRepositoryArrayListUser, objRepositoryArrayListPaper, objRepositoryArrayListPaperReview);
+        AppContext.init( objRepositoryArrayListUser, objRepositoryArrayListPaper, objRepositoryArrayListPaperReview, objRepositoryArrayListConference);
         ViewLogIn objViewLogIn=new ViewLogIn();
         objViewLogIn.setVisible(true);        
     }

@@ -5,11 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2c59f33-f5ea-4a98-a39c-8d051ca85c2d" name="Changes" comment="Bases de datos paper review y modifiaciones bases paper">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dataAccess/DelateTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conference/IRepositoryConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conference/IRepositoryConference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositoryArrayListConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositoryArrayListConference.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBd.db" beforeDir="false" afterPath="$PROJECT_DIR$/MyBd.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/context/AppContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/context/AppContext.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositorySQLiteConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositorySQLiteConference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Conference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Conference.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/paperReview/RepositorySQLitePaperReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/paperReview/RepositorySQLitePaperReview.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/LookAndFeelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/LookAndFeelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/TestMainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/TestMainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/TestSignIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/TestSignIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/testConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/testConference.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,14 +45,25 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.DelateTable.executor": "Run",
+    "Application.LookAndFeelTest.executor": "Run",
     "Application.TestSignIn.executor": "Run",
+    "JUnit.testConference.executor": "Run",
+    "JUnit.testPaperReview.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "DatosSQLite",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "LabEventos",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/usuario/Documents/Semestre 6/Ing.Software2/Ejemplos/LayersExample",
+    "last_opened_file_path": "C:/Users/usuario/Documents/Semestre 6/Ing.Software2/cuyChair",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\usuario\Documents\Semestre 6\Ing.Software2\cuyChair" />
+      <recent name="C:\Users\usuario\Documents\Semestre 6\Ing.Software2\cuyChair\src" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

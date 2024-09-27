@@ -45,7 +45,7 @@ public class RepositorySQLitePaperReview implements IRepositoryPaperReview {
     @Override
     public List<PaperReview> listPaperReview() {
         ArrayList<PaperReview> PaperReviewList = new ArrayList<>();
-        String listRevew = "SELECT * FROM paperreview";
+        String listRevew = "SELECT * FROM PaperReview";
 
         try (Connection conn = ConnectionSqlitePool.getConnection()) {
             Statement st = conn.createStatement();
@@ -69,15 +69,16 @@ public class RepositorySQLitePaperReview implements IRepositoryPaperReview {
     }
 
     private void initDatabase() {
-        String tablePaperReview = "CREATE TABLE IF NOT EXISTS paperreview (\n"
+        String tablePaperReview = "CREATE TABLE IF NOT EXISTS PaperReview (\n"
                 + "id integer PRIMARY KEY,\n"
                 + "paperId integer NOT NULL,\n"
-                + "approved text CHECK(probed in('TRUE','FALSE')) "
-                + "FOREIGN KEY (paperId) REFERENCES paper(fldId)\n"
+                + "approved text NOT NULL,\n "
+                + "CHECK(approved in('True','False')),\n"
+                + "FOREIGN KEY (paperId) REFERENCES Paper(id)\n"
                 + ");";
         try (Connection conn = ConnectionSqlitePool.getConnection()) {
             Statement st = conn.createStatement();
-            st.execute(tablePaperReview);
+            st.executeUpdate(tablePaperReview);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -22,8 +22,8 @@ public class testConference {
     public void testSQLiteRepository() throws ParseException{
         //fecha
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        date = formatter.parse("11/02/2020");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        date = formatter.parse("2020/10/02");
         //Repositorio
         RepositorySQLiteConference objRepositorySQLiteConference = new RepositorySQLiteConference();
         ConferenceStoreService objConferenceStoreService = new ConferenceStoreService(objRepositorySQLiteConference);
@@ -38,8 +38,8 @@ public class testConference {
     public void testArrayRepository() throws ParseException{
         //fecha
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        date = formatter.parse("11/02/2020");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        date = formatter.parse("2020/10/02");
         //Repositorio
         RepositoryArrayListConference objRepositorySQLiteConference = new RepositoryArrayListConference();
         ConferenceStoreService objConferenceStoreService = new ConferenceStoreService(objRepositorySQLiteConference);

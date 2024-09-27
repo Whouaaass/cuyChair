@@ -93,7 +93,7 @@ public class TestSignIn {
         try{            
             
             //Asociar el servicio de almacenamiento de usuario
-            AppContext.init(objRepositoryConference,objRepositoryArrayListUser,objRepositoryPaper,objRepositoryPaperReview);
+            AppContext.init(objRepositoryArrayListUser,objRepositoryPaper,objRepositoryPaperReview,objRepositoryConference);
             ViewSignIn objViewSignIn = new ViewSignIn();            
             //Lanzar interfaz
             objViewSignIn.setVisible(true);
