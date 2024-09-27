@@ -10,6 +10,7 @@ import domain.User;
 import drivers.ConferenceStoreService;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
@@ -21,9 +22,7 @@ public class testConference {
     @Test
     public void testSQLiteRepository() throws ParseException{
         //fecha
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-        date = formatter.parse("2020/10/02");
+        LocalDate date = LocalDate.of(2020,10, 2);
         //Repositorio
         RepositorySQLiteConference objRepositorySQLiteConference = new RepositorySQLiteConference();
         ConferenceStoreService objConferenceStoreService = new ConferenceStoreService(objRepositorySQLiteConference);
@@ -37,9 +36,7 @@ public class testConference {
     @Test
     public void testArrayRepository() throws ParseException{
         //fecha
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-        date = formatter.parse("2020/10/02");
+        LocalDate date = LocalDate.of(2020,10, 2);
         //Repositorio
         RepositoryArrayListConference objRepositorySQLiteConference = new RepositoryArrayListConference();
         ConferenceStoreService objConferenceStoreService = new ConferenceStoreService(objRepositorySQLiteConference);

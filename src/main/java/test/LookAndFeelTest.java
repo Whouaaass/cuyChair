@@ -52,8 +52,6 @@ public class LookAndFeelTest implements ActionListener {
         );
 
         return pane;
-        
-        
     }
 
     public void actionPerformed(ActionEvent e) {

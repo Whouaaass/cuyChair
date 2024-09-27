@@ -11,6 +11,8 @@ import dataAccess.user.RepositorySQLiteUser;
 import domain.Conference;
 import domain.User;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +28,8 @@ public class RepositorySQLiteConference implements IRepositoryConference{
     
     @Override
     public boolean storeConference(Conference objConference) {
-        String insertConference="INSERT INTO Conference VALUES(?, ?, ?, ?, ?, date('?'))";
+        String insertConference="INSERT INTO Conference VALUES(?, ?, ?, ?, ?, ?)";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try(Connection connection= ConnectionSqlitePool.getConnection()){
             PreparedStatement pst=connection.prepareStatement(insertConference);
             pst.setInt(1,objConference.getIdConference());
@@ -34,7 +37,7 @@ public class RepositorySQLiteConference implements IRepositoryConference{
             pst.setString(3,objConference.getDescription());
             pst.setString(4,objConference.getCiudad());
             pst.setInt(5,objConference.getConferenceAdmin().getUserId());
-            pst.setString(6,objConference.getDate().toString());
+            pst.setString(6,objConference.getDate().format(formatter));
             pst.execute();
             return true;
         }catch (SQLException e){
@@ -58,7 +61,14 @@ public class RepositorySQLiteConference implements IRepositoryConference{
                newConfe.setDescription(rs.getString(3));
                newConfe.setCiudad(rs.getString(4));
                newConfe.setConferenceAdmin(repo.getUserById(rs.getInt(5)));
-               newConfe.setDate(rs.getDate(6));
+               String date=rs.getString(6);
+               String year=date.substring(0,4);
+               String mounth=date.substring(5,7);
+               if (mounth.contains("0")){mounth=mounth.substring(1); }
+               String day=date.substring(8,10);
+               if (day.contains("0")){day=day.substring(1); }
+               LocalDate ld=LocalDate.of(Integer.parseInt(year),Integer.parseInt(mounth),Integer.parseInt(day));
+               newConfe.setDate(ld);
                 list.add(newConfe);
            }
         }catch (SQLException e){
@@ -119,7 +129,14 @@ public class RepositorySQLiteConference implements IRepositoryConference{
             newConfe.setDescription(rs.getString(3));
             newConfe.setCiudad(rs.getString(4));
             newConfe.setConferenceAdmin(repo.getUserById(rs.getInt(5)));
-            newConfe.setDate(rs.getDate(6));
+            String date=rs.getString(6);
+            String year=date.substring(0,4);
+            String mounth=date.substring(5,7);
+            if (mounth.contains("0")){mounth=mounth.substring(1); }
+            String day=date.substring(8,10);
+            if (day.contains("0")){day=day.substring(1); }
+            LocalDate ld=LocalDate.of(Integer.parseInt(year),Integer.parseInt(mounth),Integer.parseInt(day));
+            newConfe.setDate(ld);
             return newConfe;
         }catch (SQLException e){
             e.printStackTrace();
@@ -138,41 +155,50 @@ public class RepositorySQLiteConference implements IRepositoryConference{
                 +"FOREIGN KEY (AdminId) REFERENCES User(id)\n"
                 +");";
         String tableParticipants="CREATE TABLE IF NOT EXISTS Participants(\n"
-                +"id PRIMARY KEY AUTOINCREMENT,\n"
+                +"id INTEGER PRIMARY KEY AUTOINCREMENT,\n"
                 +"conferenceId integer NOT NULL,\n"
                 +"userId integer  NOT NULL,\n"
                 +"FOREIGN KEY (conferenceId) REFERENCES Conference(id),\n"
-                +"FOREIGN KEY (userId) REFERENCES User(id),\n"
+                +"FOREIGN KEY (userId) REFERENCES User(id)\n"
                 +");";
 
         String tableJobs="CREATE TABLE IF NOT EXISTS Jobs(\n"
-                +"id PRIMARY KEY AUTOINCREMENT,\n"
+                +"id INTEGER PRIMARY KEY AUTOINCREMENT,\n"
                 +"conferenceId integer NOT NULL,\n"
                 +"paperId integer  NOT NULL,\n"
                 +"FOREIGN KEY (conferenceId) REFERENCES Conference(conferenceId),\n"
-                +"FOREIGN KEY (paperId) REFERENCES paper(id),\n"
+                +"FOREIGN KEY (paperId) REFERENCES paper(id)\n"
                 +");";
         String tableReviewers="CREATE TABLE IF NOT EXISTS Reviewers(\n"
-                +"id PRIMARY KEY AUTOINCREMENT,\n"
+                +"id INTEGER PRIMARY KEY AUTOINCREMENT,\n"
                 +"conferenceId integer NOT NULL,\n"
                 +"evaluatorId integer  NOT NULL,\n"
                 +"FOREIGN KEY (conferenceId) REFERENCES Conference(id),\n"
-                +"FOREIGN KEY (evaluatorId) REFERENCES User(id),\n"
+                +"FOREIGN KEY (evaluatorId) REFERENCES User(id)\n"
                 +");";
         String tableReviews="CREATE TABLE IF NOT EXISTS Reviews(\n"
-                +"id PRIMARY KEY AUTOINCREMENT,\n"
+                +"id INTEGER PRIMARY KEY AUTOINCREMENT,\n"
                 +"conferenceId integer NOT NULL,\n"
                 +"reviewId integer  NOT NULL,\n"
                 +"FOREIGN KEY (conferenceId) REFERENCES Conference(id),\n"
-                +"FOREIGN KEY (reviewId) REFERENCES paperreview(id),\n"
+                +"FOREIGN KEY (reviewId) REFERENCES paperreview(id)\n"
                 +");";
+        init(tableParticipants);
+        init(tableJobs);
+        init(tableReviewers);
+        init(tableReviews);
         try (Connection connection= ConnectionSqlitePool.getConnection()){
             Statement st=connection.createStatement();
             st.execute(tableConference);
-            st.execute(tableParticipants);
-            st.execute(tableJobs);
-            st.execute(tableReviewers);
-            st.execute(tableReviews);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void init(String sql){
+        try(Connection connection= ConnectionSqlitePool.getConnection()){
+            Statement st= connection.createStatement();
+            st.executeUpdate(sql);
         }catch (SQLException e){
             e.printStackTrace();
         }

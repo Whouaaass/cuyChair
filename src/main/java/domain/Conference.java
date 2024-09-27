@@ -8,6 +8,9 @@ import dataAccess.paperReview.RepositoryArrayListPaperReview;
 import dataAccess.user.RepositoryArrayListUser;
 import drivers.PaperReviewStoreService;
 import drivers.UserStoreService;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -27,7 +30,7 @@ public class Conference {
     //Organizador de la conferencia
     private User fldConferenceAdmin;
     //Fecha 
-    private Date fldDate;
+    private LocalDate fldDate;
     //Lista de papers
     private ArrayList<Paper> fldPapers = new ArrayList<Paper>();
     //Lista de revisores
@@ -37,12 +40,12 @@ public class Conference {
     //Lista de reviews
     private ArrayList<PaperReview> fldReviews = new ArrayList<PaperReview>();
 
-    public Conference(int idConference, String fldTitle, String fldDescription, String fldCity, User fldConferenceAdmin, Date fldDate) {
-        this(fldTitle,fldDate,fldDescription,fldCity,fldConferenceAdmin);
+    public Conference(int idConference,String fldTitle, LocalDate fldDate, String fldDescription, String fldCiudad, User fldConferenceAdmin) {
+        this(fldTitle,fldDate,fldDescription,fldCiudad,fldConferenceAdmin);
         this.idConference = idConference;
     }
 
-    public Conference(String fldTitle, Date fldDate, String fldDescription, String fldCiudad, User fldConferenceAdmin) {
+    public Conference(String fldTitle, LocalDate fldDate, String fldDescription, String fldCiudad, User fldConferenceAdmin) {
         this.fldTitle = fldTitle;
         this.fldDate = fldDate;
         this.fldDescription = fldDescription;
@@ -66,11 +69,11 @@ public class Conference {
         this.idConference = idConference;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return fldDate;
     }
 
-    public void setDate(Date fldDate) {
+    public void setDate(LocalDate fldDate) {
         this.fldDate = fldDate;
     }   
     

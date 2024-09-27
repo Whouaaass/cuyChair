@@ -13,10 +13,15 @@ import domain.User;
 import drivers.ConferenceStoreService;
 import drivers.PaperReviewStoreService;
 import drivers.UserStoreService;
+
+import java.awt.event.ActionEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
+
 import static utilities.Utilities.setAlert;
 
 /**
@@ -166,14 +171,15 @@ public class ViewRegisterConference extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
+    private void jButtonRegisterActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
         String varTitle;
         String varDescription;
         String varCity;
-        Date objDate = null;       
+        Date objDate = null;
+        LocalDate objDate2;
                         
         
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         //Valida la fecha
         String varDate = this.jTextFieldDate.getText();
         if(varDate.isBlank()){
@@ -182,6 +188,12 @@ public class ViewRegisterConference extends javax.swing.JFrame {
         }
         try {
             objDate=formatter.parse(varDate);
+            String year=varDate.substring(0,4);
+            String mounth=varDate.substring(5,7);
+            if (mounth.contains("0")){mounth=mounth.substring(1); }
+            String day=varDate.substring(8,10);
+            if (day.contains("0")){day=day.substring(1); }
+            objDate2= LocalDate.of(Integer.parseInt(year),Integer.parseInt(mounth),Integer.parseInt(day));
             
         }catch(ParseException ex){
             setAlert("Formato de fecha","incorrecto");
@@ -199,7 +211,8 @@ public class ViewRegisterConference extends javax.swing.JFrame {
             }
             
             //Pasamos las variables locales a un objeto
-            Conference objConference = new Conference(varTitle,objDate,varDescription,varCity,this.objAdminUser);
+            Random random=new Random();
+            Conference objConference = new Conference(random.nextInt(150),varTitle,objDate2,varDescription,varCity,this.objAdminUser);
             //El objeto se manda a través de un servicio de almacenamiento
             boolean varFlag = this.objConferenceStoreService.storeConference(objConference);
             if (varFlag) {
