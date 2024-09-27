@@ -65,9 +65,9 @@ public class RepositorySQLiteConference implements IRepositoryConference{
                String date=rs.getString(6);
                String year=date.substring(0,4);
                String mounth=date.substring(5,7);
-               if (mounth.substring(0,1)=="0"){mounth=mounth.substring(1); }
+               if (mounth.charAt(0) == '0'){mounth=mounth.substring(1); }
                String day=date.substring(8,10);
-               if (day.substring(0,1)=="0"){day=day.substring(1); }
+               if (day.charAt(0) == '0'){day=day.substring(1); }
                LocalDate ld=LocalDate.of(Integer.parseInt(year),Integer.parseInt(mounth),Integer.parseInt(day));
                newConfe.setDate(ld);
                 list.add(newConfe);
@@ -133,9 +133,9 @@ public class RepositorySQLiteConference implements IRepositoryConference{
             String date=rs.getString(6);
             String year=date.substring(0,4);
             String mounth=date.substring(5,7);
-            if (mounth.substring(0,1)=="0"){mounth=mounth.substring(1); }
+            if (mounth.charAt(0) == '0'){mounth=mounth.substring(1); }
             String day=date.substring(8,10);
-            if (day.substring(0,1)=="0"){day=day.substring(1); }
+            if (day.charAt(0) == '0'){day=day.substring(1); }
             LocalDate ld=LocalDate.of(Integer.parseInt(year),Integer.parseInt(mounth),Integer.parseInt(day));
             newConfe.setDate(ld);
             return newConfe;

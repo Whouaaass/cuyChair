@@ -41,7 +41,7 @@ public class RepositoryArrayListConference implements IRepositoryConference{
     @Override
     public List<Conference> listConference() {
 
-        return null;
+        return ListConference;
     }
 
     @Override
