@@ -13,6 +13,7 @@ import domain.Paper;
 import domain.User;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -65,9 +66,9 @@ public class RepositorySQLiteConference implements IRepositoryConference{
                String date=rs.getString(6);
                String year=date.substring(0,4);
                String mounth=date.substring(5,7);
-               if (mounth.charAt(0) == '0'){mounth=mounth.substring(1); }
+               if (mounth.contains("0")){mounth=mounth.substring(1); }
                String day=date.substring(8,10);
-               if (day.charAt(0) == '0'){day=day.substring(1); }
+               if (day.contains("0")){day=day.substring(1); }
                LocalDate ld=LocalDate.of(Integer.parseInt(year),Integer.parseInt(mounth),Integer.parseInt(day));
                //Parseo
                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -132,8 +133,8 @@ public class RepositorySQLiteConference implements IRepositoryConference{
             PreparedStatement pst=connection.prepareStatement(confe);
             pst.setInt(1,conferenceId);
             ResultSet rs= pst.executeQuery();
-            newConfe.setFldId(rs.getInt(1));
 
+            newConfe.setFldId(rs.getInt(1));
             newConfe.setTitle(rs.getString(2));
             newConfe.setDescription(rs.getString(3));
             newConfe.setCiudad(rs.getString(4));
@@ -141,9 +142,9 @@ public class RepositorySQLiteConference implements IRepositoryConference{
             String date=rs.getString(6);
             String year=date.substring(0,4);
             String mounth=date.substring(5,7);
-            if (mounth.charAt(0) == '0'){mounth=mounth.substring(1); }
+            if (mounth.contains("0")){mounth=mounth.substring(1); }
             String day=date.substring(8,10);
-            if (day.charAt(0) == '0'){day=day.substring(1); }
+            if (day.contains("0")){day=day.substring(1); }
             LocalDate ld=LocalDate.of(Integer.parseInt(year),Integer.parseInt(mounth),Integer.parseInt(day));
             //Parseo
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -162,7 +163,7 @@ public class RepositorySQLiteConference implements IRepositoryConference{
     }
 
     @Override
-    public boolean addPaper(int idConference, Paper objPaper){
+    public boolean addPaper(int idConference, Paper objPaper) {
         String insertJob="INSERT INTO Jobs (conferenceId,paperId) VALUES (?, ?)";
 
         try(Connection connection= ConnectionSqlitePool.getConnection()){

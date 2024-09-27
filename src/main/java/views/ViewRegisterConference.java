@@ -175,8 +175,7 @@ public class ViewRegisterConference extends javax.swing.JFrame {
         String varTitle;
         String varDescription;
         String varCity;
-        Date objDate = null;
-        LocalDate objDate2;
+        Date objDate = null;       
                         
         
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -188,12 +187,6 @@ public class ViewRegisterConference extends javax.swing.JFrame {
         }
         try {
             objDate=formatter.parse(varDate);
-            String year=varDate.substring(0,4);
-            String mounth=varDate.substring(5,7);
-            if (mounth.charAt(0) == '0'){mounth=mounth.substring(1); }
-            String day=varDate.substring(8,10);
-            if (day.charAt(0) == '0'){day=day.substring(1); }
-            objDate2= LocalDate.of(Integer.parseInt(year),Integer.parseInt(mounth),Integer.parseInt(day));
             
         }catch(ParseException ex){
             setAlert("Formato de fecha","incorrecto");
@@ -211,8 +204,7 @@ public class ViewRegisterConference extends javax.swing.JFrame {
             }
             
             //Pasamos las variables locales a un objeto
-            Random random=new Random();
-            Conference objConference = new Conference(random.nextInt(150),varTitle,objDate,varDescription,varCity,this.objAdminUser);
+            Conference objConference = new Conference(varTitle,objDate,varDescription,varCity,this.objAdminUser);
             //El objeto se manda a través de un servicio de almacenamiento
             boolean varFlag = this.objConferenceStoreService.storeConference(objConference);
             if (varFlag) {
@@ -225,7 +217,6 @@ public class ViewRegisterConference extends javax.swing.JFrame {
         }catch(Exception e){
             System.out.println("Error en el registro de datos");
         }
-        
     }//GEN-LAST:event_jButtonRegisterActionPerformed
 
 
