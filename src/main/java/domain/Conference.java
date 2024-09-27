@@ -8,6 +8,8 @@ import dataAccess.paperReview.RepositoryArrayListPaperReview;
 import dataAccess.user.RepositoryArrayListUser;
 import drivers.PaperReviewStoreService;
 import drivers.UserStoreService;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -16,6 +18,7 @@ import java.util.Date;
  * @author julia
  */
 public class Conference {
+    private int fldId;
     //Titulo de la conferencia
     private String fldTitle;
     //Descripción de la conferencia
@@ -47,6 +50,34 @@ public class Conference {
         this.fldReviewers = new ArrayList<User>();
         this.fldReviews = new ArrayList<PaperReview>();
     }    
+    public Conference(String fldTitle, String Date,String fldDescription, String fldCiudad, User fldConferenceAdmin) {
+        this.fldTitle = fldTitle;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        //Parsea la fecha
+        try{
+            this.fldDate = formatter.parse(Date);
+        }catch(ParseException ex){
+
+        }
+        this.fldDescription = fldDescription;
+        this.fldCity = fldCiudad;
+        this.fldConferenceAdmin = fldConferenceAdmin;    
+        this.fldAuthors = new ArrayList<User>();
+        this.fldPapers = new ArrayList<Paper>();
+        this.fldReviewers = new ArrayList<User>();
+        this.fldReviews = new ArrayList<PaperReview>();
+    }    
+    public Conference(){
+        
+    }
+    
+    public int getFldId() {
+        return fldId;
+    }
+
+    public void setFldId(int fldId) {
+        this.fldId = fldId;
+    }
     
     public Date getDate() {
         return fldDate;

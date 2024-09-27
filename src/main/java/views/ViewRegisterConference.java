@@ -173,7 +173,7 @@ public class ViewRegisterConference extends javax.swing.JFrame {
         Date objDate = null;       
                         
         
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         //Valida la fecha
         String varDate = this.jTextFieldDate.getText();
         if(varDate.isBlank()){

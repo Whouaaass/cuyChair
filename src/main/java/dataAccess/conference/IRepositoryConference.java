@@ -5,6 +5,7 @@
 package dataAccess.conference;
 
 import domain.Conference;
+import domain.Paper;
 import domain.User;
 import java.util.List;
 
@@ -36,4 +37,17 @@ public interface IRepositoryConference {
      * @return la lista de conferencias que son propiedad del usuario
      */
     public List<Conference> listConferenceByUserOwner(User objUser);
+    /**
+     * Funcion que retorna una conferencia por su Id
+     * @param conferenceId
+     * @return conferencia llamada por conferenceId
+     */
+    public Conference getConferenceById(int conferenceId);
+    /**
+     * Funcion que asigna un trabajo a la conferencia
+     * @param idConference
+     * @param objPaper
+     * @return 
+     */
+    public boolean addPaper(int idConference, Paper objPaper);
 }

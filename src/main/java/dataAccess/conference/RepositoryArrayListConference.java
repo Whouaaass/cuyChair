@@ -5,6 +5,7 @@
 package dataAccess.conference;
 
 import domain.Conference;
+import domain.Paper;
 import domain.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,16 @@ public class RepositoryArrayListConference implements IRepositoryConference{
 
     @Override
     public List<Conference> listConferenceByUserOwner(User objUser) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Conference getConferenceById(int conferenceId) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean addPaper(int idConference, Paper objPaper) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
