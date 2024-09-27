@@ -17,10 +17,7 @@ import java.util.List;
  */
 public class RepositoryArrayListConference implements IRepositoryConference{
     private List<Conference> ListConference;
-     /**
-     * Instancia un objeto de la clase ConferenceStoreService
-     * @param objRepositoryConference Repositorio que utilizara el servicio
-     */
+
     public RepositoryArrayListConference() {
         this.ListConference=new ArrayList<>();
     }
@@ -40,7 +37,6 @@ public class RepositoryArrayListConference implements IRepositoryConference{
      */
     @Override
     public List<Conference> listConference() {
-
         return ListConference;
     }
 
