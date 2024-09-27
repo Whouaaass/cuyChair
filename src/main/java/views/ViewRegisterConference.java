@@ -190,9 +190,9 @@ public class ViewRegisterConference extends javax.swing.JFrame {
             objDate=formatter.parse(varDate);
             String year=varDate.substring(0,4);
             String mounth=varDate.substring(5,7);
-            if (mounth.contains("0")){mounth=mounth.substring(1); }
+            if (mounth.substring(0,1)=="0"){mounth=mounth.substring(1); }
             String day=varDate.substring(8,10);
-            if (day.contains("0")){day=day.substring(1); }
+            if (day.substring(0,1)=="0"){day=day.substring(1); }
             objDate2= LocalDate.of(Integer.parseInt(year),Integer.parseInt(mounth),Integer.parseInt(day));
             
         }catch(ParseException ex){

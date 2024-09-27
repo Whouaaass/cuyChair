@@ -7,11 +7,8 @@
     <list default="true" id="c2c59f33-f5ea-4a98-a39c-8d051ca85c2d" name="Changes" comment="Bases de datos paper review y modifiaciones bases paper">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBd.db" beforeDir="false" afterPath="$PROJECT_DIR$/MyBd.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conference/IRepositoryConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conference/IRepositoryConference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositoryArrayListConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositoryArrayListConference.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositorySQLiteConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositorySQLiteConference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/drivers/ConferenceStoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/drivers/ConferenceStoreService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewUploadPaper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewUploadPaper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewRegisterConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewRegisterConference.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +44,7 @@
     &quot;JUnit.testPaperReview.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;LabEventos&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/usuario/Documents/Semestre 6/Ing.Software2/Ejemplos/LayersExample&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
