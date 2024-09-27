@@ -5,6 +5,7 @@
 package dataAccess.conference;
 
 import domain.Conference;
+import domain.Paper;
 import domain.User;
 import java.util.List;
 
@@ -42,4 +43,12 @@ public interface IRepositoryConference {
      * @return una conferencia
      */
     public Conference getConferenceById(int conferenceId);
+
+    /**
+     * Funcion que permite agregar un paper a una conferencia
+     * @param idConference id de la conferencia
+     * @param objPaper Articulo o paper a agregar
+     * @return boolean confirmación de adicionar paper
+     */
+     boolean addJob(int idConference, Paper objPaper);
 }

@@ -6,6 +6,7 @@ package dataAccess.conference;
 
 import dataAccess.ConnectionSqlitePool;
 import domain.Conference;
+import domain.Paper;
 import domain.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,11 @@ public class RepositoryArrayListConference implements IRepositoryConference{
     @Override
     public Conference getConferenceById(int conferenceId) {
         return null;
+    }
+
+    @Override
+    public boolean addJob(int idConference, Paper objPaper) {
+        return false;
     }
 
 

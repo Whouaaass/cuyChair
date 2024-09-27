@@ -8,17 +8,22 @@ import context.AppContext;
 import domain.Conference;
 import domain.Paper;
 import domain.User;
+import drivers.ConferenceStoreService;
 import drivers.PaperReviewStoreService;
 import drivers.PaperStoreService;
+import infra.Observer;
+
 import static utilities.Utilities.setAlert;
 
 /**
  *
  * @author julia
  */
-public class ViewUploadPaper extends javax.swing.JFrame {
+public class ViewUploadPaper extends javax.swing.JFrame  {
     User objUser;//User logeado
     PaperStoreService objPaperStoreService;//Servicio de almacenamiento de paper
+    //Servicio de conferencias
+    private ConferenceStoreService objConferenceStoreService;
     /**
      * Creates new form ViewUploadPaper
      */
@@ -27,6 +32,7 @@ public class ViewUploadPaper extends javax.swing.JFrame {
         AppContext appContext = AppContext.getInstance();
         this.objUser=appContext.getLoggedUser();
         this.objPaperStoreService=new PaperStoreService(appContext.getRepositoryPaper());
+        this.objConferenceStoreService= new ConferenceStoreService(appContext.getRepositoryConference());
         
     }
 
@@ -150,15 +156,22 @@ public class ViewUploadPaper extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonUploadPaperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUploadPaperActionPerformed
+        String conference=this.jTextFieldcONFERENCIA.getText();
         String title = this.jTextFieldTitulo.getText();
         String description = this.jTextFieldDescription.getText();
         Paper objPaper = new Paper(title,description,this.objUser);//Paper a subir
         // TODO add your handling code here:
         boolean varFlag = this.objPaperStoreService.storePaper(objPaper);
+        boolean Flagjob= this.objConferenceStoreService.addJob(Integer.parseInt(conference),objPaper);
         if(varFlag){
             setAlert("Subida de trabajo","exitosa");
         }else{
             setAlert("Subida de trabajo","fallida");
+        }
+        if(Flagjob){
+            setAlert("Subida de trabajo","exitosa");
+        }else{
+            setAlert("Subida de trabajo","fallida"); 
         }
           
     }//GEN-LAST:event_jButtonUploadPaperActionPerformed

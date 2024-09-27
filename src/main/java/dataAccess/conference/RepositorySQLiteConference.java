@@ -9,6 +9,7 @@ import java.sql.*;
 import dataAccess.ConnectionSqlitePool;
 import dataAccess.user.RepositorySQLiteUser;
 import domain.Conference;
+import domain.Paper;
 import domain.User;
 
 import java.time.LocalDate;
@@ -142,6 +143,21 @@ public class RepositorySQLiteConference implements IRepositoryConference{
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public boolean addJob(int idConference, Paper objPaper) {
+        String insertJob="INSERT INTO Jobs (conferenceId,paperId) VALUES (?, ?)";
+
+        try(Connection connection= ConnectionSqlitePool.getConnection()){
+            PreparedStatement pst= connection.prepareStatement(insertJob);
+            pst.setInt(1,idConference);
+            pst.setInt(2,objPaper.getId());
+            return pst.execute();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public void initDatabase(){
