@@ -6,7 +6,10 @@ package dataAccess.paperReview;
 
 import dataAccess.ConnectionSqlitePool;
 import dataAccess.paper.RepositorySQLitePaper;
+import domain.Conference;
+import domain.Paper;
 import domain.PaperReview;
+import domain.sql.SQLPaperReview;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,23 +18,23 @@ import java.util.List;
 import static java.lang.Boolean.TRUE;
 
 /**
- *
  * @author Juan
  */
 public class RepositorySQLitePaperReview implements IRepositoryPaperReview {
 
-    public RepositorySQLitePaperReview() {}
+    public RepositorySQLitePaperReview() {
+    }
 
     @Override
     public boolean storePaperReview(PaperReview objPaper) {
-        String insertPaperReview = "INSERT INTO paperreview VALUES (?,?,?)";
+        String insertPaperReview = "INSERT INTO paperreview(paperId, reviewerId, approved) VALUES (?,?,?)";
 
         try (Connection conn = ConnectionSqlitePool.getConnection()) {
 
             PreparedStatement pst = conn.prepareStatement(insertPaperReview);
-            pst.setInt(1, objPaper.getReviewId());
-            pst.setInt(2, objPaper.getObjPaper().getId());
-            pst.setString(3, objPaper.isAprobed() == TRUE ? "True" : "False");
+            pst.setInt(1, objPaper.getPaper().getId());
+            pst.setInt(2, objPaper.getReviewer().getUserId());
+            pst.setString(3, objPaper.isApproved()? "TRUE" : "FALSE");
             pst.execute();
             return true;
         } catch (SQLException e) {
@@ -43,7 +46,7 @@ public class RepositorySQLitePaperReview implements IRepositoryPaperReview {
     @Override
     public List<PaperReview> listPaperReview() {
         ArrayList<PaperReview> PaperReviewList = new ArrayList<>();
-        String listRevew = "SELECT * FROM paperreview";
+        String listRevew = "SELECT * FROM PaperReview";
 
         try (Connection conn = ConnectionSqlitePool.getConnection()) {
             Statement st = conn.createStatement();
@@ -54,9 +57,9 @@ public class RepositorySQLitePaperReview implements IRepositoryPaperReview {
             while (rs.next()) {
                 PaperReview newreview = new PaperReview();
                 newreview.setReviewId(rs.getInt(1));
-                newreview.setObjPaper(repo.getPaperById(rs.getInt(2)));
+                newreview.setPaper(repo.getPaperById(rs.getInt(2)));
                 aprobed = rs.getString(3).equals("True");
-                newreview.setAprobed(aprobed);
+                newreview.setApproved(aprobed);
                 PaperReviewList.add(newreview);
             }
         } catch (SQLException e) {
@@ -66,19 +69,49 @@ public class RepositorySQLitePaperReview implements IRepositoryPaperReview {
         return PaperReviewList;
     }
 
-    private void initDatabase() {
-        String tablePaperReview = "CREATE TABLE IF NOT EXISTS paperreview (\n"
-                + "id integer PRIMARY KEY,\n"
-                + "paperId integer NOT NULL,\n"
-                + "approved text CHECK(probed in('TRUE','FALSE')) "
-                + "FOREIGN KEY (paperId) REFERENCES paper(fldId)\n"
-                + ");";
+    @Override
+    public PaperReview getPaperReviewFrom(Paper paper) {
+        String selectStatement = "SELECT * FROM PaperReview WHERE paperId = ?";
         try (Connection conn = ConnectionSqlitePool.getConnection()) {
-            Statement st = conn.createStatement();
-            st.execute(tablePaperReview);
-        } catch (SQLException e) {
+            PreparedStatement pst = conn.prepareStatement(selectStatement);
+            pst.setInt(1, paper.getId());
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.first()) {
+                return createPaperReviewFromRow(rs);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return null;
+    }
+
+    @Override
+    public List<PaperReview> getPaperReviewsRelatedTo(Conference conference) {
+        String selectStatement = "SELECT PaperReview.* from PaperReview inner join Paper on PaperReview.paperId = Paper.id where Paper.conferenceId = ?";
+        List<PaperReview> paperReviewList = new ArrayList<>();
+
+        try (Connection conn = ConnectionSqlitePool.getConnection()) {
+            PreparedStatement pst = conn.prepareStatement(selectStatement);
+            pst.setInt(1, conference.getId());
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                paperReviewList.add(createPaperReviewFromRow(rs));
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        return paperReviewList;
+    }
+
+    private PaperReview createPaperReviewFromRow(ResultSet rs) throws SQLException {
+        PaperReview pr = new SQLPaperReview();
+        pr.setReviewId(rs.getInt("id"));
+        pr.setApproved(rs.getString("approved").equals("TRUE"));
+        return pr;
     }
 
 }

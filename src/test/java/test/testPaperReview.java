@@ -24,11 +24,11 @@ public class testPaperReview {
         RepositorySQLitePaperReview objRepositorySQLitePaperReview = new RepositorySQLitePaperReview();
         PaperReviewStoreService objPaperReviewStoreService = new PaperReviewStoreService(objRepositorySQLitePaperReview);
         //Admin
-        User objUserAuthor = new User();
+        User objUserReviewer = new User();
         //Paper
         Paper objPaper = new Paper();
         //Conferencia a comparar
-        PaperReview objPaperReview = new PaperReview(1,objPaper,true);
+        PaperReview objPaperReview = new PaperReview(1,objPaper,objUserReviewer,true);
         objPaperReviewStoreService.storePaperReview(objPaperReview);
         assertEquals(objPaperReview.getReviewId(),objPaperReviewStoreService.listPapers().getFirst().getReviewId());
     }
@@ -38,11 +38,11 @@ public class testPaperReview {
         RepositoryArrayListPaperReview objRepositoryArrayListPaperReview = new RepositoryArrayListPaperReview();
         PaperReviewStoreService objPaperReviewStoreService = new PaperReviewStoreService(objRepositoryArrayListPaperReview);
         //Admin
-        User objUserAuthor = new User();
+        User objUserReviewer = new User();
         //Paper
         Paper objPaper = new Paper();
         //Conferencia a comparar
-        PaperReview objPaperReview = new PaperReview(1,objPaper,true);
+        PaperReview objPaperReview = new PaperReview(1,objPaper, objUserReviewer,true);
         objPaperReviewStoreService.storePaperReview(objPaperReview);
         assertEquals(objPaperReview.getReviewId(),objPaperReviewStoreService.listPapers().getFirst().getReviewId());
     }

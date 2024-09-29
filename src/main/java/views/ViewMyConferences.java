@@ -10,7 +10,6 @@ import domain.User;
 import drivers.ConferenceStoreService;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -66,7 +65,7 @@ public class ViewMyConferences extends javax.swing.JFrame {
             if(conferenceList.get(i).getConferenceOrganizer().getUserId()==this.objUser.getUserId()){
                 Object [] row= { 
                 conferenceList.get(i).getTitle(),
-                conferenceList.get(i).getCiudad(),
+                conferenceList.get(i).getCity(),
                 conferenceList.get(i).getDescription(),
                 formatter.format(conferenceList.get(i).getDate())
                 };

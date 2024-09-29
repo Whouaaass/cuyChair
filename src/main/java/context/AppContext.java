@@ -2,6 +2,8 @@ package context;
 
 import dataAccess.conference.IRepositoryConference;
 import dataAccess.conference.RepositoryArrayListConference;
+import dataAccess.conferenceParticipation.IRepositoryConferenceParticipation;
+import dataAccess.conferenceParticipation.RepositoryArrayListConferenceParticipation;
 import dataAccess.paper.IRepositoryPaper;
 import dataAccess.paper.RepositoryArrayListPaper;
 import dataAccess.paperReview.IRepositoryPaperReview;
@@ -21,6 +23,7 @@ public class AppContext {
     private IRepositoryUser fldRepositoryUser;
     private IRepositoryPaper fldRepositoryPaper;
     private IRepositoryPaperReview fldRepositoryPaperReview;
+    private IRepositoryConferenceParticipation fldRepositoryConferenceParticipation;
 
     //constructores
     private AppContext() {
@@ -28,12 +31,19 @@ public class AppContext {
         fldRepositoryUser = new RepositoryArrayListUser();
         fldRepositoryPaper = new RepositoryArrayListPaper();
         fldRepositoryPaperReview = new RepositoryArrayListPaperReview();
+        fldRepositoryConferenceParticipation = new RepositoryArrayListConferenceParticipation();
     }
-    private AppContext(IRepositoryConference repositoryConference, IRepositoryUser repositoryUser, IRepositoryPaper repositoryPaper, IRepositoryPaperReview repositoryPaperReview) {
+    private AppContext(
+            IRepositoryConference repositoryConference,
+            IRepositoryUser repositoryUser,
+            IRepositoryPaper repositoryPaper,
+            IRepositoryPaperReview repositoryPaperReview,
+            IRepositoryConferenceParticipation repositoryConferenceParticipation) {
         fldRepositoryConference = repositoryConference;
         fldRepositoryUser = repositoryUser;
         fldRepositoryPaper = repositoryPaper;
         fldRepositoryPaperReview = repositoryPaperReview;
+        fldRepositoryConferenceParticipation = repositoryConferenceParticipation;
     }
 
     /**
@@ -55,8 +65,13 @@ public class AppContext {
      * @param repositoryPaperReview
      * @return instancia de la clase
      */
-    public static AppContext init(IRepositoryConference repositoryConference, IRepositoryUser repositoryUser, IRepositoryPaper repositoryPaper, IRepositoryPaperReview repositoryPaperReview) {
-        instance = new AppContext(repositoryConference, repositoryUser, repositoryPaper, repositoryPaperReview);
+    public static AppContext init(IRepositoryConference repositoryConference,
+                                  IRepositoryUser repositoryUser,
+                                  IRepositoryPaper repositoryPaper,
+                                  IRepositoryPaperReview repositoryPaperReview,
+                                  IRepositoryConferenceParticipation repositoryConferenceParticipation
+    ) {
+        instance = new AppContext(repositoryConference, repositoryUser, repositoryPaper, repositoryPaperReview, repositoryConferenceParticipation);
         return instance;
     }
 
@@ -92,6 +107,8 @@ public class AppContext {
     public IRepositoryPaperReview getRepositoryPaperReview() {
         return fldRepositoryPaperReview;
     }
+
+    public IRepositoryConferenceParticipation getFldRepositoryConferenceParticipation() { return fldRepositoryConferenceParticipation; }
     
     public void clear() {
 

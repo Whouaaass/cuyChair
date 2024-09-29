@@ -6,6 +6,8 @@ package drivers;
 
 import dataAccess.conference.IRepositoryConference;
 import domain.Conference;
+import domain.User;
+
 import java.util.List;
 
 /**
@@ -42,8 +44,8 @@ public class ConferenceStoreService {
         return this.objRepositoryConferenceRef.listConference();
     }
     
-    public List<Conference> getAssistantConferences(int userId) {
-        return objRepositoryConferenceRef.listConferenceByUserAssistant(userId);
+    public List<Conference> getAssistantConferences(User user) {
+        return objRepositoryConferenceRef.listConferenceRelatedTo(user);
     }   
     
     

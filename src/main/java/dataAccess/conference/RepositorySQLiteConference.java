@@ -8,14 +8,16 @@ import java.sql.*;
 
 import dataAccess.ConnectionSqlitePool;
 import dataAccess.user.RepositorySQLiteUser;
-import domain.Conference;
-import domain.Paper;
-import domain.PaperReview;
-import domain.User;
+import domain.*;
+import domain.sql.SQLConference;
+import org.sqlite.SQLiteConnection;
 import utilities.DateUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
+
 
 /**
  * Repositorio de conferencias que utiliza SQLite
@@ -24,21 +26,18 @@ import java.util.List;
  */
 public class RepositorySQLiteConference implements IRepositoryConference {
 
-    public RepositorySQLiteConference() {
-        initDatabase();
-    }
+    public RepositorySQLiteConference() {}
 
     @Override
     public boolean storeConference(Conference objConference) {
-        String insertConference = "INSERT INTO Conference VALUES(?, ?, ?, ?, ?, date('?'))";
+        String insertConference = "INSERT INTO Conference(title, description, city, date, adminId) VALUES(?, ?, ?, ?, ?)";
         try (Connection connection = ConnectionSqlitePool.getConnection()) {
             PreparedStatement pst = connection.prepareStatement(insertConference);
-            pst.setInt(1, objConference.getId());
-            pst.setString(2, objConference.getTitle());
-            pst.setString(3, objConference.getDescription());
-            pst.setString(4, objConference.getCiudad());
+            pst.setString(1, objConference.getTitle());
+            pst.setString(2, objConference.getDescription());
+            pst.setString(3, objConference.getCity());
+            pst.setString(4, DateUtils.formatDBDate(objConference.getDate()));
             pst.setInt(5, objConference.getConferenceOrganizer().getUserId());
-            pst.setString(6, objConference.getDate().toString());
             pst.execute();
             return true;
         } catch (SQLException e) {
@@ -57,13 +56,7 @@ public class RepositorySQLiteConference implements IRepositoryConference {
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(listConference);
             while (rs.next()) {
-                newConfe.setFldId(rs.getInt(1));
-                newConfe.setTitle(rs.getString(2));
-                newConfe.setDescription(rs.getString(3));
-                newConfe.setCiudad(rs.getString(4));
-                newConfe.setConferenceAdmin(repo.getUserById(rs.getInt(5)));
-                newConfe.setDate(rs.getDate(6));
-                list.add(newConfe);
+                list.add(createConferenceWithRowData(rs));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -73,15 +66,15 @@ public class RepositorySQLiteConference implements IRepositoryConference {
     }
 
     @Override
-    public List<Conference> listConferenceByUserAssistant(int userId) {
+    public List<Conference> listConferenceRelatedTo(User user) {
         List<Conference> listConfe = new ArrayList<>();
-        String listParticipants = "SELECT conferenceId FROM UserConference WHERE userId = ?";
+        String listParticipants = "SELECT Conference.* FROM Conference INNER JOIN UserConference WHERE UserConference.userId = ?";
         try (Connection connection = ConnectionSqlitePool.getConnection()) {
             PreparedStatement pst = connection.prepareStatement(listParticipants);
-            pst.setInt(1, userId);
+            pst.setInt(1, user.getUserId());
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                listConfe.add(getConferenceById(rs.getInt(1)));
+                listConfe.add(createConferenceWithRowData(rs));
             }
             return listConfe;
         } catch (SQLException e) {
@@ -91,12 +84,17 @@ public class RepositorySQLiteConference implements IRepositoryConference {
     }
 
     @Override
-    public List<Conference> listConferenceByUserOwner(int ownerId) {
+    public List<Conference> listConferenceRelatedTo(User user, ConferenceParticipation.Role role) {
+        return List.of();
+    }
+
+    @Override
+    public List<Conference> listConferenceOrganizedBy(User organizer) {
         List<Conference> listConfe = new ArrayList<>();
-        String listProperties = "SELECT conferenceId FROM Conference WHERE AdminId= ?";
+        String listProperties = "SELECT * FROM Conference WHERE AdminId = ?";
         try (Connection connection = ConnectionSqlitePool.getConnection()) {
             PreparedStatement pst = connection.prepareStatement(listProperties);
-            pst.setInt(1, ownerId);
+            pst.setInt(1, organizer.getUserId());
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 listConfe.add(getConferenceById(rs.getInt(1)));
@@ -111,27 +109,19 @@ public class RepositorySQLiteConference implements IRepositoryConference {
     @Override
     public Conference getConferenceById(int conferenceId) {
         String confe = "SELECT * FROM Conference WHERE id = ?";
-        RepositorySQLiteUser repo = new RepositorySQLiteUser();
-        Conference newConfe = new Conference();
+        Conference newConfe;
+
         try (Connection connection = ConnectionSqlitePool.getConnection()) {
             PreparedStatement pst = connection.prepareStatement(confe);
             pst.setInt(1, conferenceId);
             ResultSet rs = pst.executeQuery();
 
             // Solo se cargan los datos de la tabla, lo demás se carga por lazy loading
-            newConfe = new Conference(
-                    rs.getInt("id"),
-                    rs.getString("title"),
-                    rs.getString("description"),
-                    DateUtils.parseDBDate(rs.getString("beginDate")),
-                    rs.getString("city")
-            );
-            newConfe.setFldId(rs.getInt(1));
-            newConfe.setTitle(rs.getString(2));
-            newConfe.setDescription(rs.getString(3));
-            newConfe.setCiudad(rs.getString(4));
-            newConfe.setConferenceAdmin(repo.getUserById(rs.getInt(5)));
-            newConfe.setDate(rs.getDate(6));
+            newConfe = createConferenceWithRowData(rs);
+
+            if (rs.wasNull()) {
+                return null;
+            }
 
             return newConfe;
         } catch (SQLException e) {
@@ -141,80 +131,37 @@ public class RepositorySQLiteConference implements IRepositoryConference {
     }
 
     @Override
-    public List<User> listReviewers(int conferenceId) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'listReviewers'");
-    }
-
-    @Override
-    public List<User> listAuthors(int conferenceId) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'listAuthors'");
-    }
-
-    @Override
-    public List<Paper> listPapers(int conferenceId) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'listPapers'");
-    }
-
-    @Override
-    public List<PaperReview> listReviews(int conferenceId) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'listReviews'");
-    }
-
-    @Override
-    public User getConferenceOrganizer(int conferenceId) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'getConferenceOrganizer'");
-    }
-
-    public void initDatabase() {
-        String tableConference = "CREATE TABLE IF NOT EXISTS Conference(\n"
-                + "id integer PRIMARY KEY NOT NULL,\n"
-                + "title text NOT NULL,\n"
-                + "description text NOT NULL,\n"
-                + "city text NOT NULL,\n"
-                + "adminId integer NOT NULL,\n"
-                + "beginDate text NOT NULL,\n"
-                + "FOREIGN KEY (adminId) REFERENCES User(id)\n"
-                + ");";
-        String tableUserConference =
-                """
-                CREATE TABLE IF NOT EXIST UserConference (
-                id integer PRIMARY KEY NOT NULL,
-                userId integer NOT NULL,
-                conferenceId integer NOT NULL,
-                rol integer NOT NULL,
-                FOREIGN KEY (userId) REFERENCES User(id),
-                FOREIGN KEY (conferenceId) REFERENCES Conference(id)
-                );
-                """;
-        String tableJobs = "CREATE TABLE IF NOT EXISTS Jobs(\n"
-                + "conferenceId integer NOT NULL,\n"
-                + "paperId integer  NOT NULL,\n"
-                + "FOREIGN KEY (conferenceId) REFERENCES Conference(conferenceId),\n"
-                + "FOREIGN KEY (paperId) REFERENCES paper(id),\n"
-                + ");";
-
-        String tableReviews = "CREATE TABLE IF NOT EXISTS Reviews(\n"
-                + "conferenceId integer NOT NULL,\n"
-                + "reviewId integer  NOT NULL,\n"
-                + "FOREIGN KEY (conferenceId) REFERENCES Conference(id),\n"
-                + "FOREIGN KEY (reviewId) REFERENCES paperreview(id),\n"
-                + ");";
-        try (Connection connection = ConnectionSqlitePool.getConnection()) {
-            Statement st = connection.createStatement();
-            st.execute(tableConference);
-            st.execute(tableUserConference);
-            st.execute(tableJobs);
-            st.execute(tableReviews);
-        } catch (SQLException e) {
+    public Conference getConferenceOf(Paper paper) {
+        String select = "SELECT * FROM Conference INNER JOIN Paper ON Paper.conferenceId = Conference.id WHERE PaperId = ?";
+        Conference newConference  = null;
+        try (Connection conn = ConnectionSqlitePool.getConnection()) {
+            PreparedStatement pst = conn.prepareStatement(select);
+            pst.setInt(1, paper.getId());
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                newConference = createConferenceWithRowData(rs);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        return newConference;
     }
 
-    
+    /**
+     * Método que crea una conferencia a partir de una fila de un ResultSet
+     * @param rs ResultSet a partir de la ejecución de una query
+     * @return Conferencia a partir de esa fila
+     * @throws SQLException
+     */
+    private Conference createConferenceWithRowData(ResultSet rs) throws SQLException {
+        SQLConference objConference = new SQLConference();
+        objConference.setId(rs.getInt("id"));
+        objConference.setTitle(rs.getString("title"));
+        objConference.setDescription(rs.getString("description"));
+        objConference.setCity(rs.getString("date"));
+        objConference.setDate(DateUtils.parseDBDate(rs.getString("city")));
+
+        return objConference;
+    }
 
 }

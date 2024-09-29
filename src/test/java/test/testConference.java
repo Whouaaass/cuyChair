@@ -10,6 +10,7 @@ import domain.User;
 import drivers.ConferenceStoreService;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
@@ -30,7 +31,7 @@ public class testConference {
         //Admin
         User objUserAdmin = new User();
         //Conferencia a comparar
-        Conference objConference = new Conference("MiConferencia",date,"Una conferencia","Cali",objUserAdmin);
+        Conference objConference = new Conference(0, "MiConferencia", "Una conferencia","Cali", date ,objUserAdmin);
         objConferenceStoreService.storeConference(objConference);
         assertEquals(objConference.getTitle(),objConferenceStoreService.listConference().getFirst().getTitle());
     }
@@ -46,7 +47,7 @@ public class testConference {
         //Admin
         User objUserAdmin = new User();
         //Conferencia a comparar
-        Conference objConference = new Conference("MiConferencia",date,"Una conferencia","Cali",objUserAdmin);
+        Conference objConference = new Conference("MiConferencia","Una conferencia","Cali", date,objUserAdmin);
         objConferenceStoreService.storeConference(objConference);
         assertEquals(objConference.getTitle(),objConferenceStoreService.listConference().getFirst().getTitle());
     }

@@ -4,10 +4,8 @@
  */
 package dataAccess.conference;
 
-import domain.Conference;
-import domain.Paper;
-import domain.PaperReview;
-import domain.User;
+import domain.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +17,9 @@ public class RepositoryArrayListConference implements IRepositoryConference{
     private List<Conference> fldConferenceList;
      /**
      * Instancia un objeto de la clase ConferenceStoreService
-     * @param objRepositoryConference Repositorio que utilizara el servicio
      */
     public RepositoryArrayListConference() {
-        this.fldConferenceList=new ArrayList<>();
+        this.fldConferenceList = new ArrayList<>();
     }
     /**
      * Guarda un Conference
@@ -40,48 +37,51 @@ public class RepositoryArrayListConference implements IRepositoryConference{
      */
     @Override
     public List<Conference> listConference() {
-
-        return null;
+        return fldConferenceList;
     }
 
     @Override
-    public List<Conference> listConferenceByUserAssistant(int userId) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public List<Conference> listConferenceRelatedTo(User user) {
+        List<Conference> conferenceList = new ArrayList<>();
+        for (ConferenceParticipation participation : user.getParticipations()) {
+            conferenceList.add(participation.getConference());
+        }
+        return conferenceList;
     }
 
     @Override
-    public List<Conference> listConferenceByUserOwner(int ownerId) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public List<Conference> listConferenceRelatedTo(User user, ConferenceParticipation.Role role) {
+        List<Conference> userConferenceList = new ArrayList<>();
+        for (ConferenceParticipation conference : user.getParticipations()) {
+            userConferenceList.add(conference.getConference());
+        }
+        return userConferenceList;
+    }
+
+    @Override
+    public List<Conference> listConferenceOrganizedBy(User organizer) {
+        List<Conference> organizerConferenceList = new ArrayList<>();
+        for (Conference conference : fldConferenceList) {
+            if (conference.getConferenceOrganizer().getUserId() == organizer.getUserId()) {
+                organizerConferenceList.add(conference);
+            }
+        }
+        return organizerConferenceList;
     }
 
     @Override
     public Conference getConferenceById(int conferenceId) {
+        for (Conference conference : fldConferenceList) {
+            if (conference.getId() == conferenceId) {
+                return conference;
+            }
+        }
         return null;
     }
+
     @Override
-    public List<User> listReviewers(int conferenceId) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'listReviewers'");
-    }
-    @Override
-    public List<User> listAuthors(int conferenceId) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'listAuthors'");
-    }
-    @Override
-    public List<Paper> listPapers(int conferenceId) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'listPapers'");
-    }
-    @Override
-    public List<PaperReview> listReviews(int conferenceId) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'listReviews'");
-    }
-    @Override
-    public User getConferenceOrganizer(int conferenceId) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'getConferenceOrganizer'");
+    public Conference getConferenceOf(Paper paper) {
+        return paper.getConference();
     }
 
 

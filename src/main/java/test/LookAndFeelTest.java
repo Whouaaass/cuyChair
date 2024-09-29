@@ -2,6 +2,7 @@ package test;
 
 import context.AppContext;
 import dataAccess.conference.RepositorySQLiteConference;
+import dataAccess.conferenceParticipation.RepositoryArrayListConferenceParticipation;
 import dataAccess.paper.RepositorySQLitePaper;
 import dataAccess.paperReview.RepositorySQLitePaperReview;
 import dataAccess.user.RepositorySQLiteUser;
@@ -27,7 +28,7 @@ public class LookAndFeelTest implements ActionListener {
     // Specify the look and feel to use by defining the LOOKANDFEEL constant
     // Valid values are: null (use the default), "Metal", "System", "Motif",
     // and "GTK"
-    final static String LOOKANDFEEL = "System";
+    final static String LOOKANDFEEL = "Metal";
 
     // If you choose the Metal L&F, you can also choose a theme.
     // Specify the theme to use by defining the THEME constant
@@ -150,9 +151,10 @@ public class LookAndFeelTest implements ActionListener {
         RepositorySQLiteUser objRepositoryArrayListUser = new RepositorySQLiteUser();
         RepositorySQLiteConference objRepositoryArrayListConference = new RepositorySQLiteConference();
         RepositorySQLitePaperReview objRepositoryArrayListPaperReview = new RepositorySQLitePaperReview();
-        RepositorySQLitePaper objRepositoryArrayListPaper = new RepositorySQLitePaper();       
+        RepositorySQLitePaper objRepositoryArrayListPaper = new RepositorySQLitePaper();
+        RepositoryArrayListConferenceParticipation objRepositoryArrayListConferenceParticipation = new RepositoryArrayListConferenceParticipation();
         
-        AppContext.init(objRepositoryArrayListConference, objRepositoryArrayListUser, objRepositoryArrayListPaper, objRepositoryArrayListPaperReview);
+        AppContext.init(objRepositoryArrayListConference, objRepositoryArrayListUser, objRepositoryArrayListPaper, objRepositoryArrayListPaperReview, objRepositoryArrayListConferenceParticipation);
         ViewLogIn objViewLogIn=new ViewLogIn();
         objViewLogIn.setVisible(true);        
     }

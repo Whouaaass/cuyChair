@@ -5,6 +5,7 @@
 package test;
 import dataAccess.paper.RepositoryArrayListPaper;
 import dataAccess.paper.RepositorySQLitePaper;
+import domain.Conference;
 import domain.Paper;
 import domain.User;
 import drivers.PaperStoreService;
@@ -23,8 +24,9 @@ public class testPaper {
         PaperStoreService objPaperStoreService = new PaperStoreService(objRepositorySQLitePaper);
         //Admin
         User objUserAuthor = new User();
+        Conference objConference = new Conference();
         //Conferencia a comparar
-        Paper objPaper = new Paper("Matematica1","Mucha matematica",objUserAuthor);
+        Paper objPaper = new Paper("Matematica1","Mucha matematica",objUserAuthor, objConference);
         objPaperStoreService.storePaper(objPaper);
         assertEquals(objPaper.getTitle(),objPaperStoreService.listPapers().getFirst().getTitle());
     }
@@ -35,8 +37,9 @@ public class testPaper {
         PaperStoreService objPaperStoreService = new PaperStoreService(objRepositoryArrayListPaper);
         //Admin
         User objUserAuthor = new User();
+        Conference objConference = new Conference();
         //Conferencia a comparar
-        Paper objPaper = new Paper("Matematica1","Mucha matematica",objUserAuthor);
+        Paper objPaper = new Paper("Matematica1","Mucha matematica",objUserAuthor, objConference);
         objPaperStoreService.storePaper(objPaper);
         assertEquals(objPaper.getTitle(),objPaperStoreService.listPapers().getFirst().getTitle());
     }

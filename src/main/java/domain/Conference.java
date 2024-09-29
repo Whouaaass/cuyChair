@@ -10,9 +10,10 @@ import java.util.List;
 
 /**
  * Modelo de una conferencia
+ *
  * @author julia
  */
-public class Conference {    
+public class Conference {
     //Id de la conferencia
     private int fldId;
     //Titulo de la conferencia
@@ -24,75 +25,36 @@ public class Conference {
     //Organizador de la conferencia
     protected User fldConferenceOrganizer;
     //Fecha 
-    private Date fldDate;    
+    private Date fldDate;
     //Lista de papers
     protected List<Paper> fldPapers;
     //Lista de reviews
     protected List<PaperReview> fldReviews;
+
     //Lista de revisores
-    protected List<User> fldReviewers;
-    //Lista de asistentes
-    protected List<User> fldAuthors;
+    protected List<ConferenceParticipation> fldParticipations;
 
-    /**
-     * Instancia una nueva conferencia
-     * Este constructor es usado cuando se quiere instanciar una nueva conferencia con todos los datos
-     * @param id
-     * @param title
-     * @param description
-     * @param city
-     * @param date
-     * @param conferenceAdmin
-     * @param papers
-     * @param reviews
-     * @param authors
-     */
-    public Conference(
-            int id,
-            String title,
-            String description,
-            String city, Date date,
-            User conferenceAdmin,
-            List<Paper> papers,
-            List<PaperReview> reviews,
-            List<User> authors
-    ) {
-        this(title,description,date,city);
+    public Conference(int id, String title, String description, String city, Date date, User conferenceOrganizer, List<Paper> papers, List<ConferenceParticipation> participations) {
+        this(title, description, city, date, conferenceOrganizer);
         fldId = id;
-        this.fldConferenceOrganizer = conferenceAdmin;
+        this.fldConferenceOrganizer = conferenceOrganizer;
+        this.fldParticipations = participations;
     }
 
-    /**
-     * Instancia una nueva conferencia
-     * Este constructor es utilizado cuando se quiere traer una conferencia del repositorio
-     * @param id
-     * @param title
-     * @param description
-     * @param date
-     * @param city
-     */
-    public Conference(int id, String title, String description, Date date, String city) {
-        this(title, description, date, city);
+    public Conference(int id, String title, String description, String city, Date date, User conferenceAdmin) {
+        this(title, description, city, date, conferenceAdmin);
         fldId = id;
     }
 
-    /**
-     * Instancia una nueva conferencia
-     * Este constructor es utilizado cuando el usuario "crea" una nueva conferencia
-     * @param title Titulo
-     * @param description Description
-     * @param date Fecha de Inicio
-     * @param city Ciudad
-     */
-    public Conference(String title, String description, Date date, String city) {
+    public Conference(String title, String description, String city, Date date, User conferenceOrganizer) {
         this.fldTitle = title;
         this.fldDescription = description;
         this.fldDate = date;
         this.fldCity = city;
-        this.fldAuthors = new ArrayList<User>();
-        this.fldPapers = new ArrayList<Paper>();
-        this.fldReviewers = new ArrayList<User>();
-        this.fldReviews = new ArrayList<PaperReview>();
+        this.fldConferenceOrganizer = conferenceOrganizer;
+        this.fldPapers = new ArrayList<>();
+        this.fldParticipations = new ArrayList<>();
+        this.fldReviews = new ArrayList<>();
     }
 
     /**
@@ -106,7 +68,7 @@ public class Conference {
         return fldId;
     }
 
-    public void setFldId(int fldId) {
+    public void setId(int fldId) {
         this.fldId = fldId;
     }
 
@@ -116,14 +78,14 @@ public class Conference {
 
     public void setDate(Date fldDate) {
         this.fldDate = fldDate;
-    }   
-    
-    public String getCiudad() {
+    }
+
+    public String getCity() {
         return fldCity;
     }
 
-    public void setCiudad(String fldCiudad) {
-        this.fldCity = fldCiudad;
+    public void setCity(String city) {
+        this.fldCity = city;
     }
 
     public String getTitle() {
@@ -148,8 +110,8 @@ public class Conference {
 
     public void setConferenceAdmin(User fldConferenceAdmin) {
         this.fldConferenceOrganizer = fldConferenceAdmin;
-    }   
-    
+    }
+
     public List<Paper> getPapers() {
         return fldPapers;
     }
@@ -158,20 +120,12 @@ public class Conference {
         this.fldPapers = fldPapers;
     }
 
-    public List<User> getReviewers() {
-        return fldReviewers;
+    public List<ConferenceParticipation> getParticipations() {
+        return fldParticipations;
     }
 
-    public void setReviewers(List<User> fldReviewers) {
-        this.fldReviewers = fldReviewers;
-    }
-
-    public List<User> getAuthors() {
-        return fldAuthors;
-    }
-
-    public void setAuthors(List<User> fldAuthors) {
-        this.fldAuthors = fldAuthors;
+    public void setParticipations(List<ConferenceParticipation> fldParticipations) {
+        this.fldParticipations = fldParticipations;
     }
 
     public List<PaperReview> getReviews() {
@@ -180,6 +134,6 @@ public class Conference {
 
     public void setReviews(List<PaperReview> fldReviews) {
         this.fldReviews = fldReviews;
-    }   
-    
+    }
+
 }

@@ -499,7 +499,7 @@
     </routine>
     <schema id="191" parent="1" name="main">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-09-28.17:36:26</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-09-29.07:43:03</LastIntrospectionLocalTimestamp>
     </schema>
     <argument id="192" parent="16">
       <ArgumentDirection>R</ArgumentDirection>
@@ -1590,28 +1590,249 @@
     <argument id="554" parent="190">
       <Position>1</Position>
     </argument>
-    <table id="555" parent="191" name="sqlite_master">
+    <table id="555" parent="191" name="Conference"/>
+    <table id="556" parent="191" name="Jobs"/>
+    <table id="557" parent="191" name="Paper"/>
+    <table id="558" parent="191" name="PaperReview"/>
+    <table id="559" parent="191" name="User"/>
+    <table id="560" parent="191" name="UserConference"/>
+    <table id="561" parent="191" name="sqlite_master">
       <System>1</System>
     </table>
-    <column id="556" parent="555" name="type">
+    <table id="562" parent="191" name="sqlite_sequence">
+      <System>1</System>
+    </table>
+    <column id="563" parent="555" name="id">
       <Position>1</Position>
-      <StoredType>TEXT|0s</StoredType>
+      <StoredType>INTEGER|0s</StoredType>
     </column>
-    <column id="557" parent="555" name="name">
+    <column id="564" parent="555" name="title">
+      <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="558" parent="555" name="tbl_name">
+    <column id="565" parent="555" name="description">
+      <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="559" parent="555" name="rootpage">
+    <column id="566" parent="555" name="city">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="567" parent="555" name="date">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="568" parent="555" name="adminId">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <foreign-key id="569" parent="555">
+      <ColNames>adminId</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>User</RefTableName>
+    </foreign-key>
+    <key id="570" parent="555">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="571" parent="556" name="id">
+      <Position>1</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <column id="572" parent="556" name="conferenceId">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>integer|0s</StoredType>
+    </column>
+    <column id="573" parent="556" name="paperId">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <foreign-key id="574" parent="556">
+      <ColNames>conferenceId</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>Conference</RefTableName>
+    </foreign-key>
+    <foreign-key id="575" parent="556">
+      <ColNames>paperId</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>Paper</RefTableName>
+    </foreign-key>
+    <key id="576" parent="556">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="577" parent="557" name="id">
+      <Position>1</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <column id="578" parent="557" name="title">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="579" parent="557" name="description">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="580" parent="557" name="conferenceId">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <column id="581" parent="557" name="userId">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <column id="582" parent="557" name="documentLink">
+      <Position>6</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <foreign-key id="583" parent="557">
+      <ColNames>conferenceId</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>Conference</RefTableName>
+    </foreign-key>
+    <foreign-key id="584" parent="557">
+      <ColNames>userId</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>User</RefTableName>
+    </foreign-key>
+    <key id="585" parent="557">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <check id="586" parent="558">
+      <Predicate>approved in (&apos;TRUE&apos;, &apos;FALSE&apos;)</Predicate>
+    </check>
+    <column id="587" parent="558" name="id">
+      <Position>1</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <column id="588" parent="558" name="paperId">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <column id="589" parent="558" name="reviewerId">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <column id="590" parent="558" name="approved">
+      <Position>4</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <foreign-key id="591" parent="558">
+      <ColNames>paperId</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>Paper</RefTableName>
+    </foreign-key>
+    <foreign-key id="592" parent="558">
+      <ColNames>reviewerId</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>User</RefTableName>
+    </foreign-key>
+    <key id="593" parent="558">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="594" parent="559" name="id">
+      <AutoIncrement>1</AutoIncrement>
+      <Position>1</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <column id="595" parent="559" name="name">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="596" parent="559" name="lastName">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="597" parent="559" name="hashedPassword">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="598" parent="559" name="email">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <key id="599" parent="559">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="600" parent="560" name="id">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>integer|0s</StoredType>
+    </column>
+    <column id="601" parent="560" name="userId">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>integer|0s</StoredType>
+    </column>
+    <column id="602" parent="560" name="conferenceId">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>integer|0s</StoredType>
+    </column>
+    <column id="603" parent="560" name="rol">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>integer|0s</StoredType>
+    </column>
+    <foreign-key id="604" parent="560">
+      <ColNames>userId</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>User</RefTableName>
+    </foreign-key>
+    <foreign-key id="605" parent="560">
+      <ColNames>conferenceId</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>Conference</RefTableName>
+    </foreign-key>
+    <key id="606" parent="560">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="607" parent="561" name="type">
+      <Position>1</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="608" parent="561" name="name">
+      <Position>2</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="609" parent="561" name="tbl_name">
+      <Position>3</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="610" parent="561" name="rootpage">
       <Position>4</Position>
       <StoredType>INT|0s</StoredType>
     </column>
-    <column id="560" parent="555" name="sql">
+    <column id="611" parent="561" name="sql">
       <Position>5</Position>
       <StoredType>TEXT|0s</StoredType>
+    </column>
+    <column id="612" parent="562" name="name">
+      <Position>1</Position>
+    </column>
+    <column id="613" parent="562" name="seq">
+      <Position>2</Position>
     </column>
   </database-model>
 </dataSource>

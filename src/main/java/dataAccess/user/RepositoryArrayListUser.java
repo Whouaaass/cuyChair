@@ -4,7 +4,8 @@
  */
 package dataAccess.user;
 
-import domain.User;
+import domain.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,5 +66,41 @@ public class RepositoryArrayListUser implements IRepositoryUser {
             }
         }
         return false;
+    }
+
+    @Override
+    public List<User> listUsersRelatedTo(Conference conference) {
+        List<User> newList = new ArrayList<>();
+        for (ConferenceParticipation participation : conference.getParticipations()) {
+            newList.add(participation.getParticipant());
+        }
+        return newList;
+    }
+
+    @Override
+    public List<User> listUsersRelatedTo(Conference conference, ConferenceParticipation.Role role) {
+        List<User> newList = new ArrayList<>();
+        for (ConferenceParticipation participation : conference.getParticipations()) {
+            if (participation.getRole() == role) {
+                newList.add(participation.getParticipant());
+            }
+        }
+        return newList;
+    }
+
+    @Override
+    public User getUserOrganizerOf(Conference conference) {
+
+        return conference.getConferenceOrganizer();
+    }
+
+    @Override
+    public User getReviewerOf(PaperReview paperReview) {
+        return paperReview.getReviewer();
+    }
+
+    @Override
+    public User getAuthorOf(Paper paper) {
+        return paper.getAuthor();
     }
 }

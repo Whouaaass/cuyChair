@@ -1,16 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package domain.sql;
 
 import java.util.List;
 
-import dataAccess.conference.IRepositoryConference;
-import domain.Conference;
-import domain.Paper;
-import domain.PaperReview;
-import domain.User;
+import context.AppContext;
+import dataAccess.conferenceParticipation.IRepositoryConferenceParticipation;
+import dataAccess.paper.IRepositoryPaper;
+import dataAccess.paperReview.IRepositoryPaperReview;
+import dataAccess.user.IRepositoryUser;
+import domain.*;
 
 /**
  * Es una conferencia que sobrecarga los métodos de get que implican una relacion
@@ -19,49 +16,40 @@ import domain.User;
  * @author Frdy
  */
 public class SQLConference extends Conference {
-    private IRepositoryConference conferenceRepo;
-    
-    public SQLConference(IRepositoryConference conferenceRepo) {
-        this.conferenceRepo = conferenceRepo;
-    }
-
-    @Override
-    public List<User> getReviewers() {
-        if (super.getReviewers() == null) {
-            super.fldReviewers = conferenceRepo.listReviewers(this.getId());
-        }
-        return super.fldReviewers;
-    }    
-
-    @Override
-    public List<User> getAuthors() {
-        if (super.getAuthors() == null) {
-            super.fldAuthors = conferenceRepo.listAuthors(this.getId());
-        }
-        return super.fldAuthors;
-    }
 
     @Override
     public List<Paper> getPapers() {
-        if (super.getPapers() == null) {
-            super.fldPapers = conferenceRepo.listPapers(this.getId());
+        IRepositoryPaper paperRepository = AppContext.getInstance().getRepositoryPaper();
+        if (super.fldPapers == null) {
+            super.fldPapers = paperRepository.listPapersFrom(this);
         }
         return super.fldPapers;
     }
 
     @Override
     public List<PaperReview> getReviews() {
-        if (super.getReviews() == null) {
-            super.fldReviews = conferenceRepo.listReviews(this.getId());
+        IRepositoryPaperReview paperReviewRepository = AppContext.getInstance().getRepositoryPaperReview();
+        if (super.fldReviews == null) {
+            super.fldReviews = paperReviewRepository.getPaperReviewsRelatedTo(this);
         }
         return super.fldReviews;
     }
 
     @Override
     public User getConferenceOrganizer() {
-        if (super.getConferenceOrganizer() == null) {
-            super.fldConferenceOrganizer = conferenceRepo.getConferenceOrganizer(this.getId());
+        IRepositoryUser userRepository = AppContext.getInstance().getRepositoryUser();
+        if (super.fldConferenceOrganizer == null) {
+            super.fldConferenceOrganizer = userRepository.getUserOrganizerOf(this);
         }
         return super.fldConferenceOrganizer;
+    }
+
+    @Override
+    public List<ConferenceParticipation> getParticipations() {
+        IRepositoryConferenceParticipation repositoryConferenceParticipation = AppContext.getInstance().getFldRepositoryConferenceParticipation();
+        if (super.fldParticipations == null) {
+            super.fldParticipations = repositoryConferenceParticipation.getParticipationsOf(this);
+        }
+        return super.fldParticipations;
     }
 }

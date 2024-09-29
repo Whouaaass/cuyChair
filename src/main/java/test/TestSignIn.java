@@ -1,5 +1,7 @@
 package test;
 import dataAccess.conference.RepositorySQLiteConference;
+import dataAccess.conferenceParticipation.IRepositoryConferenceParticipation;
+import dataAccess.conferenceParticipation.RepositoryArrayListConferenceParticipation;
 import dataAccess.paper.RepositorySQLitePaper;
 import dataAccess.paperReview.RepositorySQLitePaperReview;
 import dataAccess.user.RepositorySQLiteUser;
@@ -29,11 +31,11 @@ import views.ViewSignIn;
 public class TestSignIn {
     public static void main(String[] args){
         int varOpt=0;
-        Utilities objUtil = new Utilities();
         RepositorySQLiteUser objRepositoryArrayListUser = new RepositorySQLiteUser();
         RepositorySQLiteConference objRepositoryArrayListConference = new RepositorySQLiteConference();
         RepositorySQLitePaperReview objRepositoryArrayListPaperReview = new RepositorySQLitePaperReview();
         RepositorySQLitePaper objRepositoryArrayListPaper = new RepositorySQLitePaper();
+        IRepositoryConferenceParticipation objRepositoryArrayListConferenceParticipation = new RepositoryArrayListConferenceParticipation();
         Scanner objScan = new Scanner(System.in);
         //Menu de pruebas
         do{
@@ -41,13 +43,13 @@ public class TestSignIn {
             varOpt=objScan.nextInt();
             switch(varOpt){
                 case 1:
-                    objUtil.printResult(testPasswordReading());
+                    Utilities.printResult(testPasswordReading());
                     break;
                 case 2:
-                    objRepositoryArrayListUser=testGeneralSignIn(objRepositoryArrayListUser,objRepositoryArrayListConference,objRepositoryArrayListPaperReview,objRepositoryArrayListPaper);
+                    objRepositoryArrayListUser=testGeneralSignIn(objRepositoryArrayListUser,objRepositoryArrayListConference,objRepositoryArrayListPaperReview,objRepositoryArrayListPaper, objRepositoryArrayListConferenceParticipation);
                     break;
                 case 3:
-                    objUtil.printUser(objRepositoryArrayListUser.listUsers().getLast());
+                    Utilities.printUser(objRepositoryArrayListUser.listUsers().getLast());
                     break;
                 case 0:
                     System.out.println("Cerrando testing");
@@ -87,13 +89,13 @@ public class TestSignIn {
     }
     
     //Test para checkeo general de guardado de usuario
-    private static RepositorySQLiteUser testGeneralSignIn(RepositorySQLiteUser objRepositoryArrayListUser,RepositorySQLiteConference objRepositoryConference,
-            RepositorySQLitePaperReview objRepositoryPaperReview, RepositorySQLitePaper objRepositoryPaper){
+    private static RepositorySQLiteUser testGeneralSignIn(RepositorySQLiteUser objRepositoryArrayListUser, RepositorySQLiteConference objRepositoryConference,
+                                                          RepositorySQLitePaperReview objRepositoryPaperReview, RepositorySQLitePaper objRepositoryPaper, IRepositoryConferenceParticipation objRepositoryConferenceParticipacion){
         Utilities objUtil = new Utilities();
         try{            
             
             //Asociar el servicio de almacenamiento de usuario
-            AppContext.init(objRepositoryConference,objRepositoryArrayListUser,objRepositoryPaper,objRepositoryPaperReview);
+            AppContext.init(objRepositoryConference,objRepositoryArrayListUser,objRepositoryPaper,objRepositoryPaperReview, objRepositoryConferenceParticipacion);
             ViewSignIn objViewSignIn = new ViewSignIn();            
             //Lanzar interfaz
             objViewSignIn.setVisible(true);

@@ -4,20 +4,20 @@
  */
 package dataAccess.conference;
 
-import domain.Conference;
-import domain.Paper;
-import domain.PaperReview;
-import domain.User;
+import domain.*;
+
 import java.util.List;
 
 /**
+ * Interfaz que define los métodos del repositorio de conferencias
  *
  * @author julia
+ * @author Frdy
  */
 public interface IRepositoryConference {
     /**
      * Guarda una conferencia
-     * 
+     *
      * @param objConference obj conferencia a guardar
      * @return Si el almacenamiento fue correcto
      */
@@ -25,76 +25,48 @@ public interface IRepositoryConference {
 
     /**
      * Función que returna la lista total de conferencias
-     * 
+     *
      * @return
      */
     public List<Conference> listConference();
 
     /**
      * Funcion que retorna la lista de conferencias a las que asiste un usuario
-     * 
-     * @param objUser usuario asistente de las conferencias
+     *
      * @return la lista de conferencias a las que asiste un usuario
      */
-    public List<Conference> listConferenceByUserAssistant(int userId);
+    public List<Conference> listConferenceRelatedTo(User user);
+
+    /**
+     * Funcion que retorna las conferencias a las que un usuario esta asociado por un rol
+     *
+     * @param user
+     * @return
+     */
+    public List<Conference> listConferenceRelatedTo(User user, ConferenceParticipation.Role role);
 
     /**
      * Funcion que retorna la lista de conferencias que son propiedad del usuario
      * es decir, en las que el usurio es organizador
-     * 
-     * @param objUser usuario propietario de las conferencias
+     *
+     * @param organizer organizador de esas conferencias
      * @return la lista de conferencias que son propiedad del usuario
      */
-    public List<Conference> listConferenceByUserOwner(int ownerId);
-
-    /**
-     * Funcion que retorna una conferencia por id
-     * 
-     * @param conferenceId Id de conferencia
-     * @return una conferencia
-     */
-
-    /**
-     * Funcion que retorna una lista de revisores de una conferencia
-     * 
-     * @param conference
-     * @return
-     */
-    public List<User> listReviewers(int conferenceId);
-
-    /**
-     * Funcion que retorna una lista de autores de una conferencia
-     * 
-     * @param conference
-     * @return
-     */
-    public List<User> listAuthors(int conferenceId);
-
-    /**
-     * Funcion que retorna una lista de papers de una conferencia
-     * @param conferenceId
-     * @return
-     */
-    public List<Paper> listPapers(int conferenceId);
-
-    /**
-     * Funcion que retorna una lista de reviews de una conferencia
-     * @param conferenceId
-     * @return
-     */
-    public List<PaperReview> listReviews(int conferenceId);
+    public List<Conference> listConferenceOrganizedBy(User organizer);
 
     /**
      * Función que retorna una conferencia dado su id
-     * 
-     * @param conference
-     * @return
+     *
+     * @param conferenceId id de la conferencia
+     * @return Coferencia
      */
     public Conference getConferenceById(int conferenceId);
 
     /**
-     * Función que retorna el organizador de una conferencia
+     * Función que retorna la conferencia de un Paper
+     * @param paper paper
+     * @return conferencia asociada
      */
-    public User getConferenceOrganizer(int conferenceId);
-    
+    public Conference getConferenceOf(Paper paper);
+
 }

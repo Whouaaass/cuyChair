@@ -5,7 +5,7 @@
 package dataAccess.user;
 
 import dataAccess.ConnectionSqlitePool;
-import domain.User;
+import domain.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -19,19 +19,16 @@ import java.util.List;
  * @author Juan
  */
 public class RepositorySQLiteUser implements IRepositoryUser {
-
-
     /**
      * Genera una instancia del repositorio
      */
     public RepositorySQLiteUser() {
-        initDatabase();
     }
 
     @Override
     public boolean storeUser(User objUser) {
         boolean varFlag;
-        try (Connection connection=ConnectionSqlitePool.getConnection()){
+        try (Connection connection = ConnectionSqlitePool.getConnection()) {
             String insertUser = "INSERT INTO USER VALUES (?, ?, ?, ?, ?)";
 
             PreparedStatement pst = connection.prepareStatement(insertUser);
@@ -53,18 +50,12 @@ public class RepositorySQLiteUser implements IRepositoryUser {
     @Override
     public List<User> listUsers() {
         List<User> List = new ArrayList<>();
-        try (Connection connection=ConnectionSqlitePool.getConnection()){
+        try (Connection connection = ConnectionSqlitePool.getConnection()) {
             String listUser = "SELECT * FROM user";
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(listUser);
             while (rs.next()) {
-                User newUser = new User();
-                newUser.setUserId(rs.getInt("id"));
-                newUser.setUserName(rs.getString("name"));
-                newUser.setUserLastName(rs.getString("lastName"));
-                newUser.setUserPassword(rs.getString("hashedPassword"));
-                newUser.setUserEmail(rs.getString("email"));
-                List.add(newUser);
+                List.add(createUserFromRow(rs));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -76,20 +67,13 @@ public class RepositorySQLiteUser implements IRepositoryUser {
     @Override
     public User getUserByEmail(String email) {
 
-        try (Connection connection=ConnectionSqlitePool.getConnection()){
+        try (Connection connection = ConnectionSqlitePool.getConnection()) {
 
-             String selectEmail = "SELECT * FROM user WHERE email = ? ";
-             PreparedStatement pst = connection.prepareStatement(selectEmail);
-             pst.setString(1, email);
+            String selectEmail = "SELECT * FROM user WHERE email = ? ";
+            PreparedStatement pst = connection.prepareStatement(selectEmail);
+            pst.setString(1, email);
             ResultSet rs = pst.executeQuery();
-            User newUser = new User(
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    rs.getString("lastName"),
-                    rs.getString("hashedPassword"),
-                    rs.getString("email")
-            );
-
+            User newUser = createUserFromRow(rs);
             if (rs.wasNull()) {
                 return null;
             }
@@ -103,7 +87,7 @@ public class RepositorySQLiteUser implements IRepositoryUser {
 
     @Override
     public User getUserById(int userId) {
-        try (Connection connection=ConnectionSqlitePool.getConnection()){
+        try (Connection connection = ConnectionSqlitePool.getConnection()) {
 
             String selectId = "SELECT * FROM user WHERE id = ? ";
             PreparedStatement pst = connection.prepareStatement(selectId);
@@ -111,13 +95,7 @@ public class RepositorySQLiteUser implements IRepositoryUser {
 
             ResultSet rs = pst.executeQuery();
 
-            User newUser = new User(
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    rs.getString("lastName"),
-                    rs.getString("hashedPassword"),
-                    rs.getString("email")
-            );
+            User newUser = createUserFromRow(rs);
 
             if (rs.wasNull()) {
                 return null;
@@ -130,28 +108,104 @@ public class RepositorySQLiteUser implements IRepositoryUser {
         return null;
     }
 
-    public void initDatabase() {
-        try (Connection connection=ConnectionSqlitePool.getConnection()){
-            String tableUser = "CREATE TABLE IF NOT EXISTS User(\n "
-                    + "id Number PRIMARY KEY,\n"
-                    + "name text NOT NULL,\n"
-                    + "lastName text NOT NULL,\n"
-                    + "hashedPassword text NOT NULL,\n"
-                    + "email text NOT NULL\n"
-                    + ");";
-
-            Statement stm = connection.createStatement();
-            stm.execute(tableUser);
-            System.out.println("Tabla creada");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     @Override
-    public boolean modifyUser(int userId,String name, String lastName, String password, String description) {
+    public boolean modifyUser(int userId, String name, String lastName, String password, String description) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Override
+    public List<User> listUsersRelatedTo(Conference conference) {
+        String select = "SELECT User.* FROM User INNER JOIN UserConference ON User.id = User.id = UserConference.userId WHERE UserConference.conferenceId = ?";
+        List<User> newUsers = new ArrayList<>();
+        try (Connection conn = ConnectionSqlitePool.getConnection()) {
+            PreparedStatement pst = conn.prepareStatement(select);
+            pst.setInt(1, conference.getId());
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                newUsers.add(createUserFromRow(rs));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newUsers;
+    }
+
+    @Override
+    public List<User> listUsersRelatedTo(Conference conference, ConferenceParticipation.Role role) {
+        String select = "SELECT User.* FROM User INNER JOIN UserConference ON User.id = User.id = UserConference.userId WHERE UserConference.conferenceId = ? AND UserConference.rol = ? ";
+        List<User> newUsers = new ArrayList<>();
+        try (Connection conn = ConnectionSqlitePool.getConnection()) {
+            PreparedStatement pst = conn.prepareStatement(select);
+            pst.setInt(1, conference.getId());
+            pst.setInt(2, role.value());
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                newUsers.add(createUserFromRow(rs));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newUsers;
+    }
+
+    @Override
+    public User getUserOrganizerOf(Conference conference) {
+        String select = "SELECT User.* FROM User INNER JOIN Conference ON User.id = Conference.adminId WHERE Conference.id = ?";
+        User newUser = null;
+        try (Connection conn = ConnectionSqlitePool.getConnection()) {
+            PreparedStatement pst = conn.prepareStatement(select);
+            pst.setInt(1, conference.getId());
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                newUser = createUserFromRow(rs);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newUser;
+    }
+
+    @Override
+    public User getReviewerOf(PaperReview paperReview) {
+        String select = "SELECT User.* FROM User INNER JOIN PaperReview ON User.id = PaperReview.reviewerId WHERE PaperReview.id = ?";
+        User newUser = null;
+        try (Connection conn = ConnectionSqlitePool.getConnection()) {
+            PreparedStatement pst = conn.prepareStatement(select);
+            pst.setInt(1, paperReview.getReviewId());
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                newUser = createUserFromRow(rs);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newUser;
+    }
+
+    @Override
+    public User getAuthorOf(Paper paper) {
+        String select = "SELECT User.* FROM User INNER JOIN Paper ON User.id = Paper.userId WHERE Paper.id = ?";
+        User newUser = null;
+        try (Connection conn = ConnectionSqlitePool.getConnection()) {
+            PreparedStatement pst = conn.prepareStatement(select);
+            pst.setInt(1, paper.getId());
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                newUser = createUserFromRow(rs);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newUser;
+    }
+
+    private User createUserFromRow(ResultSet rs) throws SQLException {
+        User user = new User();
+        user.setUserId(rs.getInt("id"));
+        user.setUserName(rs.getString("name"));
+        user.setUserLastName(rs.getString("lastName"));
+        user.setUserPassword(rs.getString("hashedPassword"));
+        user.setUserEmail(rs.getString("email"));
+        return user;
+    }
 }

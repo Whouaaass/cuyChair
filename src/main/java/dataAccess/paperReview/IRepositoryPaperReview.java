@@ -4,6 +4,7 @@
  */
 package dataAccess.paperReview;
 
+import domain.Conference;
 import domain.PaperReview;
 import domain.Paper;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
 public interface IRepositoryPaperReview {
     
     /**
-     * guarda una revision de un paper (PaperReview)
+     * Guarda una revision de un paper (PaperReview)
      * @param objPaper revision a guardar
      * @return si se guardo la revision correctamente
      */
@@ -29,8 +30,15 @@ public interface IRepositoryPaperReview {
     public List<PaperReview> listPaperReview();
 
     /**
-     * obtiene el paperRevisado
+     * Obtiene la revision de un paper
      * @return paper
      */
-    public Paper getPaperReviewed(int paperReviewId);
+    public PaperReview getPaperReviewFrom(Paper paper);
+
+    /**
+     * Obtiene los papers de una conferencia
+     * @param conference conferencia de la cual obtener los papers
+     * @return Conferencia
+     */
+    public List<PaperReview> getPaperReviewsRelatedTo(Conference conference);
 }
