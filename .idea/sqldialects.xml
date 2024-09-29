@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/main/java/dataAccess/ConnectionSqlitePool.java" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositorySQLiteConference.java" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/src/main/java/dataAccess/conferenceParticipation/RepositorySQLiteConferenceParticipation.java" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/src/main/java/dataAccess/paper/RepositorySQLitePaper.java" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/src/main/java/dataAccess/paperReview/RepositorySQLitePaperReview.java" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/src/main/java/dataAccess/user/RepositorySQLiteUser.java" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/sqlScripts/SQLiteCreationScript.sql" dialect="SQLite" />
+  </component>
+</project>

@@ -4,20 +4,17 @@
  */
 package domain;
 
-import dataAccess.paperReview.RepositoryArrayListPaperReview;
-import dataAccess.user.RepositoryArrayListUser;
-import drivers.PaperReviewStoreService;
-import drivers.UserStoreService;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
+ * Modelo de una conferencia
  *
  * @author julia
  */
 public class Conference {
+    //Id de la conferencia
     private int fldId;
     //Titulo de la conferencia
     private String fldTitle;
@@ -26,73 +23,69 @@ public class Conference {
     //Ciudad de la conferencia
     private String fldCity;
     //Organizador de la conferencia
-    private User fldConferenceAdmin;
+    protected User fldConferenceOrganizer;
     //Fecha 
     private Date fldDate;
     //Lista de papers
-    private ArrayList<Paper> fldPapers = new ArrayList<Paper>();
-    //Lista de revisores
-    private ArrayList<User> fldReviewers = new ArrayList<User>();
-    //Lista de asistentes
-    private ArrayList<User> fldAuthors = new ArrayList<User>();
+    protected List<Paper> fldPapers;
     //Lista de reviews
-    private ArrayList<PaperReview> fldReviews = new ArrayList<PaperReview>();
-    
-    
-    public Conference(String fldTitle, Date fldDate,String fldDescription, String fldCiudad, User fldConferenceAdmin) {
-        this.fldTitle = fldTitle;
-        this.fldDate = fldDate;
-        this.fldDescription = fldDescription;
-        this.fldCity = fldCiudad;
-        this.fldConferenceAdmin = fldConferenceAdmin;    
-        this.fldAuthors = new ArrayList<User>();
-        this.fldPapers = new ArrayList<Paper>();
-        this.fldReviewers = new ArrayList<User>();
-        this.fldReviews = new ArrayList<PaperReview>();
-    }    
-    public Conference(String fldTitle, String Date,String fldDescription, String fldCiudad, User fldConferenceAdmin) {
-        this.fldTitle = fldTitle;
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        //Parsea la fecha
-        try{
-            this.fldDate = formatter.parse(Date);
-        }catch(ParseException ex){
+    protected List<PaperReview> fldReviews;
 
-        }
-        this.fldDescription = fldDescription;
-        this.fldCity = fldCiudad;
-        this.fldConferenceAdmin = fldConferenceAdmin;    
-        this.fldAuthors = new ArrayList<User>();
-        this.fldPapers = new ArrayList<Paper>();
-        this.fldReviewers = new ArrayList<User>();
-        this.fldReviews = new ArrayList<PaperReview>();
-    }    
-    public Conference(){
-        
+    //Lista de revisores
+    protected List<ConferenceParticipation> fldParticipations;
+
+    public Conference(int id, String title, String description, String city, Date date, User conferenceOrganizer, List<Paper> papers, List<ConferenceParticipation> participations) {
+        this(title, description, city, date, conferenceOrganizer);
+        fldId = id;
+        this.fldConferenceOrganizer = conferenceOrganizer;
+        this.fldParticipations = participations;
     }
-    
-    public int getFldId() {
+
+    public Conference(int id, String title, String description, String city, Date date, User conferenceAdmin) {
+        this(title, description, city, date, conferenceAdmin);
+        fldId = id;
+    }
+
+    public Conference(String title, String description, String city, Date date, User conferenceOrganizer) {
+        this.fldTitle = title;
+        this.fldDescription = description;
+        this.fldDate = date;
+        this.fldCity = city;
+        this.fldConferenceOrganizer = conferenceOrganizer;
+        this.fldPapers = new ArrayList<>();
+        this.fldParticipations = new ArrayList<>();
+        this.fldReviews = new ArrayList<>();
+    }
+
+    /**
+     * Instancia una conferencia vacia
+     */
+    public Conference() {
+
+    }
+
+    public int getId() {
         return fldId;
     }
 
-    public void setFldId(int fldId) {
+    public void setId(int fldId) {
         this.fldId = fldId;
     }
-    
+
     public Date getDate() {
         return fldDate;
     }
 
     public void setDate(Date fldDate) {
         this.fldDate = fldDate;
-    }   
-    
-    public String getCiudad() {
+    }
+
+    public String getCity() {
         return fldCity;
     }
 
-    public void setCiudad(String fldCiudad) {
-        this.fldCity = fldCiudad;
+    public void setCity(String city) {
+        this.fldCity = city;
     }
 
     public String getTitle() {
@@ -111,44 +104,36 @@ public class Conference {
         this.fldDescription = fldDescription;
     }
 
-    public User getConferenceAdmin() {
-        return fldConferenceAdmin;
+    public User getConferenceOrganizer() {
+        return fldConferenceOrganizer;
     }
 
     public void setConferenceAdmin(User fldConferenceAdmin) {
-        this.fldConferenceAdmin = fldConferenceAdmin;
+        this.fldConferenceOrganizer = fldConferenceAdmin;
     }
 
-    public ArrayList<Paper> getPapers() {
+    public List<Paper> getPapers() {
         return fldPapers;
     }
 
-    public void setPapers(ArrayList<Paper> fldPapers) {
+    public void setPapers(List<Paper> fldPapers) {
         this.fldPapers = fldPapers;
     }
 
-    public ArrayList<User> getReviewers() {
-        return fldReviewers;
+    public List<ConferenceParticipation> getParticipations() {
+        return fldParticipations;
     }
 
-    public void setReviewers(ArrayList<User> fldReviewers) {
-        this.fldReviewers = fldReviewers;
+    public void setParticipations(List<ConferenceParticipation> fldParticipations) {
+        this.fldParticipations = fldParticipations;
     }
 
-    public ArrayList<User> getAuthors() {
-        return fldAuthors;
-    }
-
-    public void setAuthors(ArrayList<User> fldAuthors) {
-        this.fldAuthors = fldAuthors;
-    }
-
-    public ArrayList<PaperReview> getReviews() {
+    public List<PaperReview> getReviews() {
         return fldReviews;
     }
 
-    public void setReviews(ArrayList<PaperReview> fldReviews) {
+    public void setReviews(List<PaperReview> fldReviews) {
         this.fldReviews = fldReviews;
     }
-    
+
 }

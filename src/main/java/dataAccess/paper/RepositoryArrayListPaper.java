@@ -5,27 +5,31 @@
 package dataAccess.paper;
 
 import dataAccess.user.RepositorySQLiteUser;
+import domain.Conference;
 import domain.Paper;
+import domain.PaperReview;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
 
 /**
- *
  * @author julia
  * @author Juan
  */
-public class RepositoryArrayListPaper implements IRepositoryPaper{
+public class RepositoryArrayListPaper implements IRepositoryPaper {
     private ArrayList<Paper> PaperList;
-     /**
+
+    /**
      * Instancia un objeto de la clase PaperStoreService
-     * @param objRepositoryPaperRef Repositorio que utilizara el servicio
      */
     public RepositoryArrayListPaper() {
-        this.PaperList = new ArrayList();
+        this.PaperList = new ArrayList<>();
     }
-     /**
+
+    /**
      * Guarda un paper
+     *
      * @param objPaper Paper a guardar
      * @return si el guardado fue correcto
      */
@@ -33,18 +37,30 @@ public class RepositoryArrayListPaper implements IRepositoryPaper{
     public boolean storePaper(Paper objPaper) {
         return PaperList.add(objPaper);
     }
-    /**
-     * Lista los papers
-     * @return lista de papers
-     */
+
     @Override
     public List<Paper> listPaper() {
-       return PaperList;
+        return PaperList;
     }
 
     @Override
     public Paper getPaperById(int paperId) {
+        for (Paper objPaper : PaperList) {
+            if (objPaper.getId() == paperId) {
+                return objPaper;
+            }
+        }
         return null;
+    }
+
+    @Override
+    public List<Paper> listPapersFrom(Conference conference) {
+        return conference.getPapers();
+    }
+
+    @Override
+    public Paper getPaperOfReview(PaperReview paperReview) {
+        return paperReview.getPaper();
     }
 
 

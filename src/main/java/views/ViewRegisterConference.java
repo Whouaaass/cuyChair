@@ -210,7 +210,7 @@ public class ViewRegisterConference extends javax.swing.JFrame {
             }
             
             //Pasamos las variables locales a un objeto
-            Conference objConference = new Conference(varTitle,objDate,varDescription,varCity,this.objAdminUser);
+            Conference objConference = new Conference(0, varTitle,varDescription, varCity, objDate,this.objAdminUser);
             //El objeto se manda a través de un servicio de almacenamiento
             boolean varFlag = this.objConferenceStoreService.storeConference(objConference);
             if (varFlag) {

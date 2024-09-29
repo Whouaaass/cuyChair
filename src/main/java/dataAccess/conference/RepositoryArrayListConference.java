@@ -4,10 +4,8 @@
  */
 package dataAccess.conference;
 
-import dataAccess.ConnectionSqlitePool;
-import domain.Conference;
-import domain.Paper;
-import domain.User;
+import domain.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +15,11 @@ import java.util.List;
  */
 public class RepositoryArrayListConference implements IRepositoryConference{
     private List<Conference> ListConference;
-    
+     /**
+     * Instancia un objeto de la clase ConferenceStoreService
+     */
     public RepositoryArrayListConference() {
-        this.ListConference=new ArrayList<>();
+        this.ListConference = new ArrayList<>();
     }
     /**
      * Guarda un Conference
@@ -41,27 +41,57 @@ public class RepositoryArrayListConference implements IRepositoryConference{
     }
 
     @Override
-    public List<Conference> listConferenceByUserAssistant(User objUser) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Conference> listConferenceRelatedTo(User user) {
+        List<Conference> conferenceList = new ArrayList<>();
+        for (ConferenceParticipation participation : user.getParticipations()) {
+            conferenceList.add(participation.getConference());
+        }
+        return conferenceList;
     }
 
     @Override
-    public List<Conference> listConferenceByUserOwner(User objUser) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Conference> listConferenceRelatedTo(User user, ConferenceParticipation.Role role) {
+        List<Conference> userConferenceList = new ArrayList<>();
+        for (ConferenceParticipation conference : user.getParticipations()) {
+            userConferenceList.add(conference.getConference());
+        }
+        return userConferenceList;
+    }
+
+    @Override
+    public List<Conference> listConferenceOrganizedBy(User organizer) {
+        List<Conference> organizerConferenceList = new ArrayList<>();
+        for (Conference conference : ListConference) {
+            if (conference.getConferenceOrganizer().getUserId() == organizer.getUserId()) {
+                organizerConferenceList.add(conference);
+            }
+        }
+        return organizerConferenceList;
     }
 
     @Override
     public Conference getConferenceById(int conferenceId) {
+        for (Conference conference : ListConference) {
+            if (conference.getId() == conferenceId) {
+                return conference;
+            }
+        }
         return null;
     }
+
     @Override
     public boolean addPaper(int idConference, Paper objPaper) {
         for(int i=0;i<this.ListConference.size();i++){
-            if(ListConference.get(i).getFldId()==idConference){
+            if(ListConference.get(i).getId()==idConference){
                 return this.ListConference.get(i).getPapers().add(objPaper);
             }
         }
         return false;
     }
-    
+    public Conference getConferenceOf(Paper paper) {
+        return paper.getConference();
+
+    }
+
+
 }

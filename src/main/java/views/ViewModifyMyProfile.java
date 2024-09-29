@@ -24,11 +24,11 @@ public class ViewModifyMyProfile extends javax.swing.JFrame {
         AppContext appContext = AppContext.getInstance();
         fldUser=appContext.getLoggedUser(); 
         this.fldUserStoreService=new UserStoreService(appContext.getRepositoryUser());
+        initComponents();
         this.jTextAreaDescription.setText(fldUser.getDescription());
         this.jTextFieldName.setText(this.fldUser.getUserName());
         this.jTextFieldLastName.setText(this.fldUser.getUserLastName());
         this.jTextFieldPassword.setText(this.fldUser.getUserPassword());
-        initComponents();
     }
 
     /**

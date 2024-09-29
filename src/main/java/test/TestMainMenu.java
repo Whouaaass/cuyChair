@@ -5,6 +5,9 @@
 package test;
 
 import dataAccess.conference.RepositorySQLiteConference;
+import dataAccess.conferenceParticipation.IRepositoryConferenceParticipation;
+import dataAccess.conferenceParticipation.RepositoryArrayListConferenceParticipation;
+import dataAccess.conferenceParticipation.RepositorySQLiteConferenceParticipation;
 import dataAccess.paper.RepositorySQLitePaper;
 import dataAccess.paperReview.RepositorySQLitePaperReview;
 import dataAccess.user.RepositorySQLiteUser;
@@ -28,10 +31,11 @@ public class TestMainMenu {
             RepositorySQLiteConference objRepositoryArrayListConference = new RepositorySQLiteConference();
             RepositorySQLitePaperReview objRepositoryArrayListPaperReview = new RepositorySQLitePaperReview();
             RepositorySQLitePaper objRepositoryArrayListPaper = new RepositorySQLitePaper();
+            RepositorySQLiteConferenceParticipation objRepositoryConferenceParticipation = new RepositorySQLiteConferenceParticipation();
             
             User objUser = new User(1,"MiNombre","MiApellido","1234Jm","jm@gmail.com");
             AppContext.getInstance().setLoggedUser(objUser);
-            AppContext.init(objRepositoryArrayListUser,objRepositoryArrayListPaper,objRepositoryArrayListPaperReview,objRepositoryArrayListConference);
+            AppContext.init(objRepositoryArrayListConference,objRepositoryArrayListUser,objRepositoryArrayListPaper,objRepositoryArrayListPaperReview, objRepositoryConferenceParticipation);
             ViewMainMenu objViewMainMenu=new ViewMainMenu();
             objViewMainMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             objViewMainMenu.setVisible(true);

@@ -4,6 +4,8 @@
  */
 package dataAccess.paperReview;
 
+import domain.Conference;
+import domain.Paper;
 import domain.PaperReview;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,6 @@ public class RepositoryArrayListPaperReview implements IRepositoryPaperReview{
     private ArrayList<PaperReview> PaperReviewList;
      /**
      * Instancia un objeto de la clase PaperReviewStoreService
-     * @param objRepositoryPaperReview Repositorio que utilizara el servicio
      */
     public RepositoryArrayListPaperReview() {
         this.PaperReviewList = new ArrayList();
@@ -38,5 +39,26 @@ public class RepositoryArrayListPaperReview implements IRepositoryPaperReview{
     @Override
     public List<PaperReview> listPaperReview() {
         return this.PaperReviewList;
+    }
+
+    @Override
+    public PaperReview getPaperReviewFrom(Paper paper) {
+        for (PaperReview objPaperReview : this.PaperReviewList) {
+            if (objPaperReview.getPaper().equals(paper)) {
+                return objPaperReview;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<PaperReview> getPaperReviewsRelatedTo(Conference conference) {
+        List<PaperReview> varList = new ArrayList<>();
+        for (PaperReview objPaperReview : this.PaperReviewList) {
+            if (conference.getPapers().contains(objPaperReview.getPaper())) {
+                varList.add(objPaperReview);
+            }
+        }
+        return varList;
     }
 }

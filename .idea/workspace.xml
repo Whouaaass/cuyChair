@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2c59f33-f5ea-4a98-a39c-8d051ca85c2d" name="Changes" comment="Bases de datos paper review y modifiaciones bases paper">
+    <list default="true" id="c2c59f33-f5ea-4a98-a39c-8d051ca85c2d" name="Changes" comment="Merge con el último cambio, alta probabilidad de errores">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dataAccess/DelateTable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/infra/Observer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/infra/Subject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBd.db" beforeDir="false" afterPath="$PROJECT_DIR$/MyBd.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositoryArrayListConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositoryArrayListConference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositorySQLiteConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositorySQLiteConference.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/drivers/ConferenceStoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/drivers/ConferenceStoreService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewAssistantConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewAssistantConference.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewMyConferences.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewMyConferences.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewRegisterConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewRegisterConference.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/test/testConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/testConference.java" afterDir="false" />
     </list>
@@ -20,6 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
+        <option value="JUnit5 Test Class" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -27,6 +32,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -37,26 +45,135 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DelateTable.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LookAndFeelTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestSignIn.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.testConference.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.testPaperReview.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/usuario/Documents/Semestre 6/Ing.Software2/Ejemplos/LayersExample&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.LookAndFeelTest.executor": "Run",
+    "Application.TestSignIn.executor": "Run",
+    "JUnit.SQLUtilsTest.dbCreationScript.executor": "Run",
+    "JUnit.SQLUtilsTest.executor": "Run",
+    "JUnit.testConference.executor": "Run",
+    "JUnit.testPaper.executor": "Run",
+    "JUnit.testPaperReview.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "Merging main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Universidad/IngenieriaDeSoftwareII/cuyChair",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\usuario\Documents\Semestre 6\Ing.Software2\cuyChair" />
-      <recent name="C:\Users\usuario\Documents\Semestre 6\Ing.Software2\cuyChair\src" />
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
     </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="utilities" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.testUser">
+    <configuration name="LookAndFeelTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.LookAndFeelTest" />
+      <module name="CuyChair" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="testConference" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CuyChair" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.testConference" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="testPaper" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CuyChair" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.testPaper" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="testPaperReview" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CuyChair" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.testPaperReview" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="testUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CuyChair" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.testUser" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.testUser" />
+        <item itemvalue="JUnit.testPaperReview" />
+        <item itemvalue="JUnit.testPaper" />
+        <item itemvalue="JUnit.testConference" />
+        <item itemvalue="Application.LookAndFeelTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -66,6 +183,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1727024150635</updated>
+      <workItem from="1727543039047" duration="33376000" />
+      <workItem from="1727592415844" duration="5182000" />
     </task>
     <task id="LOCAL-00001" summary="Agregando autor">
       <option name="closed" value="true" />
@@ -86,9 +205,40 @@
     <option name="localTasksCounter" value="3" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Agregando autor" />
     <MESSAGE value="Bases de datos paper review y modifiaciones bases paper" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bases de datos paper review y modifiaciones bases paper" />
+    <MESSAGE value="Merge con el último cambio, alta probabilidad de errores" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge con el último cambio, alta probabilidad de errores" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/utilities/SQLUtilsTest.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositorySQLiteConference.java</url>
+          <line>134</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

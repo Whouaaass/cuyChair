@@ -4,7 +4,10 @@
  */
 package dataAccess.paper;
 
+import domain.Conference;
 import domain.Paper;
+import domain.PaperReview;
+
 import java.util.List;
 
 /**
@@ -33,4 +36,19 @@ public interface IRepositoryPaper {
      * @return 
      */
     public Paper getPaperById(int paperId);
+
+    /**
+     * Obtiene los papers de una conferencia
+     * @param conference
+     * @return
+     */
+    public List<Paper> listPapersFrom(Conference conference);
+
+
+    /**
+     * Obtiene el paper de una revision
+     * @param paperReview revision
+     * @return paper
+     */
+    public Paper getPaperOfReview(PaperReview paperReview);
 }
