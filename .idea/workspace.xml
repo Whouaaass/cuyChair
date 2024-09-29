@@ -5,31 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2c59f33-f5ea-4a98-a39c-8d051ca85c2d" name="Changes" comment="Merge con el último cambio, alta probabilidad de errores y se inhabilitaron funcionalidades de&#10;paper&#10;addJob">
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/sql/SQLConferenceParticipation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/context/AppContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/context/AppContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/DelateTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/DelateTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositoryArrayListConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositoryArrayListConference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conferenceParticipation/IRepositoryConferenceParticipation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conferenceParticipation/IRepositoryConferenceParticipation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conferenceParticipation/RepositoryArrayListConferenceParticipation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conferenceParticipation/RepositoryArrayListConferenceParticipation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conferenceParticipation/RepositorySQLiteConferenceParticipation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conferenceParticipation/RepositorySQLiteConferenceParticipation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/paper/RepositoryArrayListPaper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/paper/RepositoryArrayListPaper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/paperReview/RepositoryArrayListPaperReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/paperReview/RepositoryArrayListPaperReview.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/user/RepositoryArrayListUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/user/RepositoryArrayListUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Conference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Conference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/ConferenceParticipation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/ConferenceParticipation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/drivers/ConferenceStoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/drivers/ConferenceStoreService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewLogIn.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewLogIn.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewLogIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewLogIn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewMyConferences.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewMyConferences.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewMyConferences.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewMyConferences.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewRegisterConference.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewRegisterConference.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewRegisterConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewRegisterConference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewSignIn.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewSignIn.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewSignIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewSignIn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewUploadPaper.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewUploadPaper.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewUploadPaper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewUploadPaper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,36 +37,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.LookAndFeelTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestSignIn.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SQLUtilsTest.dbCreationScript.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SQLUtilsTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.testConference.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.testPaper.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.testPaperReview.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Universidad/IngenieriaDeSoftwareII/cuyChair&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.LookAndFeelTest.executor": "Run",
+    "Application.TestSignIn.executor": "Run",
+    "JUnit.SQLUtilsTest.dbCreationScript.executor": "Run",
+    "JUnit.SQLUtilsTest.executor": "Run",
+    "JUnit.testConference.executor": "Run",
+    "JUnit.testPaper.executor": "Run",
+    "JUnit.testPaperReview.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "devFdy",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Universidad/IngenieriaDeSoftwareII/cuyChair",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
