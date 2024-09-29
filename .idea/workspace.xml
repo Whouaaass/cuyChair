@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2c59f33-f5ea-4a98-a39c-8d051ca85c2d" name="Changes" comment="Bases de datos paper review y modifiaciones bases paper">
+    <list default="true" id="c2c59f33-f5ea-4a98-a39c-8d051ca85c2d" name="Changes" comment="Mejorando parseo de fechas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBd.db" beforeDir="false" afterPath="$PROJECT_DIR$/MyBd.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositoryArrayListConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositoryArrayListConference.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositorySQLiteConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositorySQLiteConference.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewRegisterConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewRegisterConference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/testConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/testConference.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,12 +81,29 @@
       <option name="project" value="LOCAL" />
       <updated>1727291596259</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Mejorando parseo de fechas">
+      <option name="closed" value="true" />
+      <created>1727462231256</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1727462231256</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Mejorando parseo de fechas">
+      <option name="closed" value="true" />
+      <created>1727462326256</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1727462326256</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Agregando autor" />
     <MESSAGE value="Bases de datos paper review y modifiaciones bases paper" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bases de datos paper review y modifiaciones bases paper" />
+    <MESSAGE value="Mejorando parseo de fechas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mejorando parseo de fechas" />
   </component>
 </project>
