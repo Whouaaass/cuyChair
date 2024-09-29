@@ -41,8 +41,11 @@ public interface IRepositoryConferenceParticipation {
 
     /**
      * Remueve una participacion de un usuario en una conferencia
-     * @param conferenceParticipation
-     * @return
+     * @param user
+     * @param conference
+     * @param rol
+     * @return si se removio la participacion
      */
-    public boolean RemoveParticipation(ConferenceParticipation conferenceParticipation);
+    public boolean RemoveParticipation(User user, Conference conference, ConferenceParticipation.Role rol);
+
 }

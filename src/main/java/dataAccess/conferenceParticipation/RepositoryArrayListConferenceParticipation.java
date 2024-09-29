@@ -60,12 +60,24 @@ public class RepositoryArrayListConferenceParticipation implements IRepositoryCo
     }
 
     @Override
-    public boolean RemoveParticipation(ConferenceParticipation conferenceParticipation) {
+    public boolean RemoveParticipation(User user, Conference conference, ConferenceParticipation.Role rol) {
         boolean flag;
-        flag = conferenceParticipation.getParticipant().getParticipations().remove(conferenceParticipation);
-        flag = flag && conferenceParticipation.getConference().getParticipations().remove(conferenceParticipation);
-        flag = flag && fldParticipations.remove(conferenceParticipation);
-        return flag;
+        ConferenceParticipation selectedParticipation = null;
+        for (ConferenceParticipation participation : fldParticipations) {
+            if (participation.getParticipant().getUserId() ==  user.getUserId() &&
+                    participation.getConference().getId() == conference.getId() &&
+                    participation.getRole() == rol
+            ) {
+                selectedParticipation = participation;
+            }
+        }
+        if (selectedParticipation != null) {
+            flag = selectedParticipation.getParticipant().getParticipations().remove(selectedParticipation);
+            flag = flag && selectedParticipation.getConference().getParticipations().remove(selectedParticipation);
+            flag = flag && fldParticipations.remove(selectedParticipation);
+            return flag;
+        }
+        return false;
     }
 
 }

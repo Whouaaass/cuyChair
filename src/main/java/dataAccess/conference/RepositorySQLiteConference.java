@@ -16,9 +16,6 @@ import utilities.DateUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
 /**
  * Repositorio de conferencias que utiliza SQLite
  * @author Juan
@@ -48,9 +45,7 @@ public class RepositorySQLiteConference implements IRepositoryConference {
 
     @Override
     public List<Conference> listConference() {
-        RepositorySQLiteUser repo = new RepositorySQLiteUser();
         List<Conference> list = new ArrayList<>();
-        Conference newConfe = new Conference();
         String listConference = "SELECT * FROM Conference";
         try (Connection connection = ConnectionSqlitePool.getConnection()) {
             Statement st = connection.createStatement();

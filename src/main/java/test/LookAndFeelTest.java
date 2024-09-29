@@ -16,6 +16,7 @@ import drivers.UserStoreService;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.JDBCType;
 import javax.swing.plaf.metal.*;
 import views.ViewLogIn;
 /**
@@ -56,7 +57,6 @@ public class LookAndFeelTest implements ActionListener {
         );
 
         return pane;
-        
         
     }
 
