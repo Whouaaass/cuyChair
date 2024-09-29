@@ -53,9 +53,19 @@ public class ConferenceStoreService extends Subject {
     public List<Conference> listAssistantConferences(User user) {
         return objRepositoryConferenceRef.listConferenceRelatedTo(user);
     }
+
+    public List<Conference> listConferenceByOwner(User user) {
+        return objRepositoryConferenceRef.listConferenceOrganizedBy(user);
+    }
     
     public List<Conference> listConferencesRelatedTo(User user, ConferenceParticipation.Role rol) {
         return objRepositoryConferenceRef.listConferenceRelatedTo(user, rol);
+    }
+
+    public List<Conference> listConferencesRelatedTo(User user) {
+        List<Conference> li = objRepositoryConferenceRef.listConferenceOrganizedBy(user);
+        li.addAll(objRepositoryConferenceRef.listConferenceRelatedTo(user));
+        return li;
     }
 
 

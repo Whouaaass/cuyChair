@@ -57,7 +57,7 @@ public class ViewMyConferences extends javax.swing.JFrame {
         DefaultTableModel model=(DefaultTableModel) this.jTableMyConferences.getModel();
         cleanTable();
         ArrayList<Conference> conferenceList
-                = (ArrayList<Conference>) this.objConferenceStoreService.listAssistantConferences(objUser);
+                = (ArrayList<Conference>) this.objConferenceStoreService.listConferenceByOwner(objUser);
         
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         
