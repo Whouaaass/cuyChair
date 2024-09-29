@@ -14,12 +14,12 @@ import java.util.List;
  * @author Juan
  */
 public class RepositoryArrayListConference implements IRepositoryConference{
-    private List<Conference> fldConferenceList;
+    private List<Conference> ListConference;
      /**
      * Instancia un objeto de la clase ConferenceStoreService
      */
     public RepositoryArrayListConference() {
-        this.fldConferenceList = new ArrayList<>();
+        this.ListConference = new ArrayList<>();
     }
     /**
      * Guarda un Conference
@@ -28,7 +28,7 @@ public class RepositoryArrayListConference implements IRepositoryConference{
      */
     @Override
     public boolean storeConference(Conference objConference) {
-        boolean varFlag=fldConferenceList.add(objConference);
+        boolean varFlag=ListConference.add(objConference);
         return varFlag;
     }
     /**
@@ -37,7 +37,7 @@ public class RepositoryArrayListConference implements IRepositoryConference{
      */
     @Override
     public List<Conference> listConference() {
-        return fldConferenceList;
+        return ListConference;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class RepositoryArrayListConference implements IRepositoryConference{
     @Override
     public List<Conference> listConferenceOrganizedBy(User organizer) {
         List<Conference> organizerConferenceList = new ArrayList<>();
-        for (Conference conference : fldConferenceList) {
+        for (Conference conference : ListConference) {
             if (conference.getConferenceOrganizer().getUserId() == organizer.getUserId()) {
                 organizerConferenceList.add(conference);
             }
@@ -71,7 +71,7 @@ public class RepositoryArrayListConference implements IRepositoryConference{
 
     @Override
     public Conference getConferenceById(int conferenceId) {
-        for (Conference conference : fldConferenceList) {
+        for (Conference conference : ListConference) {
             if (conference.getId() == conferenceId) {
                 return conference;
             }
@@ -80,8 +80,17 @@ public class RepositoryArrayListConference implements IRepositoryConference{
     }
 
     @Override
+    public boolean addPaper(int idConference, Paper objPaper) {
+        for(int i=0;i<this.ListConference.size();i++){
+            if(ListConference.get(i).getId()==idConference){
+                return this.ListConference.get(i).getPapers().add(objPaper);
+            }
+        }
+        return false;
+    }
     public Conference getConferenceOf(Paper paper) {
         return paper.getConference();
+
     }
 
 

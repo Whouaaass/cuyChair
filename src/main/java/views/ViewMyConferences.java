@@ -92,6 +92,7 @@ public class ViewMyConferences extends javax.swing.JFrame {
         jButtonRefresh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
 
         jPanelUp.setBackground(new java.awt.Color(199, 213, 224));
 

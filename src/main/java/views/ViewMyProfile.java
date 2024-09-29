@@ -46,6 +46,7 @@ public class ViewMyProfile extends javax.swing.JFrame {
         jLabelLastName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
 
         jPanel1.setBackground(new java.awt.Color(199, 213, 224));
 

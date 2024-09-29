@@ -71,6 +71,7 @@ public class ViewSignIn extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Usuario");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setLocationByPlatform(true);
         setResizable(false);
 
         jPanelCenter.setBackground(new java.awt.Color(27, 40, 56));

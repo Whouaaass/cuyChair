@@ -68,5 +68,12 @@ public interface IRepositoryConference {
      * @return conferencia asociada
      */
     public Conference getConferenceOf(Paper paper);
+    /**
+     * Añade un trabajo a la conferencia
+     * @param idConference
+     * @param objPaper
+     * @return si la operacion fue exitosa
+     */
+    public boolean addPaper(int idConference, Paper objPaper);
 
 }

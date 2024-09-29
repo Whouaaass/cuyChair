@@ -34,6 +34,7 @@ public class ViewMyPapers extends javax.swing.JFrame {
     {
        DefaultTableModel model= new DefaultTableModel();       
        model.addColumn("Titulo");       
+       model.addColumn("Autor");
        model.addColumn("Descripción");
        this.jTableMyPapers.setModel(model);
     }
@@ -58,7 +59,8 @@ public class ViewMyPapers extends javax.swing.JFrame {
             //Solo añade la fila si el usuario Id coincide con el del usuario logeado
             if(papersList.get(i).getAuthor().getUserId()==this.objUser.getUserId()){
                 Object [] row= { 
-                papersList.get(i).getAuthor(),
+                papersList.get(i).getTitle(),
+                papersList.get(i).getAuthor().getUserName(),
                 papersList.get(i).getDescription(),
                 };
                 model.addRow(row);
@@ -83,6 +85,7 @@ public class ViewMyPapers extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
 
         jPanel1.setBackground(new java.awt.Color(199, 213, 224));
 
@@ -93,18 +96,20 @@ public class ViewMyPapers extends javax.swing.JFrame {
         jTableMyPapers.setBackground(new java.awt.Color(172, 156, 124));
         jTableMyPapers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Titulo", "Descripcion"
+                "Titulo", "Autor", "Descripcion"
             }
         ));
         jScrollPane2.setViewportView(jTableMyPapers);
         if (jTableMyPapers.getColumnModel().getColumnCount() > 0) {
             jTableMyPapers.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTableMyPapers.getColumnModel().getColumn(1).setPreferredWidth(4);
+            jTableMyPapers.getColumnModel().getColumn(2).setPreferredWidth(15);
         }
 
         jButtonRefreshMyPapers.setText("Actualizar");
