@@ -4,7 +4,6 @@
  */
 package views;
 
-import dataAccess.user.RepositorySQLiteUser;
 import domain.User;
 import drivers.ConferenceStoreService;
 import drivers.PaperReviewStoreService;
@@ -14,8 +13,8 @@ import drivers.UserStoreService;
 import javax.swing.JFrame;
 
 import context.AppContext;
-import utilities.language.ILanguageController;
-import utilities.language.LanguageManager;
+import language.ILanguageController;
+import language.LanguageManager;
 
 /**
  *

@@ -5,29 +5,30 @@
 package domain;
 
 /**
- *
  * @author julia
- *  Modifi by Juan
+ * Modifi by Juan
  */
 public class Paper {
     private int fldId;
     private String fldTitle;
     private String fldDescription;
-    //Autor del trabajo
-    private User fldAuthor;
+    //Autor del articulo
+    protected User fldAuthor;
+    protected Conference fldConference;
 
-    public Paper(int fldId, String fldDescription, String fldTitle, User fldAutor) {
-        this(fldDescription,fldTitle,fldAutor);
+    public Paper(int fldId, String fldDescription, String fldTitle, User fldAutor, Conference fldConference) {
+        this(fldDescription, fldTitle, fldAutor, fldConference);
         this.fldId = fldId;
     }
 
-    public Paper(String fldTitle, String fldDescription, User fldAutor) {
+    public Paper(String fldTitle, String fldDescription, User fldAutor, Conference fldConference) {
         this.fldTitle = fldTitle;
         this.fldDescription = fldDescription;
         this.fldAuthor = fldAutor;
+        this.fldConference = fldConference;
     }
 
-    public Paper(){
+    public Paper() {
 
     }
 
@@ -62,6 +63,12 @@ public class Paper {
     public void setAuthor(User fldAutor) {
         this.fldAuthor = fldAutor;
     }
-    
-    
+
+    public Conference getConference() {
+        return fldConference;
+    }
+
+    public void setConference(Conference fldConference) {
+        this.fldConference = fldConference;
+    }
 }

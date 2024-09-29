@@ -68,10 +68,10 @@ public class ViewAssistantConference extends javax.swing.JFrame {
         for (int i = 0; i < conferenceList.size(); i++) {
             //Encontramos al usuario en la lista de usuarios de la conferencia
             
-            if(conferenceList.get(i).getConferenceAdmin().getUserId()==this.objUser.getUserId()){
+            if(conferenceList.get(i).getConferenceOrganizer().getUserId()==this.objUser.getUserId()){
                 Object [] row= { 
                     conferenceList.get(i).getTitle(),
-                    conferenceList.get(i).getCiudad(),
+                    conferenceList.get(i).getCity(),
                     conferenceList.get(i).getDescription(),
                     formatter.format(conferenceList.get(i).getDate())
                 };
@@ -99,6 +99,7 @@ public class ViewAssistantConference extends javax.swing.JFrame {
         jButtonRefresh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
 
         jPanel1.setBackground(new java.awt.Color(199, 213, 224));
 

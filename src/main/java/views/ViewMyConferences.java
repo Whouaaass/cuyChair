@@ -10,7 +10,6 @@ import domain.User;
 import drivers.ConferenceStoreService;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -63,10 +62,10 @@ public class ViewMyConferences extends javax.swing.JFrame {
         
         for (int i = 0; i < conferenceList.size(); i++) {
             //Solo añade la fila si el usuario Id coincide con el del usuario logeado
-            if(conferenceList.get(i).getConferenceAdmin().getUserId()==this.objUser.getUserId()){
+            if(conferenceList.get(i).getConferenceOrganizer().getUserId()==this.objUser.getUserId()){
                 Object [] row= { 
                 conferenceList.get(i).getTitle(),
-                conferenceList.get(i).getCiudad(),
+                conferenceList.get(i).getCity(),
                 conferenceList.get(i).getDescription(),
                 formatter.format(conferenceList.get(i).getDate())
                 };
@@ -92,6 +91,7 @@ public class ViewMyConferences extends javax.swing.JFrame {
         jButtonRefresh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
 
         jPanelUp.setBackground(new java.awt.Color(199, 213, 224));
 

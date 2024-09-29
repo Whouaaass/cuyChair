@@ -18,7 +18,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  *
@@ -33,10 +32,9 @@ public class RepositorySQLiteConference implements IRepositoryConference{
     @Override
     public boolean storeConference(Conference objConference) {
         String insertConference="INSERT INTO Conference VALUES(?, ?, ?, ?, ?, ?)";
-        Random random=new Random();
         try(Connection connection= ConnectionSqlitePool.getConnection()){
             PreparedStatement pst=connection.prepareStatement(insertConference);
-            pst.setInt(1,random.nextInt(350));
+            pst.setInt(1,objConference.getFldId());
             pst.setString(2,objConference.getTitle());
             pst.setString(3,objConference.getDescription());
             pst.setString(4,objConference.getCiudad());
@@ -68,9 +66,9 @@ public class RepositorySQLiteConference implements IRepositoryConference{
                String date=rs.getString(6);
                String year=date.substring(0,4);
                String mounth=date.substring(5,7);
-               if (mounth.charAt(0)=='0'){mounth=mounth.substring(1); }
+               if (mounth.contains("0")){mounth=mounth.substring(1); }
                String day=date.substring(8,10);
-               if (day.charAt(0)=='0'){day=day.substring(1); }
+               if (day.contains("0")){day=day.substring(1); }
                LocalDate ld=LocalDate.of(Integer.parseInt(year),Integer.parseInt(mounth),Integer.parseInt(day));
                //Parseo
                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -144,9 +142,9 @@ public class RepositorySQLiteConference implements IRepositoryConference{
             String date=rs.getString(6);
             String year=date.substring(0,4);
             String mounth=date.substring(5,7);
-            if (mounth.charAt(0)=='0'){mounth=mounth.substring(1); }
+            if (mounth.contains("0")){mounth=mounth.substring(1); }
             String day=date.substring(8,10);
-            if (day.charAt(0)=='0'){day=day.substring(1); }
+            if (day.contains("0")){day=day.substring(1); }
             LocalDate ld=LocalDate.of(Integer.parseInt(year),Integer.parseInt(mounth),Integer.parseInt(day));
             //Parseo
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

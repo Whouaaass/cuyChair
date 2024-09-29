@@ -35,6 +35,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
         this.objPaperStoreService= new PaperStoreService(appContext.getRepositoryPaper());
         this.setLocationRelativeTo(null);
         System.out.println("objUserStoreService:"+this.objUserStoreService.listUsers().getFirst().getUserName());
+        this.jLabelUsuario.setText("USUARIO: "+this.fldUser.getUserName()+" "+this.fldUser.getUserLastName());
     }
 
     public User getFldUser() {
@@ -57,6 +58,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
 
         jPanelMainMenu = new javax.swing.JPanel();
         jLabelImgLogo = new javax.swing.JLabel();
+        jLabelUsuario = new javax.swing.JLabel();
         jMenuBarOptions = new javax.swing.JMenuBar();
         jMenuPerfil = new javax.swing.JMenu();
         jMenuItemLookUserProfile = new javax.swing.JMenuItem();
@@ -70,6 +72,10 @@ public class ViewMainMenu extends javax.swing.JFrame {
         jMenuItemMyPapers = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        setMinimumSize(new java.awt.Dimension(200, 100));
+        setPreferredSize(new java.awt.Dimension(600, 500));
+        setSize(new java.awt.Dimension(200, 300));
 
         jPanelMainMenu.setBackground(new java.awt.Color(244, 240, 216));
         jPanelMainMenu.setLayout(new java.awt.BorderLayout());
@@ -79,10 +85,18 @@ public class ViewMainMenu extends javax.swing.JFrame {
         jLabelImgLogo.setMinimumSize(new java.awt.Dimension(10, 10));
         jPanelMainMenu.add(jLabelImgLogo, java.awt.BorderLayout.PAGE_END);
 
+        jLabelUsuario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabelUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelUsuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabelUsuario.setText("USUARIO: ");
+        jLabelUsuario.setAlignmentX(2.0F);
+        jPanelMainMenu.add(jLabelUsuario, java.awt.BorderLayout.PAGE_START);
+
         getContentPane().add(jPanelMainMenu, java.awt.BorderLayout.CENTER);
 
         jMenuBarOptions.setBackground(new java.awt.Color(199, 213, 224));
         jMenuBarOptions.setForeground(new java.awt.Color(27, 40, 56));
+        jMenuBarOptions.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         jMenuPerfil.setText("Perfil");
         jMenuPerfil.setFocusable(false);
@@ -238,6 +252,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem JmenuItemRegisterConference;
     private javax.swing.JLabel jLabelImgLogo;
+    private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JMenuBar jMenuBarOptions;
     private javax.swing.JMenu jMenuConferences;
     private javax.swing.JMenuItem jMenuItemAssistantConference;

@@ -6,62 +6,64 @@ package dataAccess.paper;
 
 import dataAccess.ConnectionSqlitePool;
 import dataAccess.user.RepositorySQLiteUser;
+import domain.Conference;
 import domain.Paper;
-import domain.User;
+import domain.PaperReview;
+import domain.sql.SQLPaper;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author julia
  */
-public class RepositorySQLitePaper implements IRepositoryPaper{
+public class RepositorySQLitePaper implements IRepositoryPaper {
 
-    public RepositorySQLitePaper() {
-        initDatabase();
-    }
+    public RepositorySQLitePaper() {}
+
     @Override
     public boolean storePaper(Paper objPaper) {
 
-        try (Connection conn=ConnectionSqlitePool.getConnection()){
-            String insertPaper = "INSERT INTO Paper VALUES(?, ?, ?, ?)";
+        try (Connection conn = ConnectionSqlitePool.getConnection()) {
+            String insertPaper = "INSERT INTO Paper(title, description, userId, conferenceId) VALUES(?, ?, ?, ?)";
 
-            PreparedStatement pst=conn.prepareStatement(insertPaper);
-            pst.setInt(1, objPaper.getId());
-            pst.setString(2, objPaper.getTitle());
-            pst.setString(3, objPaper.getDescription());
-            pst.setInt(4, objPaper.getAuthor().getUserId());
+            PreparedStatement pst = conn.prepareStatement(insertPaper);
+            pst.setString(1, objPaper.getTitle());
+            pst.setString(2, objPaper.getDescription());
+            pst.setInt(3, objPaper.getAuthor().getUserId());
+            pst.setInt(4, objPaper.getConference().getId());
             pst.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
         return true;
     }
+
     /**
      * Lista los papers
+     *
      * @return lista de papers
      */
     @Override
     public List<Paper> listPaper() {
-        RepositorySQLiteUser repoUser=new RepositorySQLiteUser();
-        ArrayList<Paper> List=new ArrayList<>();
-        try (Connection conn=ConnectionSqlitePool.getConnection()){
+        RepositorySQLiteUser repoUser = new RepositorySQLiteUser();
+        ArrayList<Paper> List = new ArrayList<>();
+        try (Connection conn = ConnectionSqlitePool.getConnection()) {
             String listPaper = "SELECT * FROM Paper";
 
-            Statement st= conn.createStatement();
-            ResultSet rs=st.executeQuery(listPaper);
-            while(rs.next()){
-                Paper newPaper=new Paper();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(listPaper);
+            while (rs.next()) {
+                Paper newPaper = new Paper();
                 newPaper.setId(rs.getInt(1));
                 newPaper.setTitle(rs.getString(2));
                 newPaper.setDescription(rs.getString(3));
                 newPaper.setAuthor(repoUser.getUserById(rs.getInt(4)));
                 List.add(newPaper);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return List;
@@ -69,47 +71,67 @@ public class RepositorySQLitePaper implements IRepositoryPaper{
 
     @Override
     public Paper getPaperById(int paperId) {
-        try (Connection connection=ConnectionSqlitePool.getConnection()){
+        Paper newPaper = null;
+        try (Connection connection = ConnectionSqlitePool.getConnection()) {
 
             String selectId = "SELECT * FROM paper WHERE id = ? ";
             PreparedStatement pst = connection.prepareStatement(selectId);
             pst.setInt(1, paperId);
-            RepositorySQLiteUser repo = new RepositorySQLiteUser();
             ResultSet rs = pst.executeQuery();
 
-            Paper newPaper = new Paper(
-                    rs.getInt("id"),
-                    rs.getString("title"),
-                    rs.getString("description"),
-                    repo.getUserById(rs.getInt("userId"))
-            );
-
-            if (rs.wasNull()) {
-                return null;
+            if (rs.next()) {
+                newPaper = createPaperFromRow(rs);
             }
-
-            return newPaper;
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return newPaper;
+    }
+
+    @Override
+    public List<Paper> listPapersFrom(Conference conference) {
+        String selectStatement = "SELECT * from Paper where conferenceId = ?";
+        List<Paper> newPapers = new ArrayList<>();
+        try (Connection conn = ConnectionSqlitePool.getConnection()) {
+            PreparedStatement pst = conn.prepareStatement(selectStatement);
+            pst.setInt(1, conference.getId());
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                newPapers.add(createPaperFromRow(rs));
+            }
+            return newPapers;
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public void initDatabase(){
-        try (Connection conn= ConnectionSqlitePool.getConnection()){
-            String tablePaper="CREATE TABLE IF NOT EXISTS Paper(\n "
-                    +"id number NOT NULL PRIMARY KEY,\n"
-                    +"title text NOT NULL,\n"
-                    +"description text NOT NULL,\n"
-                    +"userId number NOT NULL,\n"
-                    +"FOREIGN KEY (userId) REFERENCES User(id)\n"
-                    +");";
-
-            Statement st= conn.createStatement();
-            st.execute(tablePaper);
-        }catch (SQLException e){
+    @Override
+    public Paper getPaperOfReview(PaperReview paperReview) {
+        String selectStatement = "SELECT Paper.* from Paper Inner join PaperReview ON Paper.id = PaperReview.paperId where PaperReview.id = ?";
+        Paper newPaper = null;
+        try (Connection conn = ConnectionSqlitePool.getConnection()) {
+            PreparedStatement pst = conn.prepareStatement(selectStatement);
+            pst.setInt(1, paperReview.getReviewId());
+            ResultSet rs = pst.executeQuery();
+            newPaper = createPaperFromRow(rs);
+            if (rs.wasNull()) {
+                return null;
+            }
+            return newPaper;
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
-    
+
+    private Paper createPaperFromRow(ResultSet rs) throws SQLException {
+        Paper newPaper = new SQLPaper();
+        newPaper.setId(rs.getInt("id"));
+        newPaper.setTitle(rs.getString("title"));
+        newPaper.setDescription(rs.getString("description"));
+        //TODO Añadir documentLink
+        return newPaper;
+    }
+
 }

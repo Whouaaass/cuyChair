@@ -6,6 +6,8 @@ package drivers;
 
 import dataAccess.conference.IRepositoryConference;
 import domain.Conference;
+import domain.User;
+
 import domain.Paper;
 import infra.Subject;
 
@@ -46,8 +48,25 @@ public class ConferenceStoreService extends Subject {
     }
 
     public boolean addJob(int idConference, Paper newpaper){
-        boolean flag= this.objRepositoryConferenceRef.addPaper(idConference,newpaper);
+        boolean flag= true;//addPaper(idConference,newpaper);
         this.notifyAllObservers();
+        return flag;
+    }
+
+    public List<Conference> getAssistantConferences(User user) {
+        return objRepositoryConferenceRef.listConferenceRelatedTo(user);
+    }   
+    
+    
+    public boolean addJob(String Conference,Paper newpaper){
+        int idConference=-1;
+        for(int i=0;i<objRepositoryConferenceRef.listConference().size();i++){
+            if(0==Conference.compareTo(objRepositoryConferenceRef.listConference().get(i).getTitle())){
+                idConference=objRepositoryConferenceRef.listConference().get(i).getId();
+            }
+        }
+        boolean flag= this.objRepositoryConferenceRef.addPaper(idConference,newpaper);
+        //this.notifyAllObservers();
         return flag;
     }
     
