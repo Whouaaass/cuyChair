@@ -62,6 +62,4 @@ public class Paper {
     public void setAuthor(User fldAutor) {
         this.fldAuthor = fldAutor;
     }
-    
-    
 }

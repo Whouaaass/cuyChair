@@ -63,7 +63,7 @@ public class ViewMyConferences extends javax.swing.JFrame {
         
         for (int i = 0; i < conferenceList.size(); i++) {
             //Solo añade la fila si el usuario Id coincide con el del usuario logeado
-            if(conferenceList.get(i).getConferenceAdmin().getUserId()==this.objUser.getUserId()){
+            if(conferenceList.get(i).getConferenceOrganizer().getUserId()==this.objUser.getUserId()){
                 Object [] row= { 
                 conferenceList.get(i).getTitle(),
                 conferenceList.get(i).getCiudad(),

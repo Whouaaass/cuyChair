@@ -1,4 +1,4 @@
-package utilities.language;
+package language;
 
 /**
  * Interfaz que define lo que necesita un controlador (vista) que necesite implementar un cambio de idioma

@@ -11,8 +11,10 @@ package domain;
  */
 public class PaperReview {
     private int fldId;
+
     //Paper de la review
     private Paper fldObjPaper;
+    
     //Indica si el paper se admite en la conferencia
     private boolean fldApproved;
 

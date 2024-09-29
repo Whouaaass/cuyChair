@@ -4,8 +4,9 @@
  */
 package dataAccess.conference;
 
-import dataAccess.ConnectionSqlitePool;
 import domain.Conference;
+import domain.Paper;
+import domain.PaperReview;
 import domain.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +16,13 @@ import java.util.List;
  * @author Juan
  */
 public class RepositoryArrayListConference implements IRepositoryConference{
-    private List<Conference> ListConference;
+    private List<Conference> fldConferenceList;
      /**
      * Instancia un objeto de la clase ConferenceStoreService
      * @param objRepositoryConference Repositorio que utilizara el servicio
      */
     public RepositoryArrayListConference() {
-        this.ListConference=new ArrayList<>();
+        this.fldConferenceList=new ArrayList<>();
     }
     /**
      * Guarda un Conference
@@ -30,7 +31,7 @@ public class RepositoryArrayListConference implements IRepositoryConference{
      */
     @Override
     public boolean storeConference(Conference objConference) {
-        boolean varFlag=ListConference.add(objConference);
+        boolean varFlag=fldConferenceList.add(objConference);
         return varFlag;
     }
     /**
@@ -44,18 +45,43 @@ public class RepositoryArrayListConference implements IRepositoryConference{
     }
 
     @Override
-    public List<Conference> listConferenceByUserAssistant(User objUser) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Conference> listConferenceByUserAssistant(int userId) {
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
-    public List<Conference> listConferenceByUserOwner(User objUser) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Conference> listConferenceByUserOwner(int ownerId) {
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public Conference getConferenceById(int conferenceId) {
         return null;
+    }
+    @Override
+    public List<User> listReviewers(int conferenceId) {
+        
+        throw new UnsupportedOperationException("Unimplemented method 'listReviewers'");
+    }
+    @Override
+    public List<User> listAuthors(int conferenceId) {
+        
+        throw new UnsupportedOperationException("Unimplemented method 'listAuthors'");
+    }
+    @Override
+    public List<Paper> listPapers(int conferenceId) {
+        
+        throw new UnsupportedOperationException("Unimplemented method 'listPapers'");
+    }
+    @Override
+    public List<PaperReview> listReviews(int conferenceId) {
+        
+        throw new UnsupportedOperationException("Unimplemented method 'listReviews'");
+    }
+    @Override
+    public User getConferenceOrganizer(int conferenceId) {
+        
+        throw new UnsupportedOperationException("Unimplemented method 'getConferenceOrganizer'");
     }
 
 

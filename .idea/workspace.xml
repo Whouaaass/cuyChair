@@ -5,11 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2c59f33-f5ea-4a98-a39c-8d051ca85c2d" name="Changes" comment="Bases de datos paper review y modifiaciones bases paper">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBd.db" beforeDir="false" afterPath="$PROJECT_DIR$/MyBd.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/ConnectionSqlitePool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/ConnectionSqlitePool.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conference/IRepositoryConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conference/IRepositoryConference.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositoryArrayListConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositoryArrayListConference.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositorySQLiteConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositorySQLiteConference.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/user/RepositorySQLiteUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/user/RepositorySQLiteUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/domain/Conference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Conference.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Paper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Paper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/PaperReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/PaperReview.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/drivers/ConferenceStoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/drivers/ConferenceStoreService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/language/ILanguageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/language/ILanguageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/language/LanguageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/language/LanguageManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewAssistantConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewAssistantConference.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewLogIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewLogIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewMyConferences.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewMyConferences.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,12 +53,32 @@
   "keyToString": {
     "Application.TestSignIn.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "DatosSQLite",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "devFdy",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/usuario/Documents/Semestre 6/Ing.Software2/Ejemplos/LayersExample",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "last_opened_file_path": "D:/Universidad/IngenieriaDeSoftwareII/cuyChair",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
+    ]
   }
 }]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -54,6 +87,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1727024150635</updated>
+      <workItem from="1727543039047" duration="2833000" />
     </task>
     <task id="LOCAL-00001" summary="Agregando autor">
       <option name="closed" value="true" />
@@ -73,6 +107,9 @@
     </task>
     <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Agregando autor" />

@@ -4,20 +4,17 @@
  */
 package domain;
 
-import dataAccess.paperReview.RepositoryArrayListPaperReview;
-import dataAccess.user.RepositoryArrayListUser;
-import drivers.PaperReviewStoreService;
-import drivers.UserStoreService;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
- *
+ * Modelo de una conferencia
  * @author julia
  */
-public class Conference {
+public class Conference {    
     //Id de la conferencia
-    private int idConference;
+    private int fldId;
     //Titulo de la conferencia
     private String fldTitle;
     //Descripción de la conferencia
@@ -25,45 +22,92 @@ public class Conference {
     //Ciudad de la conferencia
     private String fldCity;
     //Organizador de la conferencia
-    private User fldConferenceAdmin;
+    protected User fldConferenceOrganizer;
     //Fecha 
-    private Date fldDate;
+    private Date fldDate;    
     //Lista de papers
-    private ArrayList<Paper> fldPapers = new ArrayList<Paper>();
-    //Lista de revisores
-    private ArrayList<User> fldReviewers = new ArrayList<User>();
-    //Lista de asistentes
-    private ArrayList<User> fldAuthors = new ArrayList<User>();
+    protected List<Paper> fldPapers;
     //Lista de reviews
-    private ArrayList<PaperReview> fldReviews = new ArrayList<PaperReview>();
+    protected List<PaperReview> fldReviews;
+    //Lista de revisores
+    protected List<User> fldReviewers;
+    //Lista de asistentes
+    protected List<User> fldAuthors;
 
-    public Conference(int idConference, String fldTitle, String fldDescription, String fldCity, User fldConferenceAdmin, Date fldDate) {
-        this(fldTitle,fldDate,fldDescription,fldCity,fldConferenceAdmin);
-        this.idConference = idConference;
+    /**
+     * Instancia una nueva conferencia
+     * Este constructor es usado cuando se quiere instanciar una nueva conferencia con todos los datos
+     * @param id
+     * @param title
+     * @param description
+     * @param city
+     * @param date
+     * @param conferenceAdmin
+     * @param papers
+     * @param reviews
+     * @param authors
+     */
+    public Conference(
+            int id,
+            String title,
+            String description,
+            String city, Date date,
+            User conferenceAdmin,
+            List<Paper> papers,
+            List<PaperReview> reviews,
+            List<User> authors
+    ) {
+        this(title,description,date,city);
+        fldId = id;
+        this.fldConferenceOrganizer = conferenceAdmin;
     }
 
-    public Conference(String fldTitle, Date fldDate, String fldDescription, String fldCiudad, User fldConferenceAdmin) {
-        this.fldTitle = fldTitle;
-        this.fldDate = fldDate;
-        this.fldDescription = fldDescription;
-        this.fldCity = fldCiudad;
-        this.fldConferenceAdmin = fldConferenceAdmin;    
+    /**
+     * Instancia una nueva conferencia
+     * Este constructor es utilizado cuando se quiere traer una conferencia del repositorio
+     * @param id
+     * @param title
+     * @param description
+     * @param date
+     * @param city
+     */
+    public Conference(int id, String title, String description, Date date, String city) {
+        this(title, description, date, city);
+        fldId = id;
+    }
+
+    /**
+     * Instancia una nueva conferencia
+     * Este constructor es utilizado cuando el usuario "crea" una nueva conferencia
+     * @param title Titulo
+     * @param description Description
+     * @param date Fecha de Inicio
+     * @param city Ciudad
+     */
+    public Conference(String title, String description, Date date, String city) {
+        this.fldTitle = title;
+        this.fldDescription = description;
+        this.fldDate = date;
+        this.fldCity = city;
         this.fldAuthors = new ArrayList<User>();
         this.fldPapers = new ArrayList<Paper>();
         this.fldReviewers = new ArrayList<User>();
         this.fldReviews = new ArrayList<PaperReview>();
     }
 
-    public Conference(){
+    /**
+     * Instancia una conferencia vacia
+     */
+    public Conference() {
 
     }
 
-    public int getIdConference() {
-        return idConference;
+    public int getId() {
+        return fldId;
     }
 
-    public void setIdConference(int idConference) {
-        this.idConference = idConference;
+    public void setFldId(int fldId) {
+        this.fldId = fldId;
     }
 
     public Date getDate() {
@@ -98,44 +142,44 @@ public class Conference {
         this.fldDescription = fldDescription;
     }
 
-    public User getConferenceAdmin() {
-        return fldConferenceAdmin;
+    public User getConferenceOrganizer() {
+        return fldConferenceOrganizer;
     }
 
     public void setConferenceAdmin(User fldConferenceAdmin) {
-        this.fldConferenceAdmin = fldConferenceAdmin;
-    }
-
-    public ArrayList<Paper> getPapers() {
+        this.fldConferenceOrganizer = fldConferenceAdmin;
+    }   
+    
+    public List<Paper> getPapers() {
         return fldPapers;
     }
 
-    public void setPapers(ArrayList<Paper> fldPapers) {
+    public void setPapers(List<Paper> fldPapers) {
         this.fldPapers = fldPapers;
     }
 
-    public ArrayList<User> getReviewers() {
+    public List<User> getReviewers() {
         return fldReviewers;
     }
 
-    public void setReviewers(ArrayList<User> fldReviewers) {
+    public void setReviewers(List<User> fldReviewers) {
         this.fldReviewers = fldReviewers;
     }
 
-    public ArrayList<User> getAuthors() {
+    public List<User> getAuthors() {
         return fldAuthors;
     }
 
-    public void setAuthors(ArrayList<User> fldAuthors) {
+    public void setAuthors(List<User> fldAuthors) {
         this.fldAuthors = fldAuthors;
     }
 
-    public ArrayList<PaperReview> getReviews() {
+    public List<PaperReview> getReviews() {
         return fldReviews;
     }
 
-    public void setReviews(ArrayList<PaperReview> fldReviews) {
+    public void setReviews(List<PaperReview> fldReviews) {
         this.fldReviews = fldReviews;
-    }
+    }   
     
 }

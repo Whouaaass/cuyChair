@@ -5,11 +5,13 @@
 package dataAccess.paperReview;
 
 import domain.PaperReview;
+import domain.Paper;
 import java.util.List;
 
 /**
- *
+ * Interfaz que define los accesos al repositorio de revisiones de papers
  * @author julia
+ * @author Frdy
  */
 public interface IRepositoryPaperReview {
     
@@ -25,4 +27,10 @@ public interface IRepositoryPaperReview {
      * @return listado de revisiones
      */
     public List<PaperReview> listPaperReview();
+
+    /**
+     * obtiene el paperRevisado
+     * @return paper
+     */
+    public Paper getPaperReviewed(int paperReviewId);
 }

@@ -132,7 +132,7 @@ public class RepositorySQLiteUser implements IRepositoryUser {
 
     public void initDatabase() {
         try (Connection connection=ConnectionSqlitePool.getConnection()){
-            String tableUser = "CREATE TABLE IF NOT EXISTS USER(\n "
+            String tableUser = "CREATE TABLE IF NOT EXISTS User(\n "
                     + "id Number PRIMARY KEY,\n"
                     + "name text NOT NULL,\n"
                     + "lastName text NOT NULL,\n"

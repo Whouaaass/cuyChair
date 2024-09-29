@@ -68,7 +68,7 @@ public class ViewAssistantConference extends javax.swing.JFrame {
         for (int i = 0; i < conferenceList.size(); i++) {
             //Encontramos al usuario en la lista de usuarios de la conferencia
             
-            if(conferenceList.get(i).getConferenceAdmin().getUserId()==this.objUser.getUserId()){
+            if(conferenceList.get(i).getConferenceOrganizer().getUserId()==this.objUser.getUserId()){
                 Object [] row= { 
                     conferenceList.get(i).getTitle(),
                     conferenceList.get(i).getCiudad(),

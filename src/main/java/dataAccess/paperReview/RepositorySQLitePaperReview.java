@@ -20,9 +20,7 @@ import static java.lang.Boolean.TRUE;
  */
 public class RepositorySQLitePaperReview implements IRepositoryPaperReview {
 
-    public RepositorySQLitePaperReview() {
-        initDatabase();
-    }
+    public RepositorySQLitePaperReview() {}
 
     @Override
     public boolean storePaperReview(PaperReview objPaper) {

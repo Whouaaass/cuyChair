@@ -6,9 +6,14 @@ import com.zaxxer.hikari.HikariDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+
+/**
+ * Esta clase es un singleton que se utiliza para reutilizar las connectiones 
+ * @author Frdy
+ */
 public class ConnectionSqlitePool {
 
-    private static HikariDataSource dataSource;
+    private static final HikariDataSource dataSource;
 
     static {
         HikariConfig config = new HikariConfig();

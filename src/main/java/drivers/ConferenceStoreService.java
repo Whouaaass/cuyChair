@@ -42,4 +42,9 @@ public class ConferenceStoreService {
         return this.objRepositoryConferenceRef.listConference();
     }
     
+    public List<Conference> getAssistantConferences(int userId) {
+        return objRepositoryConferenceRef.listConferenceByUserAssistant(userId);
+    }   
+    
+    
 }
