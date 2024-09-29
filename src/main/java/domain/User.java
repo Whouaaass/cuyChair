@@ -4,6 +4,7 @@
  */
 package domain;
 
+import java.util.ArrayList;
 import javax.naming.OperationNotSupportedException;
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class User {
         this.fldLastName = userLastName;
         this.fldHashedPassword = userPassword;
         this.fldEmail = userEmail;
+        this.fldConferenceParticipations = new ArrayList<>();
     }
 
     public User(User objUser) {

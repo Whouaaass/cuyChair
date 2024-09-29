@@ -6,6 +6,7 @@ package views;
 
 import context.AppContext;
 import domain.Conference;
+import domain.ConferenceParticipation;
 import domain.User;
 import drivers.ConferenceStoreService;
 import java.text.SimpleDateFormat;
@@ -51,12 +52,12 @@ public class ViewMyConferences extends javax.swing.JFrame {
     }
      
     //Llenar tabla
-     private void fullTable()
+     private void fillTable()
     {
         DefaultTableModel model=(DefaultTableModel) this.jTableMyConferences.getModel();
         cleanTable();
         ArrayList<Conference> conferenceList
-                = (ArrayList<Conference>) this.objConferenceStoreService.listConference();
+                = (ArrayList<Conference>) this.objConferenceStoreService.listAssistantConferences(objUser);
         
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         
@@ -180,7 +181,7 @@ public class ViewMyConferences extends javax.swing.JFrame {
     
     private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
         // TODO add your handling code here:
-        fullTable();
+        fillTable();
     }//GEN-LAST:event_jButtonRefreshActionPerformed
  
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -136,4 +136,9 @@ public class Conference {
         this.fldReviews = fldReviews;
     }
 
+    @Override
+    public String toString() {
+        return this.fldTitle;
+    }
+
 }

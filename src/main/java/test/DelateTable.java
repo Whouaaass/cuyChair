@@ -1,9 +1,11 @@
-package dataAccess;
+package test;
+
+import dataAccess.ConnectionSqlitePool;
 
 import java.sql.*;
 public class DelateTable {
     public static void main(String[] args) {
-        try(Connection connection=ConnectionSqlitePool.getConnection()){
+        try(Connection connection= ConnectionSqlitePool.getConnection()){
             String delateuser="DROP TABLE IF EXISTS user;";
             String delatepaper="DROP TABLE IF EXISTS paper;";
             String delateconference="DROP TABLE IF EXISTS conference;";

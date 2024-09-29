@@ -111,6 +111,6 @@ public class AppContext {
     public IRepositoryConferenceParticipation getFldRepositoryConferenceParticipation() { return fldRepositoryConferenceParticipation; }
     
     public void clear() {
-
+        loggedUser = null;
     }
 }

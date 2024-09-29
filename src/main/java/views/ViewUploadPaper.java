@@ -6,10 +6,12 @@ package views;
 
 import context.AppContext;
 import domain.Conference;
+import domain.ConferenceParticipation;
 import domain.Paper;
 import domain.User;
-import drivers.PaperReviewStoreService;
+import drivers.ConferenceStoreService;
 import drivers.PaperStoreService;
+import java.util.Vector;
 import static utilities.Utilities.setAlert;
 
 /**
@@ -19,15 +21,19 @@ import static utilities.Utilities.setAlert;
 public class ViewUploadPaper extends javax.swing.JFrame {
     User objUser;//User logeado
     PaperStoreService objPaperStoreService;//Servicio de almacenamiento de paper
+    ConferenceStoreService objConferenceStoreService;
+    Vector<Conference> conferenceList;
     /**
      * Creates new form ViewUploadPaper
      */
     public ViewUploadPaper() {
-        initComponents();
+        
         AppContext appContext = AppContext.getInstance();
         this.objUser=appContext.getLoggedUser();
-        this.objPaperStoreService=new PaperStoreService(appContext.getRepositoryPaper());
-        
+        this.objPaperStoreService = new PaperStoreService(appContext.getRepositoryPaper());
+        this.objConferenceStoreService = new ConferenceStoreService(appContext.getRepositoryConference());
+        this.conferenceList = new Vector<>( objConferenceStoreService.listConferencesRelatedTo(objUser, ConferenceParticipation.Role.AUTHOR));
+        initComponents();
     }
 
     /**
@@ -47,8 +53,8 @@ public class ViewUploadPaper extends javax.swing.JFrame {
         jLabelConferencia = new javax.swing.JLabel();
         jTextFieldDescription = new javax.swing.JTextField();
         jTextFieldTitulo = new javax.swing.JTextField();
-        jTextFieldcONFERENCIA = new javax.swing.JTextField();
         jButtonUploadPaper = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,16 +62,14 @@ public class ViewUploadPaper extends javax.swing.JFrame {
 
         jLabelTitleUploadPaper.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabelTitleUploadPaper.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelTitleUploadPaper.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitleUploadPaper.setText("SUBIR TRABAJO A CONFERENCIA");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(72, Short.MAX_VALUE)
-                .addComponent(jLabelTitleUploadPaper)
-                .addGap(62, 62, 62))
+            .addComponent(jLabelTitleUploadPaper, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,10 +95,23 @@ public class ViewUploadPaper extends javax.swing.JFrame {
         jLabelConferencia.setForeground(new java.awt.Color(0, 0, 0));
         jLabelConferencia.setText("Conferencia:");
 
+        jTextFieldTitulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldTituloActionPerformed(evt);
+            }
+        });
+
         jButtonUploadPaper.setText("Subir");
         jButtonUploadPaper.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUploadPaperActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(this.conferenceList));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
             }
         });
 
@@ -103,26 +120,21 @@ public class ViewUploadPaper extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabelDescripcion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelConferencia)
-                            .addComponent(jLabelTitulo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                            .addComponent(jTextFieldcONFERENCIA))))
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelConferencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelDescripcion)
+                    .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jTextFieldDescription)
+                    .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(122, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(288, 288, 288)
                 .addComponent(jButtonUploadPaper)
-                .addGap(33, 33, 33))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +142,7 @@ public class ViewUploadPaper extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelConferencia)
-                    .addComponent(jTextFieldcONFERENCIA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTitulo)
@@ -141,7 +153,7 @@ public class ViewUploadPaper extends javax.swing.JFrame {
                     .addComponent(jLabelDescripcion))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonUploadPaper)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -152,19 +164,29 @@ public class ViewUploadPaper extends javax.swing.JFrame {
     private void jButtonUploadPaperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUploadPaperActionPerformed
         String title = this.jTextFieldTitulo.getText();
         String description = this.jTextFieldDescription.getText();
-        //Paper objPaper = new Paper(title,description,this.objUser);//Paper a subir
-        boolean varFlag = true;//this.objPaperStoreService.storePaper(objPaper);
+        Conference conference = (Conference) this.jComboBox1.getSelectedItem();        
+        Paper objPaper = new Paper(title,description,this.objUser, conference);
+        boolean varFlag = this.objPaperStoreService.storePaper(objPaper);
         if(varFlag){
-            setAlert("Subida de trabajo","exitosa");
+            setAlert("Subida de trabajo", "exitosa");
         }else{
-            setAlert("Subida de trabajo","fallida");
+            setAlert("Subida de trabajo", "fallida");
         }
           
     }//GEN-LAST:event_jButtonUploadPaperActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jTextFieldTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTituloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTituloActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonUploadPaper;
+    private javax.swing.JComboBox<Conference> jComboBox1;
     private javax.swing.JLabel jLabelConferencia;
     private javax.swing.JLabel jLabelDescripcion;
     private javax.swing.JLabel jLabelTitleUploadPaper;
@@ -173,6 +195,5 @@ public class ViewUploadPaper extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldDescription;
     private javax.swing.JTextField jTextFieldTitulo;
-    private javax.swing.JTextField jTextFieldcONFERENCIA;
     // End of variables declaration//GEN-END:variables
 }

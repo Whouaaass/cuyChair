@@ -12,6 +12,7 @@ import domain.PaperReview;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author julia
@@ -19,11 +20,13 @@ import java.sql.*;
  */
 public class RepositoryArrayListPaper implements IRepositoryPaper {
     private ArrayList<Paper> PaperList;
+    private AtomicInteger indexCounter;
 
     /**
      * Instancia un objeto de la clase PaperStoreService
      */
     public RepositoryArrayListPaper() {
+        this.indexCounter = new AtomicInteger(0);
         this.PaperList = new ArrayList<>();
     }
 
@@ -35,6 +38,7 @@ public class RepositoryArrayListPaper implements IRepositoryPaper {
      */
     @Override
     public boolean storePaper(Paper objPaper) {
+        objPaper.setId(indexCounter.getAndIncrement());
         return PaperList.add(objPaper);
     }
 

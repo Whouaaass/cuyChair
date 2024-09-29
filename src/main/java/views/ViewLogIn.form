@@ -103,11 +103,10 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
-                          <Component id="jButtonNoTengoUnaCuenta" min="-2" pref="156" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
-                          <Component id="jButtonLogIn" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jButtonLogIn" max="32767" attributes="0"/>
+                              <Component id="jButtonNoTengoUnaCuenta" pref="156" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace pref="142" max="32767" attributes="0"/>

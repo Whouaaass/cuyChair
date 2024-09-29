@@ -4,16 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2c59f33-f5ea-4a98-a39c-8d051ca85c2d" name="Changes" comment="Merge con el último cambio, alta probabilidad de errores">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dataAccess/DelateTable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/infra/Observer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/infra/Subject.java" afterDir="false" />
+    <list default="true" id="c2c59f33-f5ea-4a98-a39c-8d051ca85c2d" name="Changes" comment="Merge con el último cambio, alta probabilidad de errores y se inhabilitaron funcionalidades de&#10;paper&#10;addJob">
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/sql/SQLConferenceParticipation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/context/AppContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/context/AppContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/DelateTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/DelateTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositoryArrayListConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conference/RepositoryArrayListConference.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conferenceParticipation/IRepositoryConferenceParticipation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conferenceParticipation/IRepositoryConferenceParticipation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conferenceParticipation/RepositoryArrayListConferenceParticipation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conferenceParticipation/RepositoryArrayListConferenceParticipation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/conferenceParticipation/RepositorySQLiteConferenceParticipation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/conferenceParticipation/RepositorySQLiteConferenceParticipation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/paper/RepositoryArrayListPaper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/paper/RepositoryArrayListPaper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/paperReview/RepositoryArrayListPaperReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/paperReview/RepositoryArrayListPaperReview.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dataAccess/user/RepositoryArrayListUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataAccess/user/RepositoryArrayListUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Conference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Conference.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/ConferenceParticipation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/ConferenceParticipation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/drivers/ConferenceStoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/drivers/ConferenceStoreService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewAssistantConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewAssistantConference.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewLogIn.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewLogIn.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewLogIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewLogIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewMyConferences.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewMyConferences.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewMyConferences.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewMyConferences.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewRegisterConference.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewRegisterConference.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewRegisterConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewRegisterConference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/testConference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/testConference.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewSignIn.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewSignIn.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewSignIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewSignIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewUploadPaper.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewUploadPaper.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/ViewUploadPaper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ViewUploadPaper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,39 +61,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.LookAndFeelTest.executor": "Run",
-    "Application.TestSignIn.executor": "Run",
-    "JUnit.SQLUtilsTest.dbCreationScript.executor": "Run",
-    "JUnit.SQLUtilsTest.executor": "Run",
-    "JUnit.testConference.executor": "Run",
-    "JUnit.testPaper.executor": "Run",
-    "JUnit.testPaperReview.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "Merging main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Universidad/IngenieriaDeSoftwareII/cuyChair",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.LookAndFeelTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TestSignIn.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SQLUtilsTest.dbCreationScript.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SQLUtilsTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.testConference.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.testPaper.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.testPaperReview.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Universidad/IngenieriaDeSoftwareII/cuyChair&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="test" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="utilities" />
@@ -185,6 +204,7 @@
       <updated>1727024150635</updated>
       <workItem from="1727543039047" duration="33376000" />
       <workItem from="1727592415844" duration="5182000" />
+      <workItem from="1727626314492" duration="5452000" />
     </task>
     <task id="LOCAL-00001" summary="Agregando autor">
       <option name="closed" value="true" />
@@ -202,7 +222,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727291596259</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Merge con el último cambio, alta probabilidad de errores y se inhabilitaron funcionalidades de&#10;paper&#10;addJob">
+      <option name="closed" value="true" />
+      <created>1727599207056</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1727599207056</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,7 +251,8 @@
     <MESSAGE value="Agregando autor" />
     <MESSAGE value="Bases de datos paper review y modifiaciones bases paper" />
     <MESSAGE value="Merge con el último cambio, alta probabilidad de errores" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge con el último cambio, alta probabilidad de errores" />
+    <MESSAGE value="Merge con el último cambio, alta probabilidad de errores y se inhabilitaron funcionalidades de&#10;paper&#10;addJob" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge con el último cambio, alta probabilidad de errores y se inhabilitaron funcionalidades de&#10;paper&#10;addJob" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -9,18 +9,22 @@ import domain.Paper;
 import domain.PaperReview;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  *
  * @author julia
  */
 public class RepositoryArrayListPaperReview implements IRepositoryPaperReview{
-    private ArrayList<PaperReview> PaperReviewList;
+    private final ArrayList<PaperReview> PaperReviewList;
+    private AtomicInteger indexCounter;
+
      /**
      * Instancia un objeto de la clase PaperReviewStoreService
      */
     public RepositoryArrayListPaperReview() {
-        this.PaperReviewList = new ArrayList();
+        indexCounter = new AtomicInteger(0);
+        this.PaperReviewList = new ArrayList<>();
     }
         /**
      * Guarda un paperReview
@@ -29,6 +33,7 @@ public class RepositoryArrayListPaperReview implements IRepositoryPaperReview{
      */
     @Override
     public boolean storePaperReview(PaperReview objPaperReview) {
+        objPaperReview.setReviewId(indexCounter.getAndIncrement());
         boolean varFlag=this.PaperReviewList.add(objPaperReview);
         return varFlag;
     }

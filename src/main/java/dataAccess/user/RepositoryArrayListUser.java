@@ -8,6 +8,7 @@ import domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Repositorio que guarda los usuarios en memoria por medio de un ArrayList
@@ -15,17 +16,20 @@ import java.util.List;
  */
 public class RepositoryArrayListUser implements IRepositoryUser {
     
-    private ArrayList<User> userList;
+    private final ArrayList<User> userList;
+    private final AtomicInteger indexCounter;
     
     /**
      * Genera una instancia del repositorio
      */
     public RepositoryArrayListUser() {
-        userList = new ArrayList();
+        indexCounter = new AtomicInteger(0);
+        userList = new ArrayList<>();
     }
     
     @Override
     public boolean storeUser(User objUser) {
+        objUser.setUserId(indexCounter.getAndIncrement());
         return userList.add(objUser);
     }
 

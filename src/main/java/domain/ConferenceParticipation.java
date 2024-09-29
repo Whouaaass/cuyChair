@@ -9,27 +9,34 @@ import java.util.Map;
  * @author Frdy
  */
 public class ConferenceParticipation {
-    private User participant;
-    private Conference conference;
-    private Role role;
+    private int fldInt;
+    protected User fldParticipant;
+    protected Conference fldConference;
+    private Role fldRole;
 
-    public ConferenceParticipation(User user, Conference conference, Role role) {
-        this.participant = user;
-        this.conference = conference;
-        this.role = role;
+    public ConferenceParticipation(int id, User user, Conference conference, Role role) {
+        this.fldInt = id;
+        this.fldParticipant = user;
+        this.fldConference = conference;
+        this.fldRole = role;
     }
+
     public ConferenceParticipation() {}
 
+    public int getId() {
+        return fldInt;
+    }
+
     public Role getRole() {
-        return role;
+        return fldRole;
     }
 
     public Conference getConference() {
-        return conference;
+        return fldConference;
     }
 
     public User getParticipant() {
-        return participant;
+        return fldParticipant;
     }
 
     public enum Role {

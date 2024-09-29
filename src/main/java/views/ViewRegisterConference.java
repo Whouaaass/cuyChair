@@ -79,7 +79,7 @@ public class ViewRegisterConference extends javax.swing.JFrame {
             .addGroup(jPanelUpLayout.createSequentialGroup()
                 .addGap(93, 93, 93)
                 .addComponent(jLabelTituloConferencia)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         jPanelUpLayout.setVerticalGroup(
             jPanelUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +141,7 @@ public class ViewRegisterConference extends javax.swing.JFrame {
                             .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jTextFieldDescripcionConferencia, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
                                 .addComponent(jTextFieldDate)))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanelDownLayout.setVerticalGroup(
             jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,14 +156,13 @@ public class ViewRegisterConference extends javax.swing.JFrame {
                 .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldDescripcionConferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelDescripción))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelFecha)))
+                    .addComponent(jLabelFecha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonRegister)
-                .addGap(21, 21, 21))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanelDown, java.awt.BorderLayout.CENTER);

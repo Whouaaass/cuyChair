@@ -32,6 +32,7 @@ public class ViewSignIn extends javax.swing.JFrame {
      */
     public ViewSignIn(){
         initComponents();
+        this.setLocationRelativeTo(null);
         AppContext appContext = AppContext.getInstance();
         this.objUserStoreService=new UserStoreService(appContext.getRepositoryUser());
         this.objConferenceStoreService=new ConferenceStoreService(appContext.getRepositoryConference());
@@ -198,27 +199,28 @@ public class ViewSignIn extends javax.swing.JFrame {
         jPanelCenter.setLayout(jPanelCenterLayout);
         jPanelCenterLayout.setHorizontalGroup(
             jPanelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCenterLayout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(jButtonYaTengoUnaCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(31, 31, 31)
-                .addComponent(jButtonSignIn)
-                .addGap(28, 28, 28))
             .addGroup(jPanelCenterLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jPanelFormInput, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelCenterLayout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jPanelFormInput, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelCenterLayout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addGroup(jPanelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonYaTengoUnaCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                            .addComponent(jButtonSignIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanelCenterLayout.setVerticalGroup(
             jPanelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCenterLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jPanelFormInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addGroup(jPanelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSignIn)
-                    .addComponent(jButtonYaTengoUnaCuenta))
-                .addGap(24, 24, 24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonSignIn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonYaTengoUnaCuenta)
+                .addContainerGap())
         );
 
         getContentPane().add(jPanelCenter, java.awt.BorderLayout.CENTER);
@@ -236,7 +238,7 @@ public class ViewSignIn extends javax.swing.JFrame {
             .addGroup(jPanelUpLayout.createSequentialGroup()
                 .addGap(95, 95, 95)
                 .addComponent(jLabelRegistroUsuario)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         jPanelUpLayout.setVerticalGroup(
             jPanelUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +257,7 @@ public class ViewSignIn extends javax.swing.JFrame {
         jPanelDown.setLayout(jPanelDownLayout);
         jPanelDownLayout.setHorizontalGroup(
             jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+            .addGap(0, 465, Short.MAX_VALUE)
         );
         jPanelDownLayout.setVerticalGroup(
             jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

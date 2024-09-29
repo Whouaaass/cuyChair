@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-*/
+ */
 package views;
 
 import domain.User;
@@ -11,30 +11,51 @@ import drivers.UserStoreService;
 import javax.swing.JFrame;
 
 import context.AppContext;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
  * @author julia
  */
 public class ViewMainMenu extends javax.swing.JFrame {
+
     //Usuario logeado
     User fldUser;
     //Repositorios de guardado
-    private UserStoreService objUserStoreService; 
+    private UserStoreService objUserStoreService;
     private ConferenceStoreService objConferenceStoreService;
     private PaperReviewStoreService objPaperReviewStoreService;
     private PaperStoreService objPaperStoreService;
+    
+    //helpers
+    private Map<String, Component> tabIndexes;
 
     public ViewMainMenu() {
         initComponents();
         AppContext appContext = AppContext.getInstance();
         this.fldUser = appContext.getLoggedUser();
-        this.objUserStoreService=new UserStoreService(appContext.getRepositoryUser());
-        this.objConferenceStoreService=new ConferenceStoreService(appContext.getRepositoryConference());
-        this.objPaperReviewStoreService=new PaperReviewStoreService(appContext.getRepositoryPaperReview());
-        this.objPaperStoreService= new PaperStoreService(appContext.getRepositoryPaper());
+        this.objUserStoreService = new UserStoreService(appContext.getRepositoryUser());
+        this.objConferenceStoreService = new ConferenceStoreService(appContext.getRepositoryConference());
+        this.objPaperReviewStoreService = new PaperReviewStoreService(appContext.getRepositoryPaperReview());
+        this.objPaperStoreService = new PaperStoreService(appContext.getRepositoryPaper());
+        
+        this.tabIndexes = new HashMap<>();
+        
         this.setLocationRelativeTo(null);
-        System.out.println("objUserStoreService:"+this.objUserStoreService.listUsers().getFirst().getUserName());
+        System.out.println("objUserStoreService:" + this.objUserStoreService.listUsers().getFirst().getUserName());
     }
 
     public User getFldUser() {
@@ -44,7 +65,63 @@ public class ViewMainMenu extends javax.swing.JFrame {
     public void setFldUser(User fldUser) {
         this.fldUser = fldUser;
     }
-    
+
+    private void addTab(String title, Component component) {
+        
+        if (tabIndexes.containsKey(title)) {
+            int tmpIdx = this.jTabbedMainPane.indexOfTabComponent(tabIndexes.get(title));
+            this.jTabbedMainPane.setSelectedIndex(tmpIdx);
+            return;
+        }
+        
+        int index = this.jTabbedMainPane.getTabCount();
+        
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(component, BorderLayout.CENTER);
+
+        // Añadir la pestaña al JTabbedPane
+        this.jTabbedMainPane.add(panel);
+
+        // Crear el panel del encabezado de la pestaña que incluye el título y el botón de cerrar
+        JPanel tabHeader = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        tabHeader.setOpaque(false);
+
+        JLabel tabTitle = new JLabel(title);
+        JButton closeButton = new JButton("x");
+
+        // Establecer propiedades del botón de cerrar
+        closeButton.setPreferredSize(new Dimension(16, 16));
+        closeButton.setBorder(BorderFactory.createEmptyBorder());
+        closeButton.setContentAreaFilled(false);
+
+        
+        closeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                closeTab(title, tabHeader);
+            }
+        });
+        this.jTabbedMainPane.setSelectedIndex(index);
+
+        tabHeader.add(tabTitle);
+        tabHeader.add(closeButton);
+
+        // Asignar el encabezado personalizado a la pestaña recién agregada
+        this.jTabbedMainPane.setTabComponentAt(index, tabHeader);
+        
+        this.tabIndexes.put(title, tabHeader);
+        this.pack();
+
+    }
+
+    private void closeTab(String title, Component tabComponent) {
+        int index = this.jTabbedMainPane.indexOfTabComponent(tabComponent);
+        
+        if (index != -1) {
+            this.jTabbedMainPane.remove(index); // Elimina la pestaña
+            tabIndexes.remove(title);            
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,6 +133,8 @@ public class ViewMainMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelMainMenu = new javax.swing.JPanel();
+        jTabbedMainPane = new javax.swing.JTabbedPane();
+        DefauldTabPane = new javax.swing.JPanel();
         jLabelImgLogo = new javax.swing.JLabel();
         jMenuBarOptions = new javax.swing.JMenuBar();
         jMenuPerfil = new javax.swing.JMenu();
@@ -74,10 +153,17 @@ public class ViewMainMenu extends javax.swing.JFrame {
         jPanelMainMenu.setBackground(new java.awt.Color(244, 240, 216));
         jPanelMainMenu.setLayout(new java.awt.BorderLayout());
 
+        DefauldTabPane.setLayout(new java.awt.BorderLayout());
+
+        jLabelImgLogo.setForeground(new java.awt.Color(60, 63, 65));
         jLabelImgLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/PosibleLogo.jpg"))); // NOI18N
         jLabelImgLogo.setMaximumSize(new java.awt.Dimension(20, 20));
         jLabelImgLogo.setMinimumSize(new java.awt.Dimension(10, 10));
-        jPanelMainMenu.add(jLabelImgLogo, java.awt.BorderLayout.PAGE_END);
+        DefauldTabPane.add(jLabelImgLogo, java.awt.BorderLayout.PAGE_END);
+
+        jTabbedMainPane.addTab("Home", DefauldTabPane);
+
+        jPanelMainMenu.add(jTabbedMainPane, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jPanelMainMenu, java.awt.BorderLayout.CENTER);
 
@@ -187,43 +273,62 @@ public class ViewMainMenu extends javax.swing.JFrame {
     private void jMenuItemMyConferencesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMyConferencesActionPerformed
         // TODO add your handling code here:
         ViewMyConferences objViewMyConferences = new ViewMyConferences();
+        /*
         objViewMyConferences.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewMyConferences.setVisible(true);
+         */
+
+        this.addTab("Mis Conferencias", objViewMyConferences.getContentPane());
     }//GEN-LAST:event_jMenuItemMyConferencesActionPerformed
 
     private void JmenuItemRegisterConferenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmenuItemRegisterConferenceActionPerformed
         // TODO add your handling code here:
         ViewRegisterConference objViewRegisterConference = new ViewRegisterConference();
+        /*
         objViewRegisterConference.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewRegisterConference.setVisible(true);
+*/
+        this.addTab("Registrar Conferencia", objViewRegisterConference.getContentPane());
     }//GEN-LAST:event_JmenuItemRegisterConferenceActionPerformed
 
     private void jMenuItemAssistantConferenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAssistantConferenceActionPerformed
         // TODO add your handling code here:
         ViewAssistantConference objViewAssistantConference = new ViewAssistantConference();
+        /*
         objViewAssistantConference.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewAssistantConference.setVisible(true);
+*/
+        this.addTab("Asistencia a Conferencias", objViewAssistantConference.getContentPane());
     }//GEN-LAST:event_jMenuItemAssistantConferenceActionPerformed
 
     private void jMenuItemLookUserProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLookUserProfileActionPerformed
         // TODO add your handling code here:
         ViewMyProfile objViewMyProfile = new ViewMyProfile();
+        /*
         objViewMyProfile.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewMyProfile.setVisible(true);
+*/
+        this.addTab("Perfil de usuario", objViewMyProfile.getContentPane());
     }//GEN-LAST:event_jMenuItemLookUserProfileActionPerformed
 
     private void jMenuItemModifyProfileUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemModifyProfileUserActionPerformed
         // TODO add your handling code here:
-        ViewModifyMyProfile objViewModifyMyProfile= new ViewModifyMyProfile();
+        ViewModifyMyProfile objViewModifyMyProfile = new ViewModifyMyProfile();
+        /*
         objViewModifyMyProfile.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewModifyMyProfile.setVisible(true);
+*/
+        this.addTab("Modificar perfil", objViewModifyMyProfile.getContentPane());
     }//GEN-LAST:event_jMenuItemModifyProfileUserActionPerformed
 
     private void jMenuItemMyPapersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMyPapersActionPerformed
         // TODO add your handling code here:
         ViewMyPapers objViewMyPapers = new ViewMyPapers();
+        /*
         objViewMyPapers.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewMyPapers.setVisible(true);
+*/
+        this.addTab("Mis articulos", objViewMyPapers.getContentPane());
     }//GEN-LAST:event_jMenuItemMyPapersActionPerformed
 
     private void jMenuItemLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLogOutActionPerformed
@@ -236,6 +341,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel DefauldTabPane;
     private javax.swing.JMenuItem JmenuItemRegisterConference;
     private javax.swing.JLabel jLabelImgLogo;
     private javax.swing.JMenuBar jMenuBarOptions;
@@ -249,5 +355,15 @@ public class ViewMainMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuMyPapers;
     private javax.swing.JMenu jMenuPerfil;
     private javax.swing.JPanel jPanelMainMenu;
+    private javax.swing.JTabbedPane jTabbedMainPane;
     // End of variables declaration//GEN-END:variables
+}
+
+class MyCloseActionListener implements ActionListener {
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
 }

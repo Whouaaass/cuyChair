@@ -51,7 +51,7 @@ public class RepositoryArrayListConference implements IRepositoryConference{
 
     @Override
     public List<Conference> listConferenceRelatedTo(User user, ConferenceParticipation.Role role) {
-        List<Conference> userConferenceList = new ArrayList<>();
+        List<Conference> userConferenceList = new ArrayList<>();        
         for (ConferenceParticipation conference : user.getParticipations()) {
             userConferenceList.add(conference.getConference());
         }

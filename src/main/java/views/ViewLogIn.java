@@ -156,10 +156,9 @@ public class ViewLogIn extends javax.swing.JFrame implements ILanguageController
                             .addComponent(jTextFieldMail, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelDownLayout.createSequentialGroup()
                         .addGap(152, 152, 152)
-                        .addComponent(jButtonNoTengoUnaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelDownLayout.createSequentialGroup()
-                        .addGap(167, 167, 167)
-                        .addComponent(jButtonLogIn)))
+                        .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonLogIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonNoTengoUnaCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))))
                 .addContainerGap(142, Short.MAX_VALUE))
         );
         jPanelDownLayout.setVerticalGroup(
@@ -186,8 +185,7 @@ public class ViewLogIn extends javax.swing.JFrame implements ILanguageController
     }// </editor-fold>//GEN-END:initComponents
     //Te redirecciona al registro de usuario
     private void jButtonNoTengoUnaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNoTengoUnaCuentaActionPerformed
-        ViewSignIn objViewSingIn = new ViewSignIn();
-        objViewSingIn.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        ViewSignIn objViewSingIn = new ViewSignIn();        
         objViewSingIn.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonNoTengoUnaCuentaActionPerformed
@@ -211,8 +209,7 @@ public class ViewLogIn extends javax.swing.JFrame implements ILanguageController
         }
         AppContext appContext = AppContext.getInstance();
         appContext.setLoggedUser(this.objUser);
-        ViewMainMenu objViewMainMenu = new ViewMainMenu();
-        objViewMainMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        ViewMainMenu objViewMainMenu = new ViewMainMenu();          
         objViewMainMenu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonLogInActionPerformed
