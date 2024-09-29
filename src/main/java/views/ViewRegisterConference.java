@@ -5,22 +5,15 @@
 package views;
 
 import context.AppContext;
-import dataAccess.paperReview.RepositoryArrayListPaperReview;
-import dataAccess.user.RepositoryArrayListUser;
 import domain.Conference;
-import domain.PaperReview;
 import domain.User;
 import drivers.ConferenceStoreService;
-import drivers.PaperReviewStoreService;
-import drivers.UserStoreService;
+import java.awt.Color;
 
 import java.awt.event.ActionEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
 
 import static utilities.Utilities.setAlert;
 
@@ -64,6 +57,7 @@ public class ViewRegisterConference extends javax.swing.JFrame {
         jTextFieldDate = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
 
         jPanelUp.setBackground(new java.awt.Color(199, 213, 224));
         jPanelUp.setForeground(new java.awt.Color(199, 213, 224));
@@ -116,6 +110,19 @@ public class ViewRegisterConference extends javax.swing.JFrame {
         jLabelFecha.setForeground(new java.awt.Color(0, 0, 0));
         jLabelFecha.setText("Fecha:");
 
+        jTextFieldDate.setForeground(new java.awt.Color(153, 153, 153));
+        jTextFieldDate.setText("yyyy-mm-dd");
+        jTextFieldDate.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldDateFocusLost(evt);
+            }
+        });
+        jTextFieldDate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTextFieldDateMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelDownLayout = new javax.swing.GroupLayout(jPanelDown);
         jPanelDown.setLayout(jPanelDownLayout);
         jPanelDownLayout.setHorizontalGroup(
@@ -159,8 +166,7 @@ public class ViewRegisterConference extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelFecha)))
+                    .addComponent(jLabelFecha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonRegister)
                 .addGap(21, 21, 21))
@@ -218,6 +224,22 @@ public class ViewRegisterConference extends javax.swing.JFrame {
             System.out.println("Error en el registro de datos");
         }
     }//GEN-LAST:event_jButtonRegisterActionPerformed
+
+    private void jTextFieldDateMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldDateMousePressed
+        // TODO add your handling code here:
+        if(this.jTextFieldDate.getText().equals("yyyy-mm-dd")){
+            this.jTextFieldDate.setText("");
+            this.jTextFieldDate.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_jTextFieldDateMousePressed
+
+    private void jTextFieldDateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDateFocusLost
+        // TODO add your handling code here:
+        if(this.jTextFieldDate.getText().isEmpty()){
+            this.jTextFieldDate.setText("yyyy-mm-dd");
+            this.jTextFieldDate.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_jTextFieldDateFocusLost
 
 
 

@@ -24,6 +24,10 @@ public class ViewModifyMyProfile extends javax.swing.JFrame {
         AppContext appContext = AppContext.getInstance();
         fldUser=appContext.getLoggedUser(); 
         this.fldUserStoreService=new UserStoreService(appContext.getRepositoryUser());
+        this.jTextAreaDescription.setText(fldUser.getDescription());
+        this.jTextFieldName.setText(this.fldUser.getUserName());
+        this.jTextFieldLastName.setText(this.fldUser.getUserLastName());
+        this.jTextFieldPassword.setText(this.fldUser.getUserPassword());
         initComponents();
     }
 
@@ -51,6 +55,7 @@ public class ViewModifyMyProfile extends javax.swing.JFrame {
         jTextAreaDescription = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
 
         jPanel1.setBackground(new java.awt.Color(199, 213, 224));
 

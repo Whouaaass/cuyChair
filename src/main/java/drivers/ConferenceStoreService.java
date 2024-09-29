@@ -51,4 +51,16 @@ public class ConferenceStoreService extends Subject {
         return flag;
     }
     
+    public boolean addJob(String Conference,Paper newpaper){
+        int idConference=-1;
+        for(int i=0;i<objRepositoryConferenceRef.listConference().size();i++){
+            if(0==Conference.compareTo(objRepositoryConferenceRef.listConference().get(i).getTitle())){
+                idConference=objRepositoryConferenceRef.listConference().get(i).getFldId();
+            }
+        }
+        boolean flag= this.objRepositoryConferenceRef.addPaper(idConference,newpaper);
+        //this.notifyAllObservers();
+        return flag;
+    }
+    
 }

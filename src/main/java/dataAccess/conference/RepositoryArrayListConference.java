@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class RepositoryArrayListConference implements IRepositoryConference{
     private List<Conference> ListConference;
-
+    
     public RepositoryArrayListConference() {
         this.ListConference=new ArrayList<>();
     }
@@ -56,7 +56,12 @@ public class RepositoryArrayListConference implements IRepositoryConference{
     }
     @Override
     public boolean addPaper(int idConference, Paper objPaper) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        for(int i=0;i<this.ListConference.size();i++){
+            if(ListConference.get(i).getFldId()==idConference){
+                return this.ListConference.get(i).getPapers().add(objPaper);
+            }
+        }
+        return false;
     }
     
 }

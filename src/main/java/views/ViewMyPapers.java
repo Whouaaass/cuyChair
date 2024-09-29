@@ -58,7 +58,7 @@ public class ViewMyPapers extends javax.swing.JFrame {
             //Solo añade la fila si el usuario Id coincide con el del usuario logeado
             if(papersList.get(i).getAuthor().getUserId()==this.objUser.getUserId()){
                 Object [] row= { 
-                papersList.get(i).getAuthor(),
+                papersList.get(i).getAuthor().getUserName(),
                 papersList.get(i).getDescription(),
                 };
                 model.addRow(row);
@@ -83,6 +83,7 @@ public class ViewMyPapers extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
 
         jPanel1.setBackground(new java.awt.Color(199, 213, 224));
 

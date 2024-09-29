@@ -162,12 +162,7 @@ public class ViewUploadPaper extends javax.swing.JFrame  {
         Paper objPaper = new Paper(title,description,this.objUser);//Paper a subir
         // TODO add your handling code here:
         boolean varFlag = this.objPaperStoreService.storePaper(objPaper);
-        boolean Flagjob= this.objConferenceStoreService.addJob(Integer.parseInt(conference),objPaper);
-        if(varFlag){
-            setAlert("Subida de trabajo","exitosa");
-        }else{
-            setAlert("Subida de trabajo","fallida");
-        }
+        boolean Flagjob= this.objConferenceStoreService.addJob(conference,objPaper);
         if(Flagjob){
             setAlert("Subida de trabajo","exitosa");
         }else{
