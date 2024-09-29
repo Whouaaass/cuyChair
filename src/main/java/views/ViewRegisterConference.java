@@ -13,10 +13,15 @@ import domain.User;
 import drivers.ConferenceStoreService;
 import drivers.PaperReviewStoreService;
 import drivers.UserStoreService;
+
+import java.awt.event.ActionEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
+
 import static utilities.Utilities.setAlert;
 
 /**
@@ -166,14 +171,14 @@ public class ViewRegisterConference extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
+    private void jButtonRegisterActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
         String varTitle;
         String varDescription;
         String varCity;
         Date objDate = null;       
                         
         
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         //Valida la fecha
         String varDate = this.jTextFieldDate.getText();
         if(varDate.isBlank()){
@@ -212,7 +217,6 @@ public class ViewRegisterConference extends javax.swing.JFrame {
         }catch(Exception e){
             System.out.println("Error en el registro de datos");
         }
-        
     }//GEN-LAST:event_jButtonRegisterActionPerformed
 
 

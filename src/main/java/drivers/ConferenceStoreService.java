@@ -8,6 +8,9 @@ import dataAccess.conference.IRepositoryConference;
 import domain.Conference;
 import domain.User;
 
+import domain.Paper;
+import infra.Subject;
+
 import java.util.List;
 
 /**
@@ -15,7 +18,7 @@ import java.util.List;
  * @author julia
  * @author Frdy
  */
-public class ConferenceStoreService {
+public class ConferenceStoreService extends Subject {
         private IRepositoryConference objRepositoryConferenceRef;
 
      /**
@@ -43,7 +46,13 @@ public class ConferenceStoreService {
     public List<Conference> listConference() {
         return this.objRepositoryConferenceRef.listConference();
     }
-    
+
+    public boolean addJob(int idConference, Paper newpaper){
+        boolean flag= true;//addPaper(idConference,newpaper);
+        this.notifyAllObservers();
+        return flag;
+    }
+
     public List<Conference> getAssistantConferences(User user) {
         return objRepositoryConferenceRef.listConferenceRelatedTo(user);
     }   

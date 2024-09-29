@@ -58,7 +58,7 @@ public class ViewMyConferences extends javax.swing.JFrame {
         ArrayList<Conference> conferenceList
                 = (ArrayList<Conference>) this.objConferenceStoreService.listConference();
         
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         
         for (int i = 0; i < conferenceList.size(); i++) {
             //Solo añade la fila si el usuario Id coincide con el del usuario logeado

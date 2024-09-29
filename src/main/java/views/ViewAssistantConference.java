@@ -63,7 +63,7 @@ public class ViewAssistantConference extends javax.swing.JFrame {
         ArrayList<Conference> conferenceList
                 = (ArrayList<Conference>) this.objConferenceStoreService.listConference();
         
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         
         for (int i = 0; i < conferenceList.size(); i++) {
             //Encontramos al usuario en la lista de usuarios de la conferencia
