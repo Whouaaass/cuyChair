@@ -2,7 +2,10 @@ package test;
 
 import context.AppContext;
 import dataAccess.conference.RepositorySQLiteConference;
+import dataAccess.conferenceParticipation.IRepositoryConferenceParticipation;
 import dataAccess.conferenceParticipation.RepositoryArrayListConferenceParticipation;
+import dataAccess.conferenceParticipation.RepositorySQLiteConferenceParticipation;
+import dataAccess.paper.IRepositoryPaper;
 import dataAccess.paper.RepositorySQLitePaper;
 import dataAccess.paperReview.RepositorySQLitePaperReview;
 import dataAccess.user.RepositorySQLiteUser;
@@ -13,6 +16,7 @@ import drivers.UserStoreService;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.JDBCType;
 import javax.swing.plaf.metal.*;
 import views.ViewLogIn;
 /**
@@ -53,7 +57,6 @@ public class LookAndFeelTest implements ActionListener {
         );
 
         return pane;
-        
         
     }
 
@@ -151,8 +154,8 @@ public class LookAndFeelTest implements ActionListener {
         RepositorySQLiteUser objRepositoryArrayListUser = new RepositorySQLiteUser();
         RepositorySQLiteConference objRepositoryArrayListConference = new RepositorySQLiteConference();
         RepositorySQLitePaperReview objRepositoryArrayListPaperReview = new RepositorySQLitePaperReview();
-        RepositorySQLitePaper objRepositoryArrayListPaper = new RepositorySQLitePaper();
-        RepositoryArrayListConferenceParticipation objRepositoryArrayListConferenceParticipation = new RepositoryArrayListConferenceParticipation();
+        IRepositoryPaper objRepositoryArrayListPaper = new RepositorySQLitePaper();
+        IRepositoryConferenceParticipation objRepositoryArrayListConferenceParticipation = new RepositorySQLiteConferenceParticipation();
         
         AppContext.init(objRepositoryArrayListConference, objRepositoryArrayListUser, objRepositoryArrayListPaper, objRepositoryArrayListPaperReview, objRepositoryArrayListConferenceParticipation);
         ViewLogIn objViewLogIn=new ViewLogIn();

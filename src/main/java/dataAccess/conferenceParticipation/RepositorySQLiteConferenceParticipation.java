@@ -16,6 +16,24 @@ import java.util.List;
 public class RepositorySQLiteConferenceParticipation implements IRepositoryConferenceParticipation{
     @Override
     public ConferenceParticipation createParticipation(User user, Conference conference, ConferenceParticipation.Role rol) {
+        String insertStatement = "INSERT INTO UserConference(userId, conferenceId, rol) VALUES(?,?,?)";
+        try (Connection conn = ConnectionSqlitePool.getConnection()) {
+            PreparedStatement statement = conn.prepareStatement(insertStatement);
+            statement.setInt(1, user.getUserId());
+            statement.setInt(2, conference.getId());
+            statement.setInt(3, rol.value());
+            int updateStatus = statement.executeUpdate();
+            if (updateStatus == 1) {
+                return new SQLConferenceParticipation(
+                        0,
+                        user.getUserId(),
+                        conference.getId(),
+                        rol
+                );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -72,18 +90,22 @@ public class RepositorySQLiteConferenceParticipation implements IRepositoryConfe
     }
 
     @Override
-    public boolean RemoveParticipation(ConferenceParticipation conferenceParticipation) {
-        String deleteStatement = "DELETE FROM UserConference where id = ?";
+    public boolean RemoveParticipation(User user, Conference conference, ConferenceParticipation.Role rol) {
+        String deleteStatement = "DELETE FROM UserConference where userId = ? and conferenceId = ? and rol = ?";
         boolean flag = false;
         try (Connection conn = ConnectionSqlitePool.getConnection()) {
             PreparedStatement statement = conn.prepareStatement(deleteStatement);
-            statement.setInt(1, conferenceParticipation.getId());
+            statement.setInt(1, user.getUserId());
+            statement.setInt(2, conference.getId());
+            statement.setInt(3, rol.value());
             flag = statement.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return flag;
     }
+
+
 
     private ConferenceParticipation createConferenceParticipationFromRow(ResultSet rs) throws SQLException {
         return new SQLConferenceParticipation(

@@ -56,12 +56,12 @@ public class ViewAssistantConference extends javax.swing.JFrame {
     }
      
     //Llenar tabla
-     private void fullTable()
+     private void fillTable()
     {
         DefaultTableModel model=(DefaultTableModel) this.jTableConferencesaAssistance.getModel();
         cleanTable();
         ArrayList<Conference> conferenceList
-                = (ArrayList<Conference>) this.objConferenceStoreService.listConference();
+                = (ArrayList<Conference>) this.objConferenceStoreService.listConferencesRelatedTo(objUser);
         
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         
@@ -204,7 +204,7 @@ public class ViewAssistantConference extends javax.swing.JFrame {
 
     private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
         // TODO add your handling code here:
-        fullTable();
+        fillTable();
     }//GEN-LAST:event_jButtonRefreshActionPerformed
 
 

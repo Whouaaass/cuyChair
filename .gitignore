@@ -25,6 +25,10 @@ replay_pid*
 /target/
 /nbproject/
 
+# .idea
 .idea/workspace.xml
 .idea/*.iws
 .idea/tasks.xml
+
+# base de datos
+MyBd.db

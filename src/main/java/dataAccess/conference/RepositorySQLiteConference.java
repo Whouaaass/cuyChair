@@ -16,9 +16,6 @@ import utilities.DateUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
 /**
  * Repositorio de conferencias que utiliza SQLite
  * @author Juan
@@ -48,9 +45,7 @@ public class RepositorySQLiteConference implements IRepositoryConference {
 
     @Override
     public List<Conference> listConference() {
-        RepositorySQLiteUser repo = new RepositorySQLiteUser();
         List<Conference> list = new ArrayList<>();
-        Conference newConfe = new Conference();
         String listConference = "SELECT * FROM Conference";
         try (Connection connection = ConnectionSqlitePool.getConnection()) {
             Statement st = connection.createStatement();
@@ -132,7 +127,7 @@ public class RepositorySQLiteConference implements IRepositoryConference {
 
     @Override
     public Conference getConferenceOf(Paper paper) {
-        String select = "SELECT * FROM Conference INNER JOIN Paper ON Paper.conferenceId = Conference.id WHERE PaperId = ?";
+        String select = "SELECT * FROM Conference INNER JOIN Paper ON Paper.conferenceId = Conference.id WHERE Paper.id = ?";
         Conference newConference  = null;
         try (Connection conn = ConnectionSqlitePool.getConnection()) {
             PreparedStatement pst = conn.prepareStatement(select);
@@ -158,8 +153,8 @@ public class RepositorySQLiteConference implements IRepositoryConference {
         objConference.setId(rs.getInt("id"));
         objConference.setTitle(rs.getString("title"));
         objConference.setDescription(rs.getString("description"));
-        objConference.setCity(rs.getString("date"));
-        objConference.setDate(DateUtils.parseDBDate(rs.getString("city")));
+        objConference.setCity(rs.getString("city"));
+        objConference.setDate(DateUtils.parseDBDate(rs.getString("date")));
 
         return objConference;
     }

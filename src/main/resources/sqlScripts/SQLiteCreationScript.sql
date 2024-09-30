@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS UserConference
 );
 CREATE TABLE IF NOT EXISTS Jobs
 (
-    id           INTEGER PRIMARY KEY,
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
     conferenceId integer NOT NULL,
     paperId      TEXT    NOT NULL,
     FOREIGN KEY (conferenceId) REFERENCES Conference (id),
