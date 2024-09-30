@@ -4,8 +4,12 @@
  */
 package drivers;
 
+import co.edu.unicauca.cuychair.common.notificationPlugin.Contact;
+import co.edu.unicauca.cuychair.common.notificationPlugin.Notification;
 import dataAccess.user.IRepositoryUser;
 import domain.User;
+import plugins.PluginManager;
+
 import java.util.List;
 
 /**
@@ -32,6 +36,12 @@ public class UserStoreService {
      */
     public boolean storeUser(User objUser) {
         boolean varFlag=this.objRepositoryUserRef.storeUser(objUser);
+        PluginManager.getInstance().notifyPlugins(new Notification(
+                new Contact(objUser.getUserEmail(), null),
+                Notification.Action.CREATION,
+                Notification.Entity.USER,
+                varFlag ? Notification.ActionState.OK: Notification.ActionState.FAIL
+        ));
         return varFlag;
     }
    

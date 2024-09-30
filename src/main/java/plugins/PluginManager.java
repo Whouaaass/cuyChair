@@ -1,6 +1,7 @@
 package plugins;
 
 import co.edu.unicauca.cuychair.common.notificationPlugin.INotificationPlugin;
+import co.edu.unicauca.cuychair.common.notificationPlugin.Notification;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,10 +11,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
 
+/**
+ * @author Frdy
+ */
 public class PluginManager {
     private static final String PLUGIN_FOLDER = "plugins"; // Carpeta donde están los JARs
+    private static PluginManager pluginManager;
 
     private List<INotificationPlugin> notificationPlugins;
+
+    private PluginManager() {
+        loadPlugins();
+    }
+
+    public static PluginManager getInstance() {
+        if (pluginManager == null) {
+            pluginManager = new PluginManager();
+        }
+        return pluginManager;
+    }
 
     public void loadPlugins() {
         try {
@@ -51,6 +67,12 @@ public class PluginManager {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void notifyPlugins(Notification notification) {
+        for (INotificationPlugin plugin : notificationPlugins) {
+            plugin.sendNotification(notification);
         }
     }
 }

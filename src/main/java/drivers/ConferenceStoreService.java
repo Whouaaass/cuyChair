@@ -4,12 +4,15 @@
  */
 package drivers;
 
+import co.edu.unicauca.cuychair.common.notificationPlugin.Contact;
+import co.edu.unicauca.cuychair.common.notificationPlugin.Notification;
 import dataAccess.conference.IRepositoryConference;
 import domain.Conference;
 import domain.ConferenceParticipation;
 import domain.User;
 
 import infra.Subject;
+import plugins.PluginManager;
 
 import java.util.List;
 
