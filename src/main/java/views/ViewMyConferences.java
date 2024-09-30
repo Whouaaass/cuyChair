@@ -11,6 +11,7 @@ import domain.User;
 import drivers.ConferenceStoreService;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -90,6 +91,7 @@ public class ViewMyConferences extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableMyConferences = new javax.swing.JTable();
         jButtonRefresh = new javax.swing.JButton();
+        jButtonAddUserToMyConf = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -150,18 +152,28 @@ public class ViewMyConferences extends javax.swing.JFrame {
             }
         });
 
+        jButtonAddUserToMyConf.setText("Añadir usuario a mi conferencia");
+        jButtonAddUserToMyConf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddUserToMyConfActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelDownLayout = new javax.swing.GroupLayout(jPanelDown);
         jPanelDown.setLayout(jPanelDownLayout);
         jPanelDownLayout.setHorizontalGroup(
             jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDownLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(jPanelDownLayout.createSequentialGroup()
-                .addGap(183, 183, 183)
-                .addComponent(jButtonRefresh)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDownLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDownLayout.createSequentialGroup()
+                        .addComponent(jButtonRefresh)
+                        .addGap(56, 56, 56)
+                        .addComponent(jButtonAddUserToMyConf)
+                        .addGap(29, 29, 29))))
         );
         jPanelDownLayout.setVerticalGroup(
             jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,7 +181,9 @@ public class ViewMyConferences extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonRefresh)
+                .addGroup(jPanelDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRefresh)
+                    .addComponent(jButtonAddUserToMyConf))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -183,8 +197,16 @@ public class ViewMyConferences extends javax.swing.JFrame {
         // TODO add your handling code here:
         fillTable();
     }//GEN-LAST:event_jButtonRefreshActionPerformed
+
+    private void jButtonAddUserToMyConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddUserToMyConfActionPerformed
+        // TODO add your handling code here:
+        ViewAddUserToMyConf objViewAddUserToMyConf = new ViewAddUserToMyConf();
+        objViewAddUserToMyConf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        objViewAddUserToMyConf.setVisible(true);
+    }//GEN-LAST:event_jButtonAddUserToMyConfActionPerformed
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAddUserToMyConf;
     private javax.swing.JButton jButtonRefresh;
     private javax.swing.JLabel jLabelTituloMisConferencias;
     private javax.swing.JPanel jPanelDown;
