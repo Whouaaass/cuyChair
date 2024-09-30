@@ -35,10 +35,10 @@ public class ViewLogIn extends javax.swing.JFrame implements ILanguageController
         initComponents();
         loadLanguage();
         AppContext appContext = AppContext.getInstance();
-        this.objUserStoreService = new UserStoreService(appContext.getRepositoryUser());
-        this.objConferenceStoreService = new ConferenceStoreService(appContext.getRepositoryConference());
-        this.objPaperReviewStoreService = new PaperReviewStoreService(appContext.getRepositoryPaperReview());
-        this.objPaperStoreService = new PaperStoreService(appContext.getRepositoryPaper());
+        this.objUserStoreService = appContext.getUserStoreService();
+        this.objConferenceStoreService = appContext.getConferenceStoreService();
+        this.objPaperReviewStoreService = appContext.getPaperReviewStoreService();
+        this.objPaperStoreService = appContext.getPaperStoreService();
         this.setLocationRelativeTo(null);
     }
     

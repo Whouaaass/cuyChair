@@ -23,7 +23,7 @@ public class ViewModifyMyProfile extends javax.swing.JFrame {
     public ViewModifyMyProfile() {
         AppContext appContext = AppContext.getInstance();
         fldUser=appContext.getLoggedUser(); 
-        this.fldUserStoreService=new UserStoreService(appContext.getRepositoryUser());
+        this.fldUserStoreService=appContext.getUserStoreService();
         initComponents();
     }
 

@@ -23,10 +23,8 @@ import static utilities.EmailManager.*;
  * @author julia
  */
 public class ViewSignIn extends javax.swing.JFrame {
-    private UserStoreService objUserStoreService; 
-    private ConferenceStoreService objConferenceStoreService;
-    private PaperReviewStoreService objPaperReviewStoreService;
-    private PaperStoreService objPaperStoreService;
+    private UserStoreService objUserStoreService;
+
     /**
      * Creates new form viewRegistrarUsuario
      */
@@ -34,10 +32,8 @@ public class ViewSignIn extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         AppContext appContext = AppContext.getInstance();
-        this.objUserStoreService=new UserStoreService(appContext.getRepositoryUser());
-        this.objConferenceStoreService=new ConferenceStoreService(appContext.getRepositoryConference());
-        this.objPaperReviewStoreService=new PaperReviewStoreService(appContext.getRepositoryPaperReview());
-        this.objPaperStoreService= new PaperStoreService(AppContext.getInstance().getRepositoryPaper());
+        this.objUserStoreService=appContext.getUserStoreService();
+
     }
 
     /**

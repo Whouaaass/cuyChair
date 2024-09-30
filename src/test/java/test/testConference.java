@@ -33,7 +33,7 @@ public class testConference {
         //Conferencia a comparar
         Conference objConference = new Conference(0, "MiConferencia", "Una conferencia","Cali", date ,objUserAdmin);
         objConferenceStoreService.storeConference(objConference);
-        assertEquals(objConference.getTitle(),objConferenceStoreService.listConference().getFirst().getTitle());
+        assertEquals(objConference.getTitle(),objRepositorySQLiteConference.listConference().getLast().getTitle());
     }
     @Test
     public void testArrayRepository() throws ParseException{

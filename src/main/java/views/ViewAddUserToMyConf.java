@@ -6,13 +6,13 @@ package views;
 
 import context.AppContext;
 import domain.Conference;
-import domain.ConferenceParticipation;
+
 import static domain.ConferenceParticipation.Role.*;
 import domain.User;
 import drivers.ConferenceParticipationStoreService;
 import drivers.ConferenceStoreService;
 import drivers.UserStoreService;
-import java.util.ArrayList;
+
 import java.util.Vector;
 import static utilities.Utilities.setAlert;
 
@@ -39,9 +39,9 @@ public class ViewAddUserToMyConf extends javax.swing.JFrame {
     public ViewAddUserToMyConf() {
         AppContext appContext = AppContext.getInstance();
         this.objUser = appContext.getLoggedUser();
-        this.objConferenceStoreService = new ConferenceStoreService(appContext.getRepositoryConference());
-        this.objUserStoreService = new UserStoreService(appContext.getRepositoryUser());
-        objParticipationService = new ConferenceParticipationStoreService(appContext.getFldRepositoryConferenceParticipation());
+        this.objConferenceStoreService = appContext.getConferenceStoreService();
+        this.objUserStoreService = appContext.getUserStoreService();
+        objParticipationService = new ConferenceParticipationStoreService(appContext.getRepositoryConferenceParticipation());
         vecMyConferences = new Vector(this.objConferenceStoreService.listConferenceByOwner(objUser));
         initComponents();
     }

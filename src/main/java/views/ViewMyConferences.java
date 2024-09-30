@@ -6,7 +6,6 @@ package views;
 
 import context.AppContext;
 import domain.Conference;
-import domain.ConferenceParticipation;
 import domain.User;
 import drivers.ConferenceStoreService;
 import infra.Observer;
@@ -29,11 +28,12 @@ public class ViewMyConferences extends javax.swing.JFrame implements Observer {
      * Creates new form ViewMyConferences
      */
     
-    public ViewMyConferences(ConferenceStoreService objConferenceStoreService) {
+    public ViewMyConferences() {
         initComponents();
         AppContext appContext = AppContext.getInstance();
         this.objUser=appContext.getLoggedUser();
-        this.objConferenceStoreService=objConferenceStoreService;
+        this.objConferenceStoreService=appContext.getConferenceStoreService();
+        objConferenceStoreService.addObserver(this);
         InitTable();
     }
     private void InitTable()

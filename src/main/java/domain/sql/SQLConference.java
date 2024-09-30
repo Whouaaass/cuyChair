@@ -46,7 +46,7 @@ public class SQLConference extends Conference {
 
     @Override
     public List<ConferenceParticipation> getParticipations() {
-        IRepositoryConferenceParticipation repositoryConferenceParticipation = AppContext.getInstance().getFldRepositoryConferenceParticipation();
+        IRepositoryConferenceParticipation repositoryConferenceParticipation = AppContext.getInstance().getRepositoryConferenceParticipation();
         if (super.fldParticipations == null) {
             super.fldParticipations = repositoryConferenceParticipation.getParticipationsOf(this);
         }

@@ -3,14 +3,15 @@ package context;
 import dataAccess.conference.IRepositoryConference;
 import dataAccess.conference.RepositoryArrayListConference;
 import dataAccess.conferenceParticipation.IRepositoryConferenceParticipation;
-import dataAccess.conferenceParticipation.RepositoryArrayListConferenceParticipation;
+import dataAccess.conferenceParticipation.RepositorySQLiteConferenceParticipation;
 import dataAccess.paper.IRepositoryPaper;
 import dataAccess.paper.RepositoryArrayListPaper;
 import dataAccess.paperReview.IRepositoryPaperReview;
 import dataAccess.paperReview.RepositoryArrayListPaperReview;
 import dataAccess.user.IRepositoryUser;
-import dataAccess.user.RepositoryArrayListUser;
+import dataAccess.user.RepositorySQLiteUser;
 import domain.User;
+import drivers.*;
 
 public class AppContext {
     private static AppContext instance = new AppContext();
@@ -25,13 +26,22 @@ public class AppContext {
     private IRepositoryPaperReview fldRepositoryPaperReview;
     private IRepositoryConferenceParticipation fldRepositoryConferenceParticipation;
 
+    //Servicios
+    private ConferenceStoreService fldConferenceStoreService;
+    private PaperStoreService fldPaperStoreService;
+    private UserStoreService fldUserStoreService;
+    private ConferenceParticipationStoreService fldConferenceParticipationStoreService;
+    private PaperReviewStoreService fldPaperReviewStoreService;
+
     //constructores
     private AppContext() {
-        fldRepositoryConference = new RepositoryArrayListConference();
-        fldRepositoryUser = new RepositoryArrayListUser();
-        fldRepositoryPaper = new RepositoryArrayListPaper();
-        fldRepositoryPaperReview = new RepositoryArrayListPaperReview();
-        fldRepositoryConferenceParticipation = new RepositoryArrayListConferenceParticipation();
+        this(
+                new RepositoryArrayListConference(),
+                new RepositorySQLiteUser(),
+                new RepositoryArrayListPaper(),
+                new RepositoryArrayListPaperReview(),
+                new RepositorySQLiteConferenceParticipation()
+        );
     }
     private AppContext(
             IRepositoryConference repositoryConference,
@@ -44,6 +54,12 @@ public class AppContext {
         fldRepositoryPaper = repositoryPaper;
         fldRepositoryPaperReview = repositoryPaperReview;
         fldRepositoryConferenceParticipation = repositoryConferenceParticipation;
+
+        fldConferenceParticipationStoreService = new ConferenceParticipationStoreService(fldRepositoryConferenceParticipation);
+        fldConferenceStoreService = new ConferenceStoreService(fldRepositoryConference);
+        fldPaperStoreService = new PaperStoreService(fldRepositoryPaper);
+        fldPaperReviewStoreService = new PaperReviewStoreService(fldRepositoryPaperReview);
+        fldUserStoreService = new UserStoreService(fldRepositoryUser);
     }
 
     /**
@@ -108,7 +124,27 @@ public class AppContext {
         return fldRepositoryPaperReview;
     }
 
-    public IRepositoryConferenceParticipation getFldRepositoryConferenceParticipation() { return fldRepositoryConferenceParticipation; }
+    public IRepositoryConferenceParticipation getRepositoryConferenceParticipation() { return fldRepositoryConferenceParticipation; }
+
+    public ConferenceStoreService getConferenceStoreService() {
+        return fldConferenceStoreService;
+    }
+
+    public PaperStoreService getPaperStoreService() {
+        return fldPaperStoreService;
+    }
+
+    public UserStoreService getUserStoreService() {
+        return fldUserStoreService;
+    }
+
+    public ConferenceParticipationStoreService getConferenceParticipationStoreService() {
+        return fldConferenceParticipationStoreService;
+    }
+
+    public PaperReviewStoreService getPaperReviewStoreService() {
+        return fldPaperReviewStoreService;
+    }
     
     public void clear() {
         loggedUser = null;

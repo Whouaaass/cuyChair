@@ -10,12 +10,14 @@ public class DelateTable {
             String delatepaper="DROP TABLE IF EXISTS paper;";
             String delateconference="DROP TABLE IF EXISTS conference;";
             String delatepaperReview="DROP TABLE IF EXISTS paperreview;";
+            String delateuserconference="DROP TABLE IF EXISTS userconference;";
 
             Statement st= connection.createStatement();
             st.execute(delateuser);
             st.execute(delatepaper);
             st.execute(delateconference);
             st.execute(delatepaperReview);
+            st.execute(delateuserconference);
         }catch (SQLException e){
             e.printStackTrace();
         }

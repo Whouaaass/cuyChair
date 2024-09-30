@@ -38,7 +38,7 @@ public class ViewRegisterConference extends javax.swing.JFrame {
         initComponents();
         AppContext appContext = AppContext.getInstance();
         this.objAdminUser=appContext.getLoggedUser();
-        this.objConferenceStoreService=new ConferenceStoreService(appContext.getRepositoryConference());
+        this.objConferenceStoreService=appContext.getConferenceStoreService();
     }
 
     /**

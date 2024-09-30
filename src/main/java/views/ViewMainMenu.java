@@ -36,9 +36,6 @@ public class ViewMainMenu extends javax.swing.JFrame {
     User fldUser;
     //Repositorios de guardado
     private UserStoreService objUserStoreService;
-    private ConferenceStoreService objConferenceStoreService;
-    private PaperReviewStoreService objPaperReviewStoreService;
-    private PaperStoreService objPaperStoreService;
     
     //helpers
     private Map<String, Component> tabIndexes;
@@ -46,13 +43,8 @@ public class ViewMainMenu extends javax.swing.JFrame {
     public ViewMainMenu() {
         initComponents();
         AppContext appContext = AppContext.getInstance();
-        objConferenceStoreService = new ConferenceStoreService(AppContext.getInstance().getRepositoryConference());
         this.fldUser = appContext.getLoggedUser();
-        this.objUserStoreService = new UserStoreService(appContext.getRepositoryUser());
-        this.objConferenceStoreService = new ConferenceStoreService(appContext.getRepositoryConference());
-        this.objPaperReviewStoreService = new PaperReviewStoreService(appContext.getRepositoryPaperReview());
-        this.objPaperStoreService = new PaperStoreService(appContext.getRepositoryPaper());
-        
+        this.objUserStoreService = appContext.getUserStoreService();
         this.tabIndexes = new HashMap<>();
         
         this.setLocationRelativeTo(null);
@@ -274,13 +266,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
     private void jMenuItemMyConferencesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMyConferencesActionPerformed
         // TODO add your handling code here:
 
-        ViewMyConferences objViewMyConferences = new ViewMyConferences(objConferenceStoreService);
-        objConferenceStoreService.addObserver(objViewMyConferences);
-
-        /*
-        objViewMyConferences.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        objViewMyConferences.setVisible(true);
-         */
+        ViewMyConferences objViewMyConferences = new ViewMyConferences();
 
         this.addTab("Mis Conferencias", objViewMyConferences.getContentPane());
     }//GEN-LAST:event_jMenuItemMyConferencesActionPerformed
@@ -297,12 +283,8 @@ public class ViewMainMenu extends javax.swing.JFrame {
 
     private void jMenuItemAssistantConferenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAssistantConferenceActionPerformed
         // TODO add your handling code here:
-        ViewAssistantConference objViewAssistantConference = new ViewAssistantConference(objConferenceStoreService);
-        objConferenceStoreService.addObserver(objViewAssistantConference);
-        /*
-        objViewAssistantConference.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        objViewAssistantConference.setVisible(true);
-*/
+        ViewAssistantConference objViewAssistantConference = new ViewAssistantConference();
+
         this.addTab("Asistencia a Conferencias", objViewAssistantConference.getContentPane());
     }//GEN-LAST:event_jMenuItemAssistantConferenceActionPerformed
 
@@ -362,13 +344,4 @@ public class ViewMainMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelMainMenu;
     private javax.swing.JTabbedPane jTabbedMainPane;
     // End of variables declaration//GEN-END:variables
-}
-
-class MyCloseActionListener implements ActionListener {
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
-
 }

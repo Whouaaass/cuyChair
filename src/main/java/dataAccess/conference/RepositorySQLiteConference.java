@@ -118,7 +118,7 @@ public class RepositorySQLiteConference implements IRepositoryConference {
     @Override
     public Conference getConferenceById(int conferenceId) {
         String confe = "SELECT * FROM Conference WHERE id = ?";
-        Conference newConfe;
+        Conference newConfe = null;
 
         try (Connection connection = ConnectionSqlitePool.getConnection()) {
             PreparedStatement pst = connection.prepareStatement(confe);
@@ -126,17 +126,13 @@ public class RepositorySQLiteConference implements IRepositoryConference {
             ResultSet rs = pst.executeQuery();
 
             // Solo se cargan los datos de la tabla, lo demás se carga por lazy loading
-            newConfe = createConferenceWithRowData(rs);
-
-            if (rs.wasNull()) {
-                return null;
+            if (rs.next()) {
+                newConfe = createConferenceWithRowData(rs);
             }
-
-            return newConfe;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return newConfe;
     }
 
     @Override

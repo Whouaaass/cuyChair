@@ -29,7 +29,7 @@ public class RepositorySQLiteUser implements IRepositoryUser {
     public boolean storeUser(User objUser) {
         boolean varFlag;
         try (Connection connection = ConnectionSqlitePool.getConnection()) {
-            String insertUser = "INSERT INTO USER VALUES (?, ?, ?, ?, ?)";
+            String insertUser = "INSERT INTO USER(id, name, lastName, hashedPassword, email) VALUES (?, ?, ?, ?, ?)";
 
             PreparedStatement pst = connection.prepareStatement(insertUser);
             pst.setInt(1, objUser.getUserId());
@@ -73,12 +73,12 @@ public class RepositorySQLiteUser implements IRepositoryUser {
             PreparedStatement pst = connection.prepareStatement(selectEmail);
             pst.setString(1, email);
             ResultSet rs = pst.executeQuery();
-            User newUser = createUserFromRow(rs);
-            if (rs.wasNull()) {
-                return null;
+
+            if (rs.next()) {
+                return createUserFromRow(rs);
             }
 
-            return newUser;
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -110,7 +110,22 @@ public class RepositorySQLiteUser implements IRepositoryUser {
 
     @Override
     public boolean modifyUser(int userId, String name, String lastName, String password, String description) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String updateStatement = "UPDATE User SET name = ?, lastName = ?, hashedPassword = ?, description = ? WHERE id = ?";
+        try (Connection conn = ConnectionSqlitePool.getConnection()) {
+            PreparedStatement pst = conn.prepareStatement(updateStatement);
+            pst.setString(1, name);
+            pst.setString(2, lastName);
+            pst.setString(3, password);
+            pst.setString(4, description);
+            pst.setInt(5, userId);
+            int affected = pst.executeUpdate();
+            if (affected > 0) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override
@@ -206,6 +221,7 @@ public class RepositorySQLiteUser implements IRepositoryUser {
         user.setUserLastName(rs.getString("lastName"));
         user.setUserPassword(rs.getString("hashedPassword"));
         user.setUserEmail(rs.getString("email"));
+        user.setDescription(rs.getString("description"));
         return user;
     }
 }

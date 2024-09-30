@@ -27,7 +27,7 @@ public class ViewMyPapers extends javax.swing.JFrame {
         initComponents();
         AppContext appContext = AppContext.getInstance();
         this.objUser = appContext.getLoggedUser();
-        this.objPaperStoreService = new PaperStoreService(appContext.getRepositoryPaper());
+        this.objPaperStoreService = appContext.getPaperStoreService();
         InitTable();
     }
     private void InitTable()

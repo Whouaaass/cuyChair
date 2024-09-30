@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS User
     name           TEXT NOT NULL,
     lastName       TEXT NOT NULL,
     hashedPassword TEXT NOT NULL,
+    description    TEXT,
     email          TEXT NOT NULL
 );
 CREATE TABLE IF NOT EXISTS Paper
