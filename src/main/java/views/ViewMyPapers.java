@@ -58,7 +58,7 @@ public class ViewMyPapers extends javax.swing.JFrame {
             //Solo añade la fila si el usuario Id coincide con el del usuario logeado
             if(papersList.get(i).getAuthor().getUserId()==this.objUser.getUserId()){
                 Object [] row= { 
-                papersList.get(i).getAuthor(),
+                papersList.get(i).getAuthor().getUserName(),
                 papersList.get(i).getDescription(),
                 };
                 model.addRow(row);
