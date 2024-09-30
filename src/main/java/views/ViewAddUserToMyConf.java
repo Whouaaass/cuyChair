@@ -7,11 +7,13 @@ package views;
 import context.AppContext;
 import domain.Conference;
 import domain.ConferenceParticipation;
-import static domain.ConferenceParticipation.Role.AUTHOR;
+import static domain.ConferenceParticipation.Role.*;
 import domain.User;
+import drivers.ConferenceParticipationStoreService;
 import drivers.ConferenceStoreService;
 import drivers.UserStoreService;
 import java.util.ArrayList;
+import java.util.Vector;
 import static utilities.Utilities.setAlert;
 
 /**
@@ -19,20 +21,28 @@ import static utilities.Utilities.setAlert;
  * @author julia
  */
 public class ViewAddUserToMyConf extends javax.swing.JFrame {
+
     //Usuario logeado
     private User objUser;
     //Servicio de conferencias
     private ConferenceStoreService objConferenceStoreService;
     //Servicio de papers
     private UserStoreService objUserStoreService;
+    
+    private ConferenceParticipationStoreService objParticipationService;
+
+    private Vector<Conference> vecMyConferences;
+
     /**
      * Creates new form ViewAddUserToMyConf
      */
     public ViewAddUserToMyConf() {
         AppContext appContext = AppContext.getInstance();
-        this.objUser=appContext.getLoggedUser();
-        this.objConferenceStoreService= new ConferenceStoreService(appContext.getRepositoryConference());
-        this.objUserStoreService= new UserStoreService(appContext.getRepositoryUser());
+        this.objUser = appContext.getLoggedUser();
+        this.objConferenceStoreService = new ConferenceStoreService(appContext.getRepositoryConference());
+        this.objUserStoreService = new UserStoreService(appContext.getRepositoryUser());
+        objParticipationService = new ConferenceParticipationStoreService(appContext.getFldRepositoryConferenceParticipation());
+        vecMyConferences = new Vector(this.objConferenceStoreService.listConferenceByOwner(objUser));
         initComponents();
     }
 
@@ -50,9 +60,9 @@ public class ViewAddUserToMyConf extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabelTitleEmail = new javax.swing.JLabel();
         jLabelTitleTitleConference = new javax.swing.JLabel();
-        jTextFieldConfTitle = new javax.swing.JTextField();
         jTextFieldEmail1 = new javax.swing.JTextField();
         jButtonAddUser = new javax.swing.JButton();
+        jComboBoxConference = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,7 +77,7 @@ public class ViewAddUserToMyConf extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelTitleAddUserToMyConf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jLabelTitleAddUserToMyConf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,36 +108,42 @@ public class ViewAddUserToMyConf extends javax.swing.JFrame {
             }
         });
 
+        jComboBoxConference.setModel(new javax.swing.DefaultComboBoxModel<>(this.vecMyConferences));
+        jComboBoxConference.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxConferenceActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabelTitleEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(113, Short.MAX_VALUE)
-                .addComponent(jTextFieldConfTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(jButtonAddUser)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldEmail1, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                    .addComponent(jComboBoxConference, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(155, 155, 155)
+                .addComponent(jButtonAddUser)
+                .addContainerGap(158, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabelTitleTitleConference, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(115, Short.MAX_VALUE)
-                    .addComponent(jTextFieldEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(97, 97, 97)))
+                    .addComponent(jLabelTitleTitleConference, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelTitleEmail)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
-                .addComponent(jTextFieldConfTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTextFieldEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addComponent(jComboBoxConference, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonAddUser)
                 .addGap(27, 27, 27))
@@ -136,11 +152,6 @@ public class ViewAddUserToMyConf extends javax.swing.JFrame {
                     .addContainerGap(101, Short.MAX_VALUE)
                     .addComponent(jLabelTitleTitleConference)
                     .addContainerGap(101, Short.MAX_VALUE)))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(47, 47, 47)
-                    .addComponent(jTextFieldEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(154, Short.MAX_VALUE)))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -149,58 +160,48 @@ public class ViewAddUserToMyConf extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddUserActionPerformed
-        int varAux=-1;
         //Usuario asistente
-        User objUserAsist = null; 
+        User objUserAsist = null;
         //Conferencia a asigna
-        Conference conference = null;
-        //Conferencias del usuario logeado
-        ArrayList<Conference> conferenceList
-                = (ArrayList<Conference>)this.objConferenceStoreService.listConferencesRelatedTo(this.objUser, ConferenceParticipation.Role.AUTHOR);
+        Conference conference = (Conference) this.jComboBoxConference.getSelectedItem();        
+        
+        String inputEmail = this.jTextFieldEmail1.getText();        
+        
         //Buscamos el usuario como asistente a la conferencia
-        for(int j=0;j<conferenceList.size();j++){
-            //Si coincide lo guardamos
-            if(this.objUserStoreService.listUsers().get(j).getUserEmail().equals(this.jTextFieldEmail1)){
-                objUserAsist=this.objUserStoreService.listUsers().get(j);
-                
-            }
-        }
-        if(objUserAsist==null){
-            setAlert("Usuario no encontrado","");
+        objUserAsist = this.objUserStoreService.getUserByEmail(inputEmail);
+        
+        if (objUserAsist == null) {
+            setAlert("Usuario no encontrado", "");
             return;
         }
-        for(int i=0;i<conferenceList.size();i++){
-            //Comparamos si la conferencia digitada coincide con alguna
-            if(conferenceList.get(i).getTitle().equals(this.jTextFieldConfTitle)){
-                //Guardamos la conferencia en un obj temporal
-                conference = conferenceList.get(i);
-            } 
-        }
-        if(conference==null){
-            setAlert("Conferencia no encontrada","");
+        if (conference == null) {
+            setAlert("Conferencia no encontrada", "");
             return;
         }
-        //Creamos un obj de tipo ConferenceParticipations para añadirlo a la lista
-        ConferenceParticipation objConferenceParticipation = new ConferenceParticipation(0,objUserAsist,conference,AUTHOR);
+        
         //Finalmente añadimos el obj ConferenceParticipation de esta forma añadiendo al usuario
-        boolean varFlag=conferenceList.get(varAux).getParticipations().add(objConferenceParticipation);
-        if(varFlag){
-            setAlert("Guardado exitoso","");
-        }else{
-            setAlert("Error","Error al guardar usuario");
+        boolean varFlag = this.objParticipationService.createConferenceParticipation(objUserAsist, conference, AUTHOR);
+        if (varFlag) {
+            setAlert("Guardado exitoso", "");
+        } else {
+            setAlert("Error", "Error al guardar usuario");
             return;
         }
     }//GEN-LAST:event_jButtonAddUserActionPerformed
 
+    private void jComboBoxConferenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxConferenceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxConferenceActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAddUser;
+    private javax.swing.JComboBox<Conference> jComboBoxConference;
     private javax.swing.JLabel jLabelTitleAddUserToMyConf;
     private javax.swing.JLabel jLabelTitleEmail;
     private javax.swing.JLabel jLabelTitleTitleConference;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextFieldConfTitle;
     private javax.swing.JTextField jTextFieldEmail1;
     // End of variables declaration//GEN-END:variables
 }

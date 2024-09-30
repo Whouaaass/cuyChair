@@ -23,7 +23,10 @@ public class RepositoryArrayListConferenceParticipation implements IRepositoryCo
 
     @Override
     public ConferenceParticipation createParticipation(User user, Conference conference, ConferenceParticipation.Role rol) {
-        return new ConferenceParticipation(indexCounter.getAndIncrement(), user, conference, rol);
+        ConferenceParticipation newParticipation = new ConferenceParticipation(indexCounter.getAndIncrement(), user, conference, rol);
+        user.getParticipations().add(newParticipation);
+        conference.getParticipations().add(newParticipation);
+        return newParticipation;
     }
 
     @Override
