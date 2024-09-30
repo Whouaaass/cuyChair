@@ -6,6 +6,8 @@ package drivers;
 
 import dataAccess.paper.IRepositoryPaper;
 import domain.Paper;
+import domain.User;
+
 import java.util.List;
 
 /**
@@ -40,5 +42,14 @@ public class PaperStoreService {
      */
     public List<Paper> listPapers() {
         return this.objRepositoryPaperRef.listPaper();
+    }
+
+    /**
+     * Lista los papers hechos por un autor
+     * @param author
+     * @return lista de papers
+     */
+    public List<Paper> listPapersOf(User author) {
+        return this.objRepositoryPaperRef.listPapersOf(author);
     }
 }

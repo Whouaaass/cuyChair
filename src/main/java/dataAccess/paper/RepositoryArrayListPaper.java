@@ -8,6 +8,7 @@ import dataAccess.user.RepositorySQLiteUser;
 import domain.Conference;
 import domain.Paper;
 import domain.PaperReview;
+import domain.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +66,17 @@ public class RepositoryArrayListPaper implements IRepositoryPaper {
     @Override
     public Paper getPaperOfReview(PaperReview paperReview) {
         return paperReview.getPaper();
+    }
+
+    @Override
+    public List<Paper> listPapersOf(User user) {
+        List<Paper> papers = new ArrayList<>();
+        for (Paper objPaper : PaperList) {
+            if (objPaper.getAuthor().getUserId() == user.getUserId()) {
+                papers.add(objPaper);
+            }
+        }
+        return papers;
     }
 
 

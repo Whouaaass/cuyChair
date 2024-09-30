@@ -13,7 +13,7 @@ public class SQLPaper extends Paper {
     @Override
     public User getAuthor() {
         IRepositoryUser repositoryUser = AppContext.getInstance().getRepositoryUser();
-        if (fldAuthor != null) {
+        if (fldAuthor == null) {
             fldAuthor = repositoryUser.getAuthorOf(this);
         }
         return fldAuthor;
@@ -22,7 +22,7 @@ public class SQLPaper extends Paper {
     @Override
     public Conference getConference() {
         IRepositoryConference repositoryConference = AppContext.getInstance().getRepositoryConference();
-        if (fldConference != null) {
+        if (fldConference == null) {
             fldConference = repositoryConference.getConferenceOf(this);
         }
         return fldConference;

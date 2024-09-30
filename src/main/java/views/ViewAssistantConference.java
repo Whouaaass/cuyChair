@@ -35,9 +35,13 @@ public class ViewAssistantConference extends javax.swing.JFrame implements Obser
     public ViewAssistantConference() {
         initComponents();
         AppContext appContext = AppContext.getInstance();
+
         this.objUser=appContext.getLoggedUser();
         this.objConferenceStoreService= appContext.getConferenceStoreService();
         this.objPaperStoreService= appContext.getPaperStoreService();
+
+        objConferenceStoreService.addObserver(this);
+
         InitTable();
     }
     private void InitTable()
