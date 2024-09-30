@@ -8,14 +8,17 @@ import context.AppContext;
 import domain.Paper;
 import domain.User;
 import drivers.PaperStoreService;
+import infra.Observer;
+import infra.Subject;
 
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
  * @author julia
  */
-public class ViewMyPapers extends javax.swing.JFrame {
+public class ViewMyPapers extends javax.swing.JFrame implements Observer {
     private User objUser;//User logeado
     private PaperStoreService objPaperStoreService;//Todos los papers
 
@@ -27,7 +30,9 @@ public class ViewMyPapers extends javax.swing.JFrame {
         AppContext appContext = AppContext.getInstance();
         this.objUser = appContext.getLoggedUser();
         this.objPaperStoreService = appContext.getPaperStoreService();
+        objPaperStoreService.addObserver(this);
         InitTable();
+        fillTable();
     }
 
     private void InitTable() {
@@ -164,7 +169,6 @@ public class ViewMyPapers extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRefreshMyPapersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshMyPapersActionPerformed
-        // TODO add your handling code here:
         fillTable();
     }//GEN-LAST:event_jButtonRefreshMyPapersActionPerformed
 
@@ -176,5 +180,10 @@ public class ViewMyPapers extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableMyPapers;
+
+    @Override
+    public void update(Object o) {
+        fillTable();
+    }
     // End of variables declaration//GEN-END:variables
 }

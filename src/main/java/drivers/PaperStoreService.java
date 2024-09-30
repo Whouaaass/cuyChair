@@ -7,6 +7,7 @@ package drivers;
 import dataAccess.paper.IRepositoryPaper;
 import domain.Paper;
 import domain.User;
+import infra.Subject;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * @author julia
  * @author Frdy
  */
-public class PaperStoreService {
+public class PaperStoreService extends Subject {
     private IRepositoryPaper objRepositoryPaperRef;
 
      /**
@@ -24,6 +25,7 @@ public class PaperStoreService {
      */
     public PaperStoreService(IRepositoryPaper objRepositoryPaperRef) {
         this.objRepositoryPaperRef = objRepositoryPaperRef;
+        this.notifyAllObservers();
     }
     
      /**
