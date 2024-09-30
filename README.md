@@ -11,3 +11,7 @@ Esta aplicación será utilizada para gestionar las conferencias que organice el
 ## Tecnologías en uso
 La aplicación se crea con Java  
 Hace uso de maven
+
+## Dependencia de repositorios
+para correr este proyecto ahora es necesario el siguiente repositorio en el que estan los plugins
+- Plugins: <https://github.com/Whouaaass/cuyChair-plugins>
