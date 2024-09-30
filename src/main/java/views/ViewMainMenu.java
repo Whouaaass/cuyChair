@@ -46,6 +46,7 @@ public class ViewMainMenu extends javax.swing.JFrame {
     public ViewMainMenu() {
         initComponents();
         AppContext appContext = AppContext.getInstance();
+        objConferenceStoreService = new ConferenceStoreService(AppContext.getInstance().getRepositoryConference());
         this.fldUser = appContext.getLoggedUser();
         this.objUserStoreService = new UserStoreService(appContext.getRepositoryUser());
         this.objConferenceStoreService = new ConferenceStoreService(appContext.getRepositoryConference());
@@ -272,7 +273,10 @@ public class ViewMainMenu extends javax.swing.JFrame {
 
     private void jMenuItemMyConferencesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMyConferencesActionPerformed
         // TODO add your handling code here:
-        ViewMyConferences objViewMyConferences = new ViewMyConferences();
+
+        ViewMyConferences objViewMyConferences = new ViewMyConferences(objConferenceStoreService);
+        objConferenceStoreService.addObserver(objViewMyConferences);
+
         /*
         objViewMyConferences.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewMyConferences.setVisible(true);
@@ -293,7 +297,8 @@ public class ViewMainMenu extends javax.swing.JFrame {
 
     private void jMenuItemAssistantConferenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAssistantConferenceActionPerformed
         // TODO add your handling code here:
-        ViewAssistantConference objViewAssistantConference = new ViewAssistantConference();
+        ViewAssistantConference objViewAssistantConference = new ViewAssistantConference(objConferenceStoreService);
+        objConferenceStoreService.addObserver(objViewAssistantConference);
         /*
         objViewAssistantConference.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objViewAssistantConference.setVisible(true);

@@ -38,7 +38,9 @@ public class ConferenceStoreService extends Subject {
      * @return si el guardado fue correcto
      */
     public boolean storeConference(Conference objConference) {
-        return this.objRepositoryConferenceRef.storeConference(objConference);
+        boolean flag = this.objRepositoryConferenceRef.storeConference(objConference);
+        notifyAllObservers();
+        return flag;
     }
 
     /**
@@ -63,8 +65,7 @@ public class ConferenceStoreService extends Subject {
     }
 
     public List<Conference> listConferencesRelatedTo(User user) {
-        List<Conference> li = objRepositoryConferenceRef.listConferenceOrganizedBy(user);
-        li.addAll(objRepositoryConferenceRef.listConferenceRelatedTo(user));
+        List<Conference> li = objRepositoryConferenceRef.listConferenceRelatedTo(user);
         return li;
     }
 

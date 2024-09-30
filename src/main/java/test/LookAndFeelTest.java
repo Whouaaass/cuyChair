@@ -37,7 +37,7 @@ public class LookAndFeelTest implements ActionListener {
     // If you choose the Metal L&F, you can also choose a theme.
     // Specify the theme to use by defining the THEME constant
     // Valid values are: "DefaultMetal", "Ocean",  and "Test"
-    final static String THEME = "Test";
+    final static String THEME = "DefaultMetal";
 
     public Component createComponents() {
         

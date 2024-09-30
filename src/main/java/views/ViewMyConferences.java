@@ -9,6 +9,8 @@ import domain.Conference;
 import domain.ConferenceParticipation;
 import domain.User;
 import drivers.ConferenceStoreService;
+import infra.Observer;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -18,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author julia
  */
-public class ViewMyConferences extends javax.swing.JFrame {
+public class ViewMyConferences extends javax.swing.JFrame implements Observer {
     //Usuario logeado
     private User objUser;
     //Servicio de conferencias
@@ -27,11 +29,11 @@ public class ViewMyConferences extends javax.swing.JFrame {
      * Creates new form ViewMyConferences
      */
     
-    public ViewMyConferences() {
+    public ViewMyConferences(ConferenceStoreService objConferenceStoreService) {
         initComponents();
         AppContext appContext = AppContext.getInstance();
         this.objUser=appContext.getLoggedUser();
-        this.objConferenceStoreService=new ConferenceStoreService(appContext.getRepositoryConference());
+        this.objConferenceStoreService=objConferenceStoreService;
         InitTable();
     }
     private void InitTable()
@@ -42,6 +44,7 @@ public class ViewMyConferences extends javax.swing.JFrame {
        model.addColumn("Descripción");
        model.addColumn("Fecha");
        this.jTableMyConferences.setModel(model);
+       fillTable();
     }
     //Limpia una tabla
     public void cleanTable(){
@@ -63,16 +66,13 @@ public class ViewMyConferences extends javax.swing.JFrame {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         
         for (int i = 0; i < conferenceList.size(); i++) {
-            //Solo añade la fila si el usuario Id coincide con el del usuario logeado
-            if(conferenceList.get(i).getConferenceOrganizer().getUserId()==this.objUser.getUserId()){
-                Object [] row= { 
-                conferenceList.get(i).getTitle(),
-                conferenceList.get(i).getCity(),
-                conferenceList.get(i).getDescription(),
-                formatter.format(conferenceList.get(i).getDate())
-                };
-                model.addRow(row);
-            }
+            Object [] row= {
+                    conferenceList.get(i).getTitle(),
+                    conferenceList.get(i).getCity(),
+                    conferenceList.get(i).getDescription(),
+                    formatter.format(conferenceList.get(i).getDate())
+            };
+            model.addRow(row);
         }
         
     }
@@ -213,5 +213,10 @@ public class ViewMyConferences extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelUp;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableMyConferences;
+
+    @Override
+    public void update(Object o) {
+        fillTable();
+    }
     // End of variables declaration//GEN-END:variables
 }

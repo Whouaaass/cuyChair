@@ -63,7 +63,7 @@ public class RepositorySQLiteConference implements IRepositoryConference {
     @Override
     public List<Conference> listConferenceRelatedTo(User user) {
         List<Conference> listConfe = new ArrayList<>();
-        String listParticipants = "SELECT Conference.* FROM Conference INNER JOIN UserConference WHERE UserConference.userId = ?";
+        String listParticipants = "SELECT Conference.* FROM Conference INNER JOIN UserConference ON Conference.id = UserConference.conferenceId WHERE UserConference.userId = ?";
         try (Connection connection = ConnectionSqlitePool.getConnection()) {
             PreparedStatement pst = connection.prepareStatement(listParticipants);
             pst.setInt(1, user.getUserId());
@@ -80,7 +80,21 @@ public class RepositorySQLiteConference implements IRepositoryConference {
 
     @Override
     public List<Conference> listConferenceRelatedTo(User user, ConferenceParticipation.Role role) {
-        return List.of();
+        List<Conference> listConfe = new ArrayList<>();
+        String listParticipants = "SELECT Conference.* FROM Conference INNER JOIN UserConference ON Conference.id = UserConference.conferenceId WHERE UserConference.userId = ? and UserConference.rol = ?";
+        try (Connection connection = ConnectionSqlitePool.getConnection()) {
+            PreparedStatement pst = connection.prepareStatement(listParticipants);
+            pst.setInt(1, user.getUserId());
+            pst.setInt(2, role.value());
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                listConfe.add(createConferenceWithRowData(rs));
+            }
+            return listConfe;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override

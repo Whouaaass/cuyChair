@@ -8,18 +8,21 @@ import domain.Conference;
 import domain.User;
 import drivers.ConferenceStoreService;
 import drivers.PaperStoreService;
+
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 import context.AppContext;
+import infra.Observer;
 
 /**
  *
  * @author julia
  */
-public class ViewAssistantConference extends javax.swing.JFrame {
+public class ViewAssistantConference extends javax.swing.JFrame implements Observer {
     //Usuario logeado
     private User objUser;
     //Servicio de conferencias
@@ -29,11 +32,11 @@ public class ViewAssistantConference extends javax.swing.JFrame {
     /**
      * Creates new form ViewAssistantConference
      */
-    public ViewAssistantConference() {
+    public ViewAssistantConference(ConferenceStoreService objConferenceStoreService) {
         initComponents();
         AppContext appContext = AppContext.getInstance();
         this.objUser=appContext.getLoggedUser();
-        this.objConferenceStoreService= new ConferenceStoreService(appContext.getRepositoryConference());
+        this.objConferenceStoreService= objConferenceStoreService;
         this.objPaperStoreService= new PaperStoreService(appContext.getRepositoryPaper());
         InitTable();
     }
@@ -45,6 +48,7 @@ public class ViewAssistantConference extends javax.swing.JFrame {
        model.addColumn("Descripción");
        model.addColumn("Fecha");
        this.jTableConferencesaAssistance.setModel(model);
+       fillTable();
     }
     //Limpia una tabla
     public void cleanTable(){
@@ -67,16 +71,14 @@ public class ViewAssistantConference extends javax.swing.JFrame {
         
         for (int i = 0; i < conferenceList.size(); i++) {
             //Encontramos al usuario en la lista de usuarios de la conferencia
-            
-            if(conferenceList.get(i).getParticipations().get(i).getParticipant().getUserId()==this.objUser.getUserId()){
-                Object [] row= { 
+            Object [] row= {
                     conferenceList.get(i).getTitle(),
                     conferenceList.get(i).getCity(),
                     conferenceList.get(i).getDescription(),
                     formatter.format(conferenceList.get(i).getDate())
-                };
-                model.addRow(row);
-            }
+            };
+
+            model.addRow(row);
             
         }
         
@@ -217,5 +219,10 @@ public class ViewAssistantConference extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableConferencesaAssistance;
+
+    @Override
+    public void update(Object o) {
+        fillTable();
+    }
     // End of variables declaration//GEN-END:variables
 }

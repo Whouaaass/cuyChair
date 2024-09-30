@@ -6,6 +6,7 @@ public abstract class Subject {
     ArrayList<Observer> observers;
 
     public Subject(){
+        observers = new ArrayList<>();
     }
 
     public void addObserver(Observer ob){
@@ -17,7 +18,11 @@ public abstract class Subject {
 
     public void notifyAllObservers(){
         for (Observer each : observers) {
-            each.update(this);
+            try {
+                each.update(this);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
