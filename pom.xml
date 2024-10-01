@@ -40,6 +40,11 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>co.edu.unicauca</groupId>
+            <artifactId>cuyChair-common</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>       
     
     <properties>
