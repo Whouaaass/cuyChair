@@ -128,29 +128,24 @@ public class RepositorySQLitePaper implements IRepositoryPaper {
     }
 
     @Override
-    public List<InfoJob> getInfoJobs() {
-        String select="SELECT * FROM Paper";
-        List<InfoJob> list=new ArrayList<>();
+    public InfoJob getInfoJobs() {
+        String select="SELECT * FROM Paper ORDER BY id DESC LIMIT 1";
         InfoJob info=new InfoJob();
         RepositorySQLiteConference repoConfe=new RepositorySQLiteConference();
         RepositorySQLiteUser repoUser=new RepositorySQLiteUser();
         try(Connection conn = ConnectionSqlitePool.getConnection()){
             Statement st=conn.createStatement();
             ResultSet rs=st.executeQuery(select);
-
-            while(rs.next()){
                 info.setTitlePaper(rs.getString("title"));
                 info.setDescriptionPaper(rs.getString("description"));
                 info.setNameConference(repoConfe.getConferenceById(Integer.parseInt(rs.getString("conferenceId"))).getTitle());
                 info.setNameAuthor(repoUser.getUserById(Integer.parseInt(rs.getString("userId"))).getUserName());
-                list.add(info);
-            }
 
         }catch (SQLException e){
             e.printStackTrace();
             return null;
         }
-        return list;
+        return info;
     }
 
     private Paper createPaperFromRow(ResultSet rs) throws SQLException {

@@ -46,7 +46,7 @@ public class PaperStoreService extends Subject {
         return this.objRepositoryPaperRef.listPaper();
     }
 
-    public List<InfoJob> getInfoJobs(){
+    public InfoJob getInfoJobs(){
         return this.objRepositoryPaperRef.getInfoJobs();
     }
 }

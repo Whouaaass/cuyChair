@@ -69,7 +69,7 @@ public class RepositoryArrayListPaper implements IRepositoryPaper {
     }
 
     @Override
-    public List<InfoJob> getInfoJobs() {
+    public InfoJob getInfoJobs() {
         return null;
     }
 

@@ -9,6 +9,8 @@ import domain.InfoJob;
 import drivers.PaperStoreService;
 import javax.swing.table.DefaultTableModel;
 import infra.Observer;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,11 +39,8 @@ public class ObserverJobs extends javax.swing.JFrame implements Observer {
    @ Override
    public void update(Object o){
         this.objPaperStoreService =new PaperStoreService((IRepositoryPaper)o);
-        List<InfoJob> list=objPaperStoreService.getInfoJobs();
+        InfoJob nuewInfo=objPaperStoreService.getInfoJobs();
 
-        for(InfoJob info:list){
-            System.out.println(info.getTitlePaper());
-        }
         
         DefaultTableModel model = (DefaultTableModel)  jTableJobs.getModel();
         
@@ -52,15 +51,12 @@ public class ObserverJobs extends javax.swing.JFrame implements Observer {
         //    model.removeRow(i);
         //}
         //Poniendo a cero el total de filas, se elimina todas
-        model.setRowCount(0);
-        
-        for (InfoJob p : list) {
-            rowData[0] = p.getTitlePaper();
-            rowData[1] = p.getDescriptionPaper();
-            rowData[2] = p.getNameConference();
-            rowData[3] = p.getNameAuthor();
-            model.addRow(rowData);
-        }
+           rowData[0] = nuewInfo.getTitlePaper();
+           rowData[1] = nuewInfo.getDescriptionPaper();
+           rowData[2] = nuewInfo.getNameConference();
+           rowData[3] = nuewInfo.getNameAuthor();
+           model.addRow(rowData);
+
    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

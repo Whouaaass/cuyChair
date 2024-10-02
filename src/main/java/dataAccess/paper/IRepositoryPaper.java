@@ -53,5 +53,5 @@ public interface IRepositoryPaper {
      */
     public Paper getPaperOfReview(PaperReview paperReview);
 
-    public List<InfoJob> getInfoJobs();
+    public InfoJob getInfoJobs();
 }
