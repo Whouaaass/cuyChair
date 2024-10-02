@@ -7,6 +7,7 @@ package dataAccess.paper;
 import dataAccess.ConnectionSqlitePool;
 import dataAccess.user.RepositorySQLiteUser;
 import domain.Conference;
+import domain.InfoJob;
 import domain.Paper;
 import domain.PaperReview;
 import domain.sql.SQLPaper;
@@ -123,6 +124,35 @@ public class RepositorySQLitePaper implements IRepositoryPaper {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List<InfoJob> getInfoJobs() {
+        String select="SELECT p.title,p.description,c.title,u.name\n"
+                        +"From paper p\n"
+                        +"Inner Join conference c\n"
+                        +"On p.conferenceId=c.id\n"
+                        +"Inner Join User u\n"
+                        +"On p.userId=u.id\n";
+        List<InfoJob> list=new ArrayList<>();
+        InfoJob info=new InfoJob();
+        try(Connection conn = ConnectionSqlitePool.getConnection()){
+            Statement st=conn.createStatement();
+            ResultSet rs=st.executeQuery(select);
+
+            while(rs.next()){
+                info.setTitlePaper(rs.getString(1));
+                info.setDescriptionPaper(rs.getString(2));
+                info.setNameConference(rs.getString(3));
+                info.setNameAuthor(rs.getString(4));
+                list.add(info);
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+        return list;
     }
 
     private Paper createPaperFromRow(ResultSet rs) throws SQLException {

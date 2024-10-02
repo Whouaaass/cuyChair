@@ -7,6 +7,7 @@ package dataAccess.paper;
 import domain.Conference;
 import domain.Paper;
 import domain.PaperReview;
+import domain.InfoJob;
 
 import java.util.List;
 
@@ -51,4 +52,6 @@ public interface IRepositoryPaper {
      * @return paper
      */
     public Paper getPaperOfReview(PaperReview paperReview);
+
+    public List<InfoJob> getInfoJobs();
 }

@@ -30,10 +30,12 @@ public class ViewUploadPaper extends javax.swing.JFrame {
      * Creates new form ViewUploadPaper
      */
     public ViewUploadPaper() {
-        
+        ObserverJobs obj=new ObserverJobs();
+        obj.setVisible(true);
         AppContext appContext = AppContext.getInstance();
         this.objUser=appContext.getLoggedUser();
         this.objPaperStoreService = new PaperStoreService(appContext.getRepositoryPaper());
+        objPaperStoreService.addObserver(obj);
         this.objConferenceStoreService = new ConferenceStoreService(appContext.getRepositoryConference());
         this.conferenceList = new Vector<>( objConferenceStoreService.listConferencesRelatedTo(objUser, ConferenceParticipation.Role.AUTHOR));
         initComponents();

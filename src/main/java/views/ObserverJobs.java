@@ -4,6 +4,8 @@
  */
 package views;
 
+import dataAccess.paper.IRepositoryPaper;
+import domain.InfoJob;
 import drivers.PaperStoreService;
 import javax.swing.table.DefaultTableModel;
 import infra.Observer;
@@ -34,11 +36,10 @@ public class ObserverJobs extends javax.swing.JFrame implements Observer {
     } 
    @ Override
    public void update(Object o){
-       obj
-         ProductService productService = (ProductService) o;
-        List<Product> list = productService.listProducts();
+        this.objPaperStoreService =new PaperStoreService((IRepositoryPaper)o);
+        List<InfoJob> list=objPaperStoreService.getInfoJobs();
         
-        DefaultTableModel model = (DefaultTableModel) tblData.getModel();
+        DefaultTableModel model = (DefaultTableModel)  jTableJobs.getModel();
         
         Object rowData[] = new Object[4];
         //remover filas
@@ -49,11 +50,11 @@ public class ObserverJobs extends javax.swing.JFrame implements Observer {
         //Poniendo a cero el total de filas, se elimina todas
         model.setRowCount(0);
         
-        for (Product p : list) {
-            rowData[0] = p.getProductId();
-            rowData[1] = p.getName();
-            rowData[2] = p.getPrice();
-            rowData[3] = p.getUnidad();
+        for (InfoJob p : list) {
+            rowData[0] = p.getTitlePaper();
+            rowData[1] = p.getDescriptionPaper();
+            rowData[2] = p.getNameConference();
+            rowData[3] = p.getNameAuthor();
             model.addRow(rowData);
         }
    }

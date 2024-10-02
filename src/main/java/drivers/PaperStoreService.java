@@ -5,7 +5,10 @@
 package drivers;
 
 import dataAccess.paper.IRepositoryPaper;
+import domain.InfoJob;
 import domain.Paper;
+import infra.Subject;
+
 import java.util.List;
 
 /**
@@ -13,7 +16,7 @@ import java.util.List;
  * @author julia
  * @author Frdy
  */
-public class PaperStoreService {
+public class PaperStoreService extends Subject {
     private IRepositoryPaper objRepositoryPaperRef;
 
      /**
@@ -31,6 +34,7 @@ public class PaperStoreService {
      */
     public boolean storePaper(Paper objPaper) {
         boolean varFlag=this.objRepositoryPaperRef.storePaper(objPaper);
+        this.notifyAllObservers();
         return varFlag;
     }
    
@@ -40,5 +44,9 @@ public class PaperStoreService {
      */
     public List<Paper> listPapers() {
         return this.objRepositoryPaperRef.listPaper();
+    }
+
+    public List<InfoJob> getInfoJobs(){
+        return this.objRepositoryPaperRef.getInfoJobs();
     }
 }

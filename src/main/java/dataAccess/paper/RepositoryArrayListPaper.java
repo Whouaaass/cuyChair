@@ -6,6 +6,7 @@ package dataAccess.paper;
 
 import dataAccess.user.RepositorySQLiteUser;
 import domain.Conference;
+import domain.InfoJob;
 import domain.Paper;
 import domain.PaperReview;
 
@@ -65,6 +66,11 @@ public class RepositoryArrayListPaper implements IRepositoryPaper {
     @Override
     public Paper getPaperOfReview(PaperReview paperReview) {
         return paperReview.getPaper();
+    }
+
+    @Override
+    public List<InfoJob> getInfoJobs() {
+        return null;
     }
 
 
