@@ -68,5 +68,9 @@ public class ConferenceStoreService extends Subject {
         return li;
     }
 
+    public Conference getConferenceById(int id){
+        return objRepositoryConferenceRef.getConferenceById(id);
+    }
+
 
 }

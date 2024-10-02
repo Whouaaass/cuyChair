@@ -4,6 +4,7 @@
  */
 package views;
 
+import co.edu.unicauca.cuychair.common.notificationPlugin.IEmailPlugin;
 import context.AppContext;
 import domain.Conference;
 import domain.ConferenceParticipation;
@@ -11,6 +12,8 @@ import domain.Paper;
 import domain.User;
 import drivers.ConferenceStoreService;
 import drivers.PaperStoreService;
+import plugin.manager.EmailPluginManager;
+
 import java.util.Vector;
 import static utilities.Utilities.setAlert;
 
@@ -159,14 +162,19 @@ public class ViewUploadPaper extends javax.swing.JFrame {
         String title = this.jTextFieldTitulo.getText();
         String description = this.jTextFieldDescription.getText();
         String conference = this.jTextConference.getText();
-        Paper objPaper = new Paper(title,description,this.objUser, conference);
+        int id=Integer.parseInt(conference);
+        Conference conference1=objConferenceStoreService.getConferenceById(id);
+        Paper objPaper = new Paper(title,description,this.objUser, conference1);
         boolean varFlag = this.objPaperStoreService.storePaper(objPaper);
         if(varFlag){
             setAlert("Subida de trabajo", "exitosa");
         }else{
             setAlert("Subida de trabajo", "fallida");
         }
-          
+
+        EmailPluginManager manager=EmailPluginManager.getInstance();
+        IEmailPlugin plugin= manager.getDeliveryPlugin();
+        plugin.notifySendJobs(objPaper,conference1,objUser);
     }//GEN-LAST:event_jButtonUploadPaperActionPerformed
 
     private void jTextFieldTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTituloActionPerformed

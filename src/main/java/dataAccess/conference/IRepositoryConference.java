@@ -69,4 +69,5 @@ public interface IRepositoryConference {
      */
     public Conference getConferenceOf(Paper paper);
 
+
 }
