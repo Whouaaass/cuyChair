@@ -34,7 +34,7 @@ public class PaperStoreService extends Subject {
      */
     public boolean storePaper(Paper objPaper) {
         boolean varFlag=this.objRepositoryPaperRef.storePaper(objPaper);
-        this.notifyAllObservers();
+        this.notifyAllObservers(objRepositoryPaperRef);
         return varFlag;
     }
    

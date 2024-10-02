@@ -38,6 +38,10 @@ public class ObserverJobs extends javax.swing.JFrame implements Observer {
    public void update(Object o){
         this.objPaperStoreService =new PaperStoreService((IRepositoryPaper)o);
         List<InfoJob> list=objPaperStoreService.getInfoJobs();
+
+        for(InfoJob info:list){
+            System.out.println(info.getTitlePaper());
+        }
         
         DefaultTableModel model = (DefaultTableModel)  jTableJobs.getModel();
         

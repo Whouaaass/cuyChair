@@ -5,6 +5,7 @@
 package dataAccess.paper;
 
 import dataAccess.ConnectionSqlitePool;
+import dataAccess.conference.RepositorySQLiteConference;
 import dataAccess.user.RepositorySQLiteUser;
 import domain.Conference;
 import domain.InfoJob;
@@ -128,23 +129,20 @@ public class RepositorySQLitePaper implements IRepositoryPaper {
 
     @Override
     public List<InfoJob> getInfoJobs() {
-        String select="SELECT p.title,p.description,c.title,u.name\n"
-                        +"From paper p\n"
-                        +"Inner Join conference c\n"
-                        +"On p.conferenceId=c.id\n"
-                        +"Inner Join User u\n"
-                        +"On p.userId=u.id\n";
+        String select="SELECT * FROM Paper";
         List<InfoJob> list=new ArrayList<>();
         InfoJob info=new InfoJob();
+        RepositorySQLiteConference repoConfe=new RepositorySQLiteConference();
+        RepositorySQLiteUser repoUser=new RepositorySQLiteUser();
         try(Connection conn = ConnectionSqlitePool.getConnection()){
             Statement st=conn.createStatement();
             ResultSet rs=st.executeQuery(select);
 
             while(rs.next()){
-                info.setTitlePaper(rs.getString(1));
-                info.setDescriptionPaper(rs.getString(2));
-                info.setNameConference(rs.getString(3));
-                info.setNameAuthor(rs.getString(4));
+                info.setTitlePaper(rs.getString("title"));
+                info.setDescriptionPaper(rs.getString("description"));
+                info.setNameConference(repoConfe.getConferenceById(Integer.parseInt(rs.getString("conferenceId"))).getTitle());
+                info.setNameAuthor(repoUser.getUserById(Integer.parseInt(rs.getString("userId"))).getUserName());
                 list.add(info);
             }
 
